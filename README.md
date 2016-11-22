@@ -1,2 +1,6 @@
 # Portland-Data-Science-Group
-Portland Data Science Group, over 1500 members
+
+## Weekly Meeting Handouts
+
+
+[Oct 20, 2016 - Preparing for Technical Interview]()
