@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>Technical Interview Questions</title>
+	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<style>
+	h1, hr { color: steelblue;} h1 { cursor: pointer; }
+	h2, h3 { color: black; }
+	.answer { color: blue; }
+	input[type="checkbox"]:checked { }
+	</style>
+</head>
+<body ng-app="technical" style='margin: 20px;'>
+	<header>The Technical Interview</header>
+	
+	<div ng-controller="webCtrl" questions-web></div>
+	
+	<div ng-controller="htmlCtrl" questions-html></div>
+	
+	<div ng-controller="html5Ctrl" questions-html5></div>
+	
+	<div ng-controller="jsCtrl" questions-js></div>
+	
+	<div ng-controller="javaCtrl" questions-java></div>
+	
+	<div ng-controller="csharpCtrl" questions-csharp></div>
+	
+	<div ng-controller="cppCtrl" questions-cpp></div>
+	
+	<div ng-controller="cCtrl" questions-c></div>
+	
+	<div ng-controller="oopCtrl" questions-oop></div>
+	
+	<div ng-controller="agileCtrl" questions-agile></div>
+	
+	<div ng-controller="networkCtrl" questions-network></div>
+	
+	<div ng-controller="securityCtrl" questions-security></div>
+
+	<footer></footer>
+<script>
+var technical = angular.module( 'technical', []);
+function pick3( questions )
+{
+	var len = questions.length - 1;
+	var stack = new Array();
+	for ( var i = 0; i < 3; /**/ ) {
+		var pick = Math.round( Math.random() * len );
+		var j = 0;
+		for ( /**/; j < stack.length; j++ ) {
+			if ( stack[ j ] == pick )
+				break;
+		}
+
+		if ( j == stack.length ) {
+			stack.push( pick );
+			i++;
+		}
+	}
+	
+	var ret = new Array();
+	for ( var i = 0; i < 3; i++ )
+		ret.push( questions[ stack[ i ] ] );
+	return ret;
+}
+
+$(document).ready(function () {
+	$("input").click(function(){
+		;
+	})
+})
+</script>
+<script src="web.js"></script>
+<script src="html.js"></script>
+<script src="html5.js"></script>
+<script src="js.js"></script>
+<script src="java.js"></script>
+<script src="cpp.js"></script>
+<script src="csharp.js"></script>
+<script src="c.js"></script>
+<script src="oop.js"></script>
+<script src="agile.js"></script>
+<script src="network.js"></script>
+<script src="security.js"></script>
+</body>
+</html>
