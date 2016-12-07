@@ -32,7 +32,7 @@ technical.controller( 'osCtrl', function( $scope ) {
 				  "	<li ng-repeat='question in random'> {{question.question}}<br/><br/>" +
 				  "	<span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small'>Suggest A Better Answer</button><br/>Correct <input class='os-correct' type='checkbox'/><br/><br/>" +
 				  "</ul>" +
-				  "<button onclick='Tally( \"os\")' class='w3-btn w3-green score'>Score</button>" +
+				  "<button class='w3-btn w3-green score' meta='os'>Score</button>" +
 				  "</div>"
 	}
 });

@@ -88,14 +88,35 @@ function Tally( category ) {
 			totalCorrect++;
 }
 
+function UnTally( category ) {
+	var cls = category + "-correct";
+	var checkboxes = document.getElementsByClassName( cls );
+	
+	totalQuestions -= checkboxes.length;
+	for ( var i = 0; i < checkboxes.length; i++ )
+		if ( checkboxes[ i ].checked )
+			totalCorrect--;
+}
+
 $(document).ready(function () {
 	$("button#guide").click(function() {
 		window.location.href = "preparing-for-technical-interview.html";
 	})
 	
 	$("button.score").click(function() {
-		$(this).html( "Scored" );
-		$(this).attr('class', 'w3-btn w3-red score');
+		// score it
+		if ( $(this).html() == "Score" ) {
+			$(this).html( "Scored" );
+			$(this).attr('class', 'w3-btn w3-red score');
+			Tally( $(this).attr( 'meta' ) );
+		}
+		// undo
+		else
+		{
+			$(this).html( "Score" );
+			$(this).attr('class', 'w3-btn w3-green score');
+			UnTally( $(this).attr( 'meta' ) );
+		}
 	})
 	
 	$("button#final").click(function() {
