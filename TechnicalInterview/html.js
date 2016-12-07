@@ -28,7 +28,7 @@ technical.controller( 'htmlCtrl', function( $scope ) {
 				  "<div style='font-size: 20px;' ng-show='show'>" +
 				  "<ul>" +
 				  "	<li ng-repeat='question in random'> {{question.question}}<br/><br/>" +
-				  "	<span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small better'>Suggest A Better Answer</button><br/>Correct <input class='html-correct' type='checkbox'/><br/><br/>" +
+				  "	<span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small better' name='html'>Suggest A Better Answer</button><br/>Correct <input class='html-correct' type='checkbox'/><br/><br/>" +
 				  "</ul>" +
 				  "<button class='w3-btn w3-green score' name='html'>Score</button>" +
 				  "&nbsp;<button class='w3-btn w3-khaki w3-round w3-small question' name='html'>Suggest a Question</button>" +
