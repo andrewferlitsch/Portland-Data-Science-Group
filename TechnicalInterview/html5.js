@@ -1,7 +1,9 @@
 technical.controller( 'html5Ctrl', function( $scope ) {
 	$scope.subject 	= "HTML5";
 	$scope.questions = [{ question: "What is geolocation in HTML5?",
-						  answer: ""
+						  answer: "The HTML Geolocation API is used to locate a user's geographical position. " +
+								  "It will use the GPS information from a user's device, if available, otherwise it use " +
+								  "the IP address to determine the location of the user's ISP."
 						},
 						{ question: "Name some input types added by HTML5",
 						  answer: "color, date, datetime, datetime-local, email, month, number, range"

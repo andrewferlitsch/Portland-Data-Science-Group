@@ -1,13 +1,18 @@
 technical.controller( 'oopCtrl', function( $scope ) {
 	$scope.subject 	= "OOP Design";
 	$scope.questions = [{ question: "What is an abstract class?",
-						  answer: ""
+						  answer: "An abstract class is a class where one or more declared methods require an implementation. " +
+								  "A derived (subclass, extended) that inherits the abstract class must implement all the methods " +
+								  "that do not have an implementation. An abstract class cannot be instantiated."
 						},
 						{ question: "What is data encapsulation?",
-						  answer: ""
+						  answer: "Data encapsulation is where the data in a class is hidden from external objects. The data is only " +
+								  "accessible by the class methods."
 						},
 						{ question: "Describe how public, protected and private scope work.",
-						  answer: ""
+						  answer: "public - data or method is accessible to all external objects. " +
+								  "protected - data or method is accessible only by the class and objects that inherit the class. " +
+								  "private - data or method is accessible only by the class."
 						},
 						{ question: "What is polymorphism? Give an example.",
 						  answer: ""

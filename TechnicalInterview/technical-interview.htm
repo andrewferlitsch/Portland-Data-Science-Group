@@ -13,7 +13,8 @@
 	</style>
 </head>
 <body ng-app="technical" style='margin: 20px;'>
-	<header>The Technical Interview</header>
+
+	<div ng-controller="interviewCtrl" interview></div>
 	
 	<div ng-controller="webCtrl" questions-web></div>
 	
@@ -30,6 +31,8 @@
 	<div ng-controller="cppCtrl" questions-cpp></div>
 	
 	<div ng-controller="cCtrl" questions-c></div>
+	
+	<div ng-controller="osCtrl" questions-os></div>
 	
 	<div ng-controller="oopCtrl" questions-oop></div>
 	
@@ -67,11 +70,15 @@ function pick3( questions )
 }
 
 $(document).ready(function () {
+	$("button#guide").click(function() {
+		alert("pushed");
+	})
 	$("input").click(function(){
 		;
 	})
 })
 </script>
+<script src="head.js"></script>
 <script src="web.js"></script>
 <script src="html.js"></script>
 <script src="html5.js"></script>
@@ -80,6 +87,7 @@ $(document).ready(function () {
 <script src="cpp.js"></script>
 <script src="csharp.js"></script>
 <script src="c.js"></script>
+<script src="os.js"></script>
 <script src="oop.js"></script>
 <script src="agile.js"></script>
 <script src="network.js"></script>
