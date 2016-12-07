@@ -4,10 +4,11 @@ technical.controller( 'agileCtrl', function( $scope ) {
 						  answer: ""
 						},
 						{ question: "What is the technical backlog?",
-						  answer: ""
+						  answer: "Any task, or portion of it, not completed in a sprint is put into the technical backlog."
 						},
 						{ question: "What are story points?",
-						  answer: ""
+						  answer: "For each task in a sprint, it is the estimate of the amount of time to complete the task. Typically 1 story point " +
+								  "is 1/2 day, 2 story points is 1 day, 3 story points is 2 days, 5 story points is a 5 days."
 						},
 						{ question: "What does a scrum master do?",
 						  answer: ""
@@ -35,9 +36,9 @@ technical.controller( 'agileCtrl', function( $scope ) {
 				  "<div style='font-size: 20px;' ng-show='show'>" +
 				  "<ul>" +
 				  "	<li ng-repeat='question in random'> {{question.question}}<br/><br/>" +
-				  "	<span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small'>Suggest A Better Answer</button><br/>Correct <input class='agile-correct' type='checkbox'/><br/><br/>" +
+				  "	<span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small better'>Suggest A Better Answer</button><br/>Correct <input class='agile-correct' type='checkbox'/><br/><br/>" +
 				  "</ul>" +
-				  "<button class='w3-btn w3-green score' meta='agile'>Score</button>" +
+				  "<button class='w3-btn w3-green score' name='agile'>Score</button>" +
 				  "</div>"
 	}
 });

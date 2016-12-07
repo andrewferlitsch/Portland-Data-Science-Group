@@ -30,9 +30,9 @@ technical.controller( 'osCtrl', function( $scope ) {
 				  "<div style='font-size: 20px;' ng-show='show'>" +
 				  "<ul>" +
 				  "	<li ng-repeat='question in random'> {{question.question}}<br/><br/>" +
-				  "	<span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small'>Suggest A Better Answer</button><br/>Correct <input class='os-correct' type='checkbox'/><br/><br/>" +
+				  "	<span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small better'>Suggest A Better Answer</button><br/>Correct <input class='os-correct' type='checkbox'/><br/><br/>" +
 				  "</ul>" +
-				  "<button class='w3-btn w3-green score' meta='os'>Score</button>" +
+				  "<button class='w3-btn w3-green score' name='os'>Score</button>" +
 				  "</div>"
 	}
 });
