@@ -13,6 +13,16 @@
 	.answer { color: blue; }
 	.final { display: inline-block; width: 180px; font-weight: bold; }
 	input[type="checkbox"]:checked { }
+	
+	#popupbetter {
+       position: fixed;
+       visibility: hidden;
+       overflow: hidden;
+       border:1px solid #CCC;
+       background-color:#F9F9F9;
+       border:1px solid #333;
+       padding:5px;
+    }
 	</style>
 </head>
 <body ng-app="technical" style='margin: 20px;'>
@@ -46,6 +56,8 @@
 	<div ng-controller="securityCtrl" questions-security></div>
 	
 	<div ng-controller="finalCtrl" final></div>
+	
+	<div id="popupbetter"></div>
 
 	<footer style='text-align: center; color: gray'>Copyright(c) 2016-17, Andrew Ferlitsch, Co-Organizer, Portland Data Science Group</footer>
 <script>
@@ -74,7 +86,33 @@ function pick3( questions )
 		ret.push( questions[ stack[ i ] ] );
 	return ret;
 }
+    
+function showBetter(category)
+{
+	var popUp = document.getElementById("popupbetter");
+ 
+    popUp.style.top    = "200px";
+    popUp.style.left   = "200px";
+    popUp.style.width  = "500px";
+    popUp.style.height = "300px";
+   
+    popUp.innerHTML = "Suggested Answer: " + 
+		  "<textarea rows='7' cols='48'></textarea>" +
+          "<button onclick=\"saveBetter(" + category + ")\">Save<button>" +
+          "<button onclick=\"hideBetter();\">Close<button>";
+		  
+    popUp.style.visibility = "visible";
+}
+	
+function hideBetter(){
+    var popUp = document.getElementById("popupbetter");
+    popUp.style.visibility = "hidden";
+}
 
+function saveBetter(category) {
+	//alert(category);
+}
+	
 var totalQuestions = 0;
 var totalCorrect   = 0;
 
@@ -120,7 +158,8 @@ $(document).ready(function () {
 	})
 	
 	$("button.better").click(function() {
-		var answer = prompt("Suggested Answer", "" );
+		//alert($(this).attr( 'name' )); 
+		showBetter( $(this).attr( 'name' ) );
 	})
 	
 	$("button.question").click(function() {
