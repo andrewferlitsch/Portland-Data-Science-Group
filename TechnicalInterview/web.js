@@ -1,23 +1,28 @@
 technical.controller( 'webCtrl', function( $scope ) {
 	$scope.subject 	= "Web";
 	$scope.questions = [{ question: "What is a CDN?",
-						  answer: "A content delivery network (CDN) is a system of distributed servers (network) that deliver webpages and other Web content to a user based on the geographic locations of the user"
+						  answer: "A content delivery network (CDN) is a system of distributed servers (network) that deliver webpages and other Web content to a user based on the geographic locations of the user",
+						  rank: 1
 						},
 						{ question: "What is a Single Page Application (SPA)?",
-						  answer: "SPA web application loads a single HTML page. As the user interacts with the page, the page is updated by modifying the DOM and new content is obtained by AJAX calls."
+						  answer: "SPA web application loads a single HTML page. As the user interacts with the page, the page is updated by modifying the DOM and new content is obtained by AJAX calls.",
+						  rank: 2
 						},
 						{ question: "What is AJAX?",
 						  answer: "AJAX is an asynchronous method in Javascript to make calls to server side scripts." +
 								  "It uses the XMLHttpRequest object. Responses to the call typically are in JSON or XML format." +
-								  "The method is used to send or receive data to/from a server without refreshing the whole page."
+								  "The method is used to send or receive data to/from a server without refreshing the whole page.",
+						  rank: 2
 						},
 						{ question: "Describe what a REST API does. What is meant by stateless?",
 						  answer: "A REST API call is made between a web application and a server via a HTTP request." +
 								  "The endpoint identifies the call or service being requested and the arguments are passed as query string (?parameters) appended to the URL." +
-								  "A REST API is considered stateless in that no state change persist across calls."
+								  "A REST API is considered stateless in that no state change persist across calls.",
+						  rank: 3
 						},
 						{ question: "Name the most common HTTP request methods.",
-						  answer: "GET, POST, PUT, DELETE"
+						  answer: "GET, POST, PUT, DELETE",
+						  rank: 1
 						},
 					  ];
 	$scope.random = pick3( $scope.questions );

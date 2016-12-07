@@ -1,19 +1,24 @@
 technical.controller( 'pythonCtrl', function( $scope ) {
 	$scope.subject 	= "Python";
-	$scope.questions = [{ question: "What does the keyword lambda do?",
-						  answer: ""
-						},
-						{ question: "What does the keyword yield do?",
-						  answer: ""
-						},
-						{ question: "How are blocks of code delineated (e.g, statements for an if block)?",
-						  answer: "Blocks of code are denoted by line indentation."
+	$scope.questions = [{ question: "How are blocks of code delineated (e.g, statements for an if block)?",
+						  answer: "Blocks of code are denoted by line indentation.",
+						  rank: 1
 						},
 						{ question: "What is the syntax of a comment?",
-						  answer: "#"
+						  answer: "#",
+						  rank: 1
 						},
 						{ question: "What are the five standard data types?",
-						  answer: "Numbers, String, List, Tuple, Dictionary"
+						  answer: "Numbers, String, List, Tuple, Dictionary",
+						  rank: 1
+						},
+						{ question: "What does the keyword yield do?",
+						  answer: "",
+						  rank: 2
+						},
+						{ question: "What does the keyword lambda do?",
+						  answer: "",
+						  rank: 3
 						}
 					  ];
 	$scope.random = pick3( $scope.questions );

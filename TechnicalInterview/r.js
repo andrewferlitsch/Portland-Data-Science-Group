@@ -1,25 +1,32 @@
 technical.controller( 'rCtrl', function( $scope ) {
 	$scope.subject 	= "R";
 	$scope.questions = [{ question: "What is R?",
-						  answer: "A statistical programming language."
+						  answer: "A statistical programming language.",
+						  rank: 1
 						},
 						{ question: "What are the three assignment operators in R?",
-						  answer: "equal, leftward (<-), and rightward (->)"
-						},
-						{ question: "What are the common builtin types of R-objects?",
-						  answer: "vectors, arrays, matrices, lists, factors, data frames"
-						},
-						{ question: "What are the six data types of a vector?",
-						  answer: "logical, numeric, integer, complex, character, raw"
+						  answer: "equal, leftward (<-), and rightward (->)",
+						  rank: 1
 						},
 						{ question: "What is a data frame?",
-						  answer: "Data frames are tabular data objects. Unlike a matrix in data frame each column can contain different modes of data. The first column can be numeric while the second column can be character and third column can be logical. It is a list of vectors of equal length."
+						  answer: "Data frames are tabular data objects. Unlike a matrix in data frame each column can contain different modes of data. The first column can be numeric while the second column can be character and third column can be logical. It is a list of vectors of equal length.",
+						  rank: 1
+						},
+						{ question: "What are the common builtin types of R-objects?",
+						  answer: "vectors, arrays, matrices, lists, factors, data frames",
+						  rank: 2
+						},
+						{ question: "What are the six data types of a vector?",
+						  answer: "logical, numeric, integer, complex, character, raw",
+						  rank: 2
 						},
 						{ question: "How do you create a data frame?",
-						  answer: "Data Frames are created using the data.frame() function."
+						  answer: "Data Frames are created using the data.frame() function.",
+						  rank: 2
 						},
 						{ question: "How do I find all variables starting with the pattern \"ab\"?",
-						  answer: "ls(pattern = \"ab\")"
+						  answer: "ls(pattern = \"ab\")",
+						  rank: 2
 						},
 					  ];
 	$scope.random = pick3( $scope.questions );
