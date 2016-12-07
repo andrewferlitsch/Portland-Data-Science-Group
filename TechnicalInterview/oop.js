@@ -40,7 +40,7 @@ technical.controller( 'oopCtrl', function( $scope ) {
 				  "<div style='font-size: 20px;' ng-show='show'>" +
 				  "<ul>" +
 				  "	<li ng-repeat='question in random'> {{question.question}}<br/><br/>" +
-				  "	<span class='answer'>{{question.answer}}</span><br/>Correct <input class='oop-correct' type='checkbox'/><br/><br/>" +
+				  "	<span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small'>Suggest A Better Answer</button><br/>Correct <input class='oop-correct' type='checkbox'/><br/><br/>" +
 				  "</ul>" +
 				  "<button onclick='Tally( \"oop\")' class='w3-btn w3-green score'>Score</button>" +
 				  "</div>"
