@@ -153,8 +153,9 @@ function saveBetter( category, question ) {
 	
 	$.ajax({
 		url: "/interview/better.php",
-		context: { category: category, question: question, answer: answer },
-		success: function( result ) {},
+		type: 'post',
+		data: {'category': category, question: question, answer: answer },
+		success: function( data, status ) { alert( data ) },
 		error: function(xhr) { alert( xhr.status + " " + xhr.statusText ); }
 	});
 }
@@ -168,9 +169,10 @@ function saveSuggest( category ) {
 	hidePopup();
 	
 	$.ajax({
-		url: "/interview/suggest.php",
-		context: { category: category, question: question, answer: answer },
-		success: function( result ) {},
+		url: "/interview/better.php",
+		type: 'post',
+		data: {'category': category, question: question, answer: answer },
+		success: function( data, status ) { alert( data ) },
 		error: function(xhr) { alert( xhr.status + " " + xhr.statusText ); }
 	});
 }
