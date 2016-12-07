@@ -43,6 +43,7 @@ technical.controller( 'oopCtrl', function( $scope ) {
 				  "	<span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small better'>Suggest A Better Answer</button><br/>Correct <input class='oop-correct' type='checkbox'/><br/><br/>" +
 				  "</ul>" +
 				  "<button class='w3-btn w3-green score' name='oop'>Score</button>" +
+				  "&nbsp;<button class='w3-btn w3-khaki w3-round w3-small question' name='oop'>Suggest a Question</button>" +
 				  "</div>"
 	}
 });
