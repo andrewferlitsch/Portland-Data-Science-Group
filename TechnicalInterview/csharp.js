@@ -31,7 +31,7 @@ technical.controller( 'csharpCtrl', function( $scope ) {
 				  "	<li ng-repeat='question in random'> {{question.question}}<br/><br/>" +
 				  "	<span class='answer'>{{question.answer}}</span><br/>Correct <input class='csharp-correct' type='checkbox'/><br/><br/>" +
 				  "</ul>" +
-				  "<button onclick='Tally( \"csharp\")'>Score</button>" +
+				  "<button onclick='Tally( \"csharp\")' class='w3-btn w3-green'>Score</button>" +
 				  "</div>"
 	}
 });

@@ -37,7 +37,7 @@ technical.controller( 'agileCtrl', function( $scope ) {
 				  "	<li ng-repeat='question in random'> {{question.question}}<br/><br/>" +
 				  "	<span class='answer'>{{question.answer}}</span><br/>Correct <input class='agile-correct' type='checkbox'/><br/><br/>" +
 				  "</ul>" +
-				  "<button onclick='Tally( \"agile\")'>Score</button>" +
+				  "<button onclick='Tally( \"agile\")' class='w3-btn w3-green'>Score</button>" +
 				  "</div>"
 	}
 });
