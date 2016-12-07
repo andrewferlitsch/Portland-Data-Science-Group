@@ -19,6 +19,8 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 				  "	<li>For each selected category, the interviewer clicks on the category, which will display three random questions and suggested answers.</li>" +
 				  "	<li>The interviewer will ask each question.</li>" +
 				  "	<li>If the interviewer feels the answer was sufficient, then the interviewer checks the Correct box.</li>" +
+				  "	<li>When a category is done, the interviewer selects the Score button in the category.</li>" +
+				  " <li>When completed, the interviewer selects the Final Score button at the bottom of the page.</li>" +
 				  "</ul>" +
 				  "</div>" 
 	}

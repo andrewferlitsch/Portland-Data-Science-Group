@@ -33,7 +33,7 @@ technical.controller( 'cCtrl', function( $scope ) {
 				  "	<li ng-repeat='question in random'> {{question.question}}<br/><br/>" +
 				  "	<span class='answer'>{{question.answer}}</span><br/>Correct <input class='c-correct' type='checkbox'/><br/><br/>" +
 				  "</ul>" +
-				  "<button onclick='Tally( \"c\")' class='w3-btn w3-green'>Score</button>" +
+				  "<button onclick='Tally( \"c\")' class='w3-btn w3-green score'>Score</button>" +
 				  "</div>"
 	}
 });

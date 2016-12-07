@@ -11,6 +11,7 @@
 	hr { color: steelblue;} h1 { cursor: pointer; text-align: center; }
 	h2, h3 { color: black; }
 	.answer { color: blue; }
+	.final { display: inline-block; width: 180px; font-weight: bold; }
 	input[type="checkbox"]:checked { }
 	</style>
 </head>
@@ -87,19 +88,24 @@ function Tally( category ) {
 			totalCorrect++;
 }
 
-function FinalScore()
-{
-	return [ totalQuestions, totalCorrect ];
-}
-
 $(document).ready(function () {
 	$("button#guide").click(function() {
 		window.location.href = "preparing-for-technical-interview.html";
 	})
 	
+	$("button.score").click(function() {
+		$(this).html( "Scored" );
+		$(this).attr('class', 'w3-btn w3-red score');
+	})
+	
 	$("button#final").click(function() {
 		window.location.href = "#final";
+		
+		var percentCorrect = ( totalCorrect * 100 ) / totalQuestions;
+		
 		$("#totalQuestions").html( totalQuestions );
+		$("#totalCorrect").html( totalCorrect );
+		$("#percentCorrect").html( percentCorrect.toFixed(2) + "%" );
 	})
 	
 	$("input").click(function(){

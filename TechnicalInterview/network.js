@@ -33,7 +33,7 @@ technical.controller( 'networkCtrl', function( $scope ) {
 				  "	<span class='answer'>{{question.answer}}</span><br/>Correct <input class='network-correct' type='checkbox'/><br/><br/>" +
 				  "	</li>" +
 				  "</ul>" +
-				  "<button onclick='Tally( \"network\")' class='w3-btn w3-green'>Score</button>" +
+				  "<button onclick='Tally( \"network\")' class='w3-btn w3-green score'>Score</button>" +
 				  "</div>"
 	} 
 });
