@@ -34,6 +34,7 @@ technical.controller( 'securityCtrl', function( $scope ) {
 				  "	<li ng-repeat='question in random'> {{question.question}}<br/><br/>" +
 				  "	<span class='answer'>{{question.answer}}</span><br/>Correct <input class='security-correct' type='checkbox'/><br/><br/>" +
 				  "</ul>" +
+				  "<button onclick='Tally( \"security\")'>Score</button>" +
 				  "</div>"
 	}
 });

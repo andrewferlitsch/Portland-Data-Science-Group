@@ -27,6 +27,7 @@ technical.controller( 'cppCtrl', function( $scope ) {
 				  "	<li ng-repeat='question in random'> {{question.question}}<br/><br/>" +
 				  "	<span class='answer'>{{question.answer}}</span><br/>Correct <input class='cpp-correct' type='checkbox'/><br/><br/>" +
 				  "</ul>" +
+				  "<button onclick='Tally( \"cpp\")'>Score</button>" +
 				  "</div>"
 	}
 });

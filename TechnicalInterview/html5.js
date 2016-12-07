@@ -29,6 +29,7 @@ technical.controller( 'html5Ctrl', function( $scope ) {
 				  "	<li ng-repeat='question in random'> {{question.question}}<br/><br/>" +
 				  "	<span class='answer'>{{question.answer}}</span><br/>Correct <input class='html5-correct' type='checkbox'/><br/><br/>" +
 				  "</ul>" +
+				  "<button onclick='Tally( \"html5\")'>Score</button>" +
 				  "</div>"
 	}
 });

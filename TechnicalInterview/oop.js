@@ -42,6 +42,7 @@ technical.controller( 'oopCtrl', function( $scope ) {
 				  "	<li ng-repeat='question in random'> {{question.question}}<br/><br/>" +
 				  "	<span class='answer'>{{question.answer}}</span><br/>Correct <input class='oop-correct' type='checkbox'/><br/><br/>" +
 				  "</ul>" +
+				  "<button onclick='Tally( \"oop\")'>Score</button>" +
 				  "</div>"
 	}
 });

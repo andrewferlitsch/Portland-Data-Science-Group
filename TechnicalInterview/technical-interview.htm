@@ -45,6 +45,7 @@
 	<footer>Copyright(c) 2016-17, Andrew Ferlitsch</footer>
 <script>
 var technical = angular.module( 'technical', []);
+
 function pick3( questions )
 {
 	var len = questions.length - 1;
@@ -67,6 +68,24 @@ function pick3( questions )
 	for ( var i = 0; i < 3; i++ )
 		ret.push( questions[ stack[ i ] ] );
 	return ret;
+}
+
+var totalQuestions = 0;
+var totalCorrect   = 0;
+
+function Tally( category ) {
+	var cls = category + "-correct";
+	var checkboxes = document.getElementsByClassName( cls );
+	
+	totalQuestions += checkboxes.length;
+	for ( var i = 0; i < checkboxes.length; i++ )
+		if ( checkboxes[ i ].checked )
+			totalCorrect++;
+}
+
+function FinalScore()
+{
+	return [ totalQuestions, totalCorrect ];
 }
 
 $(document).ready(function () {
