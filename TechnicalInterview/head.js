@@ -8,7 +8,7 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 				  "<h2>Portland Data Science Group</h2>" +
 				  "</div>" +
 				  "<div style='font-size: 16pt'>" +
-				  "<p>For those wanting to prepare for an in-person technical interview, see our <button id='guide'>Guide</button></p>" +
+				  "<p>For those wanting to prepare for an in-person technical interview, see our <button id='guide' class='w3-btn w3-green'>Guide</button></p>" +
 				  "</div>" +
 				  "<div style=''>" +
 				  "<h3>Preparing for a Technical Phone Screen</h3>" +

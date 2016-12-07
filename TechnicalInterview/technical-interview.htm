@@ -3,10 +3,12 @@
 <head>
 	<title>Technical Interview Questions</title>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 	<style>
-	h1, hr { color: steelblue;} h1 { cursor: pointer; }
+	hr { color: steelblue;} h1 { cursor: pointer; text-align: center; }
 	h2, h3 { color: black; }
 	.answer { color: blue; }
 	input[type="checkbox"]:checked { }
@@ -41,8 +43,10 @@
 	<div ng-controller="networkCtrl" questions-network></div>
 	
 	<div ng-controller="securityCtrl" questions-security></div>
+	
+	<div ng-controller="finalCtrl" final></div>
 
-	<footer>Copyright(c) 2016-17, Andrew Ferlitsch</footer>
+	<footer style='text-align: center; color: gray'>Copyright(c) 2016-17, Andrew Ferlitsch, Co-Organizer, Portland Data Science Group</footer>
 <script>
 var technical = angular.module( 'technical', []);
 
@@ -92,6 +96,11 @@ $(document).ready(function () {
 	$("button#guide").click(function() {
 		window.location.href = "preparing-for-technical-interview.html";
 	})
+	
+	$("button#final").click(function() {
+		;
+	})
+	
 	$("input").click(function(){
 		;
 	})
@@ -111,5 +120,6 @@ $(document).ready(function () {
 <script src="agile.js"></script>
 <script src="network.js"></script>
 <script src="security.js"></script>
+<script src="final.js"></script>
 </body>
 </html>

@@ -27,7 +27,7 @@ technical.controller( 'securityCtrl', function( $scope ) {
 	return {
 		restrict: 'A',
 		template: "<a name='security'/>" +
-				  "<h1 style='text-align: center' ng-click='show=!show' onclick='location.href=\"#security\"'>{{subject}} &#x21f5;</h1>" +
+				  "<h1 class='w3-container w3-teal' ng-click='show=!show' onclick='location.href=\"#security\"'>{{subject}} &#x21f5;</h1>" +
 				  "<hr/>" +
 				  "<div style='font-size: 20px;' ng-show='show'>" +
 				   "<ul>" +
