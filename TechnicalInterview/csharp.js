@@ -1,20 +1,25 @@
 technical.controller( 'csharpCtrl', function( $scope ) {
 	$scope.subject 	= "C##";
-	$scope.questions = [{ question: "Describe how try, catch and finally work.",
-						  answer: ""
-						},
-						{ question: "Name two ways the using statement is used.",
+	$scope.questions = [{ question: "Name two ways the using statement is used.",
 						  answer: "As a directive, it is used to create an alias for a namespace or to import types defined in other namespaces. " +
-								  "As a statement, it defines a scope at the end of which an object will be disposed."
-						},
-						{ question: "What is managed code?",
-						  answer: ""
-						},
-						{ question: "What does a LINQ statement do?",
-						  answer: ""
+								  "As a statement, it defines a scope at the end of which an object will be disposed.",
+						  rank: 1
 						},
 						{ question: "What is the scope of the variable 'i': for (int i = 0; i<10;i++) {}",
-						  answer: "The scope is within the for loop. It has not scope outside of the for loop."
+						  answer: "The scope is within the for loop. It has not scope outside of the for loop.",
+						  rank: 1
+						},
+						{ question: "Describe how try, catch and finally work.",
+						  answer: "",
+						  rank: 2
+						},
+						{ question: "What is managed code?",
+						  answer: "",
+						  rank: 2
+						},
+						{ question: "What does a LINQ statement do?",
+						  answer: "",
+						  rank: 3
 						}
 					  ];
 	$scope.random = pick3( $scope.questions );
