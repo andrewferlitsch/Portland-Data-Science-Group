@@ -6,6 +6,7 @@ technical.controller( 'finalCtrl', function( $scope ) {
 	return {
 		restrict: 'A',
 		template: "<a name='final'/>" +
+				  "<br/>" +
 				  "<button id='final' class='w3-btn w3-green' ng-click='show=true'>Final Score</button>" +
 				  "<div ng-show='show'>" +
 				  "	<p><span class='final'>Number of Questions</span>: <span id='totalQuestions'></span></p>" +

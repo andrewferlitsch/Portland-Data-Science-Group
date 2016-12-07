@@ -101,7 +101,9 @@ $(document).ready(function () {
 	$("button#final").click(function() {
 		window.location.href = "#final";
 		
-		var percentCorrect = ( totalCorrect * 100 ) / totalQuestions;
+		var percentCorrect = 0;
+		if ( totalQuestions > 0 )
+			percentCorrect = ( totalCorrect * 100 ) / totalQuestions;
 		
 		$("#totalQuestions").html( totalQuestions );
 		$("#totalCorrect").html( totalCorrect );
