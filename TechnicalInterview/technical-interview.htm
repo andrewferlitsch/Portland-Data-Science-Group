@@ -14,7 +14,7 @@
 	.final { display: inline-block; width: 180px; font-weight: bold; }
 	input[type="checkbox"]:checked { }
 	
-	#popupbetter {
+	#popup {
        position: fixed;
        visibility: hidden;
        overflow: hidden;
@@ -57,7 +57,7 @@
 	
 	<div ng-controller="finalCtrl" final></div>
 	
-	<div id="popupbetter"></div>
+	<div id="popup"></div>
 
 	<footer style='text-align: center; color: gray'>Copyright(c) 2016-17, Andrew Ferlitsch, Co-Organizer, Portland Data Science Group</footer>
 <script>
@@ -87,9 +87,9 @@ function pick3( questions )
 	return ret;
 }
     
-function showBetter(category)
+function showBetter( category, question )
 {
-	var popUp = document.getElementById("popupbetter");
+	var popUp = document.getElementById("popup");
  
     popUp.style.top    = "200px";
     popUp.style.left   = "200px";
@@ -97,20 +97,48 @@ function showBetter(category)
     popUp.style.height = "300px";
    
     popUp.innerHTML = "Suggested Answer: " + 
-		  "<textarea rows='7' cols='48'></textarea>" +
-          "<button onclick=\"saveBetter(" + category + ")\">Save<button>" +
-          "<button onclick=\"hideBetter();\">Close<button>";
+		  "<textarea rows='7' cols='48' id='new-answer'></textarea>" +
+          "<button onclick=\"saveBetter('" + category + "', '" + question + "')\">Save<button>" +
+          "<button onclick=\"hidePopup()\">Close<button>";
+		  
+    popUp.style.visibility = "visible";
+} 
+   
+function showSuggest( category )
+{
+	var popUp = document.getElementById("popup");
+
+    popUp.style.top    = "200px";
+    popUp.style.left   = "200px";
+    popUp.style.width  = "500px";
+    popUp.style.height = "300px";
+   
+    popUp.innerHTML = "Suggested Question: " + 
+		  "<input type='text' size='32' id='new-question'/><br/>" +
+		  "Suggest Answer:" +
+		  "<textarea rows='7' cols='48' id='new-answer'></textarea>" +
+		  "<button onclick=\"saveSuggest( '" + category + "' )\">Save</button>" +
+          "<button onclick=\"hidePopup()\">Close<button>";
 		  
     popUp.style.visibility = "visible";
 }
 	
-function hideBetter(){
-    var popUp = document.getElementById("popupbetter");
+function hidePopup(){
+    var popUp = document.getElementById("popup");
     popUp.style.visibility = "hidden";
 }
 
-function saveBetter(category) {
-	//alert(category);
+function saveBetter( category, question ) {
+	var answer = document.getElementById( "new-answer" ).value;
+	hidePopup();
+	// todo
+}
+
+function saveSuggest( category ) {
+	var question = document.getElementById( "new-question" ).value;
+	var answer   = document.getElementById( "new-answer" ).value;
+	hidePopup();
+	// todo
 }
 	
 var totalQuestions = 0;
@@ -158,12 +186,11 @@ $(document).ready(function () {
 	})
 	
 	$("button.better").click(function() {
-		//alert($(this).attr( 'name' )); 
-		showBetter( $(this).attr( 'name' ) );
+		showBetter( $(this).attr( 'name' ), $(this).prev().html() );
 	})
 	
 	$("button.question").click(function() {
-		alert( "todo" );
+		showSuggest( $(this).attr( 'name' ) );
 	})
 	
 	$("button#final").click(function() {
