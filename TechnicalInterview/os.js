@@ -4,16 +4,18 @@ technical.controller( 'osCtrl', function( $scope ) {
 						  answer: ""
 						},
 						{ question: "How many bytes are in a Unicode character?",
-						  answer: ""
+						  answer: "2 bytes"
 						},
 						{ question: "Describe UTF-8 encoding",
-						  answer: ""
+						  answer: "A encoding consisting of one to four bytes. If the first byte has a leading zero bit, it is one byte long (ANSI)." +
+						          "If it has two leading one bits, it is two bytes long, three leading one bits it is three bytes long, and four leading " +
+								  "one bits it is four bytes long."
 						},
 						{ question: "What does the MMU do when a page fault occurs in a virtual address space?",
-						  answer: ""
+						  answer: "The memory management unit (MMU) will map the physical memory page into the virtual address space."
 						},
 						{ question: "What is SDRAM? How is it different from DRAM?",
-						  answer: ""
+						  answer: "Synchronous Dynamic RAM. SDRAM is an improvement because it synchronizes data transfer between the CPU and memory. SDRAM allows the CPU to process data while another process is being queued."
 						}
 					  ];
 	$scope.random = pick3( $scope.questions );
@@ -22,7 +24,8 @@ technical.controller( 'osCtrl', function( $scope ) {
 .directive( "questionsOs", function() {
 	return {
 		restrict: 'A',
-		template: "<h1 style='text-align: center' ng-click='show=!show'>{{subject}} &#x21f5;</h1>" +
+		template: "<a name='os'/>" +
+				  "<h1 style='text-align: center' ng-click='show=!show' onclick='location.href=\"#os\"'>{{subject}} &#x21f5;</h1>" +
 				  "<hr/>" +
 				  "<div style='font-size: 20px;' ng-show='show'>" +
 				  "<ul>" +

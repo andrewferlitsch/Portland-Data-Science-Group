@@ -11,9 +11,9 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 				  "<p>For those wanting to prepare for an in-person technical interview, see our <button id='guide'>Guide</button></p>" +
 				  "</div>" +
 				  "<div style=''>" +
-				  "<h3>Technical Phone Screen Practice</h3>" +
+				  "<h3>Preparing for a Technical Phone Screen</h3>" +
 				  "<p>Use our question/answer section below to practice a phone screen with another person. " +
-				  "Each category will display three random questions.</p>" +
+				  "Each category will display three randomly selected questions.</p>" +
 				  "<ul>" +
 				  "	<li>The interviewee (you) tells the interviewer (other person) categories to be tested on.</li>" +
 				  "	<li>For each selected category, the interviewer clicks on the category, which will display three random questions and suggested answers.</li>" +

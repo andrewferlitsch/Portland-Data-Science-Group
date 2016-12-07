@@ -42,7 +42,7 @@
 	
 	<div ng-controller="securityCtrl" questions-security></div>
 
-	<footer></footer>
+	<footer>Copyright(c) 2016-17, Andrew Ferlitsch</footer>
 <script>
 var technical = angular.module( 'technical', []);
 function pick3( questions )
@@ -71,7 +71,7 @@ function pick3( questions )
 
 $(document).ready(function () {
 	$("button#guide").click(function() {
-		alert("pushed");
+		window.location.href = "preparing-for-technical-interview.html";
 	})
 	$("input").click(function(){
 		;

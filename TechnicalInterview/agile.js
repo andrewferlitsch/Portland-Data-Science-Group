@@ -13,7 +13,8 @@ technical.controller( 'agileCtrl', function( $scope ) {
 						  answer: ""
 						},
 						{ question: "What is a scrum?",
-						  answer: ""
+						  answer: "A scrum is all hands meeting on a periodic schedule (e.g. daily) throughout a sprint. It is generally short and is used " +
+						          "to synchronize work by each person saying what their status is, what they plan to do, and what resources or help they need."
 						},
 						{ question: "What does a sprint consist of?",
 						  answer: ""
@@ -28,7 +29,8 @@ technical.controller( 'agileCtrl', function( $scope ) {
 .directive( "questionsAgile", function() {
 	return {
 		restrict: 'A',
-		template: "<h1 style='text-align: center' ng-click='show=!show'>{{subject}} &#x21f5;</h1>" +
+		template: "<a name='agile'/>" +
+				  "<h1 style='text-align: center' ng-click='show=!show' onclick='location.href=\"#agile\"'>{{subject}} &#x21f5;</h1>" +
 				  "<hr/>" +
 				  "<div style='font-size: 20px;' ng-show='show'>" +
 				  "<ul>" +

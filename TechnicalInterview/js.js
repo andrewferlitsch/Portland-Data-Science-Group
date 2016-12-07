@@ -31,7 +31,8 @@ technical.controller( 'jsCtrl', function( $scope ) {
 .directive( "questionsJs", function() {
 	return {
 		restrict: 'A',
-		template: "<h1 style='text-align: center' ng-click='show=!show'>{{subject}} &#x21f5;</h1>" +
+		template: "<a name='js'/>" +
+				  "<h1 style='text-align: center' ng-click='show=!show' onclick='location.href=\"#js\"'>{{subject}} &#x21f5;</h1>" +
 				  "<hr/>" +
 				  "<div style='font-size: 20px;' ng-show='show'>" +
 				  "<ul>" +

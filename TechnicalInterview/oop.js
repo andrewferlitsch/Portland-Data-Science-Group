@@ -15,13 +15,17 @@ technical.controller( 'oopCtrl', function( $scope ) {
 								  "private - data or method is accessible only by the class."
 						},
 						{ question: "What is polymorphism? Give an example.",
-						  answer: ""
+						  answer: "Multiple inheritance of classes. For example, an OOP design for a vehicle might have a base class for wheels, " +
+								  "and a base class for engine. The wheels base class may have derived classes for truck-wheels and passenger-wheels, " +
+								  "and the engine base class may have derived classes for gas and diesel engine. A truck object might inherit the " +
+								  "diesel engine and truck wheels derived classes, while a passenger vehicle might inherit the gas engine and passenger wheel " +
+								  "derived classes."
 						},
 						{ question: "What is a Singleton design pattern?",
-						  answer: ""
+						  answer: "A design pattern where only one instance of an object (class) can be instantiated."
 						},
 						{ question: "What is a Factory design pattern?",
-						  answer: ""
+						  answer: "The Factory Method defines an interface for creating objects, but lets subclasses decide which classes to instantiate."
 						}
 					  ];
 	$scope.random = pick3( $scope.questions );
@@ -30,7 +34,8 @@ technical.controller( 'oopCtrl', function( $scope ) {
 .directive( "questionsOop", function() {
 	return {
 		restrict: 'A',
-		template: "<h1 style='text-align: center' ng-click='show=!show'>{{subject}} &#x21f5;</h1>" +
+		template: "<a name='oop'/>" +
+				  "<h1 style='text-align: center' ng-click='show=!show' onclick='location.href=\"#oop\"'>{{subject}} &#x21f5;</h1>" +
 				  "<hr/>" +
 				  "<div style='font-size: 20px;' ng-show='show'>" +
 				  "<ul>" +

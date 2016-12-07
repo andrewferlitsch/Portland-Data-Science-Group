@@ -26,7 +26,8 @@ technical.controller( 'webCtrl', function( $scope ) {
 .directive( "questionsWeb", function() {
 	return {
 		restrict: 'A',
-		template: "<h1 style='text-align: center' ng-click='show=!show'>{{subject}} &#x21f5;</h1>" +
+		template: "<a name='web'/>" +
+				  "<h1 style='text-align: center' ng-click='show=!show' onclick='location.href=\"#web\"'>{{subject}} &#x21f5;</h1>" +
 				  "<hr/>" +
 				  "<div style='font-size: 20px;' ng-show='show'>" +
 				   "<ul>" +

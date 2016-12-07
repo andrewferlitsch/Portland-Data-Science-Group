@@ -24,7 +24,8 @@ technical.controller( 'networkCtrl', function( $scope ) {
 .directive( "questionsNetwork", function() {
 	return {
 		restrict: 'A',
-		template: "<h1 style='text-align: center' ng-click='show=!show'>{{subject}} &#x21f5;</h1>" +
+		template: "<a name='network'/>" +
+				  "<h1 style='text-align: center' ng-click='show=!show' onclick='location.href=\"#network\"'>{{subject}} &#x21f5;</h1>" +
 				  "<hr/>" +
 				  "<div style='font-size: 20px;' ng-show='show'>" +
 				  "<ul>" +
