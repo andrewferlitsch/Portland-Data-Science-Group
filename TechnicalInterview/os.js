@@ -1,21 +1,26 @@
 technical.controller( 'osCtrl', function( $scope ) {
 	$scope.subject 	= "OS";
 	$scope.questions = [{ question: "What is a stack frame?",
-						  answer: ""
+						  answer: "",
+						  rank: 1
 						},
 						{ question: "How many bytes are in a Unicode character?",
-						  answer: "2 bytes"
+						  answer: "2 bytes",
+						  rank: 1
 						},
 						{ question: "Describe UTF-8 encoding",
 						  answer: "A encoding consisting of one to four bytes. If the first byte has a leading zero bit, it is one byte long (ANSI)." +
 						          "If it has two leading one bits, it is two bytes long, three leading one bits it is three bytes long, and four leading " +
-								  "one bits it is four bytes long."
+								  "one bits it is four bytes long.",
+						  rank: 2
 						},
 						{ question: "What does the MMU do when a page fault occurs in a virtual address space?",
-						  answer: "The memory management unit (MMU) will map the physical memory page into the virtual address space."
+						  answer: "The memory management unit (MMU) will map the physical memory page into the virtual address space.",
+						  rank: 3
 						},
 						{ question: "What is SDRAM? How is it different from DRAM?",
-						  answer: "Synchronous Dynamic RAM. SDRAM is an improvement because it synchronizes data transfer between the CPU and memory. SDRAM allows the CPU to process data while another process is being queued."
+						  answer: "Synchronous Dynamic RAM. SDRAM is an improvement because it synchronizes data transfer between the CPU and memory. SDRAM allows the CPU to process data while another process is being queued.",
+						  rank: 3
 						}
 					  ];
 	$scope.random = pick3( $scope.questions );

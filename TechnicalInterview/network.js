@@ -3,19 +3,28 @@ technical.controller( 'networkCtrl', function( $scope ) {
 	$scope.questions = [{ question: "What is the difference between unicast, multicast and broadcast?",
 						  answer: "Unicast sends a message to a single IP address. Multi-cast sends a message " +
 						          "to all IP addresses registered for the multicast on a subnet. Broadcast sends " +
-								  "a message to all IP addresses on the subnet."},
+								  "a message to all IP addresses on the subnet.",
+						  rank: 3
+						},
 						{ question: "In IPv4, what is a C-subnet? What are the max number of addresses?",
 						  answer: "A C-subnet is the address range of the lower 8 bits of an IPv4 address range. " +
-								  "It can hold 256 addresses."},
+								  "It can hold 256 addresses.",
+						  rank: 2
+						},
 						{ question: "What is DNS? How does it work?",
 						  answer: "Domain Name Service. A DNS Server takes a domain name and resolves it into an " +
-								  "IP addresses via a lookup directory."},
-						{ question: "What is wireshark?",
-						  answer: "An application that is used by developers to view packets on the network" },
+								  "IP addresses via a lookup directory.",
+						  rank: 1
+						},
+						{ question: "What is WireShark?",
+						  answer: "An application that is used by developers to view packets on the network",
+						  rank: 2
+						},
 						{ question: "Describe the difference between UDP and TCP.",
 						  answer: "UDP (User Datagram Protocol) and TCP (Transmission Control Protocol) both send" +
 								  "data packets over a network. UDP does not guarantee delivery. TCP does. When the" +
-								  "receiver receives a packet, it sends back an acknowledgement to the sender."
+								  "receiver receives a packet, it sends back an acknowledgement to the sender.",
+						  rank: 1
 						}
 					   ];
 	$scope.random = pick3( $scope.questions );

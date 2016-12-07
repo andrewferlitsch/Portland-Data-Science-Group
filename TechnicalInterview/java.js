@@ -1,22 +1,36 @@
 technical.controller( 'javaCtrl', function( $scope ) {
 	$scope.subject 	= "Java";
-	$scope.questions = [{ question: "How does garbage collection work?",
-						  answer: "Java uses lazy garbage collection. There is no explicit method to delete an allocated item or to force garbage collection."
-						},
-						{ question: "How is polymorphism supported in Java?",
-						  answer: "Supported only in interface definition."
-						},
-						{ question: "What are the builtin scalar data types in Java?",
-						  answer: "int, short, long, float, double, char, string, byte, boolean"
+	$scope.questions = [{ question: "What are the builtin scalar data types in Java?",
+						  answer: "int, short, long, float, double, char, string, byte, boolean",
+						  rank: 1
 						},
 						{ question: "Describe what the keyword import is used for.",
-						  answer: "Used to import a library, where each item in the library is uniquely identified by a namespace."
+						  answer: "Used to import a library, where each item in the library is uniquely identified by a namespace.",
+						  rank: 1
 						},
-						{ question: "What does a default method do in an interface definition?",
-						  answer: "It is a default implementation of a method if not defined in an implementation."
+						{ question: "How does garbage collection work?",
+						  answer: "Java uses lazy garbage collection. There is no explicit method to delete an allocated item or to force garbage collection.",
+						  rank: 2
+						},
+						{ question: "How is polymorphism supported in Java?",
+						  answer: "Supported only in interface definition.",
+						  rank: 2
 						},
 						{ question: "What is the difference between an abstract class and interface?",
-						  answer: "Interface supports polymorphism and classes do not. Data declarations in an interface is static."
+						  answer: "Interface supports polymorphism and classes do not. Data declarations in an interface is static.",
+						  rank: 2
+						},
+						{ question: "What is a package? How is a package created?",
+						  answer: "A package is a library. Each file in the library contains the line 'package somename;', where somename is the name of the package.",
+						  rank: 2
+						},
+						{ question: "What does a default method do in an interface definition?",
+						  answer: "It is a default implementation of a method if not defined in an implementation.",
+						  rank: 3
+						},
+						{ question: "What is a lambda function?",
+						  answer: "",
+						  rank: 3
 						}
 					  ];
 	$scope.random = pick3( $scope.questions );

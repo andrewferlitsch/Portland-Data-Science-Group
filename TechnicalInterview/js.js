@@ -1,29 +1,38 @@
 technical.controller( 'jsCtrl', function( $scope ) {
 	$scope.subject 	= "Javascript";
-	$scope.questions = [{ question: "What type of class is supported in Javascript.",
-						  answer: "Prototyped classes"
-						},
-						{ question: "Describe two types of function declarations.",
-						  answer: "Named functions: function myfuncI() { ... }, and anonymous(unnamed)functions used in callbacks and event handlers."
-						},
-						{ question: "How can you get an HTML element.",
-						  answer: "getElementById() and getElementByName()"
-						},
-						{ question: "How can you get an HTML element.",
-						  answer: "getElementById(), getElementByName(), getElementByClassName(), getElementByTagName()"
-						},
-						{ question: "What is the largest supported bitsize of an integer?",
-						  answer: "32-bits"
-						},
-						{ question: "How can you declare an empty array?",
-						  answer: "var arr = new Array()  or  var arr = [];"
+	$scope.questions = [{ question: "How can you declare an empty array?",
+						  answer: "var arr = new Array()  or  var arr = [];",
+						  rank: 1
 						},
 						{ question: "How do you add (expand) a new element to an array?",
-						  answer: "arr.push( newitem );"
+						  answer: "arr.push( newitem );",
+						  rank: 1
 						},
-						{ question: "What type of class is supported.",
-						  answer: "prototyped class"
+						{ question: "Which HTML element is used to embed Javascript code?",
+						  answer: "<script></script>",
+						  rank: 1
+						},
+						{ question: "What type of class is supported in Javascript.",
+						  answer: "Prototyped classes",
+						  rank: 2
+						},
+						{ question: "How do you round the number 7.5 to the nearest integer?",
+						  answer: "Math.round( 7.5)",
+						  rank: 2
+						},
+						{ question: "Describe two types of function declarations.",
+						  answer: "Named functions: function myfuncI() { ... }, and anonymous(unnamed)functions used in callbacks and event handlers.",
+						  rank: 2
+						},
+						{ question: "How can you get an HTML element.",
+						  answer: "getElementById(), getElementByName(), getElementByClassName(), getElementByTagName()",
+						  rank: 2
+						},
+						{ question: "What is the largest supported bit-size of an integer?",
+						  answer: "32-bits",
+						  rank: 2
 						}
+						
 					  ];
 	$scope.random = pick3( $scope.questions );
 	$scope.show = false;

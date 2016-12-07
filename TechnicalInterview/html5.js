@@ -1,18 +1,31 @@
 technical.controller( 'html5Ctrl', function( $scope ) {
 	$scope.subject 	= "HTML5";
-	$scope.questions = [{ question: "What is geolocation in HTML5?",
-						  answer: "The HTML Geolocation API is used to locate a user's geographical position. " +
-								  "It will use the GPS information from a user's device, if available, otherwise it use " +
-								  "the IP address to determine the location of the user's ISP."
+	$scope.questions = [
+						{ question: "Name some HTML5 new features.",
+						  answer: "Geolocation, Canvas, Structural elements, embedding Audio/Video, Progess Bar, Datalists",
+						  rank: 1
 						},
 						{ question: "Name some input types added by HTML5",
-						  answer: "color, date, datetime, datetime-local, email, month, number, range"
+						  answer: "color, date, datetime, datetime-local, email, month, number, range",
+						  rank: 1
+						},
+						{ question: "What is the DOCTYPE declaration in HTML5?",
+						  answer: "<!DOCTYPE html>",
+						  rank: 1
+						},
+						{ question: "What is geolocation in HTML5?",
+						  answer: "The HTML Geolocation API is used to locate a user's geographical position. " +
+								  "It will use the GPS information from a user's device, if available, otherwise it use " +
+								  "the IP address to determine the location of the user's ISP.",
+						  rank: 2
 						},
 						{ question: "Name the new structural elements added?",
-						  answer: "<header>, <footer>, <section>, <article>, <nav>, <aside>, <main>, <summary>, <mark> and <time>"
+						  answer: "<header>, <footer>, <section>, <article>, <nav>, <aside>, <main>, <summary>, <mark> and <time>",
+						  rank: 2
 						},
-						{ question: "Name some HTML5 new features.",
-						  answer: "Geolocation, Canvas, Structural elements, embedding Audio/Video, Progess Bar, Datalists"
+						{ question: "Describe the File Drag and Drop API.",
+						  answer: "",
+						  rank: 3
 						}
 					  ];
 	$scope.random = pick3( $scope.questions );
