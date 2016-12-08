@@ -16,6 +16,11 @@ technical.controller( 'pythonCtrl', function( $scope ) {
 						  answer: "",
 						  rank: 2
 						},
+						{ question: "What is a dictionary?",
+						  answer: "A dictionary is an associative array (or hash). The key can be any data type. " +
+								  "Dictionaries are enclosed in {} braces and values are accessed thru square [] brackets.",
+						  rank: 2
+						},
 						{ question: "What does the keyword lambda do?",
 						  answer: "",
 						  rank: 3

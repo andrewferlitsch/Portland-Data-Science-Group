@@ -13,6 +13,10 @@ technical.controller( 'cCtrl', function( $scope ) {
 								  "unsigned numbers with a range in each direction of half that of a signed integer.",
 						  rank: 1
 						},
+						{ question: "What is the program entry point into a C application?",
+						  answer: "The function main()",
+						  rank: 1
+						},
 						{ question: "Explain an example of reading/writing a file.",
 						  answer: "A file can be opened with a file descriptor (open) or file pointer (fopen), with the latter doing buffered I/O. " +
 						          "A file is then read/written using read()/write() for a file descriptor, and fread()/fwrite() for a file pointer.",

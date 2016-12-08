@@ -29,8 +29,16 @@ technical.controller( 'oopCtrl', function( $scope ) {
 						  answer: "A design pattern where only one instance of an object (class) can be instantiated.",
 						  rank: 2
 						},
+						{ question: "What does a static field (variable) in a class do?",
+						  answer: "There is only one instance of the field (variable) across all instances of the class.",
+						  rank: 2
+						},
 						{ question: "What is a Factory design pattern?",
 						  answer: "The Factory Method defines an interface for creating objects, but lets subclasses decide which classes to instantiate.",
+						  rank: 3
+						},
+						{ question: "What is an Iterator design pattern?",
+						  answer: "Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.",
 						  rank: 3
 						}
 					  ];

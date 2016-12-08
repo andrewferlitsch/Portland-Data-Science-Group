@@ -8,10 +8,20 @@ technical.controller( 'osCtrl', function( $scope ) {
 						  answer: "2 bytes",
 						  rank: 1
 						},
+						{ question: "Explain how a pointer is dereferenced.",
+						  answer: "The value of the pointer (an address of another section of memory) is loaded into a register. The register " +
+								  "is then used as an argument to an assembly language instruction to fetch the value at the location specified by " +
+								  "the register and place it into another register or variable.",
+						  rank: 1
+						},
 						{ question: "Describe UTF-8 encoding",
 						  answer: "A encoding consisting of one to four bytes. If the first byte has a leading zero bit, it is one byte long (ANSI)." +
 						          "If it has two leading one bits, it is two bytes long, three leading one bits it is three bytes long, and four leading " +
 								  "one bits it is four bytes long.",
+						  rank: 2
+						},
+						{ question: "What is a GPU? How is it different from a CPU?",
+						  answer: "",
 						  rank: 2
 						},
 						{ question: "What does the MMU do when a page fault occurs in a virtual address space?",

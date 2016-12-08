@@ -13,6 +13,10 @@ technical.controller( 'html5Ctrl', function( $scope ) {
 						  answer: "<!DOCTYPE html>",
 						  rank: 1
 						},
+						{ question: "What is the placeholder attribute, and where is it used?",
+						  answer: "Provides a hint that appears in light gray in a input text or textarea element.",
+						  rank: 1
+						},
 						{ question: "What is geolocation in HTML5?",
 						  answer: "The HTML Geolocation API is used to locate a user's geographical position. " +
 								  "It will use the GPS information from a user's device, if available, otherwise it use " +
@@ -23,7 +27,20 @@ technical.controller( 'html5Ctrl', function( $scope ) {
 						  answer: "<header>, <footer>, <section>, <article>, <nav>, <aside>, <main>, <summary>, <mark> and <time>",
 						  rank: 2
 						},
+						{ question: "What is the syntax of a custom data attribute?",
+						  answer: "data-some-name='some-value', where some-name is name of the attribute.",
+						  rank: 2
+						},
+						{ question: "What does the required attribute do?",
+						  answer: "Forces an input element to be non-empty. If a submit occurs and the element is empty, the submit is disabled " +
+								  "and the input box is red highlighted.",
+						  rank: 2
+						},
 						{ question: "Describe the File Drag and Drop API.",
+						  answer: "",
+						  rank: 3
+						},
+						{ question: "Describe how the <output> element works.",
 						  answer: "",
 						  rank: 3
 						}

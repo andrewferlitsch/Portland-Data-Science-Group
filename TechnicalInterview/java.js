@@ -8,6 +8,10 @@ technical.controller( 'javaCtrl', function( $scope ) {
 						  answer: "Used to import a library, where each item in the library is uniquely identified by a namespace.",
 						  rank: 1
 						},
+						{ question: "What is the program entry point into a Java application?",
+						  answer: "The class with a 'public static void main( String args[] )' definition.",
+						  rank: 1
+						},
 						{ question: "How does garbage collection work?",
 						  answer: "Java uses lazy garbage collection. There is no explicit method to delete an allocated item or to force garbage collection.",
 						  rank: 2

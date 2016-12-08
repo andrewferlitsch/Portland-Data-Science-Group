@@ -1,14 +1,20 @@
 technical.controller( 'securityCtrl', function( $scope ) {
 	$scope.subject 	= "Security";
-	$scope.questions = [{ question: "What is a one-way hash? Name at least one popular method.",
+	$scope.questions = [{ question: "What is the difference between http:// and https:// ?",
+						  answer: "http sends data unencrypted. https sends it encrypted using SSL",
+						  rank: 1
+						},
+						{ question: "What is SSL?",
+						  answer: "Secured Sockets Layer. It is a form of encryption over TCP/IP +networks between clients and servers." +
+						          "The server will have an SSL certificate which contains a public/private key used for the encryption." +
+								  "The SSL certificate is obtained and authenticated by a Certificate Authority (CA).",
+						  rank: 1
+						},
+						{ question: "What is a one-way hash? Name at least one popular method.",
 						  answer: "A type of encryption where once something is encrypted it cannot be decrypted back to the original form." +
 						          "It is commonly used for encrypting passwords. The one-way hashed version of the password is stored instead of the original password." +
 								  "Popular methods are SHA1 and MD5.",
 						  rank: 2
-						},
-						{ question: "What is the difference between http:// and https:// ?",
-						  answer: "http sends data unencrypted. https sends it encrypted using SSL",
-						  rank: 1
 						},
 						{ question: "Describe how Public Key Encryption works.",
 						  answer: "Public Key Encryption (PKE) is a form of encryption where one key (public) is used to encrypt a message, while a" +
@@ -17,11 +23,9 @@ technical.controller( 'securityCtrl', function( $scope ) {
 								  "then anybody can send an encrypted message to the receiver, but only the receiver can decrypt it.",
 						  rank: 3
 						},
-						{ question: "What is SSL?",
-						  answer: "Secured Sockets Layer. It is a form of encryption over TCP/IP +networks between clients and servers." +
-						          "The server will have an SSL certificate which contains a public/private key used for the encryption." +
-								  "The SSL certificate is obtained and authenticated by a Certificate Authority (CA).",
-						  rank: 1
+						{ question: "What is a Certificate Authority (CA)?",
+						  answer: "",
+						  rank: 3
 						}
 					  ];
 	$scope.random = pick3( $scope.questions );

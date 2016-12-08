@@ -18,6 +18,10 @@ technical.controller( 'htmlCtrl', function( $scope ) {
 						  answer: "<script src='...'/> for Javascript and <link href='...'/>",
 						  rank: 1
 						},
+						{ question: "HTML stands for what?",
+						  answer: "Hypertext Markup Language",
+						  rank: 1
+						},
 						{ question: "What is the DOM? Can it be manipulated by the browser?",
 						  answer: "Document Object Model defines how an HTML page is defined and parsed into elements. The DOM maybe accessed and " +
 								  "modified by the browser using Javascript or CSS3.",
@@ -32,8 +36,17 @@ technical.controller( 'htmlCtrl', function( $scope ) {
 						  answer: "attribute: onclick='', where JS code is placed within the single quotes.",
 						  rank: 2
 						},
+						{ question: "What element is used to define emphasised text?",
+						  answer: "<em>",
+						  rank: 2
+						},
 						{ question: "What event is used to detect a hover over an element?",
 						  answer: "attribute: onmouseover='', where JS code is placed within the single quotes.",
+						  rank: 3
+						},
+						{ question: "What is the difference between an inline and block element? Give an example of each.",
+						  answer: "An inline element does not cause a line break and a block element does. <span> is an example of an inline element, " +
+								  "and <p> is a block element.",
 						  rank: 3
 						}
 					  ];

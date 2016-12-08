@@ -31,8 +31,17 @@ technical.controller( 'jsCtrl', function( $scope ) {
 						{ question: "What is the largest supported bit-size of an integer?",
 						  answer: "32-bits",
 						  rank: 2
+						},
+						{ question: "Give an example of a regular expression pattern in Javascript.",
+						  answer: "var pat = /hello/i;  // matches all case-insensitive instances of the string hello. " +
+								  "str.replace( /hello/i, \"goodbye\"); replaces hello with goodbye in string str.",
+						  rank: 3
+						},
+						{ question: "What tool do you use to debug javascript errors in FireFox? How do you write to the console log?",
+						  answer: "FireFox Options Menu->Developer Tools->Browser Console. You can write to the browser console with console.log()." +
+								  "",
+						  rank: 3
 						}
-						
 					  ];
 	$scope.random = pick3( $scope.questions );
 	$scope.show = false;

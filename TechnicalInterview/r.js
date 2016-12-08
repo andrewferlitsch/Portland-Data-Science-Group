@@ -28,6 +28,10 @@ technical.controller( 'rCtrl', function( $scope ) {
 						  answer: "ls(pattern = \"ab\")",
 						  rank: 2
 						},
+						{ question: "Describe Data Shaping",
+						  answer: "",
+						  rank: 3
+						},
 					  ];
 	$scope.random = pick3( $scope.questions );
 	$scope.show = false;
