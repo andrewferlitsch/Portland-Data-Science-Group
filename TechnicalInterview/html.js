@@ -22,6 +22,10 @@ technical.controller( 'htmlCtrl', function( $scope ) {
 						  answer: "Hypertext Markup Language",
 						  rank: 1
 						},
+						{ question: "What is the element for the largest heading?",
+						  answer: "<h1>",
+						  rank: 1
+						},
 						{ question: "What is the DOM? Can it be manipulated by the browser?",
 						  answer: "Document Object Model defines how an HTML page is defined and parsed into elements. The DOM maybe accessed and " +
 								  "modified by the browser using Javascript or CSS3.",
