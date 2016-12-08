@@ -10,10 +10,20 @@ technical.controller( 'securityCtrl', function( $scope ) {
 								  "The SSL certificate is obtained and authenticated by a Certificate Authority (CA).",
 						  rank: 1
 						},
+						{ question: "What is a Trojan Horse?",
+						  answer: "Malicious software that is hidden inside what might appear inside something that might otherwise appear legitimate, " +
+								  "in an email message, social media, or web site.",
+						  rank: 1
+						}
 						{ question: "What is a one-way hash? Name at least one popular method.",
 						  answer: "A type of encryption where once something is encrypted it cannot be decrypted back to the original form." +
 						          "It is commonly used for encrypting passwords. The one-way hashed version of the password is stored instead of the original password." +
 								  "Popular methods are SHA1 and MD5.",
+						  rank: 2
+						},
+						{ question: "What is two factor authentication?",
+						  answer: "An additional authentication device that produces an access token which has a short life (e.g., 60 seconds), " +
+								  "which must be used in conjunction with a password.",
 						  rank: 2
 						},
 						{ question: "Describe how Public Key Encryption works.",

@@ -1,13 +1,16 @@
 technical.controller( 'questionsCtrl', function( $scope ) {
 	$scope.subject 	= "Subject";
 	$scope.questions = [{ question: "",
-						  answer: ""
+						  answer: "",
+						  rank: 1
 						},
 						{ question: "",
-						  answer: ""
+						  answer: "",
+						  rank: 1
 						},
 						{ question: "",
-						  answer: ""
+						  answer: "",
+						  rank: 1
 						}
 					  ];
 	$scope.random = pick3( $scope.questions );

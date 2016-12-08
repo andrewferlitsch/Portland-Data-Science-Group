@@ -26,6 +26,30 @@ technical.controller( 'htmlCtrl', function( $scope ) {
 						  answer: "<h1>",
 						  rank: 1
 						},
+						{ question: "What is the element for a line break?",
+						  answer: "<br/>",
+						  rank: 1
+						},
+						{ question: "What is attribute in a hyperlink (a) to specify the target web address?",
+						  answer: "href",
+						  rank: 1
+						},
+						{ question: "In a hyperlink, how do you specify opening a web page in another browser?"
+						  answer: "target='_blank'",
+						  rank: 1
+						},
+						{ question: "What attribute/value do you use to define a checkbox?"
+						  answer: "type='checkbox'",
+						  rank: 1
+						},
+						{ question: "What elements are used for a numbered list and a bullet list?"
+						  answer: "<ol> and <ul>, respectively",
+						  rank: 1
+						},
+						{ question: "What is the element for indicating text is important?",
+						  answer: "<strong>",
+						  rank: 2
+						},
 						{ question: "What is the DOM? Can it be manipulated by the browser?",
 						  answer: "Document Object Model defines how an HTML page is defined and parsed into elements. The DOM maybe accessed and " +
 								  "modified by the browser using Javascript or CSS3.",

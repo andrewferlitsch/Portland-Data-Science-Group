@@ -17,6 +17,18 @@ technical.controller( 'html5Ctrl', function( $scope ) {
 						  answer: "Provides a hint that appears in light gray in a input text or textarea element.",
 						  rank: 1
 						},
+						{ question: "What is or are the elements for embedding a video and audio file respectively?",
+						  answer: "<video> and <audio>.",
+						  rank: 1
+						},
+						{ question: "An SVG graphic is specified in what format?",
+						  answer: "XML",
+						  rank: 2
+						},
+						{ question: "What does the contenteditable attribute do?",
+						  answer: "It can be set to true or false, indicating if the content within the element start/end tags can be edited.",
+						  rank: 2
+						},
 						{ question: "What is geolocation in HTML5?",
 						  answer: "The HTML Geolocation API is used to locate a user's geographical position. " +
 								  "It will use the GPS information from a user's device, if available, otherwise it use " +
