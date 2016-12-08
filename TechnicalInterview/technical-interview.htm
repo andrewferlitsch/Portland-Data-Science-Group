@@ -68,23 +68,20 @@
 var technical = angular.module( 'technical', []);
 
 /* 
- * Pick 3 questions at random
+ * Pick 3 questions at random, ranked consecutively 1, 2 and 3
  */
 function pick3( questions )
 {
 	var len = questions.length - 1;
 	var stack = new Array();
-	for ( var i = 0; i < 3; /**/ ) {
-		var pick = Math.round( Math.random() * len );
-		var j = 0;
-		for ( /**/; j < stack.length; j++ ) {
-			if ( stack[ j ] == pick )
+	
+	for ( var rank = 1; rank <= 3; rank++ ) {
+		while ( true ) {
+			var pick = Math.round( Math.random() * len );
+			if ( questions[ pick ].rank == rank ) {
+				stack.push( pick );
 				break;
-		}
-
-		if ( j == stack.length ) {
-			stack.push( pick );
-			i++;
+			}
 		}
 	}
 	
