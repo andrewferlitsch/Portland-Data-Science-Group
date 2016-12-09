@@ -15,7 +15,7 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 				  "<div style='width: 600px; float: left;'>" +
 				  "<h3>Preparing for a Technical Phone Screen</h3>" +
 				  "<p>Use our question/answer section below to practice a phone screen with another person. " +
-				  "Each category will display three randomly selected questions.</p>" +
+				  "Each category will display three randomly selected questions in increasing difficulty.</p>" +
 				  "<p style='color: orange; cursor: pointer' ng-click='showleft=!showleft'>Instructions &#x21f5;</p>" +
 				  "<div ng-show='showleft'>" + 
 				  "	<ol>" +
@@ -30,7 +30,7 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 				  "</div>" +
 				  "<div style='float: right; width: 600px; margin-right: 20px;'>" +
 				  "<h3>Crowdsourcing the Dataset of Questions</h3>" +
-				  "<p>Help us crowdsource of datasets of questions and answers.</p>" +
+				  "<p>Help us crowdsource the datasets of questions and answers.</p>" +
 				  "<p style='color: orange; cursor: pointer' ng-click='showright=!showright'>Instructions &#x21f5;</p>" +
 				  "<div ng-show='showright'>" +
 				  "	<ul>" +
