@@ -138,7 +138,7 @@ function showSuggest( category )
 /*
  * Show the Suggest Better Ranking dialog
  */
-function showRank( category, question ) 
+function showRank( category, id ) 
 {
 	var popUp = document.getElementById("popup");
 
@@ -149,7 +149,7 @@ function showRank( category, question )
 	
     popUp.innerHTML = "Suggested Ranking: " +
 		"<select id='new-rank'><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option></select><br/>" +
-        "<button onclick=\"saveRank('" + category + "', '" + question + "')\">Save<button>" +
+        "<button onclick=\"saveRank('" + category + "', '" + id + "')\">Save<button>" +
 		"<button onclick=\"hidePopup()\">Close<button>";	
 		  
     popUp.style.visibility = "visible";
@@ -199,14 +199,14 @@ function saveSuggest( category ) {
 /*
  * Suggest new Ranking for Question to Server
  */
-function saveRank( category, question ) {
+function saveRank( category, id ) {
 	var rank = document.getElementById( "new-rank" ).value;
 	hidePopup();
 	
 	$.ajax({
 		url: "/interview/rank.php",
 		type: 'post',
-		data: {'category': category, 'question': question, 'rank': rank },
+		data: {'category': category, 'id': id, 'rank': rank },
 		success: function( data, status ) { alert( data ) },
 		error: function(xhr) { alert( xhr.status + " " + xhr.statusText ); }
 	});
@@ -271,7 +271,7 @@ $(document).ready(function () {
 	})
 	
 	$("span.rank").click(function() {
-		showRank( $(this).attr( 'name' ), $(this).next().next().next().html() );
+		showRank( $(this).attr( 'name' ), $(this).attr('id') );
 	})
 	
 	$("button#final").click(function() {

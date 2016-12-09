@@ -2,45 +2,55 @@ technical.controller( 'jsCtrl', function( $scope ) {
 	$scope.subject 	= "Javascript";
 	$scope.questions = [{ question: "How can you declare an empty array?",
 						  answer: "var arr = new Array()  or  var arr = [];",
-						  rank: 1
+						  rank: 1,
+						  id: 50
 						},
 						{ question: "How do you add (expand) a new element to an array?",
 						  answer: "arr.push( newitem );",
-						  rank: 1
+						  rank: 1,
+						  id: 51
 						},
 						{ question: "Which HTML element is used to embed Javascript code?",
 						  answer: "<script></script>",
-						  rank: 1
+						  rank: 1,
+						  id: 52
 						},
 						{ question: "What type of class is supported in Javascript.",
 						  answer: "Prototyped classes",
-						  rank: 2
+						  rank: 2,
+						  id: 53
 						},
 						{ question: "How do you round the number 7.5 to the nearest integer?",
 						  answer: "Math.round( 7.5)",
-						  rank: 2
+						  rank: 2,
+						  id: 54
 						},
 						{ question: "Describe two types of function declarations.",
 						  answer: "Named functions: function myfuncI() { ... }, and anonymous(unnamed)functions used in callbacks and event handlers.",
-						  rank: 2
+						  rank: 2,
+						  id: 55
 						},
 						{ question: "How can you get an HTML element.",
 						  answer: "getElementById(), getElementByName(), getElementByClassName(), getElementByTagName()",
-						  rank: 2
+						  rank: 2,
+						  id: 56
 						},
 						{ question: "What is the largest supported bit-size of an integer?",
 						  answer: "32-bits",
-						  rank: 2
+						  rank: 2,
+						  id: 57
 						},
 						{ question: "Give an example of a regular expression pattern in Javascript.",
 						  answer: "var pat = /hello/i;  // matches all case-insensitive instances of the string hello. " +
 								  "str.replace( /hello/i, \"goodbye\"); replaces hello with goodbye in string str.",
-						  rank: 3
+						  rank: 3,
+						  id: 58
 						},
 						{ question: "What tool do you use to debug javascript errors in FireFox? How do you write to the console log?",
 						  answer: "FireFox Options Menu->Developer Tools->Browser Console. You can write to the browser console with console.log()." +
 								  "",
-						  rank: 3
+						  rank: 3,
+						  id: 59
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
@@ -56,7 +66,7 @@ technical.controller( 'jsCtrl', function( $scope ) {
 				  "<div style='font-size: 20px;' ng-show='show'>" +
 				  "<button class='w3-btn w3-teal w3-round w3-tiny' ng-click='answers=!answers'>Show Answers</button>" +
 				  "<ul>" +
-				  "	<li ng-repeat='question in random'><span class='w3-tooltip rank' name='js'>Rank {{question.rank}} <span class='w3-text w3-tag w3-khaki w3-round w3-small'>Click to Suggest Another Ranking</span></span> {{question.question}}<br/><br/>" +
+				  "	<li ng-repeat='question in random'><span class='w3-tooltip rank' name='js' id='{{question.id}}'>Rank {{question.rank}} <span class='w3-text w3-tag w3-khaki w3-round w3-small'>Click to Suggest Another Ranking</span></span> {{question.question}}<br/><br/>" +
 				  "	<span ng-show='answers'><span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small better' name='js'>Suggest A Better Answer</button><br/></span>Correct <input class='js-correct' type='checkbox'/><br/><br/>" +
 				  "</ul>" +
 				  "<button class='w3-btn w3-green score' name='js'>Score</button>" +
