@@ -44,7 +44,7 @@ technical.controller( 'webCtrl', function( $scope ) {
 				  "<hr/>" +
 				  "<div style='font-size: 20px;' ng-show='show'>" +
 				   "<ul>" +
-				  "	<li ng-repeat='question in random'><span class='w3-tooltip rank'>Rank {{question.rank}} <span class='w3-text w3-tag w3-khaki w3-round w3-small'>Click to Suggest Another Ranking</span></span> {{question.question}}<br/><br/>" +
+				  "	<li ng-repeat='question in random'><span class='w3-tooltip rank' name='web'>Rank {{question.rank}} <span class='w3-text w3-tag w3-khaki w3-round w3-small'>Click to Suggest Another Ranking</span></span> {{question.question}}<br/><br/>" +
 				  "	<span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small better' name='web'>Suggest A Better Answer</button><br/>Correct <input class='web-correct' type='checkbox'/><br/><br/></li>" +
 				  "</ul>" +
 				  "<button class='w3-btn w3-green score' name='web'>Score</button>" + 

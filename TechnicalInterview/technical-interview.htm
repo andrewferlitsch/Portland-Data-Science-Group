@@ -103,12 +103,12 @@ function showBetter( category, question )
     popUp.style.top    = "200px";
     popUp.style.left   = "200px";
     popUp.style.width  = "500px";
-    popUp.style.height = "300px";
+    popUp.style.height = "auto";
    
     popUp.innerHTML = "Suggested Answer: " + 
-		  "<textarea rows='7' cols='48' id='new-answer'></textarea>" +
-          "<button onclick=\"saveBetter('" + category + "', '" + question + "')\">Save<button>" +
-          "<button onclick=\"hidePopup()\">Close<button>";
+		"<textarea rows='7' cols='48' id='new-answer'></textarea>" +
+        "<button onclick=\"saveBetter('" + category + "', '" + question + "')\">Save<button>" +
+        "<button onclick=\"hidePopup()\">Close<button>";
 		  
     popUp.style.visibility = "visible";
 } 
@@ -123,14 +123,33 @@ function showSuggest( category )
     popUp.style.top    = "200px";
     popUp.style.left   = "200px";
     popUp.style.width  = "500px";
-    popUp.style.height = "300px";
+    popUp.style.height = "auto";
    
     popUp.innerHTML = "Suggested Question: " + 
-		  "<input type='text' size='32' id='new-question'/><br/>" +
-		  "Suggest Answer:" +
-		  "<textarea rows='7' cols='48' id='new-answer'></textarea>" +
-		  "<button onclick=\"saveSuggest( '" + category + "' )\">Save</button>" +
-          "<button onclick=\"hidePopup()\">Close<button>";
+		"<input type='text' size='32' id='new-question'/><br/>" +
+		"Suggest Answer:" +
+		"<textarea rows='7' cols='48' id='new-answer'></textarea>" +
+		"<button onclick=\"saveSuggest( '" + category + "' )\">Save</button>" +
+        "<button onclick=\"hidePopup()\">Close<button>";
+		  
+    popUp.style.visibility = "visible";
+}
+
+/*
+ * Show the Suggest Better Ranking dialog
+ */
+function showRank( category ) 
+{
+	var popUp = document.getElementById("popup");
+ 
+    popUp.style.top    = "200px";
+    popUp.style.left   = "200px";
+    popUp.style.width  = "500px";
+    popUp.style.height = "auto"; 
+	
+    popUp.innerHTML = "Suggested Ranking: " +
+		"<select><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option></select><br/>" +
+        "<button onclick=\"hidePopup()\">Close<button>";	
 		  
     popUp.style.visibility = "visible";
 }
@@ -247,7 +266,7 @@ $(document).ready(function () {
 	})
 	
 	$("span.rank").click(function() {
-		alert( "todo");
+		showRank( $(this).attr( 'name' ) );
 	})
 })
 </script>
