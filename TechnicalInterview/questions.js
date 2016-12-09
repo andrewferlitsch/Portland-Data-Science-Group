@@ -8,12 +8,12 @@ technical.controller( 'questionsCtrl', function( $scope ) {
 						{ question: "",
 						  answer: "",
 						  rank: 1,
-						  id: 149
+						  id: 0
 						},
 						{ question: "",
 						  answer: "",
 						  rank: 1,
-						  id: 150
+						  id: 0
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );

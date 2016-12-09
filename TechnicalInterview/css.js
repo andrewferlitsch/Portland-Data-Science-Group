@@ -45,6 +45,21 @@ technical.controller( 'cssCtrl', function( $scope ) {
 						  rank: 2,
 						  id: 47
 						},
+						{ question: "What is the default value for the position property?",
+						  answer: "static",
+						  rank: 2,
+						  id: 148
+						},
+						{ question: "How do you select all elements inside a div?",
+						  answer: "div p",
+						  rank: 2,
+						  id: 149
+						},
+						{ question: "What is the order of values in border-width to define a width for each side?",
+						  answer: "top, right, bottom, left",
+						  rank: 2,
+						  id: 150
+						},
 						{ question: "What are three things (property values) you can do with the text-transform property?",
 						  answer: "uppercase words, lowercase words, capitalize words",
 						  rank: 3,
