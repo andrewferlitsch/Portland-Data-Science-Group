@@ -4,49 +4,59 @@ technical.controller( 'agileCtrl', function( $scope ) {
 						  answer: "An iterative, incremental method of managing the design and build activities of engineering, " +
 								  "information technology and other business areas that aim to provide new product or service development " +
 								  "in a highly flexible and interactive manner",
-						  rank: 1
+						  rank: 1,
+						  id: 124
 						},
 						{ question: "What is the product owner's role",
 						  answer: "A product owner decides which stories go into a sprint",
-						  rank: 1
+						  rank: 1,
+						  id: 125
 						},
 						{ question: "What are story points?",
 						  answer: "For each task in a sprint, it is the estimate of the amount of time to complete the task. Typically 1 story point " +
 								  "is 1/2 day, 2 story points is 1 day, 3 story points is 2 days, 5 story points is a 5 days.",
-						  rank: 1
+						  rank: 1,
+						  id: 126
 						},
 						{ question: "What does a scrum master do?",
 						  answer: "A scrum master manages the sprint process, which includes sprint planning, scrums, and sprint reviews.",
-						  rank: 1
+						  rank: 1,
+						  id: 127
 						},
 						{ question: "What is a scrum?",
 						  answer: "A scrum is all hands meeting on a periodic schedule (e.g. daily) throughout a sprint. It is generally short and is used " +
 						          "to synchronize work by each person saying what their status is, what they plan to do, and what resources or help they need.",
-						  rank: 1
+						  rank: 1,
+						  id: 128
 						},
 						{ question: "What is the technical backlog?",
 						  answer: "Any task, or portion of it, not completed in a sprint is put into the technical backlog.",
-						  rank: 2
+						  rank: 2,
+						  id: 129
 						},
 						{ question: "What does a sprint consist of?",
 						  answer: "A sprint consists of a sprint planning session, execution of tasks, followed by a sprint review and sometimes a sprint retrospective",
-						  rank: 2
+						  rank: 2,
+						  id: 130
 						},
 						{ question: "What is the purpose of a standup scrum",
 						  answer: "To give a quick round of status and expected tasks for the day by each member. " +
 							      "It is called a standup to emphasize keeping the sprint as short as possible",
-						  rank: 2
+						  rank: 2,
+						  id: 131
 						},
 						{ question: "Describe Kanban board.",
 						  answer: "A Kanban board is a workflow process where tasks are reviewed and moved from various progressive states of completion. " +
 							      "These typically include: unassigned, assigned, in progress, in test, in review, accepted (or completed).",
-						  rank: 3
+						  rank: 3,
+						  id: 132
 						},
 						{ question: "What is Extreme Programming",
 						  answer: "A development process consisting of frequent releases in short development cycles. " +
 								  "Other elements include: programming in pairs or doing extensive code review, unit testing of all code, avoiding programming " +
 								  "of features until they are actually needed.",
-						  rank: 3
+						  rank: 3,
+						  id: 133
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
@@ -62,7 +72,7 @@ technical.controller( 'agileCtrl', function( $scope ) {
 				  "<div style='font-size: 20px;' ng-show='show'>" +
 				  "<button class='w3-btn w3-teal w3-round w3-tiny' ng-click='answers=!answers'>Show Answers</button>"+
 				  "<ul>" +
-				  "	<li ng-repeat='question in random'><span class='w3-tooltip rank' name='agile'>Rank {{question.rank}} <span class='w3-text w3-tag w3-khaki w3-round w3-small'>Click to Suggest Another Ranking</span></span> {{question.question}}<br/><br/>" +
+				  "	<li ng-repeat='question in random'><span class='w3-tooltip rank' name='agile' {{question.id}}id=''>Rank {{question.rank}} <span class='w3-text w3-tag w3-khaki w3-round w3-small'>Click to Suggest Another Ranking</span></span> {{question.question}}<br/><br/>" +
 				  "	<span ng-show='answers'><span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small better' name='agile'>Suggest A Better Answer</button><br/></span>Correct <input class='agile-correct' type='checkbox'/><br/><br/>" +
 				  "</ul>" +
 				  "<button class='w3-btn w3-green score' name='agile'>Score</button>" +

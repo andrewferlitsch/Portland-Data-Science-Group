@@ -2,40 +2,47 @@ technical.controller( 'securityCtrl', function( $scope ) {
 	$scope.subject 	= "Security";
 	$scope.questions = [{ question: "What is the difference between http:// and https:// ?",
 						  answer: "http sends data unencrypted. https sends it encrypted using SSL",
-						  rank: 1
+						  rank: 1,
+						  id: 141
 						},
 						{ question: "What is SSL?",
 						  answer: "Secured Sockets Layer. It is a form of encryption over TCP/IP +networks between clients and servers." +
 						          "The server will have an SSL certificate which contains a public/private key used for the encryption." +
 								  "The SSL certificate is obtained and authenticated by a Certificate Authority (CA).",
-						  rank: 1
+						  rank: 1,
+						  id: 142
 						},
 						{ question: "What is a Trojan Horse?",
 						  answer: "Malicious software that is hidden inside what might appear inside something that might otherwise appear legitimate, " +
 								  "in an email message, social media, or web site.",
-						  rank: 1
+						  rank: 1,
+						  id: 143
 						},
 						{ question: "What is a one-way hash? Name at least one popular method.",
 						  answer: "A type of encryption where once something is encrypted it cannot be decrypted back to the original form." +
 						          "It is commonly used for encrypting passwords. The one-way hashed version of the password is stored instead of the original password." +
 								  "Popular methods are SHA1 and MD5.",
-						  rank: 2
+						  rank: 2,
+						  id: 144
 						},
 						{ question: "What is two factor authentication?",
 						  answer: "An additional authentication device that produces an access token which has a short life (e.g., 60 seconds), " +
 								  "which must be used in conjunction with a password.",
-						  rank: 2
+						  rank: 2,
+						  id: 145
 						},
 						{ question: "Describe how Public Key Encryption works.",
 						  answer: "Public Key Encryption (PKE) is a form of encryption where one key (public) is used to encrypt a message, while a" +
 								  "another key (private) is used to decrypt the message. The receiver has a public key which the sender uses to encrypt " +
 								  "the message, and the receiver then decrypts it using the private key. As long as the receiver makes their public key available, " +
 								  "then anybody can send an encrypted message to the receiver, but only the receiver can decrypt it.",
-						  rank: 3
+						  rank: 3,
+						  id: 146
 						},
 						{ question: "What is a Certificate Authority (CA)?",
 						  answer: "",
-						  rank: 3
+						  rank: 3,
+						  id: 147
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
@@ -51,7 +58,7 @@ technical.controller( 'securityCtrl', function( $scope ) {
 				  "<div style='font-size: 20px;' ng-show='show'>" +
 				  "<button class='w3-btn w3-teal w3-round w3-tiny' ng-click='answers=!answers'>Show Answers</button>" +
 				   "<ul>" +
-				  "	<li ng-repeat='question in random'><span class='w3-tooltip rank' name='security'>Rank {{question.rank}} <span class='w3-text w3-tag w3-khaki w3-round w3-small'>Click to Suggest Another Ranking</span></span> {{question.question}}<br/><br/>" +
+				  "	<li ng-repeat='question in random'><span class='w3-tooltip rank' name='security' id='{{question.id}}'>Rank {{question.rank}} <span class='w3-text w3-tag w3-khaki w3-round w3-small'>Click to Suggest Another Ranking</span></span> {{question.question}}<br/><br/>" +
 				  "	<span ng-show='answers'><span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small better' name=''>Suggest A Better Answer</button><br/></span>Correct <input class='security-correct' type='checkbox'/><br/><br/>" +
 				  "</ul>" +
 				  "<button  class='w3-btn w3-green score' name='security'>Score</button>" +
