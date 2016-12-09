@@ -20,12 +20,20 @@ technical.controller( 'cssCtrl', function( $scope ) {
 						  answer: "<style></style>",
 						  rank: 1
 						},
+						{ question: "How do you specify a CSS rule for a class and for an id?",
+						  answer: "#name {} and .name {} , respectively",
+						  rank: 1
+						},
 						{ question: "How do you specify that hyperlinks are displayed without an underline?",
 						  answer: "a { text-decoration: none; }",
 						  rank: 2
 						},
 						{ question: "Can you use negative values for margin? Can you use negative values for padding?",
 						  answer: "yes for margins, no for padding",
+						  rank: 2
+						},
+						{ question: "How do you left-justify a group of block elements?",
+						  answer: "set style='float:left;' on each block element, and then a style='clear:both' on the next element that is not to be left-justified.",
 						  rank: 2
 						},
 						{ question: "What are three things (property values) you can do with the text-transform property?",
@@ -48,7 +56,7 @@ technical.controller( 'cssCtrl', function( $scope ) {
 				  "<hr/>" +
 				  "<div style='font-size: 20px;' ng-show='show'>" +
 				  "<ul>" +
-				  "	<li ng-repeat='question in random'><span class='rank'>Rank {{question.rank}}</span> {{question.question}}<br/><br/>" +
+				  "	<li ng-repeat='question in random'><span class='w3-tooltip rank'>Rank {{question.rank}} <span class='w3-text w3-tag w3-khaki w3-round w3-small'>Click to Suggest Another Ranking</span></span> {{question.question}}<br/><br/>" +
 				  "	<span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small better' name='css'>Suggest A Better Answer</button><br/>Correct <input class='correct' type='checkbox'/><br/><br/></li>" +
 				  "</ul>" +
 				  "<button class='w3-btn w3-green score' name='css'>Score</button>" +

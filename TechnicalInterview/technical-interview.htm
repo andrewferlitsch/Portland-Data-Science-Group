@@ -12,7 +12,7 @@
 	h2, h3 { color: black; }
 	.answer { color: blue; }
 	.final { display: inline-block; width: 180px; font-weight: bold; }
-	.rank { color: teal; }
+	.rank { color: teal; pointer: cursor; }
 	
 	#popup {
        position: fixed;
@@ -246,8 +246,8 @@ $(document).ready(function () {
 		$("#percentCorrect").html( percentCorrect.toFixed(2) + "%" );
 	})
 	
-	$("input").click(function(){
-		;
+	$("span.rank").click(function() {
+		alert( "todo");
 	})
 })
 </script>
