@@ -47,7 +47,7 @@ technical.controller( 'networkCtrl', function( $scope ) {
 				  "<hr/>" +
 				  "<div style='font-size: 20px;' ng-show='show'>" +
 				  "<ul>" +
-				  "	<li ng-repeat='question in random'> {{question.question}}<br/><br/>" +
+				  "	<li ng-repeat='question in random'><span class='rank'>Rank {{question.rank}}</span> {{question.question}}<br/><br/>" +
 				  "	<span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small better' name='network'>Suggest A Better Answer</button><br/>Correct <input class='network-correct' type='checkbox'/><br/><br/>" +
 				  "	</li>" +
 				  "</ul>" +

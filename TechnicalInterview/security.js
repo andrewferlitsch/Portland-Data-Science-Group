@@ -14,7 +14,7 @@ technical.controller( 'securityCtrl', function( $scope ) {
 						  answer: "Malicious software that is hidden inside what might appear inside something that might otherwise appear legitimate, " +
 								  "in an email message, social media, or web site.",
 						  rank: 1
-						}
+						},
 						{ question: "What is a one-way hash? Name at least one popular method.",
 						  answer: "A type of encryption where once something is encrypted it cannot be decrypted back to the original form." +
 						          "It is commonly used for encrypting passwords. The one-way hashed version of the password is stored instead of the original password." +
@@ -49,7 +49,7 @@ technical.controller( 'securityCtrl', function( $scope ) {
 				  "<hr/>" +
 				  "<div style='font-size: 20px;' ng-show='show'>" +
 				   "<ul>" +
-				  "	<li ng-repeat='question in random'> {{question.question}}<br/><br/>" +
+				  "	<li ng-repeat='question in random'><span class='rank'>Rank {{question.rank}}</span> {{question.question}}<br/><br/>" +
 				  "	<span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small better' name=''>Suggest A Better Answer</button><br/>Correct <input class='security-correct' type='checkbox'/><br/><br/>" +
 				  "</ul>" +
 				  "<button  class='w3-btn w3-green score' name='security'>Score</button>" +

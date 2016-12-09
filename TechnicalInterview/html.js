@@ -34,15 +34,15 @@ technical.controller( 'htmlCtrl', function( $scope ) {
 						  answer: "href",
 						  rank: 1
 						},
-						{ question: "In a hyperlink, how do you specify opening a web page in another browser?"
+						{ question: "In a hyperlink, how do you specify opening a web page in another browser?",
 						  answer: "target='_blank'",
 						  rank: 1
 						},
-						{ question: "What attribute/value do you use to define a checkbox?"
+						{ question: "What attribute/value do you use to define a checkbox?",
 						  answer: "type='checkbox'",
 						  rank: 1
 						},
-						{ question: "What elements are used for a numbered list and a bullet list?"
+						{ question: "What elements are used for a numbered list and a bullet list?",
 						  answer: "<ol> and <ul>, respectively",
 						  rank: 1
 						},
@@ -89,7 +89,7 @@ technical.controller( 'htmlCtrl', function( $scope ) {
 				  "<hr/>" +
 				  "<div style='font-size: 20px;' ng-show='show'>" +
 				  "<ul>" +
-				  "	<li ng-repeat='question in random'> {{question.question}}<br/><br/>" +
+				  "	<li ng-repeat='question in random'><span class='rank'>Rank {{question.rank}}</span> {{question.question}}<br/><br/>" +
 				  "	<span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small better' name='html'>Suggest A Better Answer</button><br/>Correct <input class='html-correct' type='checkbox'/><br/><br/>" +
 				  "</ul>" +
 				  "<button class='w3-btn w3-green score' name='html'>Score</button>" +
