@@ -96,10 +96,10 @@ function pick3( questions )
 /*
  * Show the Suggest Better Answer popup dialog
  */
-function showBetter( category, question )
+function showBetter( category, id )
 {
 	var popUp = document.getElementById("popup");
- 
+
     popUp.style.top    = "200px";
     popUp.style.left   = "200px";
     popUp.style.width  = "500px";
@@ -107,7 +107,7 @@ function showBetter( category, question )
    
     popUp.innerHTML = "Suggested Answer: " + 
 		"<textarea rows='7' cols='48' id='new-answer'></textarea>" +
-        "<button onclick=\"saveBetter('" + category + "', '" + question + "')\">Save<button>" +
+        "<button onclick=\"saveBetter('" + category + "', '" + id + "')\">Save<button>" +
         "<button onclick=\"hidePopup()\">Close<button>";
 		  
     popUp.style.visibility = "visible";
@@ -166,14 +166,14 @@ function hidePopup(){
 /*
  * Send the Suggest Better Answer to the Server
  */
-function saveBetter( category, question ) {
+function saveBetter( category, id ) {
 	var answer = document.getElementById( "new-answer" ).value;
 	hidePopup();
 	
 	$.ajax({
 		url: "/interview/better.php",
 		type: 'post',
-		data: {'category': category, question: question, answer: answer },
+		data: {'category': category, 'id': id, 'answer': answer },
 		success: function( data, status ) { alert( data ) },
 		error: function(xhr) { alert( xhr.status + " " + xhr.statusText ); }
 	});
@@ -263,7 +263,7 @@ $(document).ready(function () {
 	})
 	
 	$("button.better").click(function() {
-		showBetter( $(this).attr( 'name' ), $(this).prev().html() );
+		showBetter( $(this).attr( 'name' ), $(this).attr( 'id' ) );
 	})
 	
 	$("button.question").click(function() {
