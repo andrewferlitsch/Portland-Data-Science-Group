@@ -138,18 +138,19 @@ function showSuggest( category )
 /*
  * Show the Suggest Better Ranking dialog
  */
-function showRank( category ) 
+function showRank( category, question ) 
 {
 	var popUp = document.getElementById("popup");
- 
+
     popUp.style.top    = "200px";
     popUp.style.left   = "200px";
     popUp.style.width  = "500px";
     popUp.style.height = "auto"; 
 	
     popUp.innerHTML = "Suggested Ranking: " +
-		"<select><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option></select><br/>" +
-        "<button onclick=\"hidePopup()\">Close<button>";	
+		"<select id='new-rank'><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option></select><br/>" +
+        "<button onclick=\"saveRank('" + category + "', '" + question + "')\">Save<button>" +
+		"<button onclick=\"hidePopup()\">Close<button>";	
 		  
     popUp.style.visibility = "visible";
 }
@@ -189,7 +190,23 @@ function saveSuggest( category ) {
 	$.ajax({
 		url: "/interview/better.php",
 		type: 'post',
-		data: {'category': category, question: question, answer: answer },
+		data: {'category': category, 'question': question, 'answer': answer },
+		success: function( data, status ) { alert( data ) },
+		error: function(xhr) { alert( xhr.status + " " + xhr.statusText ); }
+	});
+}
+
+/*
+ * Suggest new Ranking for Question to Server
+ */
+function saveRank( category, question ) {
+	var rank = document.getElementById( "new-rank" ).value;
+	hidePopup();
+	
+	$.ajax({
+		url: "/interview/rank.php",
+		type: 'post',
+		data: {'category': category, 'question': question, 'rank': rank },
 		success: function( data, status ) { alert( data ) },
 		error: function(xhr) { alert( xhr.status + " " + xhr.statusText ); }
 	});
@@ -253,6 +270,10 @@ $(document).ready(function () {
 		showSuggest( $(this).attr( 'name' ) );
 	})
 	
+	$("span.rank").click(function() {
+		showRank( $(this).attr( 'name' ), $(this).next().next().next().html() );
+	})
+	
 	$("button#final").click(function() {
 		window.location.href = "#final";
 		
@@ -263,10 +284,6 @@ $(document).ready(function () {
 		$("#totalQuestions").html( totalQuestions );
 		$("#totalCorrect").html( totalCorrect );
 		$("#percentCorrect").html( percentCorrect.toFixed(2) + "%" );
-	})
-	
-	$("span.rank").click(function() {
-		showRank( $(this).attr( 'name' ) );
 	})
 })
 </script>
