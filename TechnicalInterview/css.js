@@ -45,8 +45,9 @@ technical.controller( 'cssCtrl', function( $scope ) {
 						  rank: 3
 						}
 					  ];
-	$scope.random = pick3( $scope.questions );
-	$scope.show = false;
+	$scope.random 	= pick3( $scope.questions );
+	$scope.show 	= false;
+	$scope.answers 	= false;
 })
 .directive( "questionsCss", function() {
 	return {
@@ -55,9 +56,10 @@ technical.controller( 'cssCtrl', function( $scope ) {
 				  "<h1 class='w3-container w3-teal' ng-click='show=!show' onclick='location.href=\"#css\"'>{{subject}} &#x21f5;</h1>" +
 				  "<hr/>" +
 				  "<div style='font-size: 20px;' ng-show='show'>" +
+				  "<button class='w3-btn w3-teal w3-round w3-tiny' ng-click='answers=!answers'>Show Answers</button>" +
 				  "<ul>" +
 				  "	<li ng-repeat='question in random'><span class='w3-tooltip rank' name='css'>Rank {{question.rank}} <span class='w3-text w3-tag w3-khaki w3-round w3-small'>Click to Suggest Another Ranking</span></span> {{question.question}}<br/><br/>" +
-				  "	<span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small better' name='css'>Suggest A Better Answer</button><br/>Correct <input class='correct' type='checkbox'/><br/><br/></li>" +
+				  "	<span ng-show='answers'><span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small better' name='css'>Suggest A Better Answer</button><br/></span>Correct <input class='correct' type='checkbox'/><br/><br/></li>" +
 				  "</ul>" +
 				  "<button class='w3-btn w3-green score' name='css'>Score</button>" +
 				  "&nbsp;<button class='w3-btn w3-khaki w3-round w3-small question' name='css'>Suggest a Question</button>" +
