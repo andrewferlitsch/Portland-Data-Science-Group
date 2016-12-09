@@ -1,4 +1,6 @@
 technical.controller( 'interviewCtrl', function( $scope ) {
+	$scope.showleft  = false;
+	$scope.showright = false;
 })
 .directive( "interview", function() {
 	return {
@@ -14,23 +16,29 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 				  "<h3>Preparing for a Technical Phone Screen</h3>" +
 				  "<p>Use our question/answer section below to practice a phone screen with another person. " +
 				  "Each category will display three randomly selected questions.</p>" +
-				  "<ol>" +
-				  "	<li>The interviewee (you) tells the interviewer (other person) categories to be tested on.</li>" +
-				  "	<li>For each selected category, the interviewer clicks on the category, which will display three random questions and suggested answers, ranked consecutively harder (easy, moderate, hard).</li>" +
-				  "	<li>The interviewer will ask each question.</li>" +
-				  "	<li>If the interviewer feels the answer was sufficient, then the interviewer checks the Correct box.</li>" +
-				  "	<li>When a category is done, the interviewer selects the Score button in the category.</li>" +
-				  " <li>When completed, the interviewer selects the Final Score button at the bottom of the page.</li>" +
-				  "</ol>" +
+				  "<p style='color: orange; cursor: pointer' ng-click='showleft=!showleft'>Instructions &#x21f5;</p>" +
+				  "<div ng-show='showleft'>" + 
+				  "	<ol>" +
+				  "		<li>The interviewee (you) tells the interviewer (other person) categories to be tested on.</li>" +
+				  "		<li>For each selected category, the interviewer clicks on the category, which will display three random questions and suggested answers, ranked consecutively harder (easy, moderate, hard).</li>" +
+				  "		<li>The interviewer will ask each question.</li>" +
+				  "		<li>If the interviewer feels the answer was sufficient, then the interviewer checks the Correct box.</li>" +
+				  "		<li>When a category is done, the interviewer selects the Score button in the category.</li>" +
+				  " 	<li>When completed, the interviewer selects the Final Score button at the bottom of the page.</li>" +
+				  "	</ol>" +
 				  "</div>" +
-				  "<div style='float: right; margin-right: 20px;'>" +
+				  "</div>" +
+				  "<div style='float: right; width: 600px; margin-right: 20px;'>" +
 				  "<h3>Crowdsourcing the Dataset of Questions</h3>" +
 				  "<p>Help us crowdsource of datasets of questions and answers.</p>" +
-				  "<ul>" +
-				  "	<li>Next to each answer, you can suggest a better answer.</li>" +
-				  "	<li>At the bottom of the category, you can suggest new questions/answers.</li>" +
-				  "	<li>Hover over and click on Rank to suggest a better ranking for a question.</li>" +
-				  "</ul>" +
+				  "<p style='color: orange; cursor: pointer' ng-click='showright=!showright'>Instructions &#x21f5;</p>" +
+				  "<div ng-show='showright'>" +
+				  "	<ul>" +
+				  "		<li>Next to each answer, you can suggest a better answer.</li>" +
+				  "		<li>At the bottom of the category, you can suggest new questions/answers.</li>" +
+				  "		<li>Hover over and click on Rank to suggest a better ranking for a question.</li>" +
+				  "	</ul>" +
+				  "</div>" +
 				  "</div>" +
 				  "<div style='clear:both;'/>"
 	}
