@@ -44,6 +44,11 @@ technical.controller( 'securityCtrl', function( $scope ) {
 								  "A digital certificate certifies the ownership of a public key by the named subject of the certificate.",
 						  rank: 3,
 						  id: 147
+						},
+						{ question: "What is Cross Site Scripting?",
+						  answer: "XSS attacks occur when malicious code is injected into a website, generally through an input control.",
+						  rank: 3,
+						  id: 153
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );

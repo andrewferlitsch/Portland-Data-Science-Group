@@ -60,6 +60,13 @@ technical.controller( 'cssCtrl', function( $scope ) {
 						  rank: 2,
 						  id: 150
 						},
+						{ question: "Explain the difference between visibility:hidden; and display:none?",
+						  answer: "Both hide the element from being displayed. For visibility, " +
+								  "the space consumed by the element is still rendered (blank), while for display the space " +
+								  "is not rendered (folded)",
+						  rank: 2,
+						  id: 152
+						},
 						{ question: "What are three things (property values) you can do with the text-transform property?",
 						  answer: "uppercase words, lowercase words, capitalize words",
 						  rank: 3,
