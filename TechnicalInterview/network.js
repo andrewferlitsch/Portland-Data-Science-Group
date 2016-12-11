@@ -7,8 +7,8 @@ technical.controller( 'networkCtrl', function( $scope ) {
 						  id: 134
 						},
 						{ question: "Describe the difference between UDP and TCP.",
-						  answer: "UDP (User Datagram Protocol) and TCP (Transmission Control Protocol) both send" +
-								  "data packets over a network. UDP does not guarantee delivery. TCP does. When the" +
+						  answer: "UDP (User Datagram Protocol) and TCP (Transmission Control Protocol) both send " +
+								  "data packets over a network. UDP does not guarantee delivery. TCP does. When the " +
 								  "receiver receives a packet, it sends back an acknowledgement to the sender.",
 						  rank: 1,
 						  id: 135
@@ -20,7 +20,7 @@ technical.controller( 'networkCtrl', function( $scope ) {
 						  id: 136
 						},
 						{ question: "What is WireShark?",
-						  answer: "An application that is used by developers to view packets on the network",
+						  answer: "An application that is used by developers to view packets on the network.",
 						  rank: 2,
 						  id: 137
 						},

@@ -1,7 +1,10 @@
 technical.controller( 'osCtrl', function( $scope ) {
 	$scope.subject 	= "OS";
 	$scope.questions = [{ question: "What is a stack frame?",
-						  answer: "",
+						  answer: "The stack frame is a part of the program's memory address space for holding the " +
+								  "the values of parameters and local variables per function call. Each time a function is " +
+								  "called, a stack frame is pushed into this memory space, usually in sequential order. " +
+								  "When the function returns, the stack frame is popped, releasing memory."
 						  rank: 1,
 						  id: 109
 						},
@@ -18,7 +21,7 @@ technical.controller( 'osCtrl', function( $scope ) {
 						  id: 111
 						},
 						{ question: "Describe UTF-8 encoding",
-						  answer: "A encoding consisting of one to four bytes. If the first byte has a leading zero bit, it is one byte long (ANSI)." +
+						  answer: "A encoding consisting of one to four bytes. If the first byte has a leading zero bit, it is one byte long (ANSI). " +
 						          "If it has two leading one bits, it is two bytes long, three leading one bits it is three bytes long, and four leading " +
 								  "one bits it is four bytes long.",
 						  rank: 2,

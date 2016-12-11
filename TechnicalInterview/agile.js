@@ -1,6 +1,6 @@
 technical.controller( 'agileCtrl', function( $scope ) {
 	$scope.subject 	= "Agile";
-	$scope.questions = [{ question: "What is Agile Product Management",
+	$scope.questions = [{ question: "What is Agile Product Management?",
 						  answer: "An iterative, incremental method of managing the design and build activities of engineering, " +
 								  "information technology and other business areas that aim to provide new product or service development " +
 								  "in a highly flexible and interactive manner",
@@ -8,7 +8,7 @@ technical.controller( 'agileCtrl', function( $scope ) {
 						  id: 124
 						},
 						{ question: "What is the product owner's role",
-						  answer: "A product owner decides which stories go into a sprint",
+						  answer: "A product owner decides which stories go into a sprint.",
 						  rank: 1,
 						  id: 125
 						},
@@ -35,13 +35,13 @@ technical.controller( 'agileCtrl', function( $scope ) {
 						  id: 129
 						},
 						{ question: "What does a sprint consist of?",
-						  answer: "A sprint consists of a sprint planning session, execution of tasks, followed by a sprint review and sometimes a sprint retrospective",
+						  answer: "A sprint consists of a sprint planning session, execution of tasks, followed by a sprint review and sometimes a sprint retrospective.",
 						  rank: 2,
 						  id: 130
 						},
 						{ question: "What is the purpose of a standup scrum",
 						  answer: "To give a quick round of status and expected tasks for the day by each member. " +
-							      "It is called a standup to emphasize keeping the sprint as short as possible",
+							      "It is called a standup to emphasize keeping the sprint as short as possible.",
 						  rank: 2,
 						  id: 131
 						},

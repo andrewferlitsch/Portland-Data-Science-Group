@@ -15,7 +15,7 @@ technical.controller( 'jsCtrl', function( $scope ) {
 						  rank: 1,
 						  id: 52
 						},
-						{ question: "What type of class is supported in Javascript.",
+						{ question: "What type of class is supported in Javascript?",
 						  answer: "Prototyped classes",
 						  rank: 2,
 						  id: 53
@@ -30,7 +30,7 @@ technical.controller( 'jsCtrl', function( $scope ) {
 						  rank: 2,
 						  id: 55
 						},
-						{ question: "How can you get an HTML element.",
+						{ question: "How can you get an HTML element?",
 						  answer: "getElementById(), getElementByName(), getElementByClassName(), getElementByTagName()",
 						  rank: 2,
 						  id: 56

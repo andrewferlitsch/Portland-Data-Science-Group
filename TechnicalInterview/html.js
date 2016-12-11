@@ -1,8 +1,8 @@
 technical.controller( 'htmlCtrl', function( $scope ) {
 	$scope.subject 	= "HTML";
 	$scope.questions = [{ question: "What is an element, tag and attribute?",
-						  answer: "An element is a divisible item in HTML that starts with a start tag and ends with an end tag: e.g., <div></div>" +
-								  "A tag is the name following the closed angle bracket < which identifies the type of element." +
+						  answer: "An element is a divisible item in HTML that starts with a start tag and ends with an end tag: e.g., <div></div> " +
+								  "A tag is the name following the closed angle bracket < which identifies the type of element. " +
 								  "An attribute modifies the element. The type attribute makes this element a text input box <input type='text'>",
 						  rank: 1,
 						  id: 8

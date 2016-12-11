@@ -65,9 +65,14 @@ technical.controller( 'html5Ctrl', function( $scope ) {
 						  id: 37
 						},
 						{ question: "Describe how the <output> element works.",
-						  answer: "",
+						  answer: "The <output> tag represents the result of a calculation (like one performed by a script).",
 						  rank: 3,
 						  id: 38
+						},
+						{ question: "How do you specify a number input element to take input in dollar and cents?",
+						  answer: "Add attribute step=0.01",
+						  rank: 3,
+						  id: 151
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );

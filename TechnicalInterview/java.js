@@ -40,8 +40,10 @@ technical.controller( 'javaCtrl', function( $scope ) {
 						  rank: 3,
 						  id: 67
 						},
-						{ question: "What is a lambda function?",
-						  answer: "",
+						{ question: "What is a lambda expression?",
+						  answer: "A form of functional programming added in Java 8. " +
+								  "Lambda expressions are used primarily to define inline implementation of a functional interface, i.e., " +
+								  "an interface with a single method only.",
 						  rank: 3,
 						  id: 68
 						}

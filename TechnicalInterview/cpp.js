@@ -5,13 +5,13 @@ technical.controller( 'cppCtrl', function( $scope ) {
 						  rank: 1,
 						  id: 78
 						},
-						{ question: "What is the difference between a struct and class.",
+						{ question: "What is the difference between a struct and class?",
 						  answer: "Methods/data default to public in a struct.",
 						  rank: 1,
 						  id: 79
 						},
-						{ question: "Where in a function can a variable be declared.",
-						  answer: "A variable can be declared anywhere a statement would be valid, and can be declared in the initializer part of a for loop",
+						{ question: "Where in a function can a variable be declared?",
+						  answer: "A variable can be declared anywhere a statement would be valid, and can be declared in the initializer part of a for loop.",
 						  rank: 1,
 						  id: 80
 						},

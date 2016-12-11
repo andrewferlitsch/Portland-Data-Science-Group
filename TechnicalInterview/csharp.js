@@ -6,7 +6,7 @@ technical.controller( 'csharpCtrl', function( $scope ) {
 						  rank: 1,
 						  id: 69
 						},
-						{ question: "What is the scope of the variable 'i': for (int i = 0; i<10;i++) {}",
+						{ question: "What is the scope of the variable 'i': for (int i = 0; i<10;i++) {} ?",
 						  answer: "The scope is within the for loop. It has not scope outside of the for loop.",
 						  rank: 1,
 						  id: 70

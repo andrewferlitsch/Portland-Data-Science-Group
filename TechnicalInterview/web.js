@@ -1,7 +1,7 @@
 technical.controller( 'webCtrl', function( $scope ) {
 	$scope.subject 	= "Web";
 	$scope.questions = [{ question: "What is a CDN?",
-						  answer: "A content delivery network (CDN) is a system of distributed servers (network) that deliver webpages and other Web content to a user based on the geographic locations of the user",
+						  answer: "A content delivery network (CDN) is a system of distributed servers (network) that deliver webpages and other Web content to a user based on the geographic locations of the user.",
 						  rank: 1,
 						  id: 1
 						},
@@ -21,20 +21,22 @@ technical.controller( 'webCtrl', function( $scope ) {
 						  id: 4
 						},
 						{ question: "What is AJAX?",
-						  answer: "AJAX is an asynchronous method in Javascript to make calls to server side scripts." +
-								  "It uses the XMLHttpRequest object. Responses to the call typically are in JSON or XML format." +
+						  answer: "AJAX is an asynchronous method in Javascript to make calls to server side scripts. " +
+								  "It uses the XMLHttpRequest object. Responses to the call typically are in JSON or XML format. " +
 								  "The method is used to send or receive data to/from a server without refreshing the whole page.",
 						  rank: 2,
 						  id: 5
 						},
 						{ question: "What is Model View Controller (MVC)?",
-						  answer: "",
+						  answer: "Model–view–controller (MVC) is a software design pattern for implementing user interfaces on computers. " +
+								  "It divides the application into three interconnected components: 1) Model - represents the data, 2) View - " +
+								  "how the data is visualized, and 3) Controller - how the data is manipulated and bound to the UI.",
 						  rank: 3,
 						  id: 6
 						},
 						{ question: "Describe what a REST API does. What is meant by stateless?",
-						  answer: "A REST API call is made between a web application and a server via a HTTP request." +
-								  "The endpoint identifies the call or service being requested and the arguments are passed as query string (?parameters) appended to the URL." +
+						  answer: "A REST API call is made between a web application and a server via a HTTP request. " +
+								  "The endpoint identifies the call or service being requested and the arguments are passed as query string (?parameters) appended to the URL. " +
 								  "A REST API is considered stateless in that no state change persist across calls.",
 						  rank: 3,
 						  id: 7
