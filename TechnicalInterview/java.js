@@ -15,6 +15,16 @@ technical.controller( 'javaCtrl', function( $scope ) {
 						  rank: 1,
 						  id: 62
 						},
+						{ question: "How do you exit from a Java application?",
+						  answer: "System.exit( exit_code )",
+						  rank: 1,
+						  id: 154
+						},
+						{ question: "How do you output to standard out and standard error",
+						  answer: "System.out.println() and System.err.println()",
+						  rank: 1,
+						  id: 155
+						},
 						{ question: "How does garbage collection work?",
 						  answer: "Java uses lazy garbage collection. There is no explicit method to delete an allocated item or to force garbage collection.",
 						  rank: 2,
@@ -35,6 +45,13 @@ technical.controller( 'javaCtrl', function( $scope ) {
 						  rank: 2,
 						  id: 66
 						},
+						{ question: "What is an ArrayList and how do you access the elements?",
+						  answer: "An ArrayList is a derived type for dynamic sizing of an array. " +
+								  "It can take any type specified by the template argument ArrayList<type>. " +
+								  "An item is added with the add() method and accessed with the get() method.",
+						  rank: 2,
+						  id: 156
+						},
 						{ question: "What does a default method do in an interface definition?",
 						  answer: "It is a default implementation of a method if not defined in an implementation.",
 						  rank: 3,
@@ -46,6 +63,12 @@ technical.controller( 'javaCtrl', function( $scope ) {
 								  "an interface with a single method only.",
 						  rank: 3,
 						  id: 68
+						},
+						{ question: "What does it mean when you get a compiler error message about two methods having the same erasure?",
+						  answer: "It means that both functions have the same name (overloaded), but the types only differ by a type template (between the <> brackets). " +
+								  "public void Foo( List<String> ) and public void Foo( List<Integer> )",
+						  rank: 3,
+						  id: 157
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
