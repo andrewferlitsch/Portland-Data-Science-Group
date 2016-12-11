@@ -4,7 +4,7 @@ technical.controller( 'osCtrl', function( $scope ) {
 						  answer: "The stack frame is a part of the program's memory address space for holding the " +
 								  "the values of parameters and local variables per function call. Each time a function is " +
 								  "called, a stack frame is pushed into this memory space, usually in sequential order. " +
-								  "When the function returns, the stack frame is popped, releasing memory."
+								  "When the function returns, the stack frame is popped, releasing memory.",
 						  rank: 1,
 						  id: 109
 						},
