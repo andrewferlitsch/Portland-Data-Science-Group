@@ -58,7 +58,7 @@ technical.controller( 'mysqlCtrl', function( $scope ) {
 	return {
 		restrict: 'A',
 		template: "<a name='mysql'/>" +
-				  "<h1 class='w3-container w3-teal' ng-click='show=!show' onclick='location.href=\"#mysql\"'>{{subject}} &#x21f5;</h1>" +
+				  "<h1 class='w3-container w3-teal' ng-click='show=!show' onclick='location.href=\"#mysql\"'>&#9205; {{subject}}</h1>" +
 				  "<hr/>" +
 				  "<div style='font-size: 20px;' ng-show='show'>" +
 				  "<button class='w3-btn w3-teal w3-round w3-tiny' ng-click='answers=!answers'>Show Answers</button>" +

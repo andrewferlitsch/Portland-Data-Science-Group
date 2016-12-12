@@ -58,7 +58,7 @@ technical.controller( 'cCtrl', function( $scope ) {
 	return {
 		restrict: 'A',
 		template: "<a name='c'/>" +
-				  "<h1 class='w3-container w3-teal' ng-click='show=!show' onclick='location.href=\"#c\"'>{{subject}} &#x21f5;</h1>" +
+				  "<h1 class='w3-container w3-teal' ng-click='show=!show' onclick='location.href=\"#c\"'>&#9205; {{subject}}</h1>" +
 				  "<hr/>" +
 				  "<div style='font-size: 20px;' ng-show='show'>" +
 				  "<button class='w3-btn w3-teal w3-round w3-tiny' ng-click='answers=!answers'>Show Answers</button>"+
