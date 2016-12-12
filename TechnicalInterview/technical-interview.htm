@@ -196,7 +196,7 @@ function saveSuggest( category ) {
 	hidePopup();
 	
 	$.ajax({
-		url: "/interview/better.php",
+		url: "/interview/suggest.php",
 		type: 'post',
 		data: {'category': category, 'question': question, 'answer': answer },
 		success: function( data, status ) { alert( data ) },
