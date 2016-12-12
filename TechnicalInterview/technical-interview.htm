@@ -113,10 +113,10 @@ function showBetter( category, id )
     popUp.style.width  = "500px";
     popUp.style.height = "auto";
    
-    popUp.innerHTML = "Suggested Answer: " + 
-		"<textarea rows='7' cols='48' id='new-answer'></textarea>" +
-        "<button onclick=\"saveBetter('" + category + "', '" + id + "')\">Save<button>" +
-        "<button onclick=\"hidePopup()\">Close<button>";
+    popUp.innerHTML = "<span class='w3-label'>Suggested Answer:</span> " + 
+		"<textarea class='w3-input' rows='7' cols='48' id='new-answer'></textarea>" +
+        "<button class='w3-btn w3-green' onclick=\"saveBetter('" + category + "', '" + id + "')\">Save<button>" +
+        "<button class='w3-btn' onclick=\"hidePopup()\">Close<button>";
 		  
     popUp.style.visibility = "visible";
 } 
@@ -133,12 +133,12 @@ function showSuggest( category )
     popUp.style.width  = "500px";
     popUp.style.height = "auto";
    
-    popUp.innerHTML = "Suggested Question: " + 
-		"<input type='text' size='32' id='new-question'/><br/>" +
-		"Suggest Answer:" +
-		"<textarea rows='7' cols='48' id='new-answer'></textarea>" +
-		"<button onclick=\"saveSuggest( '" + category + "' )\">Save</button>" +
-        "<button onclick=\"hidePopup()\">Close<button>";
+    popUp.innerHTML = "<span class='w3-label'>Suggested Question:</span>" + 
+		"<input class='w3-input' type='text' size='32' id='new-question'/><br/>" +
+		"<span class='w3-label'>Suggest Answer:</span>" +
+		"<textarea class='w3-input' rows='7' cols='48' id='new-answer'></textarea>" +
+		"<button class='w3-btn w3-green' onclick=\"saveSuggest( '" + category + "' )\">Save</button>" +
+        "<button class='w3-btn' onclick=\"hidePopup()\">Close<button>";
 		  
     popUp.style.visibility = "visible";
 }
@@ -155,10 +155,10 @@ function showRank( category, id )
     popUp.style.width  = "500px";
     popUp.style.height = "auto"; 
 	
-    popUp.innerHTML = "Suggested Ranking: " +
-		"<select id='new-rank'><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option></select><br/>" +
-        "<button onclick=\"saveRank('" + category + "', '" + id + "')\">Save<button>" +
-		"<button onclick=\"hidePopup()\">Close<button>";	
+    popUp.innerHTML = "<span class='w3-label'>Suggested Ranking:</span>" +
+		"<select class='w3-select' id='new-rank'><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option></select><br/>" +
+        "<button class='w3-btn w3-green' onclick=\"saveRank('" + category + "', '" + id + "')\">Save<button>" +
+		"<button class='w3-btn' onclick=\"hidePopup()\">Close<button>";	
 		  
     popUp.style.visibility = "visible";
 }
