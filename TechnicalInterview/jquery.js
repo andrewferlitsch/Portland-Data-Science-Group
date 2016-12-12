@@ -15,15 +15,45 @@ technical.controller( 'jqueryCtrl', function( $scope ) {
 						  rank: 1,
 						  id: 204
 						},
-						{ question: "In Progress",
-						  answer: "",
-						  rank: 2,
-						  id: 0
+						{ question: "What symbol is used for a JQuery shortcut?",
+						  answer: "$",
+						  rank: 1,
+						  id: 205
 						},
-						{ question: "In Progress",
-						  answer: "",
+						{ question: "How do you get the inner HTML code for an element?",
+						  answer: "$(\"div\").html()",
+						  rank: 1,
+						  id: 206
+						},
+						{ question: "What method is used to hide an element?",
+						  answer: "hide()",
+						  rank: 1,
+						  id: 207
+						},
+						{ question: "What syntax is used to change the style of div element?",
+						  answer: "$(\"div\").css(property,value)",
+						  rank: 2,
+						  id: 208
+						},
+						{ question: "What method is used to make an AJAX call?",
+						  answer: "$.ajax({ ... })",
+						  rank: 2,
+						  id: 208
+						},
+						{ question: "What does $(\"div p\") select?",
+						  answer: "All p elements (paragraph) inside all div elements.",
+						  rank: 2,
+						  id: 209
+						},
+						{ question: "Which jQuery method is used to switch between adding/removing one or more classes (for CSS) from selected elements?",
+						  answer: "toggleClass()",
 						  rank: 3,
-						  id: 0
+						  id: 210
+						},
+						{ question: "What methods are used to remove selected items?",
+						  answer: "remove() and detach()",
+						  rank: 3,
+						  id: 211
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
