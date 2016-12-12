@@ -10,12 +10,27 @@ technical.controller( 'mysqlCtrl', function( $scope ) {
 						  rank: 1,
 						  id: 171
 						},
-						{ question: "How do I select only rows where field year is 2015?",
+						{ question: "How do you select only rows where field year is 2015?",
 						  answer: "SELECT * FROM mytable where year=2015;",
 						  rank: 1,
 						  id: 172
 						},
-						{ question: "How do I count how many rows have year = 2015?",
+						{ question: "How do you create a database?",
+						  answer: "CREATE DATABASE databasename;",
+						  rank: 1,
+						  id: 196
+						},
+						{ question: "How do you login to a password protected database?",
+						  answer: "mysql -u username -p  , then you will be prompted for password",
+						  rank: 1,
+						  id: 197
+						},
+						{ question: "How do you set which database to use?",
+						  answer: "USE databasename;",
+						  rank: 1,
+						  id: 198
+						},
+						{ question: "How do you count how many rows have year = 2015?",
 						  answer: "SELECT COUNT(*) FROM mytable WHERE year=2015;",
 						  rank: 2,
 						  id: 173
@@ -30,6 +45,11 @@ technical.controller( 'mysqlCtrl', function( $scope ) {
 								  "in each row must be unique; otherwise an error will occur.",
 						  rank: 2,
 						  id: 175
+						},
+						{ question: "How do you drop a table?",
+						  answer: "DROP TABLE tablename;",
+						  rank: 2,
+						  id: 200
 						},
 						{ question: "What is a foreign key? How does it work?",
 						  answer: "A foreign key points to a primary key in another table. " +

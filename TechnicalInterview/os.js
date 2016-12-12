@@ -42,6 +42,13 @@ technical.controller( 'osCtrl', function( $scope ) {
 						  rank: 3,
 						  id: 115
 						}
+						{ question: "What is a Mutex?",
+						  answer: "Short for Mutually Exclusion Object. " +
+								  "A mutex is a program object that allows multiple program threads to share the same resource, but not simultaneously. " +
+								  "If a thread places a lock on the mutex, then all other threads will block attempting to lock the mutex until it is released.",
+						  rank: 3,
+						  id: 201
+						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
 	$scope.show 	= false;

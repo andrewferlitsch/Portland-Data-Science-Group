@@ -20,10 +20,15 @@ technical.controller( 'javaCtrl', function( $scope ) {
 						  rank: 1,
 						  id: 154
 						},
-						{ question: "How do you output to standard out and standard error",
+						{ question: "How do you output to standard out and standard error?",
 						  answer: "System.out.println() and System.err.println()",
 						  rank: 1,
 						  id: 155
+						},
+						{ question: "How do you specify a class path when compiling a java file?",
+						  answer: "javac -cp path javafile",
+						  rank: 1,
+						  id: 199
 						},
 						{ question: "How does garbage collection work?",
 						  answer: "Java uses lazy garbage collection. There is no explicit method to delete an allocated item or to force garbage collection.",
