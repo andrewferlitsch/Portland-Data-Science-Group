@@ -14,14 +14,14 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 				  "</div>" +
 				  "<div style='width: 600px; float: left;'>" +
 				  "<h3>Preparing for a Technical Phone Screen</h3>" +
-				  "<p>Use our question/answer section below to practice a phone screen with another person. " +
+				  "<p>Use our question/answer section below to practice a phone screen with another person, or just yourself. " +
 				  "Each category will display three randomly selected questions in increasing difficulty.</p>" +
 				  "<p style='color: orange; cursor: pointer' ng-click='showleft=!showleft'>&#9205; Instructions</p>" +
 				  "<div ng-show='showleft'>" + 
 				  "	<ol>" +
 				  "		<li>The interviewee (you) tells the interviewer (other person) categories to be tested on.</li>" +
 				  "		<li>For each selected category, the interviewer clicks on the category, which will display three random questions and suggested answers, ranked consecutively harder (easy, moderate, hard).</li>" +
-				  "		<li>The interviewer will ask each question.</li>" +
+				  "		<li>The interviewer will select show answers and ask each question.</li>" +
 				  "		<li>If the interviewer feels the answer was sufficient, then the interviewer checks the Correct box.</li>" +
 				  "		<li>When a category is done, the interviewer selects the Score button in the category.</li>" +
 				  " 	<li>When completed, the interviewer selects the Final Score button at the bottom of the page.</li>" +
