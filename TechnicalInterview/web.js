@@ -11,7 +11,7 @@ technical.controller( 'webCtrl', function( $scope ) {
 						  id: 2
 						},
 						{ question: "How are parameters passed in a GET method?",
-						  answer: "There are passed as URL parameters.",
+						  answer: "They're are passed as URL parameters.",
 						  rank: 1,
 						  id: 3
 						},
