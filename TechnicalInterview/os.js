@@ -41,7 +41,7 @@ technical.controller( 'osCtrl', function( $scope ) {
 						  answer: "Synchronous Dynamic RAM. SDRAM is an improvement because it synchronizes data transfer between the CPU and memory. SDRAM allows the CPU to process data while another process is being queued.",
 						  rank: 3,
 						  id: 115
-						}
+						},
 						{ question: "What is a Mutex?",
 						  answer: "Short for Mutually Exclusion Object. " +
 								  "A mutex is a program object that allows multiple program threads to share the same resource, but not simultaneously. " +
