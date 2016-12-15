@@ -73,6 +73,13 @@ technical.controller( 'mysqlCtrl', function( $scope ) {
 								  "A RIGHT JOIN is the contents of the second table plus the intersection with the first table.",
 						  rank: 3,
 						  id: 177
+						},
+						{ question: "Describe a parent/child hierachy relationship in a table",
+						  answer: "A table that two identifiers with one identifier being a primary key, " +
+								  "and the second identifier references the first (primary key) identifier. " +
+								  "Ex. ( ManagerID int Primary Key, EmployeeID int REFERENCES( ManagerID ))",
+						  rank: 3,
+						  id: 232
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
