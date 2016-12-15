@@ -30,6 +30,11 @@ technical.controller( 'javaCtrl', function( $scope ) {
 						  rank: 1,
 						  id: 199
 						},
+						{ question: "In a String, how do you get the 3rd character?",
+						  answer: "string.charAt(2)",
+						  rank: 1,
+						  id: 229
+						},
 						{ question: "How does garbage collection work?",
 						  answer: "Java uses lazy garbage collection. There is no explicit method to delete an allocated item or to force garbage collection.",
 						  rank: 2,
@@ -56,6 +61,11 @@ technical.controller( 'javaCtrl', function( $scope ) {
 								  "An item is added with the add() method and accessed with the get() method.",
 						  rank: 2,
 						  id: 156
+						},
+						{ question: "Is the keyword abstract required for abstract methods declared in an interface?",
+						  answer: "No",
+						  rank: 2,
+						  id: 228
 						},
 						{ question: "What does a default method do in an interface definition?",
 						  answer: "It is a default implementation of a method if not defined in an implementation.",

@@ -15,10 +15,20 @@ technical.controller( 'dosCtrl', function( $scope ) {
 						  rank: 1,
 						  id: 160
 						},
+						{ question: "How do you remove a directory and all its contents?",
+						  answer: "rmdir dirname \\s",
+						  rank: 1,
+						  id: 231
+						},
 						{ question: "How do you test in an IF statement if the last command exited with a non-zero exit code?",
 						  answer: "IF %ERRORLEVEL% NEQ 1",
 						  rank: 2,
 						  id: 161
+						},
+						{ question: "What is the syntax for a goto and the target?",
+						  answer: "goto label  and  :label",
+						  rank: 2,
+						  id: 230
 						},
 						{ question: "How do you count the number of occurrences of the word hello in a file?",
 						  answer: "find \"hello\" file /c , where the pattern to search for must be in double quotes.",

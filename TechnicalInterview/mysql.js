@@ -30,6 +30,11 @@ technical.controller( 'mysqlCtrl', function( $scope ) {
 						  rank: 1,
 						  id: 198
 						},
+						{ question: "What does RDBMS stand for?",
+						  answer: "Relational Database Management System",
+						  rank: 1,
+						  id: 227
+						},
 						{ question: "How do you count how many rows have year = 2015?",
 						  answer: "SELECT COUNT(*) FROM mytable WHERE year=2015;",
 						  rank: 2,
