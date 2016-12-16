@@ -106,7 +106,7 @@ $(function() {
 		var category = $("#category").val();
 
 		$.ajax({
-			url: "/interview/show.php",
+			url: "/interview/load.php",
 			type: 'post',
 			data: {'category': category },
 			success: function( data, status ) { Load( data ); },
@@ -182,11 +182,19 @@ $(function() {
 		var answer   = $("textarea#answer").html();
 		
 		// New Item
-		if ( $("button#submit").html("Update") == "Add" )
-			;
+		if ( $("button#submit").html("Update") == "Add" ) {
+			$.ajax({
+				url: "/interview/add.php",
+				type: 'post',
+			});
+		}
 		// Updated Item
-		else
-			;
+		else {
+			$.ajax({
+				url: "/interview/update.php",
+				type: 'post',
+			});
+		}
 	})
 })
 </script>
