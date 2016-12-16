@@ -12,7 +12,6 @@
 <body>
 	<div ng-app="admin" style='margin: 20px'>
 		<h1 style='text-align: center'>Technical Interview: Admin</h1>
-		<form>
 			<label for='category'class='w3-label'>Category</label>
 			<select id='category' class='w3-input'>
 				<option value='web'   	>Web</option>
@@ -38,27 +37,39 @@
 				<option value='security'>Security</option>
 			</select>
 			
-			<button id='show' class='w3-btn w3-blue' >Show Questions</button>
-			<button id='prev' class='w3-btn w3-blue' >Prev</button>
-			<button id='next' class='w3-btn w3-blue' >Next</button>
 			<br/>
+			<button id='load' class='w3-btn w3-blue' >Load</button>
+			<button id='list' class='w3-btn w3-teal' >List</button>
+			<button id='edit' class='w3-btn w3-teal' >Edit</button>
+		
+			<h3 id='action'></h3>
 			
-			<label for='id' class='w3-label'>ID</label>
-			<input id='id' type='text' readonly class='w3-input'/>
+			<div id='list-all'>
+			</div>
+
+			<div id='edit-item'>
+				<button id='prev' class='w3-btn w3-blue' >Prev</button>
+				<button id='next' class='w3-btn w3-blue' >Next</button>
+				<button id='add'  class='w3-btn w3-blue' >Add</button>
+				<br/>
 			
-			<label for='question' class='w3-label'>Question</label>
-			<textarea id='question' class='w3-input'></textarea>
-			<label for='answer' class='w3-label'>Answer</label>
-			<textarea id='answer' class='w3-input'></textarea>
-			<label for='rank' class='w3-label'>Rank</label>
-			<select id='rank' class='w3-input'>
-				<option value='1'>1</option>
-				<option value='2'>2</option>
-				<option value='3'>3</option>
-			</select>
+				<label for='id' class='w3-label'>ID</label>
+				<input id='id' type='text' readonly class='w3-input'/>
 			
-			<button id='submit' class='w3-btn'>Add</button>
-		</form>
+				<label for='question' class='w3-label'>Question</label>
+				<textarea id='question' class='w3-input'></textarea>
+				<label for='answer' class='w3-label'>Answer</label>
+				<textarea id='answer' class='w3-input'></textarea>
+				<label for='rank' class='w3-label'>Rank</label>
+				<select id='rank' class='w3-input'>
+					<option value='1'>1</option>
+					<option value='2'>2</option>
+					<option value='3'>3</option>
+				</select>
+			
+				<br/>
+				<button id='submit' class='w3-btn'>Update</button>
+		</div>
 	</div>
 	
 	<footer style='text-align: center; color: gray'>Copyright(c) 2016-17, Andrew Ferlitsch, Co-Organizer, Portland Data Science Group</footer>
@@ -71,7 +82,6 @@ var questions = [];
 function Load( data ) {
 	questions = data;
 	nth = 0;
-	Show();
 }
 
 function Show() {
@@ -82,7 +92,13 @@ function Show() {
 }
 
 $(function() {
-	$("button#show").click(function() {	
+		
+	$("button#list").hide();
+	$("button#edit").hide();
+	$("div#list-all").hide();
+	$("div#edit-item").hide();
+	
+	$("button#load").click(function() {	
 		var category = $("#category").val();
 
 		$.ajax({
@@ -96,6 +112,32 @@ $(function() {
    				  { id: 3, rank: 2, question: "c?", answer: 'yup' }] );
 			}
 		});
+
+		$("button#list").show();
+		$("button#edit").show();
+	})
+	
+	$("button#list").click(function() {
+		$("div#edit-item").hide();
+		$("div#list-all").show();
+		var text = "";
+		for ( var i = 0; i < questions.length; i++ ) {
+			text += "ID: " + questions[ i ].id + " ";
+			text += "Question: " + questions[ i ].question;
+			text += "<br/>";
+			text += "Answer: " + questions[ i ].answer;
+			text += "<br/>";
+			text += "<br/>";
+		}
+		$("h3#action").html("List of Questions");
+		$("div#list-all").html( text );
+	})	
+	
+	$("button#edit").click(function() {
+		$("div#edit-item").show();
+		$("div#list-all").hide();
+		$("h3#action").html("Edit or Add");
+		Show();
 	})
 	
 	$("button#prev").click(function() {
@@ -110,6 +152,14 @@ $(function() {
 			nth++;
 			Show();
 		}
+	})	
+	
+	$("button#add").click(function() {
+		$("input#id").val("");
+		$("textarea#question").val("");
+		$("textarea#answer").val("");
+		$("select#rank").val("");
+		$("button#submit").html("Add");
 	})
 })
 </script>
