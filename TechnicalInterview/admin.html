@@ -12,7 +12,7 @@
 <body>
 	<div ng-app="admin" style='margin: 20px'>
 		<h1 style='text-align: center'>Technical Interview: Admin</h1>
-			<label for='category'class='w3-label'>Category</label>
+			<label for='category'class='w3-label'>Select a Category</label>
 			<select id='category' class='w3-input'>
 				<option value='web'   	>Web</option>
 				<option value='html'  	>HTML</option>
@@ -38,6 +38,7 @@
 			</select>
 			
 			<br/>
+			<span>Select Load to load questions from Database</span><br/>
 			<button id='load' class='w3-btn w3-blue' >Load</button>
 			<button id='list' class='w3-btn w3-teal' >List</button>
 			<button id='edit' class='w3-btn w3-teal' >Edit</button>
@@ -79,11 +80,13 @@ var admin = angular.module( 'admin', []);
 var nth = 0;
 var questions = [];
 
+// Load Data into Web Page
 function Load( data ) {
 	questions = data;
 	nth = 0;
 }
 
+// Show a Question
 function Show() {
 	$("#id"      ).val ( questions[ nth ].id );
 	$("#question").html( questions[ nth ].question );
@@ -98,6 +101,7 @@ $(function() {
 	$("div#list-all").hide();
 	$("div#edit-item").hide();
 	
+	// Load button selected
 	$("button#load").click(function() {	
 		var category = $("#category").val();
 
@@ -105,7 +109,7 @@ $(function() {
 			url: "/interview/show.php",
 			type: 'post',
 			data: {'category': category },
-			success: function( data, status ) { Question( data ); },
+			success: function( data, status ) { Load( data ); },
 			error: function(xhr) { alert( xhr.status + " " + xhr.statusText ); 
 				Load( [{ id: 1, rank: 1, question: "a?", answer: 'yes'},
 				  { id: 2, rank: 3, question: "b?", answer: 'no' },
@@ -117,6 +121,7 @@ $(function() {
 		$("button#edit").show();
 	})
 	
+	// List button selected
 	$("button#list").click(function() {
 		$("div#edit-item").hide();
 		$("div#list-all").show();
@@ -133,6 +138,7 @@ $(function() {
 		$("div#list-all").html( text );
 	})	
 	
+	// Edit button selected
 	$("button#edit").click(function() {
 		$("div#edit-item").show();
 		$("div#list-all").hide();
@@ -140,26 +146,47 @@ $(function() {
 		Show();
 	})
 	
+	// Previous item button selected
 	$("button#prev").click(function() {
 		if ( nth > 0 ) {
 			nth--;
 			Show();
+			$("button#submit").html("Update");
 		}
 	})
 	
+	// Next item selected
 	$("button#next").click(function() {
 		if ( nth < questions.length - 1 ) {
 			nth++;
 			Show();
+			$("button#submit").html("Update");
 		}
 	})	
 	
+	// Add button selected
 	$("button#add").click(function() {
 		$("input#id").val("");
-		$("textarea#question").val("");
-		$("textarea#answer").val("");
+		$("textarea#question").html("");
+		$("textarea#answer").html("");
 		$("select#rank").val("");
 		$("button#submit").html("Add");
+	})
+	
+	// Submit new/updated item
+	$("button#submit").click(function() {
+		var category = $("#category").val();
+		var id 		 = $("input#id").val();
+		var rank 	 = $("select#rank").val();
+		var question = $("textarea#question").html();
+		var answer   = $("textarea#answer").html();
+		
+		// New Item
+		if ( $("button#submit").html("Update") == "Add" )
+			;
+		// Updated Item
+		else
+			;
 	})
 })
 </script>
