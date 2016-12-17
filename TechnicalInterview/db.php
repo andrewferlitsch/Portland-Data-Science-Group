@@ -24,6 +24,9 @@ class DB
 		}
 	}
 	
+	/*
+	 * Load questions from the database for a category
+	 */
 	function GetQuestions( $category )
 	{
 		$q = "SELECT rank,question,answer FROM " . TBL_INTERVIEW . " WHERE category = '$category'";
@@ -37,14 +40,45 @@ class DB
 		return mysqli_fetch_array($result);
 	}
 	
-	function AddQuestion()
+	/* 
+	 * Add a new question to a category
+	 */
+	function AddQuestion( $category, $question, $answer, $rank )
 	{
+		$q = "INSERT INTO " . TBL_INTERVIEW . "( category, question, rank ) VALUES ( 
+				'$category',
+				'$question',
+				'$answer',
+				'$rank' )";
+		$result = mysqli_query( $this->connection, $q );
+		//echo "Q $q<br/>";
+        //echo mysql_error( $this->connection ) . "<br/>";
+
+		if(  !$result || ( mysqli_num_rows( $result ) < 1 ) )
+			return;
 		
+		return mysqli_fetch_array($result);
 	}
 	
-	function UpdateQuestion()
+	/*
+	 * Update an existing question
+	 */
+	function UpdateQuestion( $id, $category, $question, $answer, $rank )
 	{
+		$q = "UPDATE " . TBL_INTERVIEW . "SET 
+				category='$category',
+				question='$question',
+				answer='$answer',
+				rank='$rank'
+				WHERE id=$id";
+		$result = mysqli_query( $this->connection, $q );
+		//echo "Q $q<br/>";
+        //echo mysql_error( $this->connection ) . "<br/>";
+
+		if(  !$result || ( mysqli_num_rows( $result ) < 1 ) )
+			return;
 		
+		return mysqli_fetch_array($result);
 	}
 }
 ?>
