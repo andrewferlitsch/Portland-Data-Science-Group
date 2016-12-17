@@ -3,7 +3,15 @@ include "db.php";
 
 function Load( $category ) {
 	global $db;
-	$db->Load( $category );
+	
+	$rows = $db->Load( $category );
+	foreach ( $rows as $row ) {
+		$id       = $row[ 'id' ];
+		$question = $row[ 'question' ];
+		$answer   = $row[ 'answer' ];
+		$rank     = $row[ 'rank' ];
+	}
+	
 	echo "[ { \"id\": 1, \"rank\": 1, \"question\": \"one?\",   \"answer\": \"yes\"},
 			{ \"id\": 2, \"rank\": 3, \"question\": \"two?\",   \"answer\": \"no\" },
    			{ \"id\": 3, \"rank\": 2, \"question\": \"three?\", \"answer\": \"nope\" }]";

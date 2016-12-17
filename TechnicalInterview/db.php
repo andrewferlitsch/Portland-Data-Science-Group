@@ -34,10 +34,13 @@ class DB
 		//echo "Q $q<br/>";
         //echo mysql_error( $this->connection ) . "<br/>";
 
-		if(  !$result || ( mysqli_num_rows( $result ) < 1 ) )
-			return;
-		
-		return mysqli_fetch_array($result);
+		$questions = array();
+        while ( $data = mysqli_fetch_array( $result ) )
+        {
+			$questions[] = $data;
+        }
+
+        return $questions;
 	}
 	
 	/* 
@@ -53,11 +56,8 @@ class DB
 		$result = mysqli_query( $this->connection, $q );
 		//echo "Q $q<br/>";
         //echo mysql_error( $this->connection ) . "<br/>";
-
-		if(  !$result || ( mysqli_num_rows( $result ) < 1 ) )
-			return;
 		
-		return mysqli_fetch_array($result);
+		return $result;
 	}
 	
 	/*
@@ -74,11 +74,8 @@ class DB
 		$result = mysqli_query( $this->connection, $q );
 		//echo "Q $q<br/>";
         //echo mysql_error( $this->connection ) . "<br/>";
-
-		if(  !$result || ( mysqli_num_rows( $result ) < 1 ) )
-			return;
 		
-		return mysqli_fetch_array($result);
+		return $result;
 	}
 }
 
