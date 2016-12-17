@@ -88,10 +88,10 @@ function Load( data ) {
 
 // Show a Question
 function Show() {
-	$("#id"      ).val ( questions[ nth ].id );
-	$("#question").html( questions[ nth ].question );
-	$("#answer"  ).html( questions[ nth ].answer   );
-	$("#rank"    ).val ( questions[ nth ].rank   );
+	$("#id"      ).val( questions[ nth ].id );
+	$("#question").val( questions[ nth ].question );
+	$("#answer"  ).val( questions[ nth ].answer   );
+	$("#rank"    ).val( questions[ nth ].rank   );
 }
 
 $(function() {
@@ -167,8 +167,8 @@ $(function() {
 	// Add button selected
 	$("button#add").click(function() {
 		$("input#id").val("");
-		$("textarea#question").html("");
-		$("textarea#answer").html("");
+		$("textarea#question").val("");
+		$("textarea#answer").val("");
 		$("select#rank").val("");
 		$("button#submit").html("Add");
 	})
@@ -178,8 +178,8 @@ $(function() {
 		var category = $("#category").val();
 		var id 		 = $("input#id").val();
 		var rank 	 = $("select#rank").val();
-		var question = $("textarea#question").html();
-		var answer   = $("textarea#answer").html();
+		var question = $("textarea#question").val();
+		var answer   = $("textarea#answer").val();
 		
 		// New Item
 		if ( $("button#submit").html("Update") == "Add" ) {
