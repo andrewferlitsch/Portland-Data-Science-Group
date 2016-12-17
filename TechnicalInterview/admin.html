@@ -70,6 +70,7 @@
 			
 				<br/>
 				<button id='submit' class='w3-btn'>Update</button>
+				<span id='status'></span>
 		</div>
 	</div>
 	
@@ -110,15 +111,12 @@ $(function() {
 			type: 'post',
 			data: {'category': category },
 			success: function( data, status ) { Load( data ); },
-			error: function(xhr) { alert( xhr.status + " " + xhr.statusText ); 
-				Load( [{ id: 1, rank: 1, question: "a?", answer: 'yes'},
-				  { id: 2, rank: 3, question: "b?", answer: 'no' },
-   				  { id: 3, rank: 2, question: "c?", answer: 'yup' }] );
-			}
+			error: function(xhr) { alert( xhr.status + " " + xhr.statusText ); }
 		});
 
 		$("button#list").show();
 		$("button#edit").show();
+		$("#status").html("");
 	})
 	
 	// List button selected
@@ -136,6 +134,7 @@ $(function() {
 		}
 		$("h3#action").html("List of Questions");
 		$("div#list-all").html( text );
+		$("#status").html("");
 	})	
 	
 	// Edit button selected
@@ -143,6 +142,7 @@ $(function() {
 		$("div#edit-item").show();
 		$("div#list-all").hide();
 		$("h3#action").html("Edit or Add");
+		$("#status").html("");
 		Show();
 	})
 	
@@ -153,6 +153,7 @@ $(function() {
 			Show();
 			$("button#submit").html("Update");
 		}
+		$("#status").html("");
 	})
 	
 	// Next item selected
@@ -162,6 +163,7 @@ $(function() {
 			Show();
 			$("button#submit").html("Update");
 		}
+		$("#status").html("");
 	})	
 	
 	// Add button selected
@@ -171,6 +173,7 @@ $(function() {
 		$("textarea#answer").val("");
 		$("select#rank").val("");
 		$("button#submit").html("Add");
+		$("#status").html("");
 	})
 	
 	// Submit new/updated item
@@ -182,12 +185,13 @@ $(function() {
 		var answer   = $("textarea#answer").val();
 		
 		// New Item
+		$("#status").html("");
 		if ( $("button#submit").html() == "Add" ) {
 			$.ajax({
 				url: "/interview/add.php",
 				type: 'post',
 				data: {'category': category, 'question': question, 'answer': answer, 'rank': rank },
-				success: function( data, status ) { /**/ },
+				success: function( data, status ) { $("#status").html("Added"); },
 				error: function(xhr) { alert( xhr.status + " " + xhr.statusText ) }
 			});
 		}
@@ -197,7 +201,7 @@ $(function() {
 				url: "/interview/update.php",
 				type: 'post',
 				data: {'id': id, 'category': category, 'question': question, 'answer': answer, 'rank': rank },
-				success: function( data, status ) { /**/ },
+				success: function( data, status ) { $("#status").html("Updated"); },
 				error: function(xhr) { alert( xhr.status + " " + xhr.statusText ) }
 			});
 		}

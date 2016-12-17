@@ -65,7 +65,7 @@ class DB
 	 */
 	function Update( $id, $category, $question, $answer, $rank )
 	{
-		$q = "UPDATE " . TBL_QUESTIONS . "SET 
+		$q = "UPDATE " . TBL_QUESTIONS . " SET 
 				category='$category',
 				question='$question',
 				answer='$answer',

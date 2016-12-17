@@ -3,7 +3,7 @@ include "db.php";
 
 function Add( $category, $question, $answer, $rank ) {
 	global $db;
-	$db->Add( $category, $question, $answer, $rank )
+	echo $db->Add( $category, $question, $answer, $rank );
 }
 
 $server_ip = $_SERVER['REMOTE_ADDR'];

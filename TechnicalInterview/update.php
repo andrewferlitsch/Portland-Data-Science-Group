@@ -3,7 +3,7 @@ include "db.php";
 
 function Update( $id, $category, $question, $answer, $rank ) {
 	global $db;
-	$db->Update( $id, $category, $question, $answer, $rank );
+	echo $db->Update( $id, $category, $question, $answer, $rank );
 }
 
 $server_ip = $_SERVER['REMOTE_ADDR'];
