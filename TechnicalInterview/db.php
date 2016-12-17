@@ -48,7 +48,7 @@ class DB
 	 */
 	function Add( $category, $question, $answer, $rank )
 	{
-		$q = "INSERT INTO " . TBL_QUESTIONS . "( category, question, rank ) VALUES ( 
+		$q = "INSERT INTO " . TBL_QUESTIONS . "( category, question, answer, rank ) VALUES ( 
 				'$category',
 				'$question',
 				'$answer',

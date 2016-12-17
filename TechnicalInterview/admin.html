@@ -182,7 +182,7 @@ $(function() {
 		var answer   = $("textarea#answer").val();
 		
 		// New Item
-		if ( $("button#submit").html("Update") == "Add" ) {
+		if ( $("button#submit").html() == "Add" ) {
 			$.ajax({
 				url: "/interview/add.php",
 				type: 'post',
