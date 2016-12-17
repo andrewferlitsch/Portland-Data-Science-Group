@@ -186,6 +186,9 @@ $(function() {
 			$.ajax({
 				url: "/interview/add.php",
 				type: 'post',
+				data: {'category': category, 'question': question, 'answer': answer, 'rank': rank },
+				success: function( data, status ) { /**/ },
+				error: function(xhr) { alert( xhr.status + " " + xhr.statusText ) }
 			});
 		}
 		// Updated Item
@@ -193,6 +196,9 @@ $(function() {
 			$.ajax({
 				url: "/interview/update.php",
 				type: 'post',
+				data: {'id': id, 'category': category, 'question': question, 'answer': answer, 'rank': rank },
+				success: function( data, status ) { /**/ },
+				error: function(xhr) { alert( xhr.status + " " + xhr.statusText ) }
 			});
 		}
 	})
