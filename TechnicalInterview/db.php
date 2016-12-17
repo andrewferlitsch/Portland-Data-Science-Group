@@ -2,11 +2,11 @@
 $DBNAME      = "interview";
 $DBUSER      = "root";
 $DBPASS      = "Mary1962";
-define("DB_SERVER",    "localhost");
-define("DB_USER",      "$DBUSER");
-define("DB_PASS",      "$DBPASS");
-define("DB_NAME",      "$DBNAME");
-define("TBL_USERS",    "interview" );
+define("DB_SERVER",    	"localhost");
+define("DB_USER",      	"$DBUSER");
+define("DB_PASS",      	"$DBPASS");
+define("DB_NAME",      	"$DBNAME");
+define("TBL_QUESTIONS", "questions" );
 
 class DB
 {
@@ -27,9 +27,9 @@ class DB
 	/*
 	 * Load questions from the database for a category
 	 */
-	function GetQuestions( $category )
+	function Load( $category )
 	{
-		$q = "SELECT rank,question,answer FROM " . TBL_INTERVIEW . " WHERE category = '$category'";
+		$q = "SELECT rank,question,answer FROM " . TBL_QUESTIONS . " WHERE category = '$category'";
 		$result = mysqli_query( $this->connection, $q );
 		//echo "Q $q<br/>";
         //echo mysql_error( $this->connection ) . "<br/>";
@@ -43,9 +43,9 @@ class DB
 	/* 
 	 * Add a new question to a category
 	 */
-	function AddQuestion( $category, $question, $answer, $rank )
+	function Add( $category, $question, $answer, $rank )
 	{
-		$q = "INSERT INTO " . TBL_INTERVIEW . "( category, question, rank ) VALUES ( 
+		$q = "INSERT INTO " . TBL_QUESTIONS . "( category, question, rank ) VALUES ( 
 				'$category',
 				'$question',
 				'$answer',
@@ -63,9 +63,9 @@ class DB
 	/*
 	 * Update an existing question
 	 */
-	function UpdateQuestion( $id, $category, $question, $answer, $rank )
+	function Update( $id, $category, $question, $answer, $rank )
 	{
-		$q = "UPDATE " . TBL_INTERVIEW . "SET 
+		$q = "UPDATE " . TBL_QUESTIONS . "SET 
 				category='$category',
 				question='$question',
 				answer='$answer',
@@ -81,4 +81,6 @@ class DB
 		return mysqli_fetch_array($result);
 	}
 }
+
+$db = new DB;
 ?>
