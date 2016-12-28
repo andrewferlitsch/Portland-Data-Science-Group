@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS questions
   category  VARCHAR(16)  NOT NULL,
   question  VARCHAR(256) NOT NULL,
   answer    VARCHAR(256) NOT NULL,
-  rank      SMALLINT(30) NOT NULL DEFAULT 1,
+  rank      TINYINT		 NOT NULL DEFAULT 1,
 
   INDEX(category),
   INDEX(rank)
@@ -20,6 +20,7 @@ DELETE FROM questions WHERE category = 'C++';
 # C++
 #----------------------------------------------------------------------
 
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'C++',
@@ -28,16 +29,16 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'C++',
     'What is the difference between a struct and class?',
-    'Methods/data default to public in a struct.',
+    'Methods/data default to public in a struct, and private in a class.',
     1
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'C++',
@@ -64,7 +65,7 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'C++',
@@ -73,7 +74,7 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'C++',

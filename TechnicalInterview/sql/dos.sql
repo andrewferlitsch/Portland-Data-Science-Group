@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS questions
   category  VARCHAR(16)  NOT NULL,
   question  VARCHAR(256) NOT NULL,
   answer    VARCHAR(256) NOT NULL,
-  rank      SMALLINT(30) NOT NULL DEFAULT 1,
+  rank      TINYINT 	 NOT NULL DEFAULT 1,
 
   INDEX(category),
   INDEX(rank)
@@ -28,7 +28,7 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'DOS',
@@ -55,7 +55,7 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'DOS',

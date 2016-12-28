@@ -32,8 +32,8 @@ INSERT INTO questions (category, question, answer, rank)
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Agile',
-    'What is the product owner''s role',
-    'A product owner decides which stories go into a sprint.',
+    'What is the product owner''s role?',
+    'This person is the product stakeholder. Responsibilities typically include decides which stories from the product backlog go into a sprint.',
     1
   );
 
@@ -46,30 +46,51 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Agile',
     'What does a scrum master do?',
-    'A scrum master manages the sprint process, which includes sprint planning, scrums, and sprint reviews.',
+    'This person manages the sprint process, which includes sprint planning, scrums, and sprint reviews.',
     1
   );
-
+  
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'Agile',
+    'What is a Product Backlog?',
+    'A prioritized features list, containing short descriptions of all functionality desired in the product.',
+    1
+  );
 
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Agile',
-    'What is a scrum?',
-    'A scrum is all hands meeting on a periodic schedule (e.g. daily) throughout a sprint. It is generally short and is used to synchronize work by each person saying what their status is, what they plan to do, and what resources or help they need.',
+    'What is Scrum?',
+    'A lightweight version of the Agile methodology using Sprints.',
     1
   );
-
 
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Agile',
-    'What is the technical backlog?',
-    'Any task, or portion of it, not completed in a sprint is put into the technical backlog.',
+    'What is a User Story?',
+    'A short, simple descriptions of a feature told from the perspective of the person who desires the new capability, usually a user or customer of the system.',
+    2
+  );
+  
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'Agile',
+    'What is an Epic?',
+    'A large user story that can be broken into smaller stories and typically spans several sprints.',
+    2
+  );
+  
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'Agile',
+    'What is the technical debt?',
+    'Any task, or portion of it, not completed in a sprint, or code that will need to be refactored or redesigned, or not fully tested.',
     2
   );
 
@@ -78,7 +99,7 @@ INSERT INTO questions (category, question, answer, rank)
   VALUES (
     'Agile',
     'What does a sprint consist of?',
-    'A sprint consists of a sprint planning session, execution of tasks, followed by a sprint review and sometimes a sprint retrospective.',
+    'A repeating process consisting of a sprint planning session, execution of tasks, followed by a sprint review and sometimes a sprint retrospective.',
     2
   );
 
@@ -86,7 +107,7 @@ INSERT INTO questions (category, question, answer, rank)
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Agile',
-    'What is the purpose of a standup scrum',
+    'What is a standup scrum meeting?',
     'To give a quick round of status and expected tasks for the day by each member. It is called a standup to emphasize keeping the sprint as short as possible.',
     2
   );
@@ -95,17 +116,23 @@ INSERT INTO questions (category, question, answer, rank)
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Agile',
-    'Describe Kanban board.',
+    'Describe Kanban board?',
     'A Kanban board is a workflow process where tasks are reviewed and moved from various progressive states of completion. These typically include: unassigned, assigned, in progress, in test, in review, accepted (or completed).',
     3
   );
 
-
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Agile',
-    'What is Extreme Programming',
+    'What is Extreme Programming?',
     'A development process consisting of frequent releases in short development cycles. Other elements include: programming in pairs or doing extensive code review, unit testing of all code, avoiding programming of features until they are actually needed.',
     3
   );
 
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'Agile',
+    'What is Test Driven Development?',
+    'A software development process that relies on the repetition of a very short development cycle: requirements are turned into very specific test cases, then the software is improved to pass the new tests, only',
+    3
+  );

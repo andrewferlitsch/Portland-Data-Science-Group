@@ -28,12 +28,12 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'C#',
     'What is the scope of the variable ''i'': for (int i = 0; i<10;i++) {} ?',
-    'The scope is within the for loop. It has not scope outside of the for loop.',
+    'The scope is within the for loop. It has no scope outside of the for loop.',
     1
   );
 
@@ -46,7 +46,7 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'C#',
@@ -55,12 +55,12 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'C#',
     'What is managed code?',
-    'The distinction between managed and unmanaged code is prevalent and only relevant when developing applications that interact with the .NET Framework or other Common Language Runtime (CLR) implementations. Managed code prevents typical mistakes that lead to security holes, handles memory management, type checking and releasing unneeded objects.',
+    'The distinction between managed and unmanaged code is only relevant when developing applications that interact with the .NET Framework or other Common Language Runtime (CLR) implementations. Managed code prevents typical mistakes that lead to security holes, handles memory management, type checking and releasing unneeded objects.',
     2
   );
 
@@ -87,11 +87,11 @@ INSERT INTO questions (category, question, answer, rank)
   VALUES (
     'C#',
     'What does a LINQ statement do?',
-    'LINQ provides a consistent query model across different data stores and formats. All LINQ query operations consist of three distinct actions: 1. Obtain the data store, 2. Create the query, 3. Execute the query.',
+    'This statement provides a consistent query model across different data stores and formats. All query operations consist of three distinct actions: 1. Obtain the data store, 2. Create the query, 3. Execute the query.',
     3
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'C#',

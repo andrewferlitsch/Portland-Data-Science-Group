@@ -28,7 +28,7 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'CSS',
@@ -41,17 +41,16 @@ INSERT INTO questions (category, question, answer, rank)
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'CSS',
-    'Which HTML attribute is used to specify an inline style for an element?',
-    'style',
+	'What does the HTML attribute style do?'
+    'This HTML attribute is used to specify an inline style for an element?',
     1
   );
-
 
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'CSS',
-    'Which CSS property is used to change the color of text?',
-    'color',
+    'What does the CSS property color do?',
+    'This property changes the color of text.',
     1
   );
 
@@ -64,7 +63,7 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'CSS',
@@ -73,7 +72,7 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'CSS',
@@ -82,7 +81,7 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'CSS',
@@ -91,7 +90,7 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'CSS',
@@ -100,7 +99,7 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'CSS',
@@ -114,11 +113,11 @@ INSERT INTO questions (category, question, answer, rank)
   VALUES (
     'CSS',
     'How do you select all elements inside a div?',
-    'div p',
+    'div p {}',
     2
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'CSS',
@@ -127,16 +126,23 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'CSS',
+    'What does visibility:hidden do?',
+    'It hides an element from being displayed. The space consumed by the element is still rendered (blank)',
+    2
+  );
 
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'CSS',
-    'Explain the difference between visibility:hidden; and display:none?',
-    'Both hide the element from being displayed. For visibility, the space consumed by the element is still rendered (blank), while for display the space is not rendered (folded)',
+    'What does display:none do?',
+    'It hides an element from being displayed. The space consumed by the element is not rendered (folded)',
     2
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'CSS',
@@ -145,7 +151,7 @@ INSERT INTO questions (category, question, answer, rank)
     3
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'CSS',

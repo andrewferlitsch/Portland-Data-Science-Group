@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS questions
   category  VARCHAR(16)  NOT NULL,
   question  VARCHAR(256) NOT NULL,
   answer    VARCHAR(256) NOT NULL,
-  rank      SMALLINT(30) NOT NULL DEFAULT 1,
+  rank      TINYINT 	 NOT NULL DEFAULT 1,
 
   INDEX(category),
   INDEX(rank)
@@ -24,7 +24,7 @@ INSERT INTO questions (category, question, answer, rank)
   VALUES (
     'Data Science',
     'What is Linear Regression?',
-    'Linear regression is a statistical technique where the score of a variable Y is predicted from the score of a second variable X. X is referred to as the predictor variable and Y as the criterion variable.',
+    'A statistical technique where the score of a variable Y is predicted from the score of a second variable X. X is referred to as the predictor variable and Y as the criterion variable.',
     1
   );
 
@@ -73,7 +73,7 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Data Science',
@@ -96,11 +96,11 @@ INSERT INTO questions (category, question, answer, rank)
   VALUES (
     'Data Science',
     'What does P-value signify about the statistical data?',
-    'P-value is used to determine the significance of results after a hypothesis test in statistics. P-value helps the readers to draw conclusions and is always between 0 and 1.',
+    'This value is used to determine the significance of results after a hypothesis test in statistics. P-value helps the readers to draw conclusions and is always between 0 and 1.',
     2
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Data Science',
@@ -123,11 +123,11 @@ INSERT INTO questions (category, question, answer, rank)
   VALUES (
     'Data Science',
     'What is the formula for R-square?',
-    '1 - (Residual Sum of Squares/ Total Sum of Squares)',
+    '1 - (Residual Sum of Squares / Total Sum of Squares)',
     2
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Data Science',
@@ -136,7 +136,7 @@ INSERT INTO questions (category, question, answer, rank)
     3
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Data Science',
@@ -145,7 +145,7 @@ INSERT INTO questions (category, question, answer, rank)
     3
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Data Science',

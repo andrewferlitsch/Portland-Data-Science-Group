@@ -117,6 +117,14 @@ INSERT INTO questions (category, question, answer, rank)
     'DROP TABLE tablename;',
     2
   );
+  
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'MySQL',
+    'How do you execute a MySQL script file?',
+    'source filename;',
+    2
+  );
 
 
 INSERT INTO questions (category, question, answer, rank) 

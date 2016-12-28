@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS questions
   category  VARCHAR(16)  NOT NULL,
   question  VARCHAR(256) NOT NULL,
   answer    VARCHAR(256) NOT NULL,
-  rank      SMALLINT(30) NOT NULL DEFAULT 1,
+  rank      TINYINT      NOT NULL DEFAULT 1,
 
   INDEX(category),
   INDEX(rank)
@@ -100,15 +100,21 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'Algorithms',
+    'What is a directed graph?',
+    'A graph that can only be traversed in one direction.',
+    3
+  );
 
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Algorithms',
-    'What is the difference between an undirected and directed graph?',
-    'A directed graph can only be traversed in one direction. In an undirected graph, you can travse an edge in either direction.',
+    'What is an undirected graph?',
+    'A graph where an edge can be traversed in either direction.',
     3
   );
-
 
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
@@ -122,7 +128,7 @@ INSERT INTO questions (category, question, answer, rank)
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Algorithms',
-    'What is Tree?',
+    'What is a Tree?',
     'A minimally connected graph having no loops and circuits.',
     2
   );

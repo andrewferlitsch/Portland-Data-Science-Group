@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS questions
   category  VARCHAR(16)  NOT NULL,
   question  VARCHAR(256) NOT NULL,
   answer    VARCHAR(256) NOT NULL,
-  rank      SMALLINT(30) NOT NULL DEFAULT 1,
+  rank      TINYINT		 NOT NULL DEFAULT 1,
 
   INDEX(category),
   INDEX(rank)
@@ -24,7 +24,7 @@ INSERT INTO questions (category, question, answer, rank)
   VALUES (
     'C',
     'What is a #include?',
-    'Includes header file definitions into the C source file.',
+    'Includes a header file definitions into the C source file.',
     1
   );
 
@@ -32,20 +32,26 @@ INSERT INTO questions (category, question, answer, rank)
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'C',
-    'Give an example of allocating and freeing memory.',
+    'How do you allocate 10 bytes of memory and then free it?',
     'char *p = malloc(10) and free(p)',
     1
   );
 
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'C',
+    'What is an unsigned int?',
+    'An integer data type of only positive numbers starting at zero.',
+    1
+  );
 
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'C',
-    'What is the difference between a signed and unsigned int',
-    'Signed integers represent only positive numbers starting at zero. An unsigned integer represents both signed unsigned numbers with a range in each direction of half that of a signed integer.',
+    'What is a signed int?',
+    'An integer data type of both positive and negative numbers in a range where half in the positive range and half in the negative range.',
     1
   );
-
 
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
@@ -68,8 +74,8 @@ INSERT INTO questions (category, question, answer, rank)
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'C',
-    'How many bits are in a long long integer?',
-    'It typically is 128 bits, but must be at least 64 bits.',
+    'What is a long long integer?',
+    'It typically is 128 bit integer, but must be at least 64 bits.',
     2
   );
 
@@ -77,8 +83,8 @@ INSERT INTO questions (category, question, answer, rank)
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'C',
-    'What does a typedef do? Give an example.',
-    'A typedef is a name that is used as an alias for a type definition. Ex. typedef int Length;',
+    'What is a typedef?',
+    'A name that is used as an alias for a type definition. Ex. typedef int Length;',
     2
   );
 
@@ -91,11 +97,10 @@ INSERT INTO questions (category, question, answer, rank)
     3
   );
 
-
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'C',
-    'Describe what a setjmp/longjmp do.',
+    'What does a setjmp/longjmp do?',
     'A setjmp() call saves the location of the current stack frame. When a longjmp() is issued, a jump is made to the saved stack frame location and continues processing without unwinding the stack.',
     3
   );

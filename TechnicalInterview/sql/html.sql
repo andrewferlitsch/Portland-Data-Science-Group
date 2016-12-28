@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS questions
   category  VARCHAR(16)  NOT NULL,
   question  VARCHAR(256) NOT NULL,
   answer    VARCHAR(256) NOT NULL,
-  rank      SMALLINT(30) NOT NULL DEFAULT 1,
+  rank      TINYINT 	 NOT NULL DEFAULT 1,
 
   INDEX(category),
   INDEX(rank)
@@ -20,6 +20,7 @@ DELETE FROM questions WHERE category = 'HTML';
 # HTML
 #----------------------------------------------------------------------
 
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'HTML',
@@ -41,17 +42,24 @@ INSERT INTO questions (category, question, answer, rank)
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'HTML',
-    'Give two examples of attributes.',
+    'Whate are examples of attributes.',
     'e.g., type, name, id, class, readonly, onclick, style',
     1
   );
 
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'HTML',
+    'How do you load an external javascript file?',
+    '<script src=''...''/>',
+    1
+  );
 
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'HTML',
-    'Describe how to load an external javascript file and CSS file.',
-    '<script src=''...''/> for Javascript and <link href=''...''/>',
+    'How do you load an external CSS file?',
+    '<link href=''...''/>',
     1
   );
 
@@ -104,7 +112,7 @@ INSERT INTO questions (category, question, answer, rank)
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'HTML',
-    'What attribute/value do you use to define a checkbox?',
+    'What attribute/value setting do you use to define a checkbox?',
     'type=''checkbox''',
     1
   );
@@ -127,7 +135,7 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'HTML',
@@ -136,7 +144,7 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'HTML',
@@ -149,7 +157,7 @@ INSERT INTO questions (category, question, answer, rank)
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'HTML',
-    'How do I capture a click event on an element?',
+    'How do you capture a click event on an element?',
     'attribute: onclick='''', where JS code is placed within the single quotes.',
     2
   );
@@ -172,7 +180,7 @@ INSERT INTO questions (category, question, answer, rank)
     3
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'HTML',

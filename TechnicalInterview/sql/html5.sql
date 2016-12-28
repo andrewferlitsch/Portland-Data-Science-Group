@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS questions
   category  VARCHAR(16)  NOT NULL,
   question  VARCHAR(256) NOT NULL,
   answer    VARCHAR(256) NOT NULL,
-  rank      SMALLINT(30) NOT NULL DEFAULT 1,
+  rank      TINYINT		 NOT NULL DEFAULT 1,
 
   INDEX(category),
   INDEX(rank)
@@ -23,7 +23,7 @@ DELETE FROM questions WHERE category = 'HTML5';
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'HTML5',
-    'Name some HTML5 new features.',
+    'What are some HTML5 new features?',
     'Geolocation, Canvas, Structural elements, embedding Audio/Video, Progess Bar, Datalists',
     1
   );
@@ -32,7 +32,7 @@ INSERT INTO questions (category, question, answer, rank)
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'HTML5',
-    'Name some input types added by HTML5',
+    'What are the input types added by HTML5?',
     'color, date, datetime, datetime-local, email, month, number, range',
     1
   );
@@ -69,7 +69,7 @@ INSERT INTO questions (category, question, answer, rank)
   VALUES (
     'HTML5',
     'An SVG graphic is specified in what format?',
-    'XML',
+    'This graphic is in XML format.',
     2
   );
 
@@ -82,20 +82,18 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'HTML5',
     'What is geolocation in HTML5?',
-    'The HTML Geolocation API is used to locate a user''s geographical position. It will use the GPS information from a user''s device, if available, otherwise it use the IP address to determine the location of the user''s ISP.',
+    'This HTML5 API is used to locate a user''s geographical position. It will use the GPS information from a user''s device, if available, otherwise it use the IP address to determine the location of the user''s ISP.',
     2
   );
-
 
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'HTML5',
-    'Name the new structural elements added?',
+    'What are the new structural elements added?',
     '<header>, <footer>, <section>, <article>, <nav>, <aside>, <main>, <summary>, <mark> and <time>',
     2
   );
@@ -118,7 +116,7 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'HTML5',
@@ -128,6 +126,7 @@ INSERT INTO questions (category, question, answer, rank)
   );
 
 
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'HTML5',
@@ -136,7 +135,7 @@ INSERT INTO questions (category, question, answer, rank)
     3
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'HTML5',
