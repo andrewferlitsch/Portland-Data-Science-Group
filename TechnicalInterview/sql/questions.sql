@@ -12,3 +12,9 @@ create table questions
 )
 ENGINE = MyISAM CHARACTER SET = utf8 COLLATE utf8_bin;
 show columns in questions;
+
+source agile.sql;
+source algorithms.sql;
+source angularjs.sql;
+source c.sql;
+source cplusplus.sql;
