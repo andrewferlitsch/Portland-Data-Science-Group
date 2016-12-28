@@ -1,4 +1,4 @@
-
+# Reviewed
 #----------------------------------------------------------------------
 # Initialization
 #----------------------------------------------------------------------
@@ -61,6 +61,21 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'C',
+    'Where can the keyword break be used?',
+    'This keyword can only be used in case/default statement within a switch statement or in a looping statement',
+    1
+  );
+
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'C',
+    'What is a null pointer?',
+    'A pointer pointing to nothing, e.g., char *p = NULL;',
+    1
+  );
 
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
@@ -79,7 +94,6 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'C',
@@ -88,6 +102,21 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'C',
+    'What is calloc()?',
+    'A memory allocation routine that allocates a specified number of fixed size memory blocks, which need not be continous, and initializes them to zero.',
+    2
+  );
+
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'C',
+    'What does the file open mode w+ do?',
+    'Opens a file both for reading and writing. If a file is not existing it creates one, else if the file is existing it will be over written.',
+    2
+  );
 
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
@@ -102,6 +131,14 @@ INSERT INTO questions (category, question, answer, rank)
     'C',
     'What does a setjmp/longjmp do?',
     'A setjmp() call saves the location of the current stack frame. When a longjmp() is issued, a jump is made to the saved stack frame location and continues processing without unwinding the stack.',
+    3
+  );
+
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'C',
+    'What is the bit operator XOR (^) do?',
+    'If both the corresponding bits are same it gives 0 else 1.',
     3
   );
 

@@ -1,3 +1,4 @@
+#Reviewed
 
 #----------------------------------------------------------------------
 # Initialization
@@ -46,6 +47,29 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'AngularJS',
+    'What is a Model?',
+    'It is the data shown to the user in the view and with which the user interacts.',
+    1
+  ); 
+  
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'AngularJS',
+    'What is ng-repeat?',
+    'A directive that will repeat an HTML element for each value in an array expression, where the value is bound to a variable which can be used within the element.',
+    1
+  );
+
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'AngularJS',
+    'What does a ng-if directive do?',
+    'This conditional conditional includes an HTML element depending of the evaluation of the condition angular expression being true.',
+    1
+  );
 
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
@@ -53,15 +77,6 @@ INSERT INTO questions (category, question, answer, rank)
     'What is a Service?',
     'A reusable business (program) logic independent of views.',
     2
-  );
-
-
-INSERT INTO questions (category, question, answer, rank) 
-  VALUES (
-    'AngularJS',
-    'What is a Model?',
-    'It is the data shown to the user in the view and with which the user interacts.',
-    1
   );
 
 
@@ -99,7 +114,14 @@ INSERT INTO questions (category, question, answer, rank)
     'A standard module used to securely parse and manipulate HTML data in your application.',
     2
   );
-
+  
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'AngularJS',
+    'What is ng-repeat-start and ng-repeat-end?',
+    'A directive that allows a repeated sequence across more than one HTML element.',
+    2
+  );
 
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (

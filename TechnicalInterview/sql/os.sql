@@ -20,6 +20,7 @@ DELETE FROM questions WHERE category = 'OS';
 # OS
 #----------------------------------------------------------------------
 
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'OS',
@@ -28,16 +29,15 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'OS',
-    'How many bytes are in a Unicode character?',
-    '2 bytes',
+    'What is a Unicode character?',
+    'This internationally standarized character code type is represented by two bytes.',
     1
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'OS',
@@ -46,7 +46,7 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'OS',
@@ -55,7 +55,15 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'OS',
+    'What is a Magic Number?',
+    'A constant numerical or text value used to identify a file format or protocol.',
+    2
+  );
 
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'OS',
@@ -64,7 +72,7 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'OS',
@@ -73,7 +81,7 @@ INSERT INTO questions (category, question, answer, rank)
     3
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'OS',
@@ -87,7 +95,7 @@ INSERT INTO questions (category, question, answer, rank)
   VALUES (
     'OS',
     'What is a Mutex?',
-    'Short for Mutually Exclusion Object. A mutex is a program object that allows multiple program threads to share the same resource, but not simultaneously. If a thread places a lock on the mutex, then all other threads will block attempting to lock the mutex until it is released.',
+    'Short for Mutually Exclusion Object. A program object that allows multiple program threads to share the same resource, but not simultaneously. If a thread places a lock on the mutex, then all other threads will block attempting to lock the object until it is released.',
     3
   );
 

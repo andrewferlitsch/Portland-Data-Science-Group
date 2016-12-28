@@ -1,4 +1,4 @@
-
+# Reviewed
 #----------------------------------------------------------------------
 # Initialization
 #----------------------------------------------------------------------
@@ -160,3 +160,11 @@ INSERT INTO questions (category, question, answer, rank)
     3
   );
 
+
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'Algorithms',
+    'What is an adjacency list?',
+    'A collection of unordered lists used to represent a finite graph. Each list describes the set of neighbors of a vertex in the graph.',
+    3
+  );

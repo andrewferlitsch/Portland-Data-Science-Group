@@ -20,21 +20,19 @@ DELETE FROM questions WHERE category = 'C++';
 # C++
 #----------------------------------------------------------------------
 
-# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'C++',
-    'How is a method overloaded?',
-    'Number and data types of arguments.',
+    'What is method overloading?',
+	'Two methods can have the same method name if they differ either by number or data types of arguments.',
     1
   );
 
-# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'C++',
     'What is the difference between a struct and class?',
-    'Methods/data default to public in a struct, and private in a class.',
+    'The fields and methods in this type default to public, while in a class they default to private.',
     1
   );
 
@@ -73,16 +71,14 @@ INSERT INTO questions (category, question, answer, rank)
     'Box operator+(const Box& b)',
     2
   );
-
-# Redo
+  
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'C++',
-    'How is char and wchar_t differ?',
-    'char holds a single byte character, while wchar_t are multi-byte for large character sets (e.g., UNICODE).',
+    'What is a wchar_t type?',
+    'while char holds a single byte character, this type is multi-byte for large character sets (e.g., UNICODE).',
     3
   );
-
 
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
