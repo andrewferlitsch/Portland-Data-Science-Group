@@ -58,21 +58,27 @@ INSERT INTO questions (category, question, answer, rank)
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'CSS',
-    'What element is used to specify CSS properties in a web page?',
+    'What HTML element is used to specify CSS properties in a web page?',
     '<style></style>',
     1
   );
 
-# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'CSS',
-    'How do you specify a CSS rule for a class and for an id?',
-    '#name {} and .name {} , respectively',
+    'How do you specify a CSS rule for a name attribute?',
+    '#name {} selector',
     1
   );
 
-# Redo
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'CSS',
+    'How do you specify a CSS rule for a class attribute?',
+    '.name {} selector',
+    1
+  );
+
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'CSS',
@@ -99,15 +105,13 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'CSS',
     'What is the default value for the position property?',
-    'static',
+    'static is the default value for this CSS property',
     2
   );
-
 
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
@@ -142,7 +146,6 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'CSS',
@@ -151,7 +154,6 @@ INSERT INTO questions (category, question, answer, rank)
     3
   );
 
-# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'CSS',

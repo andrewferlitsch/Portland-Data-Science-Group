@@ -32,7 +32,7 @@ INSERT INTO questions (category, question, answer, rank)
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Java',
-    'Describe what the keyword import is used for.',
+    'What is the keyword import is used for?',
     'Used to import a library, where each item in the library is uniquely identified by a namespace.',
     1
   );
@@ -82,7 +82,7 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Java',
@@ -91,7 +91,7 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Java',
@@ -100,7 +100,7 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Java',
@@ -109,7 +109,7 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Java',
@@ -123,11 +123,11 @@ INSERT INTO questions (category, question, answer, rank)
   VALUES (
     'Java',
     'What is an ArrayList and how do you access the elements?',
-    'An ArrayList is a derived type for dynamic sizing of an array. It can take any type specified by the template argument ArrayList<type>. An item is added with the add() method and accessed with the get() method.',
+    'A derived type for dynamic sizing of an array. It can take any type specified by the template argument <type>. An item is added with the add() method and accessed with the get() method.',
     2
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Java',
@@ -150,11 +150,11 @@ INSERT INTO questions (category, question, answer, rank)
   VALUES (
     'Java',
     'What is a lambda expression?',
-    'A form of functional programming added in Java 8. Lambda expressions are used primarily to define inline implementation of a functional interface, i.e., an interface with a single method only.',
+    'A form of functional programming added in Java 8. These expressions are used primarily to define inline implementation of a functional interface, i.e., an interface with a single method only.',
     3
   );
 
-
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Java',
