@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS questions
   question  VARCHAR(256) NOT NULL,
   answer    VARCHAR(256) NOT NULL,
   rank      TINYINT		 NOT NULL DEFAULT 1,
+  toggle	TINYINT		 NOT NULL DEFAULT 1,
 
   INDEX(category),
   INDEX(rank)

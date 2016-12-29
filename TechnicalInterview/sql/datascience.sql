@@ -1,4 +1,4 @@
-
+# Reviewed
 #----------------------------------------------------------------------
 # Initialization
 #----------------------------------------------------------------------
@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS questions
   question  VARCHAR(256) NOT NULL,
   answer    VARCHAR(256) NOT NULL,
   rank      TINYINT 	 NOT NULL DEFAULT 1,
+  toggle	TINYINT		 NOT NULL DEFAULT 1,
 
   INDEX(category),
   INDEX(rank)
@@ -73,13 +74,13 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-# Redo
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle) 
   VALUES (
     'Data Science',
     'What is the difference between univariate, bivariate and multivariate analysis?',
     'These are descriptive statistical analysis techniques which can be differentiated based on the number of variables involved: univariate (one), bivariate (two), multivariate (three or more)',
-    2
+    2,
+	0
   );
 
 
@@ -100,13 +101,13 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-# Redo
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle) 
   VALUES (
     'Data Science',
     'Do gradient descent methods always converge to same point?',
     'No, in some cases it reaches a local minima or a local optima point.',
-    2
+    2,
+	0
   );
 
 
@@ -127,30 +128,44 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-# Redo
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle) 
   VALUES (
     'Data Science',
     'What is an Eigenvalue and Eigenvector?',
     'An eigenvector non-zero vector that does not change its direction when that linear transformation is applied to it. Geometrically an eigenvector, corresponding to a real nonzero eigenvalue, points in a direction that is stretched by the transformation and the eigenvalue is the factor by which it is stretched.',
-    3
+    3,
+	0
   );
-
-# Redo
+  
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Data Science',
-    'What is the difference between Supervised Learning an Unsupervised Learning?',
-    'If an algorithm learns something from the training data so that the knowledge can be applied to the test data, then it is referred to as Supervised Learning. If the algorithm does not learn anything beforehand because there is no response variable or any training data, then it is referred to as unsupervised learning.',
+    'What is Supervised Learning?',
+    'A learning method where an algorithm that learns something from the training data so that the knowledge can be applied to the test data.',
     3
-  );
+);
 
-# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Data Science',
-    'What is the difference between Cluster and Systematic Sampling?',
-    'Cluster Sample is a probability sample where each sampling unit is a collection, or cluster of elements. Systematic sampling is a statistical technique where elements are selected from an ordered sampling frame. ',
+    'What is Unsupervised Learning?',
+    'A learning method where an algorithm does not learn anything beforehand because there is no response variable or any training data.',
+    3
+);
+
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'Data Science',
+    'What is Cluster Sampling?',
+    'A probability sampling technique where each sampling unit is a collection, or cluster of elements.',
+    3
+  );
+
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'Data Science',
+    'What is Systematic Sampling?',
+    'A statistical sampling technique where elements are selected from an ordered sampling frame. ',
     3
   );
 

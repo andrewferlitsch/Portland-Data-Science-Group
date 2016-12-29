@@ -1,4 +1,4 @@
-
+# Reviewed
 #----------------------------------------------------------------------
 # Initialization
 #----------------------------------------------------------------------
@@ -28,12 +28,11 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'DOS',
     'How do you redirect output from standard out and standard error to a file?',
-    '>file and 2>file',
+    'Append >file or 2>file to the end of a command string.',
     1
   );
 
@@ -55,7 +54,6 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'DOS',

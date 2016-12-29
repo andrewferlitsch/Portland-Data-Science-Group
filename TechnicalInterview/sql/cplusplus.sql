@@ -1,4 +1,4 @@
-
+# Reviewed
 #----------------------------------------------------------------------
 # Initialization
 #----------------------------------------------------------------------
@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS questions
   question  VARCHAR(256) NOT NULL,
   answer    VARCHAR(256) NOT NULL,
   rank      TINYINT		 NOT NULL DEFAULT 1,
+  toggle	TINYINT		 NOT NULL DEFAULT 1,
 
   INDEX(category),
   INDEX(rank)
@@ -36,13 +37,13 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-# Redo
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle) 
   VALUES (
     'C++',
     'Where in a function can a variable be declared?',
     'A variable can be declared anywhere a statement would be valid, and can be declared in the initializer part of a for loop.',
-    1
+    1,
+	0
   );
 
 
@@ -63,12 +64,11 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'C++',
-    'Give an example of operator overloading.',
-    'Box operator+(const Box& b)',
+    'What is operator overloading?',
+    'Operators like +, = or == are treated as polymorphic functions and as such have different behaviors depending on the types of its arguments. ex. Box operator+(const Box& b)',
     2
   );
   
@@ -87,4 +87,3 @@ INSERT INTO questions (category, question, answer, rank)
     'auto, extern, register, static, mutable',
     3
   );
-

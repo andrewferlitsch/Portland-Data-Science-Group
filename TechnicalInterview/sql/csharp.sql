@@ -1,4 +1,4 @@
-
+# Reviewed
 #----------------------------------------------------------------------
 # Initialization
 #----------------------------------------------------------------------
@@ -8,7 +8,8 @@ CREATE TABLE IF NOT EXISTS questions
   category  VARCHAR(16)  NOT NULL,
   question  VARCHAR(256) NOT NULL,
   answer    VARCHAR(256) NOT NULL,
-  rank      SMALLINT(30) NOT NULL DEFAULT 1,
+  rank      TINYINT 	 NOT NULL DEFAULT 1,
+  toggle	TINYINT		 NOT NULL DEFAULT 1,
 
   INDEX(category),
   INDEX(rank)
@@ -28,13 +29,13 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-# Redo
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle) 
   VALUES (
     'C#',
     'What is the scope of the variable ''i'': for (int i = 0; i<10;i++) {} ?',
     'The scope is within the for loop. It has no scope outside of the for loop.',
-    1
+    1,
+	0
   );
 
 
@@ -46,22 +47,22 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-# Redo
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'C#',
     'Describe how try, catch and finally work.',
     'These constructs are used for exception handling. If an exception occurs in a try block, then the the code in the corresponding catch block is executed; otherwise it is not. Regardless of whether an exception occurs in a try/catch block, the code in the finally block is always executed. If a return occurs, the code in the finally is executed before the return.',
-    2
+    2,
+	0
   );
 
-# Redo
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle) 
   VALUES (
     'C#',
     'What is managed code?',
     'The distinction between managed and unmanaged code is only relevant when developing applications that interact with the .NET Framework or other Common Language Runtime (CLR) implementations. Managed code prevents typical mistakes that lead to security holes, handles memory management, type checking and releasing unneeded objects.',
-    2
+    2,
+	0
   );
 
 
@@ -91,12 +92,11 @@ INSERT INTO questions (category, question, answer, rank)
     3
   );
 
-# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'C#',
-    'Explain Reflection.',
-    'Reflection reads an object''s metadata information (type, parameters, etc). This allows creating and invoking methods on objects not known at compile time.',
+    'What is Reflection?',
+    'The ability to read an object''s metadata information (type, parameters, etc). This allows creating and invoking methods on objects not known at compile time.',
     3
   );
 

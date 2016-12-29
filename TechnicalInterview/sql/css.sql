@@ -1,4 +1,4 @@
-
+# Reviewed
 #----------------------------------------------------------------------
 # Initialization
 #----------------------------------------------------------------------
@@ -8,7 +8,8 @@ CREATE TABLE IF NOT EXISTS questions
   category  VARCHAR(16)  NOT NULL,
   question  VARCHAR(256) NOT NULL,
   answer    VARCHAR(256) NOT NULL,
-  rank      SMALLINT(30) NOT NULL DEFAULT 1,
+  rank      TINYINT      NOT NULL DEFAULT 1,
+  toggle	TINYINT		 NOT NULL DEFAULT 1,
 
   INDEX(category),
   INDEX(rank)
@@ -28,20 +29,20 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-# Redo
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle) 
   VALUES (
     'CSS',
     'Where in an HTML doc can you place a link to an external style sheet?',
     '<head>',
-    1
+    1,
+	0
   );
 
 
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'CSS',
-	'What does the HTML attribute style do?'
+	'What does the HTML attribute style do?',
     'This HTML attribute is used to specify an inline style for an element?',
     1
   );
@@ -87,16 +88,15 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-# Redo
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle) 
   VALUES (
     'CSS',
     'Can you use negative values for margin? Can you use negative values for padding?',
     'yes for margins, no for padding',
-    2
+    2,
+	0
   );
 
-# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'CSS',
@@ -121,13 +121,13 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-# Redo
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle) 
   VALUES (
     'CSS',
     'What is the order of values in border-width to define a width for each side?',
     'top, right, bottom, left',
-    2
+    2,
+	0
   );
 
 INSERT INTO questions (category, question, answer, rank) 
