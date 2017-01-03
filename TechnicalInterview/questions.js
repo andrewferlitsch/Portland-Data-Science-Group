@@ -1,6 +1,5 @@
-technical.controller( 'nameCtrl', function( $scope ) {
+technical.controller( 'nameCtrl', function( $scope, $http ) {
 	$scope.subject 	= "name";
-	
 	$scope.questions = [{ question: "placeholder 1",
 						  answer: "",
 						  rank: 1,

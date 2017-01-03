@@ -1,6 +1,6 @@
 technical.controller( 'cppCtrl', function( $scope, $http ) {
 	$scope.subject 	= "C++";
-		$scope.questions = [{ question: "placeholder 1",
+	$scope.questions = [{ question: "placeholder 1",
 						  answer: "",
 						  rank: 1,
 						  id: 1
