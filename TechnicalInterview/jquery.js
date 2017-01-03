@@ -1,64 +1,33 @@
-technical.controller( 'jqueryCtrl', function( $scope ) {
+technical.controller( 'jqueryCtrl', function( $scope, $http ) {
 	$scope.subject 	= "JQuery";
-	$scope.questions = [{ question: "What is the shortcut for loading jQuery code after the document ready event?",
-						  answer: "$(function() { }",
+		$scope.questions = [{ question: "placeholder 1",
+						  answer: "",
 						  rank: 1,
-						  id: 202
+						  id: 1
 						},
-						{ question: "What does jQuery use for selectors?",
-						  answer: "CSS selectors and some custom selectors",
-						  rank: 1,
-						  id: 203
-						},
-						{ question: "What does this select: $(\"div.cat\")",
-						  answer: "All div elements with class = cat",
-						  rank: 1,
-						  id: 204
-						},
-						{ question: "What symbol is used for a JQuery shortcut?",
-						  answer: "$",
-						  rank: 1,
-						  id: 205
-						},
-						{ question: "How do you get the inner HTML code for an element?",
-						  answer: "$(\"div\").html()",
-						  rank: 1,
-						  id: 206
-						},
-						{ question: "What method is used to hide an element?",
-						  answer: "hide()",
-						  rank: 1,
-						  id: 207
-						},
-						{ question: "What syntax is used to change the style of div element?",
-						  answer: "$(\"div\").css(property,value)",
+						{ question: "placeholder 2",
+						  answer: "",
 						  rank: 2,
-						  id: 208
+						  id: 4
 						},
-						{ question: "What method is used to make an AJAX call?",
-						  answer: "$.ajax({ ... })",
-						  rank: 2,
-						  id: 208
-						},
-						{ question: "What does $(\"div p\") select?",
-						  answer: "All p elements (paragraph) inside all div elements.",
-						  rank: 2,
-						  id: 209
-						},
-						{ question: "Which jQuery method is used to switch between adding/removing one or more classes (for CSS) from selected elements?",
-						  answer: "toggleClass()",
+						{ question: "placeholder 3",
+						  answer: "",
 						  rank: 3,
-						  id: 210
-						},
-						{ question: "What methods are used to remove selected items?",
-						  answer: "remove() and detach()",
-						  rank: 3,
-						  id: 211
+						  id: 6
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
 	$scope.show 	= false;
 	$scope.answers 	= false;
+	$http({
+        method : "GET",
+        url : "load.php",
+		params: { category: 'JQuery'}
+    }).then(function mySucces(response) {
+        $scope.questions = response.data;
+		$scope.random 	 = pick3( $scope.questions );
+    }, function myError(response) {
+    });
 })
 .directive( "questionsJquery", function() {
 	return {

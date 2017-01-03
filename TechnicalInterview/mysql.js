@@ -1,90 +1,34 @@
-technical.controller( 'mysqlCtrl', function( $scope ) {
+technical.controller( 'mysqlCtrl', function( $scope, $http ) {
 	$scope.subject 	= "MySQL";
-	$scope.questions = [{ question: "How do you select all columns from a table named mytable?",
-						  answer: "SELECT * FROM mytable;",
+	
+	$scope.questions = [{ question: "placeholder 1",
+						  answer: "",
 						  rank: 1,
-						  id: 170
+						  id: 1
 						},
-						{ question: "How do you select only the columns field1 and field2 from a table named mytable?",
-						  answer: "SELECT field1,field2 FROM mytable;",
-						  rank: 1,
-						  id: 171
-						},
-						{ question: "How do you select only rows where field year is 2015?",
-						  answer: "SELECT * FROM mytable where year=2015;",
-						  rank: 1,
-						  id: 172
-						},
-						{ question: "How do you create a database?",
-						  answer: "CREATE DATABASE databasename;",
-						  rank: 1,
-						  id: 196
-						},
-						{ question: "How do you login to a password protected database?",
-						  answer: "mysql -u username -p  , then you will be prompted for password",
-						  rank: 1,
-						  id: 197
-						},
-						{ question: "How do you set which database to use?",
-						  answer: "USE databasename;",
-						  rank: 1,
-						  id: 198
-						},
-						{ question: "What does RDBMS stand for?",
-						  answer: "Relational Database Management System",
-						  rank: 1,
-						  id: 227
-						},
-						{ question: "How do you count how many rows have year = 2015?",
-						  answer: "SELECT COUNT(*) FROM mytable WHERE year=2015;",
+						{ question: "placeholder 2",
+						  answer: "",
 						  rank: 2,
-						  id: 173
+						  id: 4
 						},
-						{ question: "How do you change a field (column) name?",
-						  answer: "ALTER TABLE mytable CHANGE oldname newname;",
-						  rank: 2,
-						  id: 174
-						},
-						{ question: "How do you make an existing column unique? What does it mean?",
-						  answer: "ALTER TABLE mytable ADD UNIQUE (ColumnName); It means that the field value " +
-								  "in each row must be unique; otherwise an error will occur.",
-						  rank: 2,
-						  id: 175
-						},
-						{ question: "How do you drop a table?",
-						  answer: "DROP TABLE tablename;",
-						  rank: 2,
-						  id: 200
-						},
-						{ question: "What is a foreign key? How does it work?",
-						  answer: "A foreign key points to a primary key in another table. " +
-								  "It is used to maintain referential integrity between the tables. " +
-								  "You cannot insert a row with a foreign key value if there does not exist a primary key entry in the other table.",
+						{ question: "placeholder 3",
+						  answer: "",
 						  rank: 3,
-						  id: 176
-						},
-						{ question: "What is the difference between an INNER and OUTER JOIN?",
-						  answer: "An INNER JOIN is the intersection of the two tables, and OUTER JOIN is the union of the two tables.",
-						  rank: 3,
-						  id: 176
-						},
-						{ question: "What is the difference between a LEFT JOIN and a RIGHT JOIN",
-						  answer: "A LEFT JOIN is the contents of the first table plus the intersection with the second table. " +
-								  "A RIGHT JOIN is the contents of the second table plus the intersection with the first table.",
-						  rank: 3,
-						  id: 177
-						},
-						{ question: "Describe a parent/child hierachy relationship in a table",
-						  answer: "A table that two identifiers with one identifier being a primary key, " +
-								  "and the second identifier references the first (primary key) identifier. " +
-								  "Ex. ( ManagerID int Primary Key, EmployeeID int REFERENCES( ManagerID ))",
-						  rank: 3,
-						  id: 232
+						  id: 6
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
 	$scope.show 	= false;
 	$scope.answers 	= false;
+	$http({
+        method : "GET",
+        url : "load.php",
+		params: { category: 'MySQL'}
+    }).then(function mySucces(response) {
+        $scope.questions = response.data;
+		$scope.random 	 = pick3( $scope.questions );
+    }, function myError(response) {
+    });
 })
 .directive( "questionsMysql", function() {
 	return {

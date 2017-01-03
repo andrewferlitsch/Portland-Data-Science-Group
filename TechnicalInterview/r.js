@@ -1,49 +1,34 @@
-technical.controller( 'rCtrl', function( $scope ) {
+technical.controller( 'rCtrl', function( $scope, $http ) {
 	$scope.subject 	= "R";
-	$scope.questions = [{ question: "What is R?",
-						  answer: "A statistical programming language.",
+	
+	$scope.questions = [{ question: "placeholder 1",
+						  answer: "",
 						  rank: 1,
-						  id: 95
+						  id: 1
 						},
-						{ question: "What are the three assignment operators in R?",
-						  answer: "equal, leftward (<-), and rightward (->)",
-						  rank: 1,
-						  id: 96
-						},
-						{ question: "What is a data frame?",
-						  answer: "Data frames are tabular data objects. Unlike a matrix in data frame each column can contain different modes of data. The first column can be numeric while the second column can be character and third column can be logical. It is a list of vectors of equal length.",
-						  rank: 1,
-						  id: 97
-						},
-						{ question: "What are the common builtin types of R-objects?",
-						  answer: "vectors, arrays, matrices, lists, factors, data frames",
+						{ question: "placeholder 2",
+						  answer: "",
 						  rank: 2,
-						  id: 98
+						  id: 4
 						},
-						{ question: "What are the six data types of a vector?",
-						  answer: "logical, numeric, integer, complex, character, raw",
-						  rank: 2,
-						  id: 99
-						},
-						{ question: "How do you create a data frame?",
-						  answer: "Data Frames are created using the data.frame() function.",
-						  rank: 2,
-						  id: 100
-						},
-						{ question: "How do I find all variables starting with the pattern \"ab\"?",
-						  answer: "ls(pattern = \"ab\")",
-						  rank: 2,
-						  id: 101
-						},
-						{ question: "Describe Data Shaping",
+						{ question: "placeholder 3",
 						  answer: "",
 						  rank: 3,
-						  id: 102
-						},
+						  id: 6
+						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
 	$scope.show 	= false;
 	$scope.answers 	= false;
+	$http({
+        method : "GET",
+        url : "load.php",
+		params: { category: 'R'}
+    }).then(function mySucces(response) {
+        $scope.questions = response.data;
+		$scope.random 	 = pick3( $scope.questions );
+    }, function myError(response) {
+    });
 })
 .directive( "questionsR", function() {
 	return {

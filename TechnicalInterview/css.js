@@ -1,86 +1,34 @@
-technical.controller( 'cssCtrl', function( $scope ) {
+technical.controller( 'cssCtrl', function( $scope, $http ) {
 	$scope.subject 	= "CSS";
-	$scope.questions = [{ question: "What does CSS stand for?",
-						  answer: "Cascading Style Sheets",
+	
+	$scope.questions = [{ question: "placeholder 1",
+						  answer: "",
 						  rank: 1,
-						  id: 39
+						  id: 1
 						},
-						{ question: "Where in an HTML doc can you place a link to an external style sheet?",
-						  answer: "<head>",
-						  rank: 1,
-						  id: 40
-						},
-						{ question: "Which HTML attribute is used to specify an inline style for an element?",
-						  answer: "style",
-						  rank: 1,
-						  id: 41
-						},
-						{ question: "Which CSS property is used to change the color of text?",
-						  answer: "color",
-						  rank: 1,
-						  id: 42
-						},
-						{ question: "What element is used to specify CSS properties in a web page?",
-						  answer: "<style></style>",
-						  rank: 1,
-						  id: 43
-						},
-						{ question: "How do you specify a CSS rule for a class and for an id?",
-						  answer: "#name {} and .name {} , respectively",
-						  rank: 1,
-						  id: 44
-						},
-						{ question: "How do you specify that hyperlinks are displayed without an underline?",
-						  answer: "a { text-decoration: none; }",
+						{ question: "placeholder 2",
+						  answer: "",
 						  rank: 2,
-						  id: 45
+						  id: 4
 						},
-						{ question: "Can you use negative values for margin? Can you use negative values for padding?",
-						  answer: "yes for margins, no for padding",
-						  rank: 2,
-						  id: 46
-						},
-						{ question: "How do you left-justify a group of block elements?",
-						  answer: "set style='float:left;' on each block element, and then a style='clear:both' on the next element that is not to be left-justified.",
-						  rank: 2,
-						  id: 47
-						},
-						{ question: "What is the default value for the position property?",
-						  answer: "static",
-						  rank: 2,
-						  id: 148
-						},
-						{ question: "How do you select all elements inside a div?",
-						  answer: "div p",
-						  rank: 2,
-						  id: 149
-						},
-						{ question: "What is the order of values in border-width to define a width for each side?",
-						  answer: "top, right, bottom, left",
-						  rank: 2,
-						  id: 150
-						},
-						{ question: "Explain the difference between visibility:hidden; and display:none?",
-						  answer: "Both hide the element from being displayed. For visibility, " +
-								  "the space consumed by the element is still rendered (blank), while for display the space " +
-								  "is not rendered (folded)",
-						  rank: 2,
-						  id: 152
-						},
-						{ question: "What are three things (property values) you can do with the text-transform property?",
-						  answer: "uppercase words, lowercase words, capitalize words",
+						{ question: "placeholder 3",
+						  answer: "",
 						  rank: 3,
-						  id: 48
-						},
-						{ question: "How do you make a list that lists its items with squares?",
-						  answer: "list-style-type: square;",
-						  rank: 3,
-						  id: 49
+						  id: 6
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
 	$scope.show 	= false;
 	$scope.answers 	= false;
+	$http({
+        method : "GET",
+        url : "load.php",
+		params: { category: 'CSS'}
+    }).then(function mySucces(response) {
+        $scope.questions = response.data;
+		$scope.random 	 = pick3( $scope.questions );
+    }, function myError(response) {
+    });
 })
 .directive( "questionsCss", function() {
 	return {

@@ -1,58 +1,34 @@
-technical.controller( 'osCtrl', function( $scope ) {
+technical.controller( 'osCtrl', function( $scope, $http ) {
 	$scope.subject 	= "OS";
-	$scope.questions = [{ question: "What is a stack frame?",
-						  answer: "The stack frame is a part of the program's memory address space for holding the " +
-								  "the values of parameters and local variables per function call. Each time a function is " +
-								  "called, a stack frame is pushed into this memory space, usually in sequential order. " +
-								  "When the function returns, the stack frame is popped, releasing memory.",
+	
+	$scope.questions = [{ question: "placeholder 1",
+						  answer: "",
 						  rank: 1,
-						  id: 109
+						  id: 1
 						},
-						{ question: "How many bytes are in a Unicode character?",
-						  answer: "2 bytes",
-						  rank: 1,
-						  id: 110
-						},
-						{ question: "Explain how a pointer is dereferenced.",
-						  answer: "The value of the pointer (an address of another section of memory) is loaded into a register. The register " +
-								  "is then used as an argument to an assembly language instruction to fetch the value at the location specified by " +
-								  "the register and place it into another register or variable.",
-						  rank: 1,
-						  id: 111
-						},
-						{ question: "Describe UTF-8 encoding",
-						  answer: "A encoding consisting of one to four bytes. If the first byte has a leading zero bit, it is one byte long (ANSI). " +
-						          "If it has two leading one bits, it is two bytes long, three leading one bits it is three bytes long, and four leading " +
-								  "one bits it is four bytes long.",
-						  rank: 2,
-						  id: 112
-						},
-						{ question: "What is a GPU? How is it different from a CPU?",
+						{ question: "placeholder 2",
 						  answer: "",
 						  rank: 2,
-						  id: 113
+						  id: 4
 						},
-						{ question: "What does the MMU do when a page fault occurs in a virtual address space?",
-						  answer: "The memory management unit (MMU) will map the physical memory page into the virtual address space.",
+						{ question: "placeholder 3",
+						  answer: "",
 						  rank: 3,
-						  id: 114
-						},
-						{ question: "What is SDRAM? How is it different from DRAM?",
-						  answer: "Synchronous Dynamic RAM. SDRAM is an improvement because it synchronizes data transfer between the CPU and memory. SDRAM allows the CPU to process data while another process is being queued.",
-						  rank: 3,
-						  id: 115
-						},
-						{ question: "What is a Mutex?",
-						  answer: "Short for Mutually Exclusion Object. " +
-								  "A mutex is a program object that allows multiple program threads to share the same resource, but not simultaneously. " +
-								  "If a thread places a lock on the mutex, then all other threads will block attempting to lock the mutex until it is released.",
-						  rank: 3,
-						  id: 201
+						  id: 6
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
 	$scope.show 	= false;
 	$scope.answers 	= false;
+	$http({
+        method : "GET",
+        url : "load.php",
+		params: { category: 'OS'}
+    }).then(function mySucces(response) {
+        $scope.questions = response.data;
+		$scope.random 	 = pick3( $scope.questions );
+    }, function myError(response) {
+    });
 })
 .directive( "questionsOs", function() {
 	return {

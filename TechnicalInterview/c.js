@@ -1,58 +1,33 @@
-technical.controller( 'cCtrl', function( $scope ) {
+technical.controller( 'cCtrl', function( $scope, $http ) {
 	$scope.subject 	= "C";
-	$scope.questions = [{ question: "What is a #include?",
-						  answer: "Includes header file definitions into the C source file.",
+		$scope.questions = [{ question: "placeholder 1",
+						  answer: "",
 						  rank: 1,
-						  id: 86
+						  id: 1
 						},
-						{ question: "Give an example of allocating and freeing memory.",
-						  answer: "char *p = malloc(10) and free(p)",
-						  rank: 1,
-						  id: 87
-						},
-						{ question: "What is the difference between a signed and unsigned int",
-						  answer: "Signed integers represent only positive numbers starting at zero. An unsigned integer represents both signed " +
-								  "unsigned numbers with a range in each direction of half that of a signed integer.",
-						  rank: 1,
-						  id: 88
-						},
-						{ question: "What is the program entry point into a C application?",
-						  answer: "The function main()",
-						  rank: 1,
-						  id: 89
-						},
-						{ question: "Explain an example of reading/writing a file.",
-						  answer: "A file can be opened with a file descriptor (open) or file pointer (fopen), with the latter doing buffered I/O. " +
-						          "A file is then read/written using read()/write() for a file descriptor, and fread()/fwrite() for a file pointer.",
+						{ question: "placeholder 2",
+						  answer: "",
 						  rank: 2,
-						  id: 90
+						  id: 4
 						},
-						{ question: "How many bits are in a long long integer?",
-						  answer: "It typically is 128 bits, but must be at least 64 bits.",
-						  rank: 2,
-						  id: 91
-						},
-						{ question: "What does a typedef do? Give an example.",
-						  answer: "A typedef is a name that is used as an alias for a type definition. Ex. typedef int Length;",
-						  rank: 2,
-						  id: 92
-						},
-						{ question: "What does the keyword volatile mean?",
-						  answer: "Tells the compiler to disable optimizations for the variable. This is typically used when that the variable " +
-						          "could be modified asynchronously, such as by a hardware interface.",
+						{ question: "placeholder 3",
+						  answer: "",
 						  rank: 3,
-						  id: 93
-						},
-						{ question: "Describe what a setjmp/longjmp do.",
-						  answer: "A setjmp() call saves the location of the current stack frame. When a longjmp() is issued, a jump is made to the saved " +
-						          "stack frame location and continues processing without unwinding the stack.",
-						  rank: 3,
-						  id: 94
+						  id: 6
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
 	$scope.show 	= false;
 	$scope.answers 	= false;
+	$http({
+        method : "GET",
+        url : "load.php",
+		params: { category: 'C'}
+    }).then(function mySucces(response) {
+        $scope.questions = response.data;
+		$scope.random 	 = pick3( $scope.questions );
+    }, function myError(response) {
+    });
 })
 .directive( "questionsC", function() {
 	return {

@@ -1,24 +1,34 @@
 technical.controller( 'nameCtrl', function( $scope ) {
 	$scope.subject 	= "name";
-	$scope.questions = [{ question: "",
+	
+	$scope.questions = [{ question: "placeholder 1",
 						  answer: "",
 						  rank: 1,
-						  id: 242
+						  id: 1
 						},
-						{ question: "",
+						{ question: "placeholder 2",
 						  answer: "",
 						  rank: 2,
-						  id: 0
+						  id: 4
 						},
-						{ question: "",
+						{ question: "placeholder 3",
 						  answer: "",
 						  rank: 3,
-						  id: 162
+						  id: 6
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
 	$scope.show 	= false;
 	$scope.answers 	= false;
+	$http({
+        method : "GET",
+        url : "load.php",
+		params: { category: 'name'}
+    }).then(function mySucces(response) {
+        $scope.questions = response.data;
+		$scope.random 	 = pick3( $scope.questions );
+    }, function myError(response) {
+    });
 })
 .directive( "questionsName", function() {
 	return {

@@ -1,51 +1,34 @@
-technical.controller( 'networkCtrl', function( $scope ) {
+technical.controller( 'networkCtrl', function( $scope, $http ) {
 	$scope.subject 	 = "Network";
-	$scope.questions = [{ question: "What is DNS? How does it work?",
-						  answer: "Domain Name Service. A DNS Server takes a domain name and resolves it into an " +
-								  "IP addresses via a lookup directory.",
+	
+	$scope.questions = [{ question: "placeholder 1",
+						  answer: "",
 						  rank: 1,
-						  id: 134
+						  id: 1
 						},
-						{ question: "Describe the difference between UDP and TCP.",
-						  answer: "UDP (User Datagram Protocol) and TCP (Transmission Control Protocol) both send " +
-								  "data packets over a network. UDP does not guarantee delivery. TCP does. When the " +
-								  "receiver receives a packet, it sends back an acknowledgement to the sender.",
-						  rank: 1,
-						  id: 135
-						},
-						{ question: "In IPv4, what is a C-subnet? What are the max number of addresses?",
-						  answer: "A C-subnet is the address range of the lower 8 bits of an IPv4 address range. " +
-								  "It can hold 256 addresses.",
+						{ question: "placeholder 2",
+						  answer: "",
 						  rank: 2,
-						  id: 136
+						  id: 4
 						},
-						{ question: "What is WireShark?",
-						  answer: "An application that is used by developers to view packets on the network.",
-						  rank: 2,
-						  id: 137
-						},
-						{ question: "What is IPv6?",
-						  answer: "The IPv6 replaces the IPv4 Internet Address space. IPv4 was limited to 4 billion addresses (32-bits). " +
-								  "IPv6 uses a 128-bit address, theoretically allowing 2^128, or approximately 3.4×1038 addresses.",
-						  rank: 2,
-						  id: 138
-						},
-						{ question: "What is the difference between unicast, multicast and broadcast?",
-						  answer: "Unicast sends a message to a single IP address. Multi-cast sends a message " +
-						          "to all IP addresses registered for the multicast on a subnet. Broadcast sends " +
-								  "a message to all IP addresses on the subnet.",
-						  rank: 3,
-						  id: 139
-						},
-						{ question: "Explain the FTP protocol.",
+						{ question: "placeholder 3",
 						  answer: "",
 						  rank: 3,
-						  id: 140
+						  id: 6
 						}
-					   ];
+					  ];
 	$scope.random 	= pick3( $scope.questions );
 	$scope.show 	= false;
 	$scope.answers 	= false;
+	$http({
+        method : "GET",
+        url : "load.php",
+		params: { category: 'Network'}
+    }).then(function mySucces(response) {
+        $scope.questions = response.data;
+		$scope.random 	 = pick3( $scope.questions );
+    }, function myError(response) {
+    });
 })
 .directive( "questionsNetwork", function() {
 	return {

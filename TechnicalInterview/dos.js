@@ -1,44 +1,34 @@
-technical.controller( 'dosCtrl', function( $scope ) {
+technical.controller( 'dosCtrl', function( $scope, $http ) {
 	$scope.subject 	= "DOS";
-	$scope.questions = [{ question: "How do you keep command strings being executed in a script from being echoed to the console?",
-						  answer: "echo off",
+	
+	$scope.questions = [{ question: "placeholder 1",
+						  answer: "",
 						  rank: 1,
-						  id: 158
+						  id: 1
 						},
-						{ question: "How do you redirect output from standard out and standard error to a file?",
-						  answer: ">file and 2>file",
-						  rank: 1,
-						  id: 159
-						},
-						{ question: "How do you set a variable?",
-						  answer: "set var=value",
-						  rank: 1,
-						  id: 160
-						},
-						{ question: "How do you remove a directory and all its contents?",
-						  answer: "rmdir dirname \\s",
-						  rank: 1,
-						  id: 231
-						},
-						{ question: "How do you test in an IF statement if the last command exited with a non-zero exit code?",
-						  answer: "IF %ERRORLEVEL% NEQ 1",
+						{ question: "placeholder 2",
+						  answer: "",
 						  rank: 2,
-						  id: 161
+						  id: 4
 						},
-						{ question: "What is the syntax for a goto and the target?",
-						  answer: "goto label  and  :label",
-						  rank: 2,
-						  id: 230
-						},
-						{ question: "How do you count the number of occurrences of the word hello in a file?",
-						  answer: "find \"hello\" file /c , where the pattern to search for must be in double quotes.",
+						{ question: "placeholder 3",
+						  answer: "",
 						  rank: 3,
-						  id: 162
+						  id: 6
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
 	$scope.show 	= false;
 	$scope.answers 	= false;
+	$http({
+        method : "GET",
+        url : "load.php",
+		params: { category: 'C++'}
+    }).then(function mySucces(response) {
+        $scope.questions = response.data;
+		$scope.random 	 = pick3( $scope.questions );
+    }, function myError(response) {
+    });
 })
 .directive( "questionsDos", function() {
 	return {

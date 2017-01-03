@@ -1,59 +1,34 @@
-technical.controller( 'securityCtrl', function( $scope ) {
+technical.controller( 'securityCtrl', function( $scope, $http ) {
 	$scope.subject 	= "Security";
-	$scope.questions = [{ question: "What is the difference between http:// and https:// ?",
-						  answer: "http sends data unencrypted. https sends it encrypted using SSL",
+	
+	$scope.questions = [{ question: "placeholder 1",
+						  answer: "",
 						  rank: 1,
-						  id: 141
+						  id: 1
 						},
-						{ question: "What is SSL?",
-						  answer: "Secured Sockets Layer. It is a form of encryption over TCP/IP +networks between clients and servers. " +
-						          "The server will have an SSL certificate which contains a public/private key used for the encryption. " +
-								  "The SSL certificate is obtained and authenticated by a Certificate Authority (CA).",
-						  rank: 1,
-						  id: 142
-						},
-						{ question: "What is a Trojan Horse?",
-						  answer: "Malicious software that is hidden inside what might appear inside something that might otherwise appear legitimate, " +
-								  "in an email message, social media, or web site.",
-						  rank: 1,
-						  id: 143
-						},
-						{ question: "What is a one-way hash? Name at least one popular method.",
-						  answer: "A type of encryption where once something is encrypted it cannot be decrypted back to the original form. " +
-						          "It is commonly used for encrypting passwords. The one-way hashed version of the password is stored instead of the original password. " +
-								  "Popular methods are SHA1 and MD5.",
+						{ question: "placeholder 2",
+						  answer: "",
 						  rank: 2,
-						  id: 144
+						  id: 4
 						},
-						{ question: "What is two factor authentication?",
-						  answer: "An additional authentication device that produces an access token which has a short life (e.g., 60 seconds), " +
-								  "which must be used in conjunction with a password.",
-						  rank: 2,
-						  id: 145
-						},
-						{ question: "Describe how Public Key Encryption works.",
-						  answer: "Public Key Encryption (PKE) is a form of encryption where one key (public) is used to encrypt a message, while a " +
-								  "another key (private) is used to decrypt the message. The receiver has a public key which the sender uses to encrypt " +
-								  "the message, and the receiver then decrypts it using the private key. As long as the receiver makes their public key available, " +
-								  "then anybody can send an encrypted message to the receiver, but only the receiver can decrypt it.",
+						{ question: "placeholder 3",
+						  answer: "",
 						  rank: 3,
-						  id: 146
-						},
-						{ question: "What is a Certificate Authority (CA)?",
-						  answer: "A certificate authority (CA) is an entity that issues digital certificates. " +
-								  "A digital certificate certifies the ownership of a public key by the named subject of the certificate.",
-						  rank: 3,
-						  id: 147
-						},
-						{ question: "What is Cross Site Scripting?",
-						  answer: "XSS attacks occur when malicious code is injected into a website, generally through an input control.",
-						  rank: 3,
-						  id: 153
+						  id: 6
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
 	$scope.show 	= false;
 	$scope.answers 	= false;
+	$http({
+        method : "GET",
+        url : "load.php",
+		params: { category: 'Security'}
+    }).then(function mySucces(response) {
+        $scope.questions = response.data;
+		$scope.random 	 = pick3( $scope.questions );
+    }, function myError(response) {
+    });
 })
 .directive( "questionsSecurity", function() {
 	return {

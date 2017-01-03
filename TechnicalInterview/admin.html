@@ -108,7 +108,7 @@ $(function() {
 
 		$.ajax({
 			url: "/interview/load.php",
-			type: 'post',
+			type: 'get',
 			data: {'category': category },
 			success: function( data, status ) { Load( data ); },
 			error: function(xhr) { alert( xhr.status + " " + xhr.statusText ); }

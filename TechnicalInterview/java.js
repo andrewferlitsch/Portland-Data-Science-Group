@@ -1,94 +1,33 @@
-technical.controller( 'javaCtrl', function( $scope ) {
+technical.controller( 'javaCtrl', function( $scope, $http ) {
 	$scope.subject 	= "Java";
-	$scope.questions = [{ question: "What are the builtin scalar data types in Java?",
-						  answer: "int, short, long, float, double, char, string, byte, boolean",
+		$scope.questions = [{ question: "placeholder 1",
+						  answer: "",
 						  rank: 1,
-						  id: 60
+						  id: 1
 						},
-						{ question: "Describe what the keyword import is used for.",
-						  answer: "Used to import a library, where each item in the library is uniquely identified by a namespace.",
-						  rank: 1,
-						  id: 61
-						},
-						{ question: "What is the program entry point into a Java application?",
-						  answer: "The class with a 'public static void main( String args[] )' definition.",
-						  rank: 1,
-						  id: 62
-						},
-						{ question: "How do you exit from a Java application?",
-						  answer: "System.exit( exit_code )",
-						  rank: 1,
-						  id: 154
-						},
-						{ question: "How do you output to standard out and standard error?",
-						  answer: "System.out.println() and System.err.println()",
-						  rank: 1,
-						  id: 155
-						},
-						{ question: "How do you specify a class path when compiling a java file?",
-						  answer: "javac -cp path javafile",
-						  rank: 1,
-						  id: 199
-						},
-						{ question: "In a String, how do you get the 3rd character?",
-						  answer: "string.charAt(2)",
-						  rank: 1,
-						  id: 229
-						},
-						{ question: "How does garbage collection work?",
-						  answer: "Java uses lazy garbage collection. There is no explicit method to delete an allocated item or to force garbage collection.",
+						{ question: "placeholder 2",
+						  answer: "",
 						  rank: 2,
-						  id: 63
+						  id: 4
 						},
-						{ question: "How is polymorphism supported in Java?",
-						  answer: "Supported only in interface definition.",
-						  rank: 2,
-						  id: 64
-						},
-						{ question: "What is the difference between an abstract class and interface?",
-						  answer: "Interface supports polymorphism and classes do not. Data declarations in an interface is static.",
-						  rank: 2,
-						  id: 65
-						},
-						{ question: "What is a package? How is a package created?",
-						  answer: "A package is a library. Each file in the library contains the line 'package somename;', where somename is the name of the package.",
-						  rank: 2,
-						  id: 66
-						},
-						{ question: "What is an ArrayList and how do you access the elements?",
-						  answer: "An ArrayList is a derived type for dynamic sizing of an array. " +
-								  "It can take any type specified by the template argument ArrayList<type>. " +
-								  "An item is added with the add() method and accessed with the get() method.",
-						  rank: 2,
-						  id: 156
-						},
-						{ question: "Is the keyword abstract required for abstract methods declared in an interface?",
-						  answer: "No",
-						  rank: 2,
-						  id: 228
-						},
-						{ question: "What does a default method do in an interface definition?",
-						  answer: "It is a default implementation of a method if not defined in an implementation.",
+						{ question: "placeholder 3",
+						  answer: "",
 						  rank: 3,
-						  id: 67
-						},
-						{ question: "What is a lambda expression?",
-						  answer: "A form of functional programming added in Java 8. " +
-								  "Lambda expressions are used primarily to define inline implementation of a functional interface, i.e., " +
-								  "an interface with a single method only.",
-						  rank: 3,
-						  id: 68
-						},
-						{ question: "What does it mean when you get a compiler error message about two methods having the same erasure?",
-						  answer: "It means that both functions have the same name (overloaded), but the types only differ by a type template (between the <> brackets). " +
-								  "public void Foo( List<String> ) and public void Foo( List<Integer> )",
-						  rank: 3,
-						  id: 157
+						  id: 6
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
 	$scope.show 	= false;
 	$scope.answers 	= false;
+	$http({
+        method : "GET",
+        url : "load.php",
+		params: { category: 'Java'}
+    }).then(function mySucces(response) {
+        $scope.questions = response.data;
+		$scope.random 	 = pick3( $scope.questions );
+    }, function myError(response) {
+    });
 })
 .directive( "questionsJava", function() {
 	return {

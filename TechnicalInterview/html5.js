@@ -1,83 +1,33 @@
-technical.controller( 'html5Ctrl', function( $scope ) {
+technical.controller( 'html5Ctrl', function( $scope, $http ) {
 	$scope.subject 	= "HTML5";
-	$scope.questions = [
-						{ question: "Name some HTML5 new features.",
-						  answer: "Geolocation, Canvas, Structural elements, embedding Audio/Video, Progess Bar, Datalists",
+	$scope.questions = [{ question: "placeholder 1",
+						  answer: "",
 						  rank: 1,
-						  id: 26
+						  id: 1
 						},
-						{ question: "Name some input types added by HTML5",
-						  answer: "color, date, datetime, datetime-local, email, month, number, range",
-						  rank: 1,
-						  id: 27
-						},
-						{ question: "What is the DOCTYPE declaration in HTML5?",
-						  answer: "<!DOCTYPE html>",
-						  rank: 1,
-						  id: 28
-						},
-						{ question: "What is the placeholder attribute, and where is it used?",
-						  answer: "Provides a hint that appears in light gray in a input text or textarea element.",
-						  rank: 1,
-						  id: 29
-						},
-						{ question: "What is or are the elements for embedding a video and audio file respectively?",
-						  answer: "<video> and <audio>.",
-						  rank: 1,
-						  id: 30
-						},
-						{ question: "An SVG graphic is specified in what format?",
-						  answer: "XML",
+						{ question: "placeholder 2",
+						  answer: "",
 						  rank: 2,
-						  id: 31
+						  id: 4
 						},
-						{ question: "What does the contenteditable attribute do?",
-						  answer: "It can be set to true or false, indicating if the content within the element start/end tags can be edited.",
-						  rank: 2,
-						  id: 32
-						},
-						{ question: "What is geolocation in HTML5?",
-						  answer: "The HTML Geolocation API is used to locate a user's geographical position. " +
-								  "It will use the GPS information from a user's device, if available, otherwise it use " +
-								  "the IP address to determine the location of the user's ISP.",
-						  rank: 2,
-						  id: 33
-						},
-						{ question: "Name the new structural elements added?",
-						  answer: "<header>, <footer>, <section>, <article>, <nav>, <aside>, <main>, <summary>, <mark> and <time>",
-						  rank: 2,
-						  id: 34
-						},
-						{ question: "What is the syntax of a custom data attribute?",
-						  answer: "data-some-name='some-value', where some-name is name of the attribute.",
-						  rank: 2,
-						  id: 35
-						},
-						{ question: "What does the required attribute do?",
-						  answer: "Forces an input element to be non-empty. If a submit occurs and the element is empty, the submit is disabled " +
-								  "and the input box is red highlighted.",
-						  rank: 2,
-						  id: 36
-						},
-						{ question: "Describe the File Drag and Drop API.",
+						{ question: "placeholder 3",
 						  answer: "",
 						  rank: 3,
-						  id: 37
-						},
-						{ question: "Describe how the <output> element works.",
-						  answer: "The <output> tag represents the result of a calculation (like one performed by a script).",
-						  rank: 3,
-						  id: 38
-						},
-						{ question: "How do you specify a number input element to take input in dollar and cents?",
-						  answer: "Add attribute step=0.01",
-						  rank: 3,
-						  id: 151
+						  id: 6
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
 	$scope.show 	= false;
 	$scope.answers 	= false;
+	$http({
+        method : "GET",
+        url : "load.php",
+		params: { category: 'HTML5'}
+    }).then(function mySucces(response) {
+        $scope.questions = response.data;
+		$scope.random 	 = pick3( $scope.questions );
+    }, function myError(response) {
+    });
 })
 .directive( "questionsHtml5", function() {
 	return {

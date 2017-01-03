@@ -1,40 +1,34 @@
-technical.controller( 'pythonCtrl', function( $scope ) {
+technical.controller( 'pythonCtrl', function( $scope, $http ) {
 	$scope.subject 	= "Python";
-	$scope.questions = [{ question: "How are blocks of code delineated (e.g, statements for an if block)?",
-						  answer: "Blocks of code are denoted by line indentation.",
+	
+	$scope.questions = [{ question: "placeholder 1",
+						  answer: "",
 						  rank: 1,
-						  id: 103
+						  id: 1
 						},
-						{ question: "What is the syntax of a comment?",
-						  answer: "#",
-						  rank: 1,
-						  id: 104
-						},
-						{ question: "What are the five standard data types?",
-						  answer: "Numbers, String, List, Tuple, Dictionary",
-						  rank: 1,
-						  id: 105
-						},
-						{ question: "What does the keyword yield do?",
+						{ question: "placeholder 2",
 						  answer: "",
 						  rank: 2,
-						  id: 106
+						  id: 4
 						},
-						{ question: "What is a dictionary?",
-						  answer: "A dictionary is an associative array (or hash). The key can be any data type. " +
-								  "Dictionaries are enclosed in {} braces and values are accessed thru square [] brackets.",
-						  rank: 2,
-						  id: 107
-						},
-						{ question: "What does the keyword lambda do?",
+						{ question: "placeholder 3",
 						  answer: "",
 						  rank: 3,
-						  id: 108
+						  id: 6
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
 	$scope.show 	= false;
 	$scope.answers 	= false;
+	$http({
+        method : "GET",
+        url : "load.php",
+		params: { category: 'Python'}
+    }).then(function mySucces(response) {
+        $scope.questions = response.data;
+		$scope.random 	 = pick3( $scope.questions );
+    }, function myError(response) {
+    });
 })
 .directive( "questionsPython", function() {
 	return {

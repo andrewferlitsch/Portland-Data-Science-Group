@@ -1,49 +1,33 @@
-technical.controller( 'cppCtrl', function( $scope ) {
+technical.controller( 'cppCtrl', function( $scope, $http ) {
 	$scope.subject 	= "C++";
-	$scope.questions = [{ question: "How is a method overloaded?",
-						  answer: "Number and data types of arguments.",
+		$scope.questions = [{ question: "placeholder 1",
+						  answer: "",
 						  rank: 1,
-						  id: 78
+						  id: 1
 						},
-						{ question: "What is the difference between a struct and class?",
-						  answer: "Methods/data default to public in a struct.",
-						  rank: 1,
-						  id: 79
-						},
-						{ question: "Where in a function can a variable be declared?",
-						  answer: "A variable can be declared anywhere a statement would be valid, and can be declared in the initializer part of a for loop.",
-						  rank: 1,
-						  id: 80
-						},
-						{ question: "What are the four OOP constructs that C++ introduced?",
-						  answer: "abstraction, data encapsulation, inheritance, polymorphism.",
+						{ question: "placeholder 2",
+						  answer: "",
 						  rank: 2,
-						  id: 81
+						  id: 4
 						},
-						{ question: "What is a virtual method?",
-						  answer: "A method in a base class that may be overridden in a derived class.",
-						  rank: 2,
-						  id: 82
-						},
-						{ question: "Give an example of operator overloading.",
-						  answer: "Box operator+(const Box& b)",
-						  rank: 2,
-						  id: 83
-						},
-						{ question: "How is char and wchar_t differ?",
-						  answer: "char holds a single byte character, while wchar_t are multi-byte for large character sets (e.g., UNICODE).",
+						{ question: "placeholder 3",
+						  answer: "",
 						  rank: 3,
-						  id: 84
-						},
-						{ question: "What are all the storage class types?",
-						  answer: "auto, extern, register, static, mutable",
-						  rank: 3,
-						  id: 85
+						  id: 6
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
 	$scope.show 	= false;
 	$scope.answers 	= false;
+	$http({
+        method : "GET",
+        url : "load.php",
+		params: { category: 'C++'}
+    }).then(function mySucces(response) {
+        $scope.questions = response.data;
+		$scope.random 	 = pick3( $scope.questions );
+    }, function myError(response) {
+    });
 })
 .directive( "questionsCpp", function() {
 	return {
