@@ -1,25 +1,34 @@
 technical.controller( 'windowsCtrl', function( $scope ) {
 	$scope.subject 	= "Windows OS";
-	$scope.questions = [{ question: "What is the newline sequence for a file?",
-						  answer: "carriage return (\\r) followed by a newline (\\n)",
+	
+	$scope.questions = [{ question: "placeholder 1",
+						  answer: "",
 						  rank: 1,
-						  id: 240
+						  id: 1
 						},
-						{ question: "When logging in, how do you specify a domain different than the default domain? " +
-									"in the user field?",
-						  answer: "domain-name\\user-name",
+						{ question: "placeholder 2",
+						  answer: "",
 						  rank: 2,
-						  id: 241
+						  id: 4
 						},
-						{ question: "",
+						{ question: "placeholder 3",
 						  answer: "",
 						  rank: 3,
-						  id: 162
+						  id: 6
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
 	$scope.show 	= false;
 	$scope.answers 	= false;
+	$http({
+        method : "GET",
+        url : "load.php",
+		params: { category: 'Windows'}
+    }).then(function mySucces(response) {
+        $scope.questions = response.data;
+		$scope.random 	 = pick3( $scope.questions );
+    }, function myError(response) {
+    });
 })
 .directive( "questionsWindows", function() {
 	return {
