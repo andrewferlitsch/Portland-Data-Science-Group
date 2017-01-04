@@ -1,4 +1,4 @@
-
+# In Progress
 #----------------------------------------------------------------------
 # Initialization
 #----------------------------------------------------------------------
@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS questions
   question  VARCHAR(256) NOT NULL,
   answer    VARCHAR(256) NOT NULL,
   rank      SMALLINT(30) NOT NULL DEFAULT 1,
+  toggle	tinyint		 NOT NULL DEFAULT 1,
 
   INDEX(category),
   INDEX(rank)
@@ -20,66 +21,73 @@ DELETE FROM questions WHERE category = 'Java';
 # Java
 #----------------------------------------------------------------------
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Java',
     'What are the builtin scalar data types in Java?',
     'int, short, long, float, double, char, string, byte, boolean',
-    1
+    1,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Java',
     'What is the keyword import is used for?',
     'Used to import a library, where each item in the library is uniquely identified by a namespace.',
-    1
+    1,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Java',
     'What is the program entry point into a Java application?',
     'The class with a ''public static void main( String args[] )'' definition.',
-    1
+    1,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Java',
     'How do you exit from a Java application?',
     'System.exit( exit_code )',
-    1
+    1,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Java',
     'How do you output to standard out and standard error?',
     'System.out.println() and System.err.println()',
-    1
+    1,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Java',
     'How do you specify a class path when compiling a java file?',
     'javac -cp path javafile',
-    1
+    1,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Java',
     'In a String, how do you get the 3rd character?',
     'string.charAt(2)',
-    1
+    1,
+	1
   );
 
 # Redo
