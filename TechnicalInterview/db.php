@@ -29,7 +29,7 @@ class DB
 	 */
 	function Load( $category )
 	{
-		$q = "SELECT id,rank,question,answer FROM " . TBL_QUESTIONS . " WHERE category = '$category'";
+		$q = "SELECT id,rank,question,answer,toggle FROM " . TBL_QUESTIONS . " WHERE category = '$category'";
 		$result = mysqli_query( $this->connection, $q );
 		//echo "Q $q<br/>";
         //echo mysql_error( $this->connection ) . "<br/>";

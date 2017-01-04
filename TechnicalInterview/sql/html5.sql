@@ -136,22 +136,21 @@ INSERT INTO questions (category, question, answer, rank)
     3
   );
 
-
-# Redo
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'HTML5',
     'Describe how the <output> element works.',
-    'The <output> tag represents the result of a calculation (like one performed by a script).',
-    3
+    'This element represents the result of a calculation (like one performed by a script).',
+    3,
+	1
   );
 
-# Redo
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'HTML5',
     'How do you specify a number input element to take input in dollar and cents?',
     'Add attribute step=0.01',
-    3
+    3,
+	0
   );
 

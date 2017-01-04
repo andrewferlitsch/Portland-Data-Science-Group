@@ -1,4 +1,4 @@
-
+# In Progress
 #----------------------------------------------------------------------
 # Initialization
 #----------------------------------------------------------------------
@@ -20,75 +20,89 @@ DELETE FROM questions WHERE category = 'Javascript';
 # Javascript
 #----------------------------------------------------------------------
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Javascript',
     'How can you declare an empty array?',
     'var arr = new Array()  or  var arr = [];',
-    1
+    1,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Javascript',
     'How do you add (expand) a new element to an array?',
     'arr.push( newitem );',
-    1
+    1,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Javascript',
     'Which HTML element is used to embed Javascript code?',
     '<script></script>',
-    1
+    1,
+	1
   );
 
-# Redo
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Javascript',
     'What type of class is supported in Javascript?',
     'Prototyped classes',
-    2
+    2,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Javascript',
     'How do you round the number 7.5 to the nearest integer?',
     'Math.round( 7.5)',
-    2
+    2,
+	1
   );
-
-# Redo
-INSERT INTO questions (category, question, answer, rank) 
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Javascript',
-    'Describe two types of function declarations.',
-    'Named functions: function myfuncI() { ... }, and anonymous(unnamed)functions used in callbacks and event handlers.',
-    2
+    'What is a named function?',
+    'A function that is of the form: function myfuncI() { ... }.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Javascript',
+    'What is an anonymous function?',
+    'An(unnamed)functions used in callbacks and event handlers.',
+    2,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Javascript',
     'How can you get an HTML element?',
     'getElementById(), getElementByName(), getElementByClassName(), getElementByTagName()',
-    2
+    2,
+	1
   );
 
-# Redo
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Javascript',
     'What is the largest supported bit-size of an integer?',
     '32-bits',
-    2
+    2,
+	1
   );
 
 # Redo

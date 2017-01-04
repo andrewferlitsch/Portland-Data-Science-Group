@@ -8,7 +8,8 @@ CREATE TABLE IF NOT EXISTS questions
   category  VARCHAR(16)  NOT NULL,
   question  VARCHAR(256) NOT NULL,
   answer    VARCHAR(256) NOT NULL,
-  rank      SMALLINT(30) NOT NULL DEFAULT 1,
+  rank      TINYINT      NOT NULL DEFAULT 1,
+  toggle	TINYINT		 NOT NULL DEFAULT 1,
 
   INDEX(category),
   INDEX(rank)
@@ -20,87 +21,97 @@ DELETE FROM questions WHERE category = 'MySQL';
 # MySQL
 #----------------------------------------------------------------------
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'MySQL',
     'How do you select all columns from a table named mytable?',
     'SELECT * FROM mytable;',
-    1
+    1,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'MySQL',
     'How do you select only the columns field1 and field2 from a table named mytable?',
     'SELECT field1,field2 FROM mytable;',
-    1
+    1,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'MySQL',
     'How do you select only rows where field year is 2015?',
     'SELECT * FROM mytable where year=2015;',
-    1
+    1,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'MySQL',
     'How do you create a database?',
     'CREATE DATABASE databasename;',
-    1
+    1,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'MySQL',
     'How do you login to a password protected database?',
     'mysql -u username -p  , then you will be prompted for password',
-    1
+    1,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'MySQL',
     'How do you set which database to use?',
     'USE databasename;',
-    1
+    1,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'MySQL',
     'What does RDBMS stand for?',
     'Relational Database Management System',
-    1
+    1,
+	0
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'MySQL',
     'How do you count how many rows have year = 2015?',
     'SELECT COUNT(*) FROM mytable WHERE year=2015;',
-    2
+    2,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'MySQL',
     'How do you change a field (column) name?',
     'ALTER TABLE mytable CHANGE oldname newname;',
-    2
+    2,
+	1
   );
 
 
+# Redo
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'MySQL',

@@ -12,8 +12,9 @@ function Load( $category ) {
 		$question = str_replace( '"', '$quot;', $row[ 'question' ] );
 		$answer   = str_replace( '"', '$quot;', $row[ 'answer' ] );
 		$rank     = $row[ 'rank' ];
+		$toggle	  = $row[ 'toggle' ];
 		
-		$data .= "{ \"id\": $id, \"rank\": $rank, \"question\": \"$question\", \"answer\": \"$answer\" },";
+		$data .= "{ \"id\": $id, \"rank\": $rank, \"question\": \"$question\", \"answer\": \"$answer\", \"toogle\": $toggle },";
 	}
 	
 	$data .= "{}]";
