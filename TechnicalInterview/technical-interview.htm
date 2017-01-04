@@ -104,14 +104,12 @@ function pick3( questions )
 	var stack = new Array();
 	
 	for ( var rank = 1; rank <= 3; rank++ ) {
-		var loop = 0;
 		while ( true ) {
 			var pick = Math.round( Math.random() * len );
 			if ( questions[ pick ].rank == rank ) {
 				stack.push( pick );
 				break;
 			}
-			if ( loop++ > 20 ) break;
 		}
 	}
 	
