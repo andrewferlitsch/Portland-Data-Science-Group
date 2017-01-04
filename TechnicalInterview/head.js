@@ -20,7 +20,7 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 				  "<div ng-show='showleft'>" + 
 				  "	<ol>" +
 				  "		<li>The interviewee (you) tells the interviewer (other person) categories to be tested on.</li>" +
-				  "		<li>For each selected category, the interviewer clicks on the category, which will display three random questions and suggested answers, ranked consecutively harder (easy, moderate, hard).</li>" +
+				  "		<li>For each selected category, the interviewer clicks on the category, which will display three random questions, each ranked consecutively harder (easy, moderate, hard).</li>" +
 				  "		<li>The interviewer will select show answers and ask each question.</li>" +
 				  "		<li>If the interviewer feels the answer was sufficient, then the interviewer checks the Correct box.</li>" +
 				  "		<li>When a category is done, the interviewer selects the Score button in the category.</li>" +

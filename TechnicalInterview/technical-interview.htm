@@ -35,63 +35,70 @@
 
 </script>
 </head>
-<body ng-app="technical" style='margin: 20px;'>
+<body ng-app="technical" ng-init='test=false' style='margin: 20px;'>
 
-	<div ng-controller="interviewCtrl" interview></div>
-	
-	<div ng-controller="webCtrl" questions-web></div>
-	
-	<div ng-controller="htmlCtrl" questions-html></div>
-	
-	<div ng-controller="html5Ctrl" questions-html5></div>
-	
-	<div ng-controller="cssCtrl" questions-css></div>
-	
-	<div ng-controller="jsCtrl" questions-js></div>
-	
-	<div ng-controller="jqueryCtrl" questions-jquery></div>
-	
-	<div ng-controller="angularCtrl" questions-angular></div>
-	
-	<div ng-controller="javaCtrl" questions-java></div>
-	
-	<div ng-controller="csharpCtrl" questions-csharp></div>
-	
-	<div ng-controller="cppCtrl" questions-cpp></div>
-	
-	<div ng-controller="cCtrl" questions-c></div>
-	
-	<div ng-controller="rCtrl" questions-r></div>
-	
-	<div ng-controller="pythonCtrl" questions-python></div>
-	
-	<div ng-controller="dataScienceCtrl" questions-data-science></div>
-	
-	<div ng-controller="algorithmsCtrl" questions-algoritms></div>
-	
-	<div ng-controller="osCtrl" questions-os></div>
-	
-	<div ng-controller="oopCtrl" questions-oop></div>
-	
-	<div ng-controller="dosCtrl" questions-dos></div>
-	
-	<div ng-controller="mysqlCtrl" questions-mysql></div>
-	
-	<div ng-controller="mysqlDbaCtrl" questions-mysql-dba></div>
-	
-	<div ng-controller="qaCtrl" questions-qa></div>
-	
-	<div ng-controller="agileCtrl" questions-agile></div>
-	
-	<div ng-controller="networkCtrl" questions-network></div>
-	
-	<div ng-controller="securityCtrl" questions-security></div>
+	<section>
+		<div ng-controller="interviewCtrl" interview></div>
+		<div style='text-align: center;'>
+			<button class='w3-btn w3-large w3-rounder w3-jumbo w3-blue' ng-click='test=true' ng-show='!test'>Take the Test</button>
+		</div>
+	</section>
+
+	<section ng-show='test'>	
+		<div ng-controller="webCtrl" questions-web></div>
 		
-	<div ng-controller="finalCtrl" final></div>
+		<div ng-controller="htmlCtrl" questions-html></div>
+		
+		<div ng-controller="html5Ctrl" questions-html5></div>
+		
+		<div ng-controller="cssCtrl" questions-css></div>
+		
+		<div ng-controller="jsCtrl" questions-js></div>
+		
+		<div ng-controller="jqueryCtrl" questions-jquery></div>
+		
+		<div ng-controller="angularCtrl" questions-angular></div>
+		
+		<div ng-controller="javaCtrl" questions-java></div>
+		
+		<div ng-controller="csharpCtrl" questions-csharp></div>
+		
+		<div ng-controller="cppCtrl" questions-cpp></div>
+		
+		<div ng-controller="cCtrl" questions-c></div>
+		
+		<div ng-controller="rCtrl" questions-r></div>
+		
+		<div ng-controller="pythonCtrl" questions-python></div>
+		
+		<div ng-controller="dataScienceCtrl" questions-data-science></div>
+		
+		<div ng-controller="algorithmsCtrl" questions-algoritms></div>
+		
+		<div ng-controller="osCtrl" questions-os></div>
+		
+		<div ng-controller="oopCtrl" questions-oop></div>
+		
+		<div ng-controller="dosCtrl" questions-dos></div>
+		
+		<div ng-controller="mysqlCtrl" questions-mysql></div>
+		
+		<div ng-controller="mysqlDbaCtrl" questions-mysql-dba></div>
+		
+		<div ng-controller="qaCtrl" questions-qa></div>
+		
+		<div ng-controller="agileCtrl" questions-agile></div>
+		
+		<div ng-controller="networkCtrl" questions-network></div>
+		
+		<div ng-controller="securityCtrl" questions-security></div>
+			
+		<div ng-controller="finalCtrl" final></div>
+		
+		<div id="popup"></div>
+	</section>
 	
-	<div id="popup"></div>
-
-	<footer style='text-align: center; color: gray'>Copyright(c) 2016-17, Andrew Ferlitsch, Co-Organizer, Portland Data Science Group</footer>
+	<footer style='text-align: center; color: gray'><br/>Copyright(c) 2016-17, Andrew Ferlitsch, Co-Organizer, Portland Data Science Group</footer>
 <script>
 var technical = angular.module( 'technical', []);
 
@@ -286,10 +293,6 @@ $(function() {
 			$(this).attr('class', 'w3-btn w3-green score');
 			UnTally( $(this).attr( 'name' ) );
 		}
-	})
-	
-	$("button.better").click(function() {
-		showBetter( $(this).attr( 'name' ), $(this).attr( 'id' ) );
 	})
 	
 	$("button.question").click(function() {
