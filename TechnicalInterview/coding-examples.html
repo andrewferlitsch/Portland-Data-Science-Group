@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>Preparing for a Technical Interview</title>
+	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<style>
+header { text-align: center; }
+footer { color: gray; }
+.item {
+	display: inline-block;
+	width: 60px;
+	font-weight: bold;
+}
+pre { background-color: #DDDDDD; margin: 5px}
+</style>
+</head>
+
+<body style='width: 900px; margin: 20px; margin: 0 auto'>
+<header>
+	<div style='font-size: 24pt; font-weight: bold;'>The Technical Interview</div>
+	</div>
+	<h2 style='color: steelblue'>Coding Examples</h2>
+	<h3>Jan. 10, 2016</h3>
+</header>
+
+<h3>Prime Numbers</h3>
+<p>
+The most basic coding example you might get asked is to write an algorithm to output a series of prime numbers.
+Prime numbers are numbers that are only divisible by one and itself. The algorithm is a 
+straight forward iterative algorithm.
+</p>
+<p>
+The number one is obviously a prime number, since it can only be divisible by itself. The
+number two is also obviously a prime number, since there are no numbers between one and two
+to divide by. Therefore, I generally like to start the iterative process at three, though
+you may choose to start it at two.
+</p>
+<p>
+The process is simple. For each number, we attempt to divide it by every number less than it,
+except for one. We use the integer modulo operator to test if there is a remainder. If there
+is no remainder, it is divisible by the number and therefore not a prime. If all numbers it is
+divided by leave a remainder, then it is a prime.
+</p>
+<h4>Python</h4>
+<pre>
+print( "Prime Numbers between 1 and 100")
+
+# Prime Numbers are numbers only divisible by 1 and itself.
+print( "1" )	
+print( "2" )
+
+# Primes for numbers above 2
+for number in range( 3, 100 ):
+	# Attempt to divide this number by every number between 2 and one less than itself
+	for div in range(2,number-1):
+		# use the mod function to see if their is a remainder in the division
+		if ( number % div ) == 0:
+			break
+	else:
+		print(number)
+</pre>
+
+<h4>Java</h4>
+<pre>
+public class prime {
+	public static void main( String args[] ) {
+		System.out.println( "Prime Numbers between 1 and 100");
+
+		// Prime Numbers are numbers only divisible by 1 and itself.
+		System.out.println( "1" );
+		System.out.println( "2" );
+
+		// Primes for numbers above 2
+		for ( int number = 3; number <=100; number++ ) {
+			// Attempt to divide this number by every number between 2 and one less than itself
+			int div = 2;
+			for ( /**/; div < number; div++ ) {
+				// use the mod function to see if their is a remainder in the division
+				if ( ( number % div ) == 0 )
+					break;
+			}
+			if ( div == number )
+				System.out.println(number);
+		}
+	}
+}
+</pre>
+<p>
+Can we make an improvement? Yes. Since we know all even numbers are divisible by two, we
+can skip testing even numbers and only test odd numbers.
+</p>
+
+<h4>Python</h4>
+<pre>
+print( "Prime Numbers between 1 and 100")
+
+# Prime Numbers are numbers only divisible by 1 and itself.
+print( "1" )	
+print( "2" )
+
+# Primes for numbers above 3
+for number in range( 3, 100, 2 ):
+	# Attempt to divide this number by every number between 2 and one less than itself
+	for div in range(2,number-1):
+		# use the mod function to see if their is a remainder in the division
+		if ( number % div ) == 0:
+			break
+	else:
+		print(number)
+</pre>
+
+<h4>Java</h4>
+<pre>
+public class prime {
+	public static void main( String args[] ) {
+		System.out.println( "Prime Numbers between 1 and 100");
+
+		// Prime Numbers are numbers only divisible by 1 and itself.
+		System.out.println( "1" );
+		System.out.println( "2" );
+
+		// Primes for numbers above 3
+		for ( int number = 3; number <=100; number += 2 ) {
+			// Attempt to divide this number by every number between 2 and one less than itself
+			int div = 2;
+			for ( /**/; div < number; div++ ) {
+				// use the mod function to see if their is a remainder in the division
+				if ( ( number % div ) == 0 )
+					break;
+			}
+			if ( div == number )
+				System.out.println(number);
+		}
+	}
+}
+</pre>
+
+<h3>Fibonacci Sequence</h3>
+<p>
+Of the most common and basic coding examples is to code a solution for the Fibonacci sequence. A Fibonacci sequence is a function where F(N) equals
+F(n-1) + F(n-2); that is the summation of the previous two values in the sequence. Originally, the seed sequence was F(0) = 1 and F(1) = 1, but modern
+solutions use F(0) = 0 and F(1) = 1. This sequence can be written in a very short recursive algorithm.
+</p>
+
+<h4>Python</h4>
+<pre>
+# Fibonacci Sequence
+# Is a sum (addition) of the previous two numbers in the sequence, as
+#	F(n) = F(n-1) + F(n-2)
+# Where
+# 	F(0) = 0 and F(1) = 1
+# Hence 
+#	F(2) = 0 + 1 [F(1) + F(0)] = 1
+#	F(3) = 1 + 1 [F(2) + F(1)] = 2
+
+# Recursive Solution
+def Fibonacci(n):
+	# F(0) and F(1) case
+	if n==0:
+		return 0
+	if n==1:
+		return 1
+	return Fibonacci(n-1) + Fibonacci(n-2)
+
+# Fibonacci Sequence to F(10)
+for number in range( 0, 10 ):
+	print( Fibonacci(number) )
+</pre>
+
+<h4>Java</h4>
+<pre>
+public class fibonacci {
+	public static void main( String args[] ) {
+		System.out.println( "Fibonacci Sequence to F(10)");
+
+		for ( int number = 0; number < 10; number++ )
+			System.out.println( Fibonacci( number ) );
+
+	}
+	
+	// Recursive Solution
+	public static int Fibonacci( int n) {
+		if ( n == 0 ) return 0;
+		if ( n == 1 ) return 1;
+		return Fibonacci( n - 1 ) + Fibonacci( n - 2 );
+	}
+}
+</pre>
+
+<footer>
+Best Regards,<br/>
+Andrew Ferlitsch<br/>
+Portland Data Science Group, Co-Organizer
+</footer>
+</body>
+</html>
