@@ -145,6 +145,32 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Java',
+    'What is a Vector?',
+    'A dynamic array where each operation is synchronized to be thread-safe.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Java',
+    'What is access (get) time for an ArrayList (Dynamic Arrays)?',
+    'The time to get an item in this type of list is O(1) and O(n) to add an item.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Java',
+    'What is access (get) time for an LinkedList?',
+    'The time to get an item in this type of list is O(n) and O(1) to add an item.',
+    3,
+	1
+  );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -173,4 +199,21 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     3,
 	0
   );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Java',
+    'What does interning a string mean?',
+    'A string that has been stored in the string pool, where there is only one copy of the string. If two variables are assigned to this string, they will point to the same address.',
+    3,
+	1
+  );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Java',
+    'How do you intern a string object so its stored in the string pool?',
+    'myString = myString.intern();',
+    3,
+	1
+  );

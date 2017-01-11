@@ -40,7 +40,7 @@
 	<section>
 		<div ng-controller="interviewCtrl" interview></div>
 		<div style='text-align: center;'>
-			<button class='w3-btn w3-large w3-rounder w3-jumbo w3-blue' ng-click='test=true' ng-show='!test'>Take the Test</button>
+			<button class='w3-btn w3-large w3-round-large w3-jumbo w3-blue' ng-click='test=true' ng-show='!test'>Take the Test</button>
 		</div>
 	</section>
 
@@ -276,7 +276,13 @@ function UnTally( category ) {
 
 $(function() {
 	$("button#guide").click(function() {
-		window.location.href = "preparing-for-technical-interview.html";
+		var win = window.open("preparing-for-technical-interview.html", '_blank');
+		win.focus();
+	})
+	
+	$("button#coding").click(function() {
+		var win = window.open("coding-examples.html", '_blank');
+		win.focus();
 	})
 	
 	$("button.score").click(function() {

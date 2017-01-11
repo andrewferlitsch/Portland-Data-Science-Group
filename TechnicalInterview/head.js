@@ -6,11 +6,11 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 	return {
 		restrict: 'A',
 		template: "<div style='text-align: center'>" +
-				  "<div style='font-size: 24pt; font-weight: bold;'>The Technical Interview</div>" +
-				  //"<h2>Portland Data Science Group</h2>" +
+				  "<h1>The Technical Interview</h1>" +
 				  "</div>" +
 				  "<div style='font-size: 16pt;'>" +
-				  "<p>For those wanting to prepare for an in-person technical interview, see our <button id='guide' class='w3-btn w3-green'>Guide</button></p>" +
+				  "<p>For those wanting to prepare for an in-person technical interview, see our <button id='guide' class='w3-btn w3-green w3-round'>Guide</button> " +
+				  "and our <button id='coding' class='w3-btn w3-green w3-round'>Coding Examples</button></p>" +
 				  "</div>" +
 				  "<div style='width: 600px; float: left;'>" +
 				  "<h3>Preparing for a Technical Phone Screen</h3>" +
