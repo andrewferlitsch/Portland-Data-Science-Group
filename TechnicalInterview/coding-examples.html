@@ -493,10 +493,23 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 
 <h4>Algorithm - Inorder</h4>
 <ul>
-	<li>From the current node (root), traverse to left node.</li>
-	<li>From the current node (root), traverse to the right node.</li>
-	<li>Recursively apply the algorithm to each node visited.</li>
-	<li>Return to the root node of the left and right node.</li>
+	<li>From the current node (root), traverse to left node. Recursively apply algorithm to the left node.</li>
+	<li>Traverse back to the root node.</li>
+	<li>From the current node (root), traverse to right node. Recursively apply algorithm to the right node.</li>
+</ul>
+
+<h4>Algorithm - Preorder</h4>
+<ul>
+	<li>Traverse to the root node.</li>
+	<li>From the current node (root), traverse to left node. Recursively apply algorithm to the left node.</li>
+	<li>From the current node (root), traverse to right node. Recursively apply algorithm to the right node.</li>
+</ul>
+
+<h4>Algorithm - Postorder</h4>
+<ul>
+	<li>From the current node (root), traverse to left node. Recursively apply algorithm to the left node.</li>
+	<li>From the current node (root), traverse to right node. Recursively apply algorithm to the right node.</li>
+	<li>Traverse back to the root node.</li>
 </ul>
 
 

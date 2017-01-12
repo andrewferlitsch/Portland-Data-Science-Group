@@ -93,6 +93,24 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Java',
+    'What can you assign to the data type Object?',
+    'Anything can be assigned to this data type.',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Java',
+    'In a class method, how do you assign a member field that has the same name as a parameter?',
+    'this.field = field',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Java',
     'How does garbage collection work?',
     'Java uses lazy garbage collection. There is no explicit method to delete an allocated item or to force garbage collection.',
     2,
