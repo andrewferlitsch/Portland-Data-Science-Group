@@ -29,6 +29,10 @@ technical.controller( 'dosCtrl', function( $scope, $http ) {
 		$scope.random 	 = pick3( $scope.questions );
     }, function myError(response) {
     });
+    
+	$scope.better = function( id ) {
+		showBetter( "DOS", id );
+	}
 })
 .directive( "questionsDos", function() {
 	return {

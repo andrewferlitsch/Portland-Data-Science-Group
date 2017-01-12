@@ -27,7 +27,11 @@ technical.controller( 'angularCtrl', function( $scope, $http ) {
         $scope.questions = response.data;
 		$scope.random 	 = pick3( $scope.questions );
     }, function myError(response) {
-    });
+	});
+    
+	$scope.better = function( id ) {
+		showBetter( "AngularJS", id );
+	}
 })
 .directive( "questionsAngular", function() {
 	return {

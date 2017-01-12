@@ -28,6 +28,10 @@ technical.controller( 'jqueryCtrl', function( $scope, $http ) {
 		$scope.random 	 = pick3( $scope.questions );
     }, function myError(response) {
     });
+	
+	$scope.better = function( id ) {
+		showBetter( "JQuery", id );
+	}
 })
 .directive( "questionsJquery", function() {
 	return {

@@ -29,7 +29,7 @@ technical.controller( 'agileCtrl', function( $scope, $http ) {
     }, function myError(response) {
     });
 	$scope.better = function( id ) {
-		showBetter( "agile", id );
+		showBetter( "Agile", id );
 	}
 })
 .directive( "questionsAgile", function() {

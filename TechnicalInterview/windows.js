@@ -29,6 +29,10 @@ technical.controller( 'windowsCtrl', function( $scope ) {
 		$scope.random 	 = pick3( $scope.questions );
     }, function myError(response) {
     });
+    
+	$scope.better = function( id ) {
+		showBetter( "Windows", id );
+	}
 })
 .directive( "questionsWindows", function() {
 	return {

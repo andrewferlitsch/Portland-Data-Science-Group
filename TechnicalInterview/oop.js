@@ -29,6 +29,10 @@ technical.controller( 'oopCtrl', function( $scope, $http ) {
 		$scope.random 	 = pick3( $scope.questions );
     }, function myError(response) {
     });
+    
+	$scope.better = function( id ) {
+		showBetter( "OOP", id );
+	}
 })
 .directive( "questionsOop", function() {
 	return {

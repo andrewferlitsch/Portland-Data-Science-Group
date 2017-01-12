@@ -29,6 +29,10 @@ technical.controller( 'rCtrl', function( $scope, $http ) {
 		$scope.random 	 = pick3( $scope.questions );
     }, function myError(response) {
     });
+    
+	$scope.better = function( id ) {
+		showBetter( "R", id );
+	}
 })
 .directive( "questionsR", function() {
 	return {
