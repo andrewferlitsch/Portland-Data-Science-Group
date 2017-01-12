@@ -12,6 +12,8 @@ footer { color: gray; }
 	width: 60px;
 	font-weight: bold;
 }
+h3 { color: teal;}
+h4 { color: steelblue;}
 pre { background-color: #DDDDDD; margin: 5px}
 </style>
 </head>
@@ -21,8 +23,14 @@ pre { background-color: #DDDDDD; margin: 5px}
 	<div style='font-size: 24pt; font-weight: bold;'>The Technical Interview</div>
 	</div>
 	<h2 style='color: steelblue'>Coding Examples</h2>
-	<h3>Jan. 10, 2016</h3>
+	<h4 style='color: darkgray'>All the examples are hand coded and tested by me. They are not copied from other sources.</h4>
 </header>
+
+<p>
+The coding examples in this section are basic algorithms. An coding portion of a technical interview will likely start with one of these types
+of algorithms. Typically, after asking you to code the basic algorithms, you will be ask to make improvements or other variations. If you are 
+unable to pass this part of the coding portion, you will probably not continue to the next round of interview.
+</p>
 
 <h3>Prime Numbers</h3>
 <p>
@@ -31,19 +39,22 @@ Prime numbers are numbers that are only divisible by one and itself. The algorit
 straight forward iterative algorithm.
 </p>
 <p>
-The number one is obviously a prime number, since it can only be divisible by itself. The
-number two is also obviously a prime number, since there are no numbers between one and two
+The number one is a prime number, since it can only be divisible by itself. The
+number two is also a prime number, since there are no numbers between one and two
 to divide by. Therefore, I generally like to start the iterative process at three, though
 you may choose to start it at two.
 </p>
-<p>
-The process is simple. For each number, we attempt to divide it by every number less than it,
-except for one. We use the integer modulo operator to test if there is a remainder. If there
-is no remainder, it is divisible by the number and therefore not a prime. If all numbers it is
-divided by leave a remainder, then it is a prime.
-</p>
+<h4>Algorithm</h4>
+<ol>
+	<li>For each number, we attempt to divide it by every number less than it, except for one.</li>
+	<li>The integer modulo operator is used to test if there is a remainder from the integer division.</li>
+	<li>If there is no remainder, it is divisible by the number and therefore not a prime.</li>
+	<li>If each of the numbers it is divided by has a remainder, it is a prime.</li>
+</ol>
+
 <h4>Python</h4>
 <pre>
+
 print( "Prime Numbers between 1 and 100")
 
 # Prime Numbers are numbers only divisible by 1 and itself.
@@ -51,18 +62,20 @@ print( "1" )
 print( "2" )
 
 # Primes for numbers above 2
-for number in range( 3, 100 ):
+for number in range( 3, 101 ):
 	# Attempt to divide this number by every number between 2 and one less than itself
-	for div in range(2,number-1):
+	for div in range(2,number):
 		# use the mod function to see if their is a remainder in the division
 		if ( number % div ) == 0:
 			break
 	else:
 		print(number)
+		
 </pre>
 
 <h4>Java</h4>
 <pre>
+
 public class prime {
 	public static void main( String args[] ) {
 		System.out.println( "Prime Numbers between 1 and 100");
@@ -85,33 +98,48 @@ public class prime {
 		}
 	}
 }
+
 </pre>
+
 <p>
 Can we make an improvement? Yes. Since we know all even numbers are divisible by two, we
-can skip testing even numbers and only test odd numbers.
+can skip checking even numbers and only check odd numbers. Likewise, since we know odd numbers are not divisible by even numbers,
+we can skip dividing by even numbers and only divide by odd numbers.
 </p>
+
+<h4>Algorithm - Skip even numbers</h4>
+<ol>
+	<li>For each odd number, we attempt to divide it by every odd number less than it, except for one and two.</li>
+	<li>The integer modulo operator is used to test if there is a remainder from the integer division.</li>
+	<li>If there is no remainder, it is divisible by the number and therefore not a prime.</li>
+	<li>If each of the numbers it is divided by has a remainder, it is a prime.</li>
+</ol>
 
 <h4>Python</h4>
 <pre>
+
 print( "Prime Numbers between 1 and 100")
 
 # Prime Numbers are numbers only divisible by 1 and itself.
 print( "1" )	
-print( "2" )
+print( "2" )	
+print( "3" )
 
-# Primes for numbers above 3
-for number in range( 3, 100, 2 ):
-	# Attempt to divide this number by every number between 2 and one less than itself
-	for div in range(2,number-1):
+# Primes for numbers above 5
+for number in range( 5, 101, 2 ):
+	# Attempt to divide this number by every odd number between 2 and one less than itself
+	for div in range(3,number,2):
 		# use the mod function to see if their is a remainder in the division
 		if ( number % div ) == 0:
 			break
 	else:
 		print(number)
+		
 </pre>
 
 <h4>Java</h4>
 <pre>
+
 public class prime {
 	public static void main( String args[] ) {
 		System.out.println( "Prime Numbers between 1 and 100");
@@ -119,12 +147,13 @@ public class prime {
 		// Prime Numbers are numbers only divisible by 1 and itself.
 		System.out.println( "1" );
 		System.out.println( "2" );
+		System.out.println( "3" );
 
-		// Primes for numbers above 3
-		for ( int number = 3; number <=100; number += 2 ) {
-			// Attempt to divide this number by every number between 2 and one less than itself
-			int div = 2;
-			for ( /**/; div < number; div++ ) {
+		// Primes for numbers above 5
+		for ( int number = 5; number <=100; number += 2 ) {
+			int div = 3;
+			// Attempt to divide this number by every odd number between 3 and one less than itself
+			for ( /**/; div < number; div += 2 ) {
 				// use the mod function to see if their is a remainder in the division
 				if ( ( number % div ) == 0 )
 					break;
@@ -134,17 +163,89 @@ public class prime {
 		}
 	}
 }
+
+</pre>
+
+<p>
+Can we make another improvement? Yes. Since we are skipping even numbers, we know that each number to be prime must be divisible by at least the number three.
+Therefore, any divisible number must be one-third or less the value of the number. We can cut down on the number of iterations by only dividing
+the first 1/3 of values less than the number.
+</p>
+
+<h4>Algorithm - Skip even numbers, and divide only by numbers one-third or less than the number.</h4>
+<ol>
+	<li>For each odd number, we attempt to divide it by every odd number that is less than one-third of the number, except for one and two.</i>
+	<li>The integer modulo operator is used to test if there is a remainder from the integer division.</li>
+	<li>If there is no remainder, it is divisible by the number and therefore not a prime.</li>
+	<li>If each of the numbers it is divided by has a remainder, it is a prime.</li>
+</ol>
+
+<h4>Python</h4>
+<pre>
+
+print( "1" )	
+print( "2" )	
+print( "3" )
+for number in range( 5, 101, 2 ):
+	# Attempt to divide this number by every number between 3 and one third less than itself
+	third = int( (number / 3 ) ) + 1
+	for div in range(3,third,2):
+		# use the mod function to see if their is a remainder in the division
+		if ( number % div ) == 0:
+			break
+	else:
+		print(number)
+		
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+public class prime {
+	public static void main( String args[] ) {
+		System.out.println( "Prime Numbers between 1 and 100");
+
+		// Prime Numbers are numbers only divisible by 1 and itself.
+		System.out.println( "1" );
+		System.out.println( "2" );
+		System.out.println( "3" );
+
+		// Primes for numbers above 5
+		for ( int number = 5; number <=100; number += 2 ) {
+			int div = 3;
+			int third = ( number / 3 );	// calculate one-third of the number
+			// Attempt to divide this number by every number between 3 and one third of the number
+			for ( /**/; div <= third; div += 2) {
+				// use the mod function to see if their is a remainder in the division
+				if ( ( number % div ) == 0 )
+					break;
+			}
+			if ( div >= third )
+				System.out.println(number);
+		}
+	}
+}
+
 </pre>
 
 <h3>Fibonacci Sequence</h3>
 <p>
-Of the most common and basic coding examples is to code a solution for the Fibonacci sequence. A Fibonacci sequence is a function where F(N) equals
+One of the most common and basic coding examples is to code a solution for the Fibonacci sequence. A Fibonacci sequence is a function where F(N) equals
 F(n-1) + F(n-2); that is the summation of the previous two values in the sequence. Originally, the seed sequence was F(0) = 1 and F(1) = 1, but modern
 solutions use F(0) = 0 and F(1) = 1. This sequence can be written in a very short recursive algorithm.
 </p>
 
+<h4>Algorithm - Recursive</h4>
+<ul>
+	<li>If n = 0, then return 0.</li>
+	<li>If n = 1, then return 1.</li>
+	<li>If n > 1, return the sum of F(n-1) + F(n-2)</li>
+</ul>
+
 <h4>Python</h4>
+
 <pre>
+
 # Fibonacci Sequence
 # Is a sum (addition) of the previous two numbers in the sequence, as
 #	F(n) = F(n-1) + F(n-2)
@@ -166,10 +267,12 @@ def Fibonacci(n):
 # Fibonacci Sequence to F(10)
 for number in range( 0, 10 ):
 	print( Fibonacci(number) )
+	
 </pre>
 
 <h4>Java</h4>
 <pre>
+
 public class fibonacci {
 	public static void main( String args[] ) {
 		System.out.println( "Fibonacci Sequence to F(10)");
@@ -186,9 +289,220 @@ public class fibonacci {
 		return Fibonacci( n - 1 ) + Fibonacci( n - 2 );
 	}
 }
+
 </pre>
 
+<p>
+It is common to be asked if you can write the algorithm for an iterative solution (looping - no recursion).
+</p>
+
+<h4>Algorithm - Iterative</h4> 
+<ul>
+	<li>If n = 0, then return 0.</li>
+	<li>If n = 1, then return 1.</li>
+	<li>If n > 1, then set last F(n-2) = 0, and last F(n-1) = 0, and F(n) initialized to zero.</li>
+	<li>Loop from 2 to n.
+		<ul>
+			<li>Set current F(n) to current F(n-1) + F(n-2).</li>
+			<li>Set F(n-2) to current F(n-1).</li>
+			<li>Set F(n-1) to current F(n).</li>
+		</ul>
+	</li>
+</ul>
+
+<h4>Python</h4>
+<pre>
+
+def FibonacciIterative(n):
+	# F(0) and F(1) case
+	if n==0:
+		return 0
+	if n==1:
+		return 1
+	fn	  = 0	# current value for F(n)
+	f_minus_1 = 1	# current value for F(n-1)
+	f_minus_2 = 0	# current value for F(n-2)
+	for i in range( 2, n+1 ):
+		fn        = f_minus_1 + f_minus_2   # F(n) = F(n-1) + F(n-2)
+		f_minus_2 = f_minus_1               # next F(n-2)
+		f_minus_1 = fn                      # next F(n-1)
+	return fn
+		
+# Fibonacci Sequence to F(10)
+for number in range( 0, 10 ):
+	print( FibonacciIterative(number) )
+	
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+public class fibonacci {
+	public static void main( String args[] ) {
+		System.out.println( "Fibonacci Sequence to F(10)");
+
+		for ( int number = 0; number < 10; number++ )
+			System.out.println( Fibonacci( number ) );
+	}
+	
+	// Iterative Solution	
+	public static int Fibonacci( int n ) {
+		if ( n == 0 ) return 0;
+		if ( n == 1 ) return 1;
+
+		int fn	      = 0;	// current value for F(n)		
+		int f_minus_2 = 0;	// current value of F(n-2)
+		int f_minus_1 = 1;	// current value of F(n-1)
+		for ( int i = 2; i <= n; i++ ) {
+			fn        = f_minus_1 + f_minus_2;  // F(n) = F(n-1) + F(n-2)
+			f_minus_2 = f_minus_1;              // next F(n-2)
+			f_minus_1 = fn;                     // next F(n-1)
+		}
+		return fn;
+	}
+}
+
+</pre>
+
+<h3>Binary Tree</h3>
+
+<p>
+A binary tree is a tree where each node contains at most two branches (subtrees), commonly known as the left tree and right tree. The recursive
+definition is a binary tree is either empty or a single node, where the left and right branches are binary subtrees.
+</p>
+<pre>
+binary tree:    empty node |  
+                node
+                    left binary subtree
+                    right binary subtree
+</pre>
+
+<p>
+You may be asked to code a class definition for a binary tree node. The binary tree node will have the following members/methods:
+<ul>
+	<li>Constructor for instantiating the node and initializing the node data. In my examples, I use the data type 'Object' (Java) to indicate that
+	the node is not limited to the type of data it can hold, which is determined at run-time.</li>
+	<li>Private member fields (only accessible by the class object) for the data value, left and right subtrees.</li>
+	<li>Public Set and Get accessors for the data value, left and right subtrees, which can be used by a program accessing the class object.</li>
+</ul> 
+</p>
+
+<h4>Python</h4>
+<pre>
+
+class BinaryTree:
+	# Constructor: set the node data and left/right subtrees to null
+	def __init__(self, key):
+		self.__left  = None	# node data
+		self.__right = None	# left binary subtree
+		self.__key   = key	# right binary subtree
+
+	# Set Left Binary Subtree
+	def Left(left):
+		self.__left = left
+
+	# Get Left Binary Subtree
+	def Left():
+		return __left
+
+	# Set Right Binary Subtree
+	def Right(right):
+		self.__right = right
+
+	# Get Right Binary Subtree
+	def Right():
+		return __right
+
+	# Set Node Data
+	def Key(key):
+		self.__key = key
+
+	# Get Node Data
+	def Key():
+		return __key
+		
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+// Binary Tree Class
+class BinaryTree {
+    private Object key;			// node data
+    private BinaryTree left;	// left binary subtree
+    private BinaryTree right;	// right binary subtree
+	
+	// Constructor: set the node data and left/right subtrees to null
+	public BinaryTree (Object key) {
+        this.key = key;
+        right = null;
+        left = null;
+    }
+	
+	// Set the left binary subtree
+	public void Left( BinaryTree left ) {
+		this.left = left;
+	}
+	
+	// Get the left binary subtree
+	public BinaryTree Left() {
+		return left;
+	}
+	
+	// Set the right binary subtree
+	public void Right( BinaryTree right ) {
+		this.right = right;
+	}
+	
+	// Get the right binary subtree
+	public BinaryTree Right() {
+		return right;
+	}
+	
+	// Set the node data
+	public void Key( Object key ) {
+		this.key = key;
+	}
+	
+	// Get the node data
+	public Object Key() {
+		return key;
+	}
+}
+
+</pre>
+
+<h3>Binary Tree Traversals</h3>
+
+<p>
+Binary trees can be traversed either breadth first or depth first. In a breadth first traversal, the tree is traversed one level at a time. 
+The root node (level 1) is first visited, then the left and right node (level 2) of the root, and then the left and right nodes of these subtrees (level 3),
+and so forth.
+</p>
+<p>
+For depth first, a tree can be traversed either inorder, preorder or postorder.
+</p>
+<ul>
+	<li>Inorder: left (node), root, right</li>
+	<li>Preorder: root, left, right</li>
+	<li>Postorder: left, right, root</li>
+</ul>
+<p>
+If you are ask questions about a binary search tree (BST), most likely the algorithm will use a postorder traversal.
+</p>
+
+<h4>Algorithm - Inorder</h4>
+<ul>
+	<li>From the current node (root), traverse to left node.</li>
+	<li>From the current node (root), traverse to the right node.</li>
+	<li>Recursively apply the algorithm to each node visited.</li>
+	<li>Return to the root node of the left and right node.</li>
+</ul>
+
+<h4>Java</h4>
+
 <footer>
+<br/>
 Best Regards,<br/>
 Andrew Ferlitsch<br/>
 Portland Data Science Group, Co-Organizer
