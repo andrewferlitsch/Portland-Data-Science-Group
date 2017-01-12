@@ -1,4 +1,4 @@
-# In Progress
+# Reviewed
 #----------------------------------------------------------------------
 # Initialization
 #----------------------------------------------------------------------
@@ -127,14 +127,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-# Redo
-INSERT INTO questions (category, question, answer, rank) 
-  VALUES (
-    'HTML5',
-    'Describe the File Drag and Drop API.',
-    '',
-    3
-  );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (

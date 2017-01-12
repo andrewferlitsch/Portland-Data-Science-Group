@@ -1,4 +1,4 @@
-# In Progress
+# Reviewed
 #----------------------------------------------------------------------
 # Initialization
 #----------------------------------------------------------------------
@@ -105,21 +105,21 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-# Redo
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Javascript',
     'Give an example of a regular expression pattern in Javascript.',
     'var pat = /hello/i;  // matches all case-insensitive instances of the string hello. str.replace( /hello/i, "goodbye"); replaces hello with goodbye in string str.',
-    3
+    3,
+	1
   );
 
-# Redo
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Javascript',
     'What tool do you use to debug javascript errors in FireFox? How do you write to the console log?',
     'FireFox Options Menu->Developer Tools->Browser Console. You can write to the browser console with console.log().',
-    3
+    3,
+	0
   );
 

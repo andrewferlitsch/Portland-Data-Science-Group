@@ -1,4 +1,4 @@
-
+# In Progress
 #----------------------------------------------------------------------
 # Initialization
 #----------------------------------------------------------------------
@@ -8,7 +8,8 @@ CREATE TABLE IF NOT EXISTS questions
   category  VARCHAR(16)  NOT NULL,
   question  VARCHAR(256) NOT NULL,
   answer    VARCHAR(256) NOT NULL,
-  rank      SMALLINT(30) NOT NULL DEFAULT 1,
+  rank      TINYINT      NOT NULL DEFAULT 1,
+  toggle    TINYINT      NOT NULL DEFAULT 1,
 
   INDEX(category),
   INDEX(rank)
@@ -20,12 +21,31 @@ DELETE FROM questions WHERE category = 'Security';
 # Security
 #----------------------------------------------------------------------
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Security',
     'What is the difference between http:// and https:// ?',
     'http sends data unencrypted. https sends it encrypted using SSL',
-    1
+    1,
+	0
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Security',
+    'How does http:// send data?',
+    'This HTTP prefix sends data unencrypted.',
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Security',
+    'How does https:// send data?',
+    'This HTTP prefix sends data encrypted using SSL.',
+    1,
+	1
   );
 
 
@@ -38,12 +58,13 @@ INSERT INTO questions (category, question, answer, rank)
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Security',
     'What is a Trojan Horse?',
     'Malicious software that is hidden inside what might appear inside something that might otherwise appear legitimate, in an email message, social media, or web site.',
-    1
+    1,
+	1
   );
 
 

@@ -1,4 +1,4 @@
-# In Progress
+# Reviewed
 
 #----------------------------------------------------------------------
 # Initialization
@@ -67,13 +67,13 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-# Redo
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'OS',
     'Explain how a pointer is dereferenced.',
     'The value of the pointer (an address of another section of memory) is loaded into a register. The register is then used as an argument to an assembly language instruction to fetch the value at the location specified by the register and place it into another register or variable.',
-    1
+    1,
+	0
   );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
@@ -103,22 +103,22 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-# Redo
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'OS',
     'What does the MMU do when a page fault occurs in a virtual address space?',
-    'The memory management unit (MMU) will map the physical memory page into the virtual address space.',
-    3
+    'When this fault occurs, the memory management unit (MMU) will map the physical memory page into the virtual address space.',
+    3,
+	1
   );
 
-# Redo
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'OS',
     'What is SDRAM? How is it different from DRAM?',
     'Synchronous Dynamic RAM. SDRAM is an improvement because it synchronizes data transfer between the CPU and memory. SDRAM allows the CPU to process data while another process is being queued.',
-    3
+    3,
+	0
   );
 
 

@@ -1,4 +1,4 @@
-
+# Reviewed
 #----------------------------------------------------------------------
 # Initialization
 #----------------------------------------------------------------------
@@ -110,66 +110,85 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
-# Redo
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'MySQL',
     'How do you make an existing column unique? What does it mean?',
     'ALTER TABLE mytable ADD UNIQUE (ColumnName); It means that the field value in each row must be unique; otherwise an error will occur.',
-    2
+    2,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'MySQL',
     'How do you drop a table?',
     'DROP TABLE tablename;',
-    2
+    2,
+	1
   );
   
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'MySQL',
     'How do you execute a MySQL script file?',
     'source filename;',
-    2
+    2,
+	1
   );
 
-
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'MySQL',
     'What is a foreign key? How does it work?',
-    'A foreign key points to a primary key in another table. It is used to maintain referential integrity between the tables. You cannot insert a row with a foreign key value if there does not exist a primary key entry in the other table.',
-    3
+    'This key points to a primary key in another table. It is used to maintain referential integrity between the tables. You cannot insert a row with a value for this key if there does not exist a primary key entry in the other table.',
+    3,
+	1
   );
 
-
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'MySQL',
-    'What is the difference between an INNER and OUTER JOIN?',
-    'An INNER JOIN is the intersection of the two tables, and OUTER JOIN is the union of the two tables.',
-    3
+    'What is an INNER JOIN?',
+    'This JOIN is the intersection of the two tables.',
+    3,
+	1
   );
 
-
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'MySQL',
-    'What is the difference between a LEFT JOIN and a RIGHT JOIN',
-    'A LEFT JOIN is the contents of the first table plus the intersection with the second table. A RIGHT JOIN is the contents of the second table plus the intersection with the first table.',
-    3
+    'What is an OUTER JOIN?',
+    'This JOIN is the union of the two tables.',
+    3,
+	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'MySQL',
+    'What is a LEFT JOIN?',
+    'This JOIN is the contents of the first table plus the intersection with the second table.',
+    3,
+	1
+  );
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'MySQL',
+    'What is a RIGHT JOIN',
+    'This JOIN is the contents of the second table plus the intersection with the first table.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'MySQL',
     'Describe a parent/child hierachy relationship in a table',
-    'A table that two identifiers with one identifier being a primary key, and the second identifier references the first (primary key) identifier. Ex. ( ManagerID int Primary Key, EmployeeID int REFERENCES( ManagerID ))',
-    3
+    'A table with two identifiers, where one identifier being a primary key, and the second identifier references the first (primary key) identifier. Ex. ( ManagerID int Primary Key, EmployeeID int REFERENCES( ManagerID ))',
+    3,
+	1
   );
 

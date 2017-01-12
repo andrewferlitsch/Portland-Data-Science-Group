@@ -1,4 +1,4 @@
-
+# In Progress
 #----------------------------------------------------------------------
 # Initialization
 #----------------------------------------------------------------------
@@ -29,40 +29,43 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Web',
     'What are the most common HTTP request methods?',
     'GET, POST, PUT, DELETE',
-    1
+    1,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Web',
     'How are parameters passed in a GET method?',
     'They''re are passed as URL parameters.',
-    1
+    1,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Web',
     'What is a Single Page Application (SPA)?',
-    'SPA web application loads a single HTML page. As the user interacts with the page, the page is updated by modifying the DOM and new content is obtained by AJAX calls.',
-    2
+    'This web application type loads a single HTML page. As the user interacts with the page, the page is updated by modifying the DOM and new content is obtained by AJAX calls.',
+    2,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Web',
     'What is AJAX?',
-    'AJAX is an asynchronous method in Javascript to make calls to server side scripts. It uses the XMLHttpRequest object. Responses to the call typically are in JSON or XML format. The method is used to send or receive data to/from a server without refreshing the whole page.',
-    2
+    'It is an asynchronous method in Javascript to make calls to server side scripts. It uses the XMLHttpRequest object. Responses to the call typically are in JSON or XML format. The method is used to send or receive data to/from a server without refreshing the whole page.',
+    2,
+	1
   );
 
 
@@ -72,6 +75,16 @@ INSERT INTO questions (category, question, answer, rank)
     'What is Model View Controller (MVC)?',
     'Model–view–controller (MVC) is a software design pattern for implementing user interfaces on computers. It divides the application into three interconnected components: 1) Model - represents the data, 2) View - how the data is visualized, and 3) Controller - how the data is manipulated and bound to the UI.',
     3
+  );
+
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Web',
+    'What is the CRUD mapping to HTTP methods?',
+    'POST = Create, GET = Read, PUT = Update, DELETE = Delete',
+    3,
+	1
   );
 
 

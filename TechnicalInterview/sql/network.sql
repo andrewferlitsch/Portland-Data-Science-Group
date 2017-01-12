@@ -39,12 +39,13 @@ INSERT INTO questions (category, question, answer, rank)
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Network',
     'In IPv4, what is a C-subnet? What are the max number of addresses?',
-    'A C-subnet is the address range of the lower 8 bits of an IPv4 address range. It can hold 256 addresses.',
-    2
+    'This subnet is the address range of the lower 8 bits of an IPv4 address range. It can hold 256 addresses.',
+    2,
+	1
   );
 
 
@@ -58,12 +59,13 @@ INSERT INTO questions (category, question, answer, rank, toggle )
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Network',
     'What is IPv6?',
-    'The IPv6 replaces the IPv4 Internet Address space. IPv4 was limited to 4 billion addresses (32-bits). IPv6 uses a 128-bit address, theoretically allowing 2^128, or approximately 3.4×1038 addresses.',
-    2
+    'This Internet addressing standard replaces the IPv4 Internet Address space. IPv4 was limited to 4 billion addresses (32-bits). This standard uses a 128-bit address, theoretically allowing 2^128, or approximately 3.4×1038 addresses.',
+    2,
+	1
   );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
@@ -75,14 +77,41 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	0
   );
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Network',
     'What is the difference between unicast, multicast and broadcast?',
     'Unicast sends a message to a single IP address. Multi-cast sends a message to all IP addresses registered for the multicast on a subnet. Broadcast sends a message to all IP addresses on the subnet.',
-    3
+    3,
+	0
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What is unicast?',
+    'Sending a message to a single IP address.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What is multicast?',
+    'Sends a message to all IP addresses registered for the multicast on a subnet.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What is broadcast?',
+    'Sends a message to all IP addresses on the subnet.',
+    3,
+	1
+  );
 
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
