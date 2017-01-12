@@ -33,6 +33,9 @@ technical.controller( 'dataScienceCtrl', function( $scope, $http ) {
 	$scope.better = function( id ) {
 		showBetter( "Data Science", id );
 	}
+	$scope.rank = function( id ) {
+		showRank( "Data Science", id );
+	}
 })
 .directive( "questionsDataScience", function() {
 	return {

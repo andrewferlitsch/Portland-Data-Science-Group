@@ -32,6 +32,9 @@ technical.controller( 'javaCtrl', function( $scope, $http ) {
 	$scope.better = function( id ) {
 		showBetter( "Java", id );
 	}
+	$scope.rank = function( id ) {
+		showRank( "Java", id );
+	}
 })
 .directive( "questionsJava", function() {
 	return {

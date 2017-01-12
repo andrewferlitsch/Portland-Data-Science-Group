@@ -32,6 +32,9 @@ technical.controller( 'angularCtrl', function( $scope, $http ) {
 	$scope.better = function( id ) {
 		showBetter( "AngularJS", id );
 	}
+	$scope.rank = function( id ) {
+		showRank( "AngularJS", id );
+	}
 })
 .directive( "questionsAngular", function() {
 	return {

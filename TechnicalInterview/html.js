@@ -33,6 +33,9 @@ technical.controller( 'htmlCtrl', function( $scope, $http ) {
 	$scope.better = function( id ) {
 		showBetter( "HTML", id );
 	}
+	$scope.rank = function( id ) {
+		showRank( "HTML", id );
+	}
 })
 .directive( "questionsHtml", function() {
 	return {

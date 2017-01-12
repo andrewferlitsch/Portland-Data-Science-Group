@@ -33,6 +33,9 @@ technical.controller( 'dosCtrl', function( $scope, $http ) {
 	$scope.better = function( id ) {
 		showBetter( "DOS", id );
 	}
+	$scope.rank = function( id ) {
+		showRank( "DOS", id );
+	}
 })
 .directive( "questionsDos", function() {
 	return {

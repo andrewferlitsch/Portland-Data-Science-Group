@@ -32,6 +32,9 @@ technical.controller( 'html5Ctrl', function( $scope, $http ) {
 	$scope.better = function( id ) {
 		showBetter( "HTML5", id );
 	}
+	$scope.rank = function( id ) {
+		showRank( "HTML5", id );
+	}
 })
 .directive( "questionsHtml5", function() {
 	return {
