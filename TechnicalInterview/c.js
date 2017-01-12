@@ -8,12 +8,12 @@ technical.controller( 'cCtrl', function( $scope, $http ) {
 						{ question: "placeholder 2",
 						  answer: "",
 						  rank: 2,
-						  id: 4
+						  id: 2
 						},
 						{ question: "placeholder 3",
 						  answer: "",
 						  rank: 3,
-						  id: 6
+						  id: 3
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
@@ -30,10 +30,13 @@ technical.controller( 'cCtrl', function( $scope, $http ) {
     });
 	
 	$scope.better = function( id ) {
-		showBetter( "C", id );
+		showBetter( $scope.subject, id );
 	}
 	$scope.rank = function( id ) {
-		showRank( "C", id );
+		showRank( $scope.subject, id );
+	}
+	$scope.suggest = function() {
+		showSuggest( $scope.subject );
 	}
 })
 .directive( "questionsC", function() {

@@ -31,10 +31,13 @@ technical.controller( 'csharpCtrl', function( $scope, $http ) {
     });
 	
 	$scope.better = function( id ) {
-		showBetter( "C#", id );
+		showBetter( $scope.subject, id );
 	}
 	$scope.rank = function( id ) {
-		showRank( "C#", id );
+		showRank( $scope.subject, id );
+	}
+	$scope.suggest = function() {
+		showSuggest( $scope.subject );
 	}
 })
 .directive( "questionsCsharp", function() {
