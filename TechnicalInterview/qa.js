@@ -31,10 +31,13 @@ technical.controller( 'qaCtrl', function( $scope, $http ) {
     });
     
 	$scope.better = function( id ) {
-		showBetter( "QA", id );
+		showBetter( $scope.subject, id );
 	}
 	$scope.rank = function( id ) {
-		showRank( "QA", id );
+		showRank( $scope.subject, id );
+	}
+	$scope.suggest = function() {
+		showSuggest( $scope.subject );
 	}
 })
 .directive( "questionsQa", function() {

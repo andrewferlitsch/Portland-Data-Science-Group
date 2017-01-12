@@ -9,12 +9,12 @@ technical.controller( 'oopCtrl', function( $scope, $http ) {
 						{ question: "placeholder 2",
 						  answer: "",
 						  rank: 2,
-						  id: 4
+						  id: 2
 						},
 						{ question: "placeholder 3",
 						  answer: "",
 						  rank: 3,
-						  id: 6
+						  id: 3
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
@@ -31,10 +31,13 @@ technical.controller( 'oopCtrl', function( $scope, $http ) {
     });
     
 	$scope.better = function( id ) {
-		showBetter( "OOP", id );
+		showBetter( $scope.subject, id );
 	}
 	$scope.rank = function( id ) {
-		showRank( "OOP", id );
+		showRank( $scope.subject, id );
+	}
+	$scope.suggest = function() {
+		showSuggest( $scope.subject );
 	}
 })
 .directive( "questionsOop", function() {

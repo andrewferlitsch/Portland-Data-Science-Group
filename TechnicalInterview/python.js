@@ -31,10 +31,13 @@ technical.controller( 'pythonCtrl', function( $scope, $http ) {
     });
     
 	$scope.better = function( id ) {
-		showBetter( "Python", id );
+		showBetter( $scope.subject, id );
 	}
 	$scope.rank = function( id ) {
-		showRank( "Python", id );
+		showRank( $scope.subject, id );
+	}
+	$scope.suggest = function() {
+		showSuggest( $scope.subject );
 	}
 })
 .directive( "questionsPython", function() {
