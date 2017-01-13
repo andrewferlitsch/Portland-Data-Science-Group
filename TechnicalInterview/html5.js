@@ -1,5 +1,6 @@
 technical.controller( 'html5Ctrl', function( $scope, $http ) {
 	$scope.subject 	= "HTML5";
+	$scope.name     = "html5";
 	$scope.questions = [{ question: "placeholder 1",
 						  answer: "",
 						  rank: 1,
@@ -22,7 +23,7 @@ technical.controller( 'html5Ctrl', function( $scope, $http ) {
 	$http({
         method : "GET",
         url : "load.php",
-		params: { category: 'HTML5'}
+		params: { category: $scope.subject }
     }).then(function mySucces(response) {
         $scope.questions = response.data;
 		$scope.random 	 = pick3( $scope.questions );
@@ -51,7 +52,7 @@ technical.controller( 'html5Ctrl', function( $scope, $http ) {
 				  "	<li ng-repeat='question in random'><span class='w3-tooltip'>Rank {{question.rank}} <span class='w3-text w3-tag w3-khaki w3-round w3-small' ng-click='rank(question.id);'>Click to Suggest Another Ranking</span></span> {{question.question}}<br/><br/>" +
 				  "	<span ng-show='answers'><span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small' ng-click='better(question.id);'>Suggest A Better Answer</button><br/></span>Correct <input class='html5-correct' type='checkbox'/><br/><br/>" +
 				  "</ul>" +
-				  "<button class='w3-btn w3-green score' name='html5'>Score</button>" +
+				  "<button class='w3-btn w3-green score' name='{{name}}'>Score</button>" +
 				  "&nbsp;<button class='w3-btn w3-khaki w3-round w3-small' ng-click='suggest();'>Suggest a Question</button>" +
 				  "</div>"
 	}
