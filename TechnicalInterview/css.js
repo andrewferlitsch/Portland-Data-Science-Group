@@ -44,7 +44,7 @@ technical.controller( 'cssCtrl', function( $scope, $http ) {
 .directive( "questionsCss", function() {
 	return {
 		restrict: 'A',
-		template: "<a name='css'/>" +
+		template: "<a name='{{name}}'/>" +
 				  "<h1 class='w3-container w3-teal' ng-click='show=!show' onclick='location.href=\"#css\"'>&#9205; {{subject}}</h1>" +
 				  "<hr/>" +
 				  "<div style='font-size: 20px;' ng-show='show'>" +

@@ -44,7 +44,7 @@ technical.controller( 'csharpCtrl', function( $scope, $http ) {
 .directive( "questionsCsharp", function() {
 	return {
 		restrict: 'A',
-		template: "<a name='csharp'/>" +
+		template: "<a name='{{name}}'/>" +
 				  "<h1 class='w3-container w3-teal' ng-click='show=!show' onclick='location.href=\"#csharp\"'>&#9205; {{subject}}</h1>" +
 				  "<hr/>" +
 				  "<div style='font-size: 20px;' ng-show='show'>" +

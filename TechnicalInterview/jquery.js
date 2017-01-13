@@ -43,7 +43,7 @@ technical.controller( 'jqueryCtrl', function( $scope, $http ) {
 .directive( "questionsJquery", function() {
 	return {
 		restrict: 'A',
-		template: "<a name='jquery'/>" +
+		template: "<a name='{{name}}'/>" +
 				  "<h1 class='w3-container w3-teal' ng-click='show=!show' onclick='location.href=\"#jquery\"'>&#9205; {{subject}}</h1>" +
 				  "<hr/>" +
 				  "<div style='font-size: 20px;' ng-show='show'>" +
