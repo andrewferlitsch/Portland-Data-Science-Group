@@ -54,7 +54,7 @@ technical.controller( 'networkCtrl', function( $scope, $http ) {
 				  "	</li>" +
 				  "</ul>" +
 				  "<button class='w3-btn w3-green score' name='network'>Score</button>" +
-				  "&nbsp;<button class='w3-btn w3-khaki w3-round w3-small question' name='network'>Suggest a Question</button>" +
+				  "&nbsp;<button class='w3-btn w3-khaki w3-round w3-small' ng-click='suggest();'>Suggest a Question</button>" +
 				  "</div>"
 	} 
 });

@@ -53,7 +53,7 @@ technical.controller( 'htmlCtrl', function( $scope, $http ) {
 				  "	<span ng-show='answers'><span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small' ng-click='better(question.id);'>Suggest A Better Answer</button><br/></span>Correct <input class='html-correct' type='checkbox'/><br/><br/>" +
 				  "</ul>" +
 				  "<button class='w3-btn w3-green score' name='html'>Score</button>" +
-				  "&nbsp;<button class='w3-btn w3-khaki w3-round w3-small question' name='html'>Suggest a Question</button>" +
+				  "&nbsp;<button class='w3-btn w3-khaki w3-round w3-small' ng-click='suggest();'>Suggest a Question</button>" +
 				  "</div>"
 	}
 });

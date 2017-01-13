@@ -53,7 +53,7 @@ technical.controller( 'windowsCtrl', function( $scope ) {
 				  "	<span ng-show='answers'><span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small better' ng-click='better(question.id);'>Suggest A Better Answer</button><br/></span>Correct <input class='windows-correct' type='checkbox'/><br/><br/></li>" +
 				  "</ul>" +
 				  "<button class='w3-btn w3-green score' name='windows'>Score</button>" +
-				  "&nbsp;<button class='w3-btn w3-khaki w3-round w3-small question' name='windows'>Suggest a Question</button>" +
+				  "&nbsp;<button class='w3-btn w3-khaki w3-round w3-small' ng-click='suggest();'>Suggest a Question</button>" +
 				  "</div>"
 	}
 });
