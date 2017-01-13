@@ -1,5 +1,6 @@
 technical.controller( 'networkCtrl', function( $scope, $http ) {
-	$scope.subject 	 = "Network";
+	$scope.subject 	= "Network";
+	$scope.name   	= "network";
 	
 	$scope.questions = [{ question: "placeholder 1",
 						  answer: "",
@@ -23,7 +24,7 @@ technical.controller( 'networkCtrl', function( $scope, $http ) {
 	$http({
         method : "GET",
         url : "load.php",
-		params: { category: 'Network'}
+		params: { category: $scope.subject }
     }).then(function mySucces(response) {
         $scope.questions = response.data;
 		$scope.random 	 = pick3( $scope.questions );
@@ -53,7 +54,7 @@ technical.controller( 'networkCtrl', function( $scope, $http ) {
 				  "	<span ng-show='answers'><span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small' ng-click='better(question.id);'>Suggest A Better Answer</button><br/></span>Correct <input class='network-correct' type='checkbox'/><br/><br/>" +
 				  "	</li>" +
 				  "</ul>" +
-				  "<button class='w3-btn w3-green score' name='network'>Score</button>" +
+				  "<button class='w3-btn w3-green score' name='{{name}}'>Score</button>" +
 				  "&nbsp;<button class='w3-btn w3-khaki w3-round w3-small' ng-click='suggest();'>Suggest a Question</button>" +
 				  "</div>"
 	} 

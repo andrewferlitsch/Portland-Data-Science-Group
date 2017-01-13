@@ -1,5 +1,6 @@
 technical.controller( 'qaCtrl', function( $scope, $http ) {
 	$scope.subject 	= "QA";
+	$scope.name   	= "qa";
 	
 	$scope.questions = [{ question: "placeholder 1",
 						  answer: "",
@@ -9,12 +10,12 @@ technical.controller( 'qaCtrl', function( $scope, $http ) {
 						{ question: "placeholder 2",
 						  answer: "",
 						  rank: 2,
-						  id: 4
+						  id: 2
 						},
 						{ question: "placeholder 3",
 						  answer: "",
 						  rank: 3,
-						  id: 6
+						  id: 3
 						}
 					  ];
 	$scope.random 	= pick3( $scope.questions );
@@ -23,7 +24,7 @@ technical.controller( 'qaCtrl', function( $scope, $http ) {
 	$http({
         method : "GET",
         url : "load.php",
-		params: { category: 'QA'}
+		params: { category: $scope.subject }
     }).then(function mySucces(response) {
         $scope.questions = response.data;
 		$scope.random 	 = pick3( $scope.questions );
@@ -52,7 +53,7 @@ technical.controller( 'qaCtrl', function( $scope, $http ) {
 				  "	<li ng-repeat='question in random'><span class='w3-tooltip'>Rank {{question.rank}} <span class='w3-text w3-tag w3-khaki w3-round w3-small' ng-click='rank(question.id);'>Click to Suggest Another Ranking</span></span> {{question.question}}<br/><br/>" +
 				  "	<span ng-show='answers'><span class='answer'>{{question.answer}}</span> <button class='w3-btn w3-khaki w3-round w3-small' ng-click='better(question.id);'>Suggest A Better Answer</button><br/></span>Correct <input class='qa-correct' type='checkbox'/><br/><br/></li>" +
 				  "</ul>" +
-				  "<button class='w3-btn w3-green score' name='qa'>Score</button>" +
+				  "<button class='w3-btn w3-green score' name='{{name}}'>Score</button>" +
 				  "&nbsp;<button class='w3-btn w3-khaki w3-round w3-small' ng-click='suggest();'>Suggest a Question</button>" +
 				  "</div>"
 	}
