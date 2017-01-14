@@ -32,7 +32,7 @@ of algorithms. Typically, after asking you to code the basic algorithms, you wil
 unable to pass this part of the coding portion, you will probably not continue to the next round of interview.
 </p>
 
-<h3>Prime Numbers</h3>
+<h3>1. Prime Numbers</h3>
 <p>
 The most basic coding example you might get asked is to write an algorithm to output a series of prime numbers.
 Prime numbers are numbers that are only divisible by one and itself. The algorithm is a 
@@ -228,7 +228,7 @@ public class prime {
 
 </pre>
 
-<h3>Fibonacci Sequence</h3>
+<h3>2. Fibonacci Sequence</h3>
 <p>
 One of the most common and basic coding examples is to code a solution for the Fibonacci sequence. A Fibonacci sequence is a function where F(N) equals
 F(n-1) + F(n-2); that is the summation of the previous two values in the sequence. Originally, the seed sequence was F(0) = 1 and F(1) = 1, but modern
@@ -364,7 +364,306 @@ public class fibonacci {
 
 </pre>
 
-<h3>Binary Tree</h3>
+<h3>3. Dynamic Arrays</h3>
+<p>
+A dynamic array is an array that can be resized, can be randomly accessed via an cardinal ordering, where there is a one-to-one relationship
+between an integer index and a value. For example, if a dynamic array cans the ordered elements A, B and D, they would be accessed (one-to-one relationship)
+by indices 0=>A, 1=>B and 2=>D. If we insert a C between B and D, the ordering would be rearranged but there still would be a one-to-one relationship, accessed
+as indices 0=>A, 1=>B, 2=>C and 3=>D. Note how index 2 now relates to C and index 3 to D.
+</p>
+
+<p>
+You maybe asked to implement a dynamic array using a class. You would be expected to implement at least and Add() and Get() methods.
+
+<h4>Algorithm</h4>
+<ul>
+	<li>Define a class for an element.
+		<ul>
+			<li>Has a member to hold the value</li>
+			<li>Has a next pointer for the next element in the array.</li>
+		</ul>
+	</li>
+	<li>Define a class for an array.
+		<ul>
+			<li>Has a member to hold the head and a member to hold the tail of the array.</li>
+			<li>A member to hold the size of the array.</li>
+			<li>Define a Add method.
+				<ul>
+					<li>Instantiate a new element.</li>
+					<li>Add the element to the end of tail (the tail's next pointer) and update the tail to the new element.</li>
+					<li>If it is the first element in the array, set the head to the new element.</li>
+					<li>Increment the size of the array by one.</li>
+				</ul>
+			</li>
+			<li>Define a Get method.</li>
+				<ul>
+					<li>Check for array out of bounds condition.</li>
+					<li>Starting with the head, advance consecutively index' number of times following the next pointer.</li>
+					<li>Return the value of the current element.</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+</ul>
+
+<h4>Java</h4>
+<pre>
+
+// Definition for an element in the dynamic array
+class Element {
+	Object  value = null;	// Element value
+	Element next  = null;	// Next element in the array
+	
+	// Constructor
+	public Element( Object value ) {
+		this.value = value;
+	}
+}
+
+// Definition for a Dynamic Array
+class DynamicArray {
+	private Element head = null;	// Head of the Array
+	private Element tail = null;	// Tail of the Array
+	private int     size = 0;
+	
+	// The size (number of elements) of the array
+	public int Size() {
+		return size;
+	}
+	
+	// Add an element to the end of the dynamic array
+	public void Add( Object value ) {
+		Element e = new Element( value );
+		
+		// Set the next element of the previous tail to the new element
+		if ( tail != null ) 
+			tail.next = e;
+			
+		// set the current tail to the new element
+		tail = e;
+		
+		// If there is no head (first element), set the head to the new element.
+		if ( head == null )
+			head = e;
+			
+		// Increment the size of the array
+		size++;
+	}
+
+	// Get the value at the corresponding index
+	public Object Get( int index ) {
+		// Check for out of bounds condition
+		if ( index > size - 1 || index < 0 )
+			return null;
+			
+		// Step (linear) to the index position
+		Element curr = head;
+		for ( int i = 0; i < index; i++ )
+			curr = curr.next;
+			
+		return curr.value;
+	}
+}
+
+</pre>
+
+<p>Once you've solved the Add() and Get() methods, you will likely be asked to code the methods for Delete() and Insert(). In the below coding
+example, I solve for an insert after. You maybe additionally asked to code an insert before, or both.
+</p>
+
+<h4>Algorithm</h4>
+<ul>
+	<li>Define a Delete() method.
+		<ul>
+			<li>Check for array out of bounds condition.</li>
+			<li>If deleting the head (index = 0), the set the new head to what the head currently points to.</li>
+			<li>Starting with the head, advance consecutively index' number of times following the next pointer,
+			and remember the element before it.</li>
+			<li>Set the next pointer of the element before this element to this element's next pointer 
+			(thus dropping this element which is in between).</li>
+			<li>Decrement the size of the array.</li>
+			<li>If the element deleted was the tail (index equals the new array size), set the tail to the previous element.</li>
+		</ul>
+	</li>
+	<li>Define a Insert() after method.
+		<ul>
+			<li>Check for array out of bounds condition.</li>
+			<li>If inserting after the tail (index == size-1), then insert the element using the Add() method.</li>
+			<li>Advance to the element at the specified index, and remember the element before it.</li>
+			<li>Instantiate a new element.</li>
+			<li>Set the next pointer of the new element to the element following the current element.</li>
+			<li>Update the next pointer of the current element to the new element (thus inserting in between).</li>
+			<li>Increment the size of the array by one.</li>
+		</ul>
+	</li>
+</ul>
+
+<h4>Java</h4>
+<pre>
+
+// Definition for a Dynamic Array
+class DynamicArray {
+	...
+	
+	public boolean Delete( int index ) {
+		// Check for out of bounds condition
+		if ( index > size - 1 || index < 0 )
+			return false;
+		
+		// Remove the head of the dynamic array
+		if ( index == 0 ) {
+			// Set the head to the next head
+			head = head.next;
+			
+			// If the array is now empty, set the tail to null
+			if ( --size == 0 )
+				tail = null;
+			
+			return true;
+		}
+		
+		// Find the element at the specified index, and remember the element before it.
+		Element curr = head, prev = null;
+		for ( int i = 0; i < index; i++ ) {
+			prev = curr;
+			curr = curr.next;
+		}
+		
+		// Set the next pointer of the previous element to the next pointer of the current element,
+		// thus dropping this element which is between them.
+		prev.next = curr.next;
+		
+		// We deleted the tail. Set the current tail to the previous element.
+		if ( --size == index )
+			tail = prev;
+			
+		return true;
+	}
+	
+	public boolean Insert( int index, Object value ) {
+		// Check for out of bounds condition
+		if ( index > size - 1 || index < 0 )
+			return false;
+			
+		// Adding to the tail
+		if ( index == size-1 ) {
+			Add( value );
+			return true;
+		}
+		
+		// Find the element at the index
+		Element curr = head;
+		for ( int i = 0; i < index; i++ ) 
+			curr = curr.next;
+
+		// Insert (after) between the current element and the next
+		Element e = new Element( value );
+		e.next = curr.next;
+		curr.next = e;
+		
+		size++;
+		return true;
+	}
+	
+	....
+}
+
+</pre>
+
+<h3>Linked Lists</h3>
+<p>
+A linked list is a data structure where each element is linked to another element forming a chain, such as A links to B which links to C, and so forth.
+Depending on the type of chaining, one can use link lists to code queues and stacks. A queue is also known as a FIFO (first-in-first-out) structure,
+while a stack is also known as a LIFO (last-in-last-out) structure.
+</p>
+<p>
+A queue consists of a head and a tail, where the head points to the first element in the queue, and the tail points to the end of the queue. Each new element
+is added to the end of the tail, becoming the new tail. Throughout the chain, each element is linked to the next element starting from the head and
+proceeding to the tail (forward chaining). A queue is typically used to process elements in the same sequential order they were added (FIFO). To process
+an element, one removes the head (current element to process) of the queue and sets the new head to the next element following the head.
+<p>
+
+<h4>Algorithm - Queue</h4>
+<ul>
+	<li>Define a Task object
+		<ul>
+			<li>Define members for task to perform and next pointer for next element in the forward chain.</li>
+			<li>Define a constructor to instantiate a Task.</li>
+			<li>Define a Next() method to get the next element in the forward chain.</li>
+		</ul>
+	</li>
+	<li>Define a Queue object
+		<ul>
+			<li>Define members for the head and tail of the queue.</li>
+			<li>Define an Empty() method to test if the queue is empty.</li>
+			<li>Define an Add() method to add a task to the tail of the queue.</li>
+			<li>Define a Pop() method to process the task at the head of the queue and then set the head of the queue to the next element.<li>
+		</ul>
+	</li>
+</ul>
+
+<h4>Java</h4>
+<pre>
+
+// Definition for a Task element in a Queue
+class Task {
+	private Object task;
+	private Queue  next = null;
+	
+	// constructor, task represents the task to be performed
+	public void Task( Object task ) {
+		this.task = task;
+	}
+	
+	// The next task this element is chained to
+	public Task Next() {
+		return next;
+	}
+}
+
+// Definition for a Queue
+class Queue {
+	private Task head = null;	// the head of the queue
+	private Task tail = null;	// the tail of the queue
+	
+	// Check if Queue is empty
+	public boolean Empty() {
+		if ( head == null )
+			return true;
+		return false;
+	}
+	
+	// Add a task to the queue
+	public void Add( Task task ) {
+		// the queue is empty, set head and tail to the task
+		if ( Empty() ) {
+			head = tail = task;
+		}
+		// otherwise, add it as the new tail
+		else {
+			tail.Next() = task;
+			tail = task;
+		}
+	}
+	
+	// Remove the top of the queue and process the task
+	public void Pop() {
+		// Queue is empty
+		if ( Empty() )
+			return;
+			
+		// Proces the task here
+		
+		// Move the head to the next element.
+		head = head.Next();
+		if ( Empty() )
+			tail = null;
+	}
+}
+
+</pre>
+
+<h3>4. Binary Tree</h3>
 
 <p>
 A binary tree is a tree where each node contains at most two branches (subtrees), commonly known as the left tree and right tree. The recursive
@@ -393,9 +692,9 @@ You may be asked to code a class definition for a binary tree node. The binary t
 class BinaryTree:
 	# Constructor: set the node data and left/right subtrees to null
 	def __init__(self, key):
-		self.__left  = None	# node data
-		self.__right = None	# left binary subtree
-		self.__key   = key	# right binary subtree
+		self.__left  = None	# left binary subtree
+		self.__right = None	# right binary subtree
+		self.__key   = key	# node data
 
 	# Set Left Binary Subtree
 	def Left(left):
@@ -428,16 +727,16 @@ class BinaryTree:
 
 // Binary Tree Class
 class BinaryTree {
-    private Object key;			// node data
-    private BinaryTree left;	// left binary subtree
-    private BinaryTree right;	// right binary subtree
+    private Object key;         // node data
+    private BinaryTree left;    // left binary subtree
+    private BinaryTree right;   // right binary subtree
 	
 	// Constructor: set the node data and left/right subtrees to null
 	public BinaryTree (Object key) {
-        this.key = key;
-        right = null;
-        left = null;
-    }
+		this.key = key;
+		right = null;
+		left = null;
+	}
 	
 	// Set the left binary subtree
 	public void Left( BinaryTree left ) {
@@ -472,7 +771,136 @@ class BinaryTree {
 
 </pre>
 
-<h3>Binary Tree Traversals</h3>
+<p>You maybe asked for a more generalized representation, such as defining a hierarchical class structure where a binary tree is a class type
+of a k-ary tree. For this, we would define a base (super) class with methods common to k-ary trees, and then derive (extend) a binary tree 
+class from the base (super) class with methods specific to a binary tree.
+</p>
+<ul>
+	<li>The base class defines the key member and corresponding access methods.</li>
+	<li>The base class is made abstract, so that one has to derive (extend) a class to use it.</li>
+	<li>An abstract method (must be defined in derived class) is added to defining an action to perform on each node in the tree that is
+	specific to a derived class.</li>
+</ul>
+
+<h4>Python</h4>
+<pre>
+
+# Base (Super) class definition for a k-ary tree
+class Node:
+	# Constructor: set the node data
+	def __init__(self, key):
+		self.__key   = key	# node data
+
+	# Set Node Data
+	def Key(key):
+		self.__key = key
+
+	# Get Node Data
+	def Key():
+		return __key
+
+	# Action to perform on a node	
+	def Action(node):
+		raise NotImplementedError("Please Implement this method")
+
+# Derived definition for a Binary Tree
+class BinaryTree(Node):
+	# Constructor: set the node data and left/right subtrees to null
+	def __init__(self, key):
+		Node.__init__(self, key)
+		self.__left  = None	# left binary subtree
+		self.__right = None	# right binary subtree
+
+	# Set Left Binary Subtree
+	def Left(left):
+		self.__left = left
+
+	# Get Left Binary Subtree
+	def Left():
+		return __left
+
+	# Set Right Binary Subtree
+	def Right(right):
+		self.__right = right
+
+	# Get Right Binary Subtree
+	def Right():
+		return __right
+	
+	# Example action to perform on a node	
+	def Action(node):
+		print( node.key)
+		
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+// Base (Super) class definition for a k-ary tree
+abstract class Node {
+	// node data
+	private Object key;
+	
+	// action to perform on a node
+	public abstract void Action();
+	
+	// constructor: set the node data
+	public Node( Object key ) {
+		this.key = key;
+	}
+	
+	// Set the node data
+	public void Key( Object key ) {
+		this.key = key;
+	}
+	
+	// Get the node data
+	public Object Key() {
+		return key;
+	}
+}
+
+// Derived definition for a Binary Tree
+class BinaryTree extends Node {
+    private BinaryTree left;	// left binary subtree
+    private BinaryTree right;	// right binary subtree
+	
+	// Constructor: set the node data and left/right subtrees to null
+	public BinaryTree (Object key) {
+		super( key );
+		right = null;
+		left = null;
+	}
+	
+	// Set the left binary subtree
+	public void Left( BinaryTree left ) {
+		this.left = left;
+	}
+	
+	// Get the left binary subtree
+	public BinaryTree Left() {
+		return left;
+	}
+	
+	// Set the right binary subtree
+	public void Right( BinaryTree right ) {
+		this.right = right;
+	}
+	
+	// Get the right binary subtree
+	public BinaryTree Right() {
+		return right;
+	}
+	
+	// Example action to perform on a node
+	public void Action() {
+		System.out.println( this.Key() );
+	}
+}
+
+</pre>
+
+<h3>5. Binary Tree Traversals</h3>
 
 <p>
 Binary trees can be traversed either breadth first or depth first. In a breadth first traversal, the tree is traversed one level at a time. 
@@ -498,12 +926,62 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 	<li>From the current node (root), traverse to right node. Recursively apply algorithm to the right node.</li>
 </ul>
 
+<h4>Python</h4>
+<pre>
+
+	#InOrder Traversal
+	def InOrder(root):
+		if root == None:
+			return
+		InOrder( root.left )
+		Action( root )
+		InOrder( root.right )
+		
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+	// InOrder Traversal
+	public void InOrder() {
+		if ( Left() != null ) Left().InOrder();
+		Action();
+		if ( Right() != null ) Right().InOrder();
+	}
+	
+</pre>
+
 <h4>Algorithm - Preorder</h4>
 <ul>
 	<li>Traverse to the root node.</li>
 	<li>From the current node (root), traverse to left node. Recursively apply algorithm to the left node.</li>
 	<li>From the current node (root), traverse to right node. Recursively apply algorithm to the right node.</li>
 </ul>
+
+<h4>Python</h4>
+<pre>
+
+	# PreOrder Traversal
+	def PreOrder(root):
+		if root == None:
+			return
+		Action( root )
+		PreOrder( root.left )
+		PreOrder( root.right )
+
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+	// PreOrder Traversal
+	public void PreOrder() {
+		Action();
+		if ( Left() != null ) Left().PreOrder();
+		if ( Right() != null ) Right().PreOrder();
+	}
+	
+</pre>
 
 <h4>Algorithm - Postorder</h4>
 <ul>
@@ -512,8 +990,119 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 	<li>Traverse back to the root node.</li>
 </ul>
 
+<h4>Python</h4>
+<pre>
+
+	# PostOrder Traversal
+	def PostOrder(root):
+		if root == None:
+			return
+		PostOrder( root.left )
+		PostOrder( root.right )
+		Action( root )
+		
+</pre>
 
 <h4>Java</h4>
+<pre>
+
+	// PostOrder Traversal
+	public void PostOrder() {
+		if ( Left() != null ) Left().PostOrder();
+		if ( Right() != null ) Right().PostOrder();
+		Action();
+	}
+	
+</pre>
+
+<h3>6. k-ary Trees</h3>
+<p>
+As a follow up to coding examples related to a binary tree, you maybe asked to generalize a solution for a k-ary tree. A k-ary tree is a tree
+that may at most k children. You may be challenged, by being asked to create a base (super) class from which any k-ary tree can derived (extended)\
+from, with the condition that the children (branch) members must be defined in the base (super) class.
+</p>
+<p>
+Since we do not know in the base (super) class how many children (branches) each node will have, we will use a dynamic array to represent the
+member for children. In the Java coding example, I will use the predefined dynamic array type ArrayList.
+</p>
+
+<h4>Algorithm</h4>
+<ul>
+	<li>The base class defines the key member and corresponding access methods.</li>
+	<li>The base class defines a member for the maximum number of children and a dynamic array for pointers to the children.</li>
+	<li>The base class is made abstract, so that one has to derive (extend) a class to use it.</li>
+	<li>An abstract method (must be defined in derived class) is added to defining an action to perform on each node in the tree that is
+			specific to a derived class.</li>
+	<li>The base class defines a Add() method for adding a child (branch) to the node.</li>
+	<li>The base class defines a Children() method for accessing all the children (branches) of the node.</li>
+</ul>
+
+<h4>Java</h4>
+<pre>
+
+import java.util.ArrayList;
+
+// Base (Super) class definition for a k-ary tree
+abstract class KNode {
+	// node data
+	private Object key;
+	// max number of children
+	private final int k;
+	
+	// Dynamic array for children
+	private ArrayList<KNode> children = new ArrayList();
+	
+	// action to perform on a node
+	public abstract void Action();
+	
+	// constructor: set the node data
+	public KNode( int k, Object key ) {
+		this.key = key;
+		this.k   = k;
+	}
+	
+	// Set the node data
+	public void Key( Object key ) {
+		this.key = key;
+	}
+	
+	// Get the node data
+	public Object Key() {
+		return key;
+	}
+	
+	// Get the number of children
+	public int Size() {
+		return children.size();
+	}
+	
+	// Add another child (branch)
+	public KNode Add( Object key ) {
+		// exceeds number of allowed children
+		if ( Size() == k )
+			return null;
+		Tree e = new Tree( k, key );
+		children.add( e );
+		return e;
+	}
+	
+	// Get all the children of this node
+	public ArrayList<KNode> Children() {
+		return children;
+	}
+}
+
+// Definition for a k-ary tree
+class Tree extends KNode {
+	public Tree( int k, Object key ) {
+		super( k, key );
+	}
+	
+	public void Action() {
+		// do something
+	}
+}
+</pre>
 
 <footer>
 <br/>
