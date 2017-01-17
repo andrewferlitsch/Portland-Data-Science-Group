@@ -27,7 +27,7 @@ pre { background-color: #DDDDDD; margin: 5px}
 </header>
 
 <p>
-The coding examples in this section are basic algorithms. An coding portion of a technical interview will likely start with one of these types
+The coding examples in this section are basic algorithms. A coding portion of a technical interview will likely start with one of these types
 of algorithms. Typically, after asking you to code the basic algorithms, you will be ask to make improvements or other variations. If you are 
 unable to pass this part of the coding portion, you will probably not continue to the next round of interview.
 </p>
@@ -406,6 +406,54 @@ You maybe asked to implement a dynamic array using a class. You would be expecte
 	</li>
 </ul>
 
+<h4>Python</h4>
+<pre>
+
+# Definition for an element in the dynamic array
+class Element:
+	# Constructor: set the node data
+	def __init__(self, value):
+		self.value   = value	# node data
+
+# Definition for a Dynamic Array
+class DynamicArray:
+	# The size (number of elements) of the array
+	def Size():
+		return size;
+
+	# Add an element to the end of the dynamic array
+	def Add( value ):
+		e = Element(value)
+		
+		# Set the next element of the previous tail to the new element
+		if tail != None:
+			tail.next = e
+
+		# set the current tail to the new element
+		tail = e
+		
+		# If there is no head (first element), set the head to the new element.
+		if head == None:
+			head = e
+		
+		# Increment the size of the array
+		size += 1
+		
+	# Get the value at the corresponding index
+	def Get( index ):
+		# Check for out of bounds condition
+		if index > size - 1 or index < 0:
+			return None
+			
+		# Step (linear) to the index position
+		curr = head;
+		for i in range( 0, index ):
+			curr = curr.next
+			
+		return curr.value
+		
+</pre>
+
 <h4>Java</h4>
 <pre>
 
@@ -498,6 +546,10 @@ example, I solve for an insert after. You maybe additionally asked to code an in
 	</li>
 </ul>
 
+<h4>Python</h4>
+<pre>
+</pre>
+
 <h4>Java</h4>
 <pre>
 
@@ -564,23 +616,44 @@ class DynamicArray {
 		size++;
 		return true;
 	}
-	
+		
+	def Insert( index, value ):
+		# Check for out of bounds condition
+		if index > size - 1 or index < 0:
+			return false
+			
+		# Adding to the tail
+		if index == size-1:
+			Add( value )
+			return true
+		
+		# Find the element at the index
+		curr = head
+		for i in range( 0, index ):
+			curr = curr.next
+
+		# Insert (after) between the current element and the next
+		e = Element( value )
+		e.next = curr.next
+		curr.next = e
+		
+		size += 1
+		return true
 	....
 }
 
 </pre>
 
-<h3>Linked Lists</h3>
+<h3>4. Linked Lists - Queue</h3>
 <p>
 A linked list is a data structure where each element is linked to another element forming a chain, such as A links to B which links to C, and so forth.
-Depending on the type of chaining, one can use link lists to code queues and stacks. A queue is also known as a FIFO (first-in-first-out) structure,
-while a stack is also known as a LIFO (last-in-last-out) structure.
+Depending on the type of chaining, one can use link lists to code queues and stacks. A queue is also known as a FIFO (first-in-first-out) structure.
 </p>
 <p>
 A queue consists of a head and a tail, where the head points to the first element in the queue, and the tail points to the end of the queue. Each new element
 is added to the end of the tail, becoming the new tail. Throughout the chain, each element is linked to the next element starting from the head and
 proceeding to the tail (forward chaining). A queue is typically used to process elements in the same sequential order they were added (FIFO). To process
-an element, one removes the head (current element to process) of the queue and sets the new head to the next element following the head.
+an element, one removes the head (current element to process) of the queue and sets the new head to the next element following the previous head.
 <p>
 
 <h4>Algorithm - Queue</h4>
@@ -589,7 +662,8 @@ an element, one removes the head (current element to process) of the queue and s
 		<ul>
 			<li>Define members for task to perform and next pointer for next element in the forward chain.</li>
 			<li>Define a constructor to instantiate a Task.</li>
-			<li>Define a Next() method to get the next element in the forward chain.</li>
+			<li>Define Next() methods to get and set the next element in the forward chain.</li>
+			<li>Define an Action() method to process the element's task.</li>
 		</ul>
 	</li>
 	<li>Define a Queue object
@@ -597,37 +671,116 @@ an element, one removes the head (current element to process) of the queue and s
 			<li>Define members for the head and tail of the queue.</li>
 			<li>Define an Empty() method to test if the queue is empty.</li>
 			<li>Define an Add() method to add a task to the tail of the queue.</li>
-			<li>Define a Pop() method to process the task at the head of the queue and then set the head of the queue to the next element.<li>
+			<li>Define a Pop() method to process the task at the head of the queue and then set the head of the queue to the next element.</li>
 		</ul>
 	</li>
 </ul>
+
+<h4>Python</h4>
+<pre>
+
+# Definition for a Task element in a Queue
+class Task:
+	next = None
+	
+	# constructor, task represents the task to be performed
+	def __init__( self, task ):
+		self.task = task
+	
+	# Get the next task this element is chained to
+	def GetNext(self):
+		return self.next
+	
+	# Set the next task this element is chained to
+	def Next( self, task ):
+		self.next = task
+	
+	# Action to take when task is processed
+	def Action( self ):
+		print( self.task )
+		
+# Definition for a Queue
+class Queue:
+	head = None
+	tail = None
+	
+	# Check if Queue is empty
+	def Empty(self):
+		if self.head == None:
+			return True
+		return False
+	
+	# Add a task to the queue
+	def Add( self, task ):
+		# the queue is empty, set head and tail to the task
+		if self.Empty():
+			self.head = self.tail = task
+		# otherwise, add it as the new tail
+		else:
+			self.tail.Next( task )
+			self.tail = task
+	
+	# Remove the top of the queue and process the task
+	def Pop( self):
+		# Queue is empty
+		if self.Empty():
+			return
+			
+		# Process the task here
+		self.head.Action()
+		
+		# Move the head to the next element.
+		self.head = self.head.GetNext()
+		if self.Empty():
+			self.tail = None
+
+print("Process in sequential order tasks: A, B and C" )
+queue = Queue()
+queue.Add( Task( "A" ) )
+queue.Add( Task( "B" ) )
+queue.Add( Task( "C" ) )
+queue.Pop()
+queue.Pop()
+queue.Pop()
+
+</pre>
 
 <h4>Java</h4>
 <pre>
 
 // Definition for a Task element in a Queue
 class Task {
-	private Object task;
-	private Queue  next = null;
+	private Object task;        // the task to perform
+	private Task   next = null; // the next task in the queue
 	
 	// constructor, task represents the task to be performed
-	public void Task( Object task ) {
+	public Task( Object task ) {
 		this.task = task;
 	}
 	
-	// The next task this element is chained to
+	// Get the next task this element is chained to
 	public Task Next() {
 		return next;
+	}
+	
+	// Set the next task this element is chained to
+	public void Next( Task task ) {
+		next = task;
+	}
+	
+	// Action to take when task is processed
+	public void Action() {
+		System.out.println( task );
 	}
 }
 
 // Definition for a Queue
-class Queue {
+public class Queue {
 	private Task head = null;	// the head of the queue
 	private Task tail = null;	// the tail of the queue
 	
 	// Check if Queue is empty
-	public boolean Empty() {
+	private boolean Empty() {
 		if ( head == null )
 			return true;
 		return false;
@@ -641,7 +794,7 @@ class Queue {
 		}
 		// otherwise, add it as the new tail
 		else {
-			tail.Next() = task;
+			tail.Next( task );
 			tail = task;
 		}
 	}
@@ -652,18 +805,581 @@ class Queue {
 		if ( Empty() )
 			return;
 			
-		// Proces the task here
+		// Process the task here
+		head.Action();
 		
 		// Move the head to the next element.
 		head = head.Next();
 		if ( Empty() )
 			tail = null;
 	}
+	
+	public static void main(String[] args) {
+		System.out.println("Process in sequential order tasks: A, B and C" );
+		Queue queue = new Queue();
+		queue.Add( new Task( "A" ) );
+		queue.Add( new Task( "B" ) );
+		queue.Add( new Task( "C" ) );
+		queue.Pop();
+		queue.Pop();
+		queue.Pop();
+	}
 }
 
 </pre>
 
-<h3>4. Binary Tree</h3>
+<p>
+You may be asked to improve the coding example by being ask to add a task priority and sort the queue according to the task's priority.
+</p>
+
+<h4>Algorithm - Queue with Task Priority</h4>
+<ul>
+	<li>Define a Task object
+		<ul>
+			<li>Define members for task to perform, the task's priority and next pointer for next element in the forward chain.</li>
+			<li>Define a constructor to instantiate a Task.</li>
+			<li>Define Priority() methods to get and set the task's priority.</li>
+			<li>Define Next() methods to get and set the next element in the forward chain.</li>
+			<li>Define an Action() method to process the element's task.</li>
+		</ul>
+	</li>
+	<li>Define a Queue object
+		<ul>
+			<li>Define members for the head of the queue (a tail is not needed anymore).</li>
+			<li>Define an Empty() method to test if the queue is empty.</li>
+			<li>Define an Add() method to add a task to the tail of the queue.</li>
+			<li>Define an Insert() method to add a task into the queue based on the task's priority.</li>
+			<li>Define a Pop() method to process the task at the head of the queue and then set the head of the queue to the next element.</li>
+		</ul>
+	</li>
+</ul>
+
+<h4>Python</h4>
+<pre>
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+// Definition for a Task element in a Queue
+class Task {
+	private Object task;        // the task to perform
+	private Task   next = null; // the next task in the queue
+	private int    priority;    // the task's priority
+	
+	// constructor, task represents the task to be performed
+	public Task( Object task, int priority ) {
+		this.task = task;
+		this.priority = priority;
+	}
+	
+	// Get the task's priority
+	public int Priority() {
+		return priority;
+	}
+	
+	// Set the task's priority
+	public void Priority( int priority ) {
+		this.priority = priority;
+	}
+	
+	// Get the next task this element is chained to
+	public Task Next() {
+		return next;
+	}
+	
+	// Set the next task this element is chained to
+	public void Next( Task task ) {
+		next = task;
+	}
+	
+	// Action to take when task is processed
+	public void Action() {
+		System.out.println( task );
+	}
+}
+
+// Definition for a Queue
+public class Queue {
+	private Task head = null;	// the head of the queue
+	
+	// Check if Queue is empty
+	private boolean Empty() {
+		if ( head == null )
+			return true;
+		return false;
+	}
+	
+	// Add a task to the queue
+	public void Add( Task task ) {
+		// the queue is empty, set head to the task
+		if ( Empty() ) {
+			head = task;
+		}
+		// otherwise, insert the task into the queue according to the task's priority
+		else {
+			Insert( task );
+		}
+	}
+	
+	// Insert a task into the queue based on priority
+	private void Insert( Task task ) {
+		// Start at the head of the chain to search where to insert the task
+		Task curr = head, prev = head;
+		while ( curr != null ) {
+			// Find a task whose's priority is less than the new task
+			if ( task.Priority() > curr.Priority() ) {
+				// Insert the task in front of the current task.
+				task.Next( curr );
+				
+				// If inserting in front of the head of the queue, 
+				// make the new task the head of the queue
+				if ( curr == head )
+					head = task;
+				// Otherwise, set the previous element's next to the new task
+				else {
+					prev.Next( task );
+				}
+				break;
+			}
+			
+			prev = curr;
+			curr = curr.Next();
+		}
+		
+		// Add to the tail (end) of the queue
+		if ( curr == null ) {
+			prev.Next( task );
+		}
+	}
+	
+	// Remove the top of the queue and process the task
+	public void Pop() {
+		// Queue is empty
+		if ( Empty() )
+			return;
+			
+		// Proces the task here
+		head.Action();
+		
+		// Move the head to the next element.
+		head = head.Next();
+	}
+	
+	public static void main(String[] args) {
+		System.out.println("Process in priority order tasks: B, C and A" );
+		Queue queue = new Queue();
+		queue.Add( new Task( "A", 1 ) );
+		queue.Add( new Task( "B", 3 ) );
+		queue.Add( new Task( "C", 2 ) );
+		queue.Pop();
+		queue.Pop();
+		queue.Pop();
+	}
+}
+
+</pre>
+
+<p>
+You maybe further asked to make another improvement to dynamically change a priority of task and resort the queue accordingly.
+</p>
+
+<h4>Algorithm - Queue with Dynamic Priority Update</h4>
+<ul>
+	<li>Update the priority of the task.</li>
+	<li>Locate task in the queue and remove the task.</li>
+	<li>Add the task back in.</li>
+</ul>
+
+<h4>Python</h4>
+<pre>
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+// Definition for a Queue
+public class Queue {
+	...
+	
+	// Update the priority of the task and resort the queue
+	public void Update( Task task, int priority ) {
+		// Update the task's priority
+		task.Priority( priority );
+		
+		// If the task is the head of the queue, remove it and update head to the next element
+		if ( head == task ) {
+			head.Next( head.Next() );
+		}
+		// Find the task in the queue
+		else {
+			Task curr = head.Next(), prev = head;
+			while ( curr != null ) {
+				// Remove the task from the queue and update previous element's next to this task's next element
+				if ( task == curr ) {
+					prev.Next( curr.Next() );
+					break;
+				}
+			}
+		}
+		
+		// Add the task back to the queue
+		Add( task );
+	}
+	
+	public static void main(String[] args) {
+		System.out.println("Process in priority order tasks: C, B and A" );
+		Queue queue = new Queue();
+		queue.Add( new Task( "A", 1 ) );
+		queue.Add( new Task( "B", 3 ) );
+		Task task =  new Task( "C", 2 );
+		queue.Add( task );
+		queue.Update( task, 4 );
+		queue.Pop();
+		queue.Pop();
+		queue.Pop();
+	}
+	...
+}
+
+</pre>
+
+<h3>5. Linked Lists - Stacks</h3>
+<p>
+A linked list is a data structure where each element is linked to another element forming a chain, such as A links to B which links to C, and so forth.
+Depending on the type of chaining, one can use link lists to code queues and stacks. A stack is also known as a LIFO (last-in-first-out) structure.
+while a stack is also known as a LIFO (last-in-last-out) structure.
+</p>
+<p>
+A stack consists of a top, which points to the top of the stack. Each new element
+is added to the top of the stack, becoming the new top. Throughout the chain, each element is linked to the next element starting from the top and
+proceeding to the bottom (forward chaining). A stack is typically used to process elements in the reverse sequential order they were added (LIFO). To process
+an element, one removes the top(current element to process) of the queue and sets the new top to the next element following the previous top.
+<p>
+
+<h4>Algorithm - Stack</h4>
+<ul>
+	<li>Define a Task object
+		<ul>
+			<li>Define members for task to perform, and next pointer for next element in the forward chain.</li>
+			<li>Define a constructor to instantiate a Task.</li>
+			<li>Define Next() methods to get and set the next element in the forward chain.</li>
+			<li>Define an Action() method to process the element's task.</li>
+		</ul>
+	</li>
+	<li>Define a Stack object
+		<ul>
+			<li>Define member for the top of the stack.</li>
+			<li>Define an Empty() method to test if the stack is empty.</li>
+			<li>Define a Push() method to add a task to the top of the stack.</li>
+			<li>Define a Pop() method to process the task at the top of the stack and then set the top of the stack to the next element.</li>
+		</ul>
+	</li>
+</ul>
+
+<h4>Python</h4>
+<pre>
+
+# Definition for a Task element in a Stack
+class Task:
+	task = None  # the task to perform
+	next = None  # the next task in the stack
+
+	# constructor, task represents the task to be performed
+	def __init__( self, task ):
+		self.task = task
+	
+	# Get the next task this element is chained to
+	def GetNext(self):
+		return self.next
+	
+	# Set the next task this element is chained to
+	def Next( self, task ):
+		self.next = task;
+	
+	# Action to take when task is processed
+	def Action( self ):
+		print( self.task )
+
+# Definition for a Stack
+class Stack:
+	top = None   # top of the stack
+	
+	# Check if the Stack is empty
+	def Empty(self):
+		if self.top == None:
+			return True
+		return False
+	
+	# Push the task to the top of the stack
+	def Push( self, task ):
+		# Set the task next pointer to the current top
+		task.Next( self.top )
+		# Set the top to this task
+		self.top = task
+	
+	# Pop the task from the top of the stack
+	def Pop( self ):
+		# Stack is Empty
+		if self.Empty():
+			return
+
+		# Perform the action for the task
+		self.top.Action()
+		
+		# Move the top to the current top's next pointer.
+		self.top = self.top.GetNext()
+
+print("Process tasks in order: A, B and C" )
+stack = Stack()
+stack.Push( Task( "C" ) )
+stack.Push( Task( "B" ) )
+stack.Push( Task( "A" ) )
+stack.Pop()
+stack.Pop()
+stack.Pop()
+
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+// Definition for a Task element in a Stack
+class Task {
+	private Object task;        // the task to perform
+	private Task   next = null; // the next task in the stack
+
+	// constructor, task represents the task to be performed
+	public Task( Object task ) {
+		this.task = task;
+	}
+	
+	// Get the next task this element is chained to
+	public Task Next() {
+		return next;
+	}
+	
+	// Set the next task this element is chained to
+	public void Next( Task task ) {
+		next = task;
+	}
+	
+	// Action to take when task is processed
+	public void Action() {
+		System.out.println( task );
+	}
+}
+
+// Definition for a Stack
+public class Stack {
+	private Task top;	// top of the stack
+	
+	// Check if the Stack is empty
+	private boolean Empty() {
+		if ( top == null )
+			return true;
+		return false;
+	}
+	
+	// Push the task to the top of the stack
+	public void Push( Task task ) {
+		// Set the task next pointer to the current top
+		task.Next( top );
+		// set the top to this task
+		top = task;
+	}
+	
+	// Pop the task from the top of the stack
+	public void Pop() {
+		// Stack is Empty
+		if ( Empty() )
+			return;
+			
+		// Perform the action for the task
+		top.Action();
+		
+		// Move the top to the current top's next pointer.
+		top = top.Next();
+	}
+
+	public static void main(String[] args) {
+		System.out.println("Process tasks in order: A, B and C" );
+		Stack stack = new Stack();
+		stack.Push( new Task( "C" ) );
+		stack.Push( new Task( "B" ) );
+		stack.Push( new Task( "A" ) );
+		stack.Pop();
+		stack.Pop();
+		stack.Pop();
+	}
+}
+
+</pre>
+
+<p>
+A common variation you maybe asked is to redesign your stack into a chain of stacks of fixed size. When an element is pushed to a stack
+that has reached it's maximum (fixed) size, the bottom if the stack is removed and pushed to the top of the next stack on the chain
+and so forth. Likewise, when an element is popped from the stack, the top of the next stack that is chained to it is popped and added
+to the bottom of the stack, and so forth.
+</p>
+<p>
+Unlike the previous stack example, where we implicitly performed the task when it was popped, we will this time return the task on a pop and
+let the application explicitly invoke performing the task. This will simplify the push and pop operations in a chain.
+</p>
+
+<h4>Algorithm - Chain of Stacks</h4>
+<ul>
+	<li>Define a Task object
+		<ul>
+			<li>Define members for task to perform, and next and previous pointer for next and previous element in the forward and backward chain.</li>
+			<li>Define a constructor to instantiate a Task.</li>
+			<li>Define Next() and Prev() methods to get and set the next and previous elements in the forward and backward chain.</li>
+			<li>Define an Action() method to process the element's task.</li>
+		</ul>
+	</li>
+	<li>Define a Stack Chain object
+		<ul>
+			<li>Define members for the top, bottom , maximum size and current size of the stack.</li>
+			<li>Define a member for the next stack in the chain.</li>
+			<li>Define an Empty() method to test if the stack is empty.</li>
+			<li>Define a Push() method to add a task to the top of the stack.
+				<ul>
+					<li>If exceeds the maximum size of the stack, remove the bottom task of the stack.</li>
+					<li>Push the task removed from the bottom to the next stack in the chain.</li>
+				</ul>
+			</li>
+			<li>Define a Pop() method to return the top of the stack and then set the top of the stack to the next element.
+				<ul>
+					<li>If the next stack in the chain is non-empty, then pop the top of the next stack in the chain.</li>
+					<li>Push the task removed from the top of the next stack in the chain onto this stack.</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+</ul>
+
+<h4>Java</h4>
+<pre>
+
+// Definition for a Task element in a Stack
+class Task {
+	...
+	private Task   prev = null; // the previous task in the stack
+	
+	// Get the previous task this element is chained to
+	public Task Prev() {
+		return prev;
+	}
+	
+	// Set the previous task this element is chained to
+	public void Prev( Task task ) {
+		prev = task;
+	}
+	...
+}
+
+// Definition for a Chain of Stacks
+public class StackChain {
+	private Task top    = null;      // top of the stack
+	private Task bottom = null;      // bottom of the stack
+	private final int max;           // maximum size of the stack
+	private int size;                // current size of the stack
+	private StackChain chain = null; // next stack in the chain
+	
+	// Constructor: instantiate a stack in a chain, specifying the maximum size of the stack.
+	public StackChain( int max ) {
+		this.max = max;
+	}
+	
+	// Check if the Stack is empty
+	private boolean Empty() {
+		if ( top != null )
+			return false;
+		return true;
+	}
+	
+	// Push the task to the top of the stack
+	public void Push( Task task ) {
+		// Set the task next pointer to the current top
+		task.Next( top );
+		
+		// Chain the current top back to the task
+		if ( top != null )
+			top.Prev( task );
+			
+		// Set the top to this task
+		top = task;
+		
+		// only element on the stack, set the bottom to the top
+		if ( ++size == 1 )
+			bottom = top;
+			
+		// overflowed the maximum size of the stack
+		if ( size > max ) {
+			// Create a new stack in the chain of the same maximum size
+			if ( chain == null )
+				chain = new StackChain( max );
+			
+			// Push the bottom of this stack onto the top of the next stack in the chain
+			chain.Push( bottom );
+			
+			// Remove the bottom by setting the bottom to the previous element from the bottom
+			bottom = bottom.Prev();
+		}
+	}
+	
+	// Pop the task from the top of the stack
+	public Task Pop() {
+		// Stack is Empty
+		if ( Empty() )
+			return null;
+			
+		// The task that is being popped from the stack
+		Task task = top;
+		
+		// Stack is empty
+		if ( --size == 0 )
+			top = bottom = null;
+		else {
+			// Move the top to the current top's next pointer.
+			top = top.Next();
+			
+			// There is a another stack chained to this stack
+			if ( chain != null ) {
+				// Pop the top of the stack chained to this stack
+				Task move = chain.Pop();
+				
+				// Add this task to the bottom of the stack
+				bottom.Next( move );
+				// Set the task's next to null
+				task.Next( null );
+				// Set the task as the new bottom of the stack
+				bottom = move;
+				
+				// If the stack chained to this one is empty, set the chain pointer to null
+				if ( chain.Empty() )
+					chain = null;
+			}
+		}
+		
+		// return the task that was popped
+		return task;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println("Process tasks in order: 6, 5, 4, 3, 2, 1, 0" );
+		StackChain stack = new StackChain( 3 );
+		for ( int i = 0; i < 7; i++ )
+			stack.Push( new Task( i ) );
+		for ( int i = 0; i < 7; i++ )
+			stack.Pop().Action();
+	}
+}
+
+</pre>
+
+
+<h3>6. Binary Tree</h3>
 
 <p>
 A binary tree is a tree where each node contains at most two branches (subtrees), commonly known as the left tree and right tree. The recursive
@@ -675,6 +1391,18 @@ binary tree:    empty node |
                     left binary subtree
                     right binary subtree
 </pre>
+<p>
+Some other terminology that is useful to know:
+<ul>
+	<li>The topmost node is the root.</li>
+	<li>Nodes at the same level are siblings.</li>
+	<li>Nodes with no branches are leaf nodes (or leaves).</li>
+	<li>Every node with branches is a parent. The nodes are the branches are children.<li>
+	<li>A branch is a directed edge.</li>
+	<li>A node depth is the number of edges between the root and the node.</li>
+	<li>A node height is the number of edges between the node and the deepest leaf node.</li>
+</ul>
+</p>
 
 <p>
 You may be asked to code a class definition for a binary tree node. The binary tree node will have the following members/methods:
@@ -697,27 +1425,27 @@ class BinaryTree:
 		self.__key   = key	# node data
 
 	# Set Left Binary Subtree
-	def Left(left):
+	def Left(self, left):
 		self.__left = left
 
 	# Get Left Binary Subtree
-	def Left():
+	def GetLeft(self ):
 		return __left
 
 	# Set Right Binary Subtree
-	def Right(right):
+	def Right(self, right):
 		self.__right = right
 
 	# Get Right Binary Subtree
-	def Right():
+	def GetRight(self):
 		return __right
 
 	# Set Node Data
-	def Key(key):
+	def Key(self, key):
 		self.__key = key
 
 	# Get Node Data
-	def Key():
+	def GetKey(self):
 		return __key
 		
 </pre>
@@ -792,15 +1520,15 @@ class Node:
 		self.__key   = key	# node data
 
 	# Set Node Data
-	def Key(key):
+	def Key(self, key):
 		self.__key = key
 
 	# Get Node Data
-	def Key():
+	def GetKey(self):
 		return __key
 
 	# Action to perform on a node	
-	def Action(node):
+	def Action(self, node):
 		raise NotImplementedError("Please Implement this method")
 
 # Derived definition for a Binary Tree
@@ -812,23 +1540,23 @@ class BinaryTree(Node):
 		self.__right = None	# right binary subtree
 
 	# Set Left Binary Subtree
-	def Left(left):
+	def Left(self, left):
 		self.__left = left
 
 	# Get Left Binary Subtree
-	def Left():
+	def GetLeft(self):
 		return __left
 
 	# Set Right Binary Subtree
-	def Right(right):
+	def Right(self, right):
 		self.__right = right
 
 	# Get Right Binary Subtree
-	def Right():
+	def GetRight(self):
 		return __right
 	
 	# Example action to perform on a node	
-	def Action(node):
+	def Action(self,node):
 		print( node.key)
 		
 </pre>
@@ -900,7 +1628,7 @@ class BinaryTree extends Node {
 
 </pre>
 
-<h3>5. Binary Tree Traversals</h3>
+<h3>7. Binary Tree Traversals</h3>
 
 <p>
 Binary trees can be traversed either breadth first or depth first. In a breadth first traversal, the tree is traversed one level at a time. 
@@ -908,7 +1636,7 @@ The root node (level 1) is first visited, then the left and right node (level 2)
 and so forth.
 </p>
 <p>
-For depth first, a tree can be traversed either inorder, preorder or postorder.
+For depth first traversal or search (DFS), a tree can be traversed either inorder, preorder or postorder.
 </p>
 <ul>
 	<li>Inorder: left (node), root, right</li>
@@ -1015,7 +1743,63 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 	
 </pre>
 
-<h3>6. k-ary Trees</h3>
+<p>
+A breadth first traversal or search (BFS) traverses a tree one node level at a time, visiting each node at that level, generally from left to right.
+This traversal is referred to as a level order traversal.
+</p>
+
+<h4>Algorithm - Level Order</h4>
+<ul>
+	<li>If the root node is non-null, add the root to the nodes to visit in sequential order.</li>
+	<li>While there are nodes to visit, do:
+		<ul>
+			<li>Visit the next node</li>
+			<li>Add the left node and right node of the visited node, if they exist to the nodes to visit.</li>
+		</ul>
+	</li>
+</ul>
+
+<h4>Java</h4>
+<pre>
+
+public class BFS {
+	public static void BFS( BinaryTree root ) {
+		
+		// Check if tree is empty
+		if ( root == null )
+			return;
+			
+		// list of nodes to visit in node level order
+		LinkedList<BinaryTree> visit = new LinkedList<BinaryTree>();	
+		visit.add( root );
+		
+		// sequentially visit in node in level order as it is dynamically added to the list
+		for ( int i = 0; i < visit.size(); i++ ) {
+			// Perform the node action
+			visit.get( i ).Action();
+			
+			// Add to the list the child siblings of this node
+			if ( visit.get( i ).Left() != null )
+				visit.add( visit.get( i ).Left() );
+			if ( visit.get( i ).Right() != null )
+				visit.add( visit.get( i ).Right() );
+		}	
+	}
+	
+	public static void main( String[] args ) {
+		BinaryTree tree = new BinaryTree( "1" );
+		tree.Left ( new BinaryTree( "2" ) );
+		tree.Right( new BinaryTree( "3" ) );
+		tree.Left().Left( new BinaryTree( "4" ) );
+		tree.Left().Right( new BinaryTree( "5" ) );
+		System.out.println( "BFS output 1 2 3 4 5");
+		BFS( tree );
+	}
+}
+
+</pre>
+
+<h3>8. k-ary Trees</h3>
 <p>
 As a follow up to coding examples related to a binary tree, you maybe asked to generalize a solution for a k-ary tree. A k-ary tree is a tree
 that may at most k children. You may be challenged, by being asked to create a base (super) class from which any k-ary tree can derived (extended)\
@@ -1103,6 +1887,444 @@ class Tree extends KNode {
 	}
 }
 </pre>
+
+<h3>9. Binary Search Tree</h3>
+<p>
+A binary search tree (BST) is a sorted tree where at each node, the data value of the left branch (child) is less than the data value of the node, and the right
+node is greater than, and where there are no duplicate values. For example, if the data value of the root node is 5, and we added a node with value 3 it
+would be inserted on the left branch, while a node of 7 would be inserted on the right branch.
+</p>
+
+<p>
+You maybe asked to code the algorithm to insert, find and delete nodes a binary search tree.
+</p>
+
+<h4>Algorithm - Insert</h4>
+<ul>
+	<li>If the root node is null, make the root the node</li>
+	<li>Otherwise, starting at the root, traverse the tree:
+		<ul>
+			<li>If the node is equal to the current node, then return (duplicate)</li>
+			<li>If the node is less than the current node.
+				<ul>
+					<li>If the left node is null, then make the node the left node.</li>
+					<li>Otherwise, traverse to the left node.</li>
+				</ul>
+			</li>
+			<li>If the node is greater than the current node.
+				<ul>
+					<li>If the right node is null, then make the node the right node.</li>
+					<li>Otherwise, traverse to the right node.</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+</ul>
+
+<h4>Java</h4>
+<pre>
+
+// Definition for a binary search tree
+class BST {
+	public BinaryTree root = null;	// root of the binary search tree
+	
+	// Insert a node into a binary tree
+	public void Insert( BinaryTree node ) {
+		// Empty Tree, make the node the root
+		if ( root == null ) {
+			root = node;
+			return;
+		}
+		
+		// Follow a path to insert the node
+		BinaryTree curr = root;
+		while ( true ) {
+			// node is a duplicate, do not insert
+			if ( (int) node.Key() == (int) curr.Key() ) {
+				return;
+			}
+			
+			// The node is less than the current node, traverse left
+			if ( (int) node.Key() < (int) curr.Key() ) {
+				// If there is no left node, make this node the left node
+				if ( curr.Left() == null ) {
+					curr.Left( node );
+					return;
+				}
+				curr = curr.Left();
+			}
+			// The node is greater than to the current node, traverse left
+			else {
+				// If there is no right node, make this node the right node
+				if ( curr.Right() == null ) {
+					curr.Right( node );
+					return;
+				}
+				curr = curr.Right();
+			}
+		}
+	}
+	
+	// Driver method
+    public static void main(String[] args)
+    {
+        BST tree = new BST();
+		System.out.println("BST level order: 3 2 6 1 4");
+		tree.Insert( new BinaryTree( 3 ) );
+		tree.Insert( new BinaryTree( 6 ) );
+		tree.Insert( new BinaryTree( 2 ) );
+		tree.Insert( new BinaryTree( 4 ) );
+		tree.Insert( new BinaryTree( 1 ) );
+		BFS( tree.root );
+	}
+}
+
+</pre>
+
+<h4>Algorithm - Find</h4>
+<ul>
+	<li>Starting at the root, traverse a path in the tree.</li>
+	<li>If the current node is null, return not found.</li>
+	<li>If the value is equal to the current node, return found.</li>
+	<li>If the value is less than the current node, traverse to the left node.</li>
+	<li>Otherwise (the value is greater than the current node), traverse to the right node.</li>
+</ul>
+
+<h4>Java</h4>
+<pre>
+
+// Definition for a binary search tree
+class BST {
+	...
+	
+	// Find a node in a binary tree
+	public BinaryTree Find( Object key ) {
+			
+		// Follow a path to find the node
+		BinaryTree curr = root;
+		while ( true ) {
+			// current node is null, return null (not found)
+			if ( curr == null )
+				return null;
+				
+			// the value is equal to the current node, return the current node
+			if ( (int) key == (int) curr.Key() ) {
+				return curr;
+			}
+			
+			// The value is less than the current node, traverse left
+			if ( (int) key < (int) curr.Key() ) {
+				curr = curr.Left();
+			}
+			// The value is greater than to the current node, traverse left
+			else {
+				curr = curr.Right();
+			}
+		}
+	}
+	
+	// Driver method
+	public static void main(String[] args)
+	{
+        BST tree = new BST();
+		tree.Insert( new BinaryTree( 3 ) );
+		tree.Insert( new BinaryTree( 6 ) );
+		tree.Insert( new BinaryTree( 2 ) );
+		tree.Insert( new BinaryTree( 4 ) );
+		tree.Insert( new BinaryTree( 1 ) );
+		System.out.println( "FIND(4) = " + tree.Find( 4 ) + " FIND(0) = " + tree.Find(0) );
+	}
+}
+
+</pre>
+
+<h4>Algorithm - Delete</h4>
+<ul>
+	<li>Traverse the tree, starting with the root and remember the previous node visited.</li>
+	<li>If the current node is null, return (not found).</li>
+	<li>If the value is equal to the current node.
+		<ul>
+			<li>If the node is the left node of the previous node, set the previous node's left node to null.</li>
+			<li>Otherwise (is the right node of the previous node), set the previous node's right node to null.</li>
+			<li>Remember the root and temporarily set the root to the previous node.</li>
+			<li>If the left node of the current (deleted) node is non-null, then Insert() the current node's left node back into the tree.</li>
+			<li>If the right node of the current (deleted) node is non-null, then Insert() the current node's right node back into the tree.</li>
+		</ul>
+	</li>
+	<li>If the value is less than the current node.
+		<ul>
+			<li>Set flag that the current node is the left node of the current node.</li>
+			<li>Set the previous node to the current node.</li>
+			<li>Set the current node to the left node of the previous node.</li>
+		</ul>
+	</li>
+	<li>Otherwise (value is greater than the current node).
+		<ul>
+			<li>Set flag that the current node is the right node of the current node.</li>
+			<li>Set the previous node to the current node.</li>
+			<li>Set the current node to the right node of the previous node.</li>
+		</ul>
+	</li>
+</ul>
+
+<h4>Java</h4>
+<pre>
+
+// Definition for a binary search tree
+class BST {
+	...
+	
+	// Find a node in a binary tree
+	public void Delete( Object key ) {
+
+		// Follow a path to find the node
+		BinaryTree curr = root, prev = null;
+		boolean isLeft = false;
+		while ( true ) {
+			// current node is null, return (not found)
+			if ( curr == null )
+				return;
+				
+			// the value is equal to the current node, delete the node
+			if ( (int) key == (int) curr.Key() ) {
+				if ( isLeft ) 
+					prev.Left( null );
+				else
+					prev.Right( null );
+				BinaryTree saveRoot = root;
+				root = prev;
+				if ( curr.Left()  != null ) Insert( curr.Left() );
+				if ( curr.Right() != null ) Insert( curr.Right() );
+				root = saveRoot;
+				return;
+			}
+			else if ( (int) key < (int) curr.Key() ) {
+				isLeft = true;
+				prev = curr;
+				curr = curr.Left();
+			}
+			else {
+				isLeft = false;
+				prev = curr;
+				curr = curr.Right();
+			}
+		}
+	}
+	
+	// Driver method
+    public static void main(String[] args)
+    {
+        BST tree = new BST();
+		tree.Insert( new BinaryTree( 3 ) );
+		tree.Insert( new BinaryTree( 6 ) );
+		tree.Insert( new BinaryTree( 2 ) );
+		tree.Insert( new BinaryTree( 4 ) );
+		tree.Insert( new BinaryTree( 1 ) );
+		tree.Delete( 6 );
+		System.out.println("BST level order: 3 2 4 1");
+		BFS( tree.root );
+	}
+}
+	
+</pre>
+
+<h3>10. Arithmetic Operations</h3>
+<p>
+A very basic arithmetic problem you maybe asked is to implement a multiply operation where you can only use the addition and equality operator.
+</p>
+
+<h4>Algorithm - Multiply</h4>
+<ul>
+	<li>Initialize accumulators for result and repeat to 0.</li>
+	<li>Loop indefinitely for 'x + y'</li>
+	<ul>
+		<li>If the repeat accumulator equals y, then break.</li>
+		<li>Increment the repeat accumulator by one. </li>
+		<li>Add x to the result accumulator.</li>
+	</ul>
+</ul>
+
+<h4>Python</h4>
+<pre>
+
+# Multiple using only + and = operator
+def Mul( x, y ):
+	result = 0  # accumlator for the result
+	repeat = 0  # accumlator for the number of times to repeat the addition
+		
+	while ( True ):
+		# starting at zero, exit the loop after y+1 times
+		repeat += 1
+		if repeat == y + 1:
+			break
+		# accumulate the result by adding x to the accumulator
+		result += x;
+
+	return result
+
+print( Mul( 5, 6 ) )
+
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+public class Calc
+{
+	// Multiple using only + and = operator
+	public static int Mul( int x, int y ) {
+		int result = 0;	// accumlator for the result
+		int repeat = 0;	// accumlator for the number of times to repeat the addition
+		
+		while ( true ) {
+			// starting at zero, exit the loop after y+1 times
+			if ( repeat++ == y )
+				break;
+			// accumulate the result by adding x to the accumulator
+			result += x;
+		}
+		return result;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println( "5 * 6 = " + Mul( 5, 6 ) );
+	}
+}
+
+</pre>
+
+<p>
+You would then be likely asked to extend the solution to include an exponent operation where you can only use the addition and equality operator.
+</p>
+
+<h4>Algorithm - Exponent</h4>
+<ul>
+	<li>If the exponent is zero, return 1.</li>
+	<li>Initialize accumulators for result to 1 and repeat to 0.</li>
+	<li>Loop indefinitely for 'x power e'</li>
+	<ul>
+		<li>If the repeat accumulator equals e, then break.</li>
+		<li>Increment the repeat accumulator by one. </li>
+		<li>Update the result accumulator to Mul(x, result).</li>
+	</ul>
+</ul>
+
+<h4>Python</h4>
+<pre>
+
+....
+# Exponent using only + and = operator
+def Exp( x, e ):
+	# x raised to power of 0 is always 1
+	if e == 0:
+		return 1
+		
+	result = 1	# accumlator for the result
+	repeat = 0	# accumlator for the number of times to repeat the multiplication
+	while ( True ):
+		repeat += 1
+		if repeat == e + 1:
+			break
+		result = Mul( x, result );
+
+	return result
+
+print( Exp( 3, 4 ) )
+
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+public class Calc
+{
+	...
+	
+	// Exponent using only + and = operator
+	public static int Exp( int x, int e ) {
+		// x raised to power of 0 is always 1
+		if ( e == 0 )
+			return 1;
+		
+		int result = 1;	// accumlator for the result
+		int repeat = 0;	// accumlator for the number of times to repeat the multiplication
+		while ( true ) {
+			if ( repeat++ == e )
+				break;
+			result = Mul( x, result );
+		}
+		return result;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println( "3 exp 4 = " + Exp( 3, 4 ) );
+	}
+}
+
+</pre>
+
+<h3>11. Variable Length Byte Encoding</h3>
+You maybe asked to code a variable length byte encoding, using the least amount of bits for the encoding across all sequences. For example, some
+encodings will be one byte, some two bytes, etc. In an encoding with between 1 and 8 bytes, if we restrict the first byte to must contain a zero
+bit, then we can use the position of the zero bit to determine the byte length, while retaining the use of the less significant bits for the
+encoding.
+</p>
+
+<h4>Algorithm</h4>
+<ul>
+	<li>If the most significant bit is zero, then the encoding is one byte long and the remaining bits are the encoding.</li>
+	<li>If the most significant bit is one, the bit position (most to least significant) is the number of bytes in the encoding,
+	and the remaining less significant bits in the first byte and all the bits in the remaining bytes are the encoding.
+	</li>
+</ul>
+
+<h4>Java</h4>
+<pre>
+
+public class Encoding {
+	public static int Size( byte[] encoding ) {
+		byte first = encoding[ 0 ];
+		// checking leading bit
+		if ( ( first & 0x80 ) == 0 )
+			return 1;
+		if ( ( first & 0x40 ) == 0 )
+			return 2;
+		if ( ( first & 0x20 ) == 0 )
+			return 3;
+		if ( ( first & 0x10 ) == 0 )
+			return 4;
+		if ( ( first & 0x08 ) == 0 )
+			return 5;
+		if ( ( first & 0x04 ) == 0 )
+			return 6;
+		if ( ( first & 0x02 ) == 0 )
+			return 7;
+		if ( ( first & 0x01 ) == 0 )
+			return 8;
+		return 0;	// error
+	}
+	
+	public static void main(String[] args) {
+		byte[] encoding = new byte[8];
+		encoding[ 0 ] = (byte) 0x49;
+		System.out.println( "Size(1) = " + Size( encoding ) );
+		encoding[ 0 ] = (byte) 0x89;
+		System.out.println( "Size(2) = " + Size( encoding ) );
+		encoding[ 0 ] = (byte) 0xCB;
+		System.out.println( "Size(3) = " + Size( encoding ) );
+	}
+}
+
+</pre>
+
+<h3>Other Algorithms - TBA</h3>
+A*<br/>
+AVL<br/>
+Sorting<br/>
+Hash<br/>
+String Searching<br/>
+LCD<br/>
+Greatest Common Binary Tree<br/>
 
 <footer>
 <br/>
