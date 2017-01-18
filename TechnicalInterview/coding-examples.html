@@ -1773,7 +1773,7 @@ public class BFS {
 		LinkedList<BinaryTree> visit = new LinkedList<BinaryTree>();	
 		visit.add( root );
 		
-		// sequentially visit in node in level order as it is dynamically added to the list
+		// sequentially visit each node in level order as it is dynamically added to the list
 		for ( int i = 0; i < visit.size(); i++ ) {
 			// Perform the node action
 			visit.get( i ).Action();
@@ -1797,6 +1797,142 @@ public class BFS {
 	}
 }
 
+</pre>
+
+<p>
+If you are asked to count the size (number of nodes) of a binary tree, using any of the traversal methods, and simply replace my call to
+the method Action() with a counter that is increment each time a node is visited.
+</p>
+
+<p>You maybe asked to add to your solution a method to calculate the maximum and minimum depth of the tree. The maximum depth is the number of nodes
+from the root to the leaf node that is the furthest from the root, while the minimum depth is the number of nodes
+from the root to the leaf node that is the closest the root.
+</p>
+
+<h4>Algorithm - Maximum and Minimum Depth of Binary Tree</h4>
+<ul>
+	<li>Do a preorder traversal of the tree starting from the root.</li>
+	<li>When a node is visited, increment the depth count by 1.</li>
+	<li>Recursively apply the algorithm to the left and right nodes.</li>
+	<li>When returning from a child back to a parent node, pass back the node depth of the child.</li>
+	<li>Return the maximum or minimum value from the left and right child (or the parent if there are no children).</li>
+</ul>
+
+<h4>Java</h4>
+<pre>
+
+// Derived definition for a Binary Tree
+class BinaryTree extends Node {
+	...
+	// Calculate the maximum depth of the binary tree
+	public int MaxDepth( int max )
+	{
+		max++;	// increment by one level for the node
+		
+		int lmax = max, rmax = max;	// maximum depth on left and right nodes.
+		
+		// Calculate the maximum depth along the left binary subtree
+		if ( Left() != null )
+			lmax = Left().MaxDepth( max );
+		// Calculate the maximum depth along the right binary subtree
+		if ( Right() != null )
+			rmax = Right().MaxDepth( max );
+		
+		return Math.max( lmax, rmax );
+	}
+
+	// Calculate the minimum depth of the binary tree
+	public int MinDepth( int min )
+	{
+		min++;	// increment by one level for the node
+		
+		int lmin = min, rmin = min;	// minimum depth on left and right nodes.
+		
+		// Calculate the maximum depth along the left binary subtree
+		if ( Left() != null )
+			lmin = Left().MaxDepth( min );
+		// Calculate the maximum depth along the right binary subtree
+		if ( Right() != null )
+			rmin = Right().MaxDepth( min );
+		
+		return Math.min( lmin, rmin );
+	}
+	
+	// Driver method
+    public static void main(String[] args)
+    {
+        BinaryTree tree = new BinaryTree( 1 );
+        tree.Left(  new BinaryTree( 2 ) );
+        tree.Right( new BinaryTree( 3 ) );
+        tree.Left().Left( new BinaryTree( 4 ) );
+        tree.Left().Right( new BinaryTree( 5 ) );
+        System.out.println("\nMax Depth(3) is  " + tree.MaxDepth( 0 ) );
+        System.out.println("\nMax Depth(2) is  " + tree.MinDepth( 0 ) );
+    }
+}
+</pre>
+
+<p>Another addition you maybe asked is to add to your solution a method to calculate the maximum and minimum value of the tree. The maximum
+value is the node with the maximum value of all nodes, while the minimum value is the node with the minimum value of all nodes.
+</p>
+
+<h4>Algorithm - Maximum and Minimum Value</h4>
+<ul>
+	<li>Do a level order (Breadth First) traversal of the tree.</li>
+	<li>Keep a counter of the maximum and minimum value encountered.</li>
+</ul>
+
+<h4>Java</h4>
+<pre>
+
+// Derived definition for a Binary Tree
+class BinaryTree extends Node {
+	...
+		
+	// Calculate the minimum and maximum value in the binary tree
+	public int[] MinMax() {
+		int min = 0x7FFFFFFF;  // counter for min value (start at maximum signed int)
+		int max = 0x80000000;  // counter for max value (start at minimum signed int)
+			
+		// list of nodes to visit in node level order
+		LinkedList<BinaryTree> visit = new LinkedList<BinaryTree>();	
+		visit.add( this );
+		
+		// sequentially visit each node in level order as it is dynamically added to the list
+		for ( int i = 0; i < visit.size(); i++ ) {
+			// Perform the node action
+			if ( (int)  visit.get( i ).Key() > max )
+				max = (int)  visit.get( i ).Key();
+			if ( (int)  visit.get( i ).Key() < min )
+				min = (int)  visit.get( i ).Key();
+			
+			// Add to the list the child siblings of this node
+			if ( visit.get( i ).Left() != null )
+				visit.add( visit.get( i ).Left() );
+			if ( visit.get( i ).Right() != null )
+				visit.add( visit.get( i ).Right() );
+		}	
+		
+		int[] ret = new int[2];
+		ret[0] = min; ret[1] = max;
+		return ret;
+	}
+	
+	// Driver method
+    public static void main(String[] args)
+    {
+        BinaryTree tree = new BinaryTree( 1 );
+        tree.Left(  new BinaryTree( 2 ) );
+        tree.Right( new BinaryTree( 3 ) );
+        tree.Left().Left( new BinaryTree( 4 ) );
+        tree.Left().Right( new BinaryTree( 5 ) );
+		
+        int[] minmax = tree.MinMax();
+	    System.out.println("\nMin Value(1) is  " + minmax[ 0 ] );
+	    System.out.println("\nMax Value(5) is  " + minmax[ 1 ] );
+    }
+	...
+}
 </pre>
 
 <h3>8. k-ary Trees</h3>
@@ -2263,6 +2399,112 @@ public class Calc
 
 </pre>
 
+<p>Another algorithm you may be asked to code is Euclid's algorithm for find the great common denominator between two numbers. The algorithm
+dates back to 300BC. It is a very efficient algorithm that involves a few small steps. It can be coded as iteratively or recursively.
+</p>
+
+<h4>Algorithm - GCD Iterative Solution</h4>
+<ul>
+	<li>Calculate the remainder of dividing the 2nd number by the first number (y % x)</li>
+	<li>Swap the value of the first number (x) with the second number (y).</li>
+	<li>Set the second number (y) to the remainder.</li>
+	<li>Iteratively repeat the process until the 2nd number (y) is zero.</li>
+	<li>Return the value of first number (x) when the 2nd number is zero (y).</li>
+</ul>
+
+<h4>Java</h4>
+
+<pre>
+
+public class GCD {
+	// Euclid's algorithm as an iterative solution
+	private static int GCD( int x, int y )
+	{
+		// continue until the division of of the two numbers does not leave a remainder (evenly divisible)
+		while ( y > 0 )
+		{
+			// calculate the remainder of the division by between x and y
+			int remainder = ( y % x );
+			
+			// swap the value of x with y
+			x = y;
+			
+			// set y to the remainder
+			y = remainder;
+		}
+		
+		return x;
+	}
+	
+	public static void main(String[] args ) {
+		System.out.println( "GCD(4) " + GCD( 12, 16 ) );
+	}
+}
+
+</pre>
+
+<p>
+You may then be asked to code the solution using recursion.
+</p>
+
+<h4>Algorithm - GCD Recursive Solution</h4>
+<ul>
+	<li>When the 2nd number (y) is reduced to zero, return the current value of the first number (x)</li>
+	<li>Otherwise, swap the first number (x) with the second number (y) and set the 2nd number (y) to the remainder
+	of the division of the 2nd number by the first number (x % y).</li>
+	<li>Recursively call GCD() with the updated first and second numbers.</li>
+</ul>
+
+<h4>Java</h4>
+<pre>
+
+public class GCD {
+	// Euclid's algorithm as a recursive solution
+	private static int GCD( int x, int y )
+	{
+		// return the current value of x when y is reduced to zero.
+		if ( y == 0 )
+			return x;
+			
+		return GCD( y, ( y % x ) );
+	}
+	
+	public static void main(String[] args ) {
+		System.out.println( "GCD(4) " + GCD( 12, 16 ) );
+	}
+}
+
+</pre>
+
+<p>
+Finally, you may also be asked to extend your solution to additionally find the least common multiple (denominator). The least common multiple (LCM) is the
+product of the two numbers divided by the GCD of the two numbers.
+</p>
+
+<h4>Algorithm - LCM</h4>
+<ul>
+	<li>Multiple the first and second number.</li>
+	<li>Divide the result by the GCD of the two numbers.</li>
+</ul>
+
+<h4>Java</h4>
+<pre>
+
+public class GCD {
+	...
+	// Calculate the least common mulitple
+	private static int LCM( int x, int y )
+	{
+		return ( x * y ) / GCD( x, y );
+	}
+	
+	public static void main(String[] args ) {
+		System.out.println( "LCM(24) " + LCM( 6, 8 ) );
+	}
+}
+
+</pre>
+
 <h3>11. Variable Length Byte Encoding</h3>
 You maybe asked to code a variable length byte encoding, using the least amount of bits for the encoding across all sequences. For example, some
 encodings will be one byte, some two bytes, etc. In an encoding with between 1 and 8 bytes, if we restrict the first byte to must contain a zero
@@ -2317,14 +2559,108 @@ public class Encoding {
 
 </pre>
 
-<h3>Other Algorithms - TBA</h3>
-A*<br/>
-AVL<br/>
-Sorting<br/>
-Hash<br/>
-String Searching<br/>
-LCD<br/>
-Greatest Common Binary Tree<br/>
+<h3>12. Sorting</h3>
+<p>
+There are numerous basic algorithms for sorting. You may get asked to start with a simple sort algorithm and progressively code more complex
+algorithms. One simple algorithm is a bubble sort. It works by going through a list and comparing adjacent values, and swapping them if the first
+value is greater than the second value (ascending) or vice-versa (descending). Repeated passes are made through the list until no values are
+swapped. The term bubble sort comes from the concept that the smaller (or larger) values slowly bubble up. The performance is poor and has
+a time complexity of O(n*n).
+</p>
+
+<h4>Algorithm - Bubble Sort</h4>
+<ul>
+	<li>Make a pass through the list of values.
+		<ul>
+			<li>Compare adjacent values.</li>
+			<li>If the first value is less than the second value, swap the values.</li>
+		</ul>
+	</li>
+	<li>If one of more values were swapped, repeat the process of making a pass through the list.</li>
+</ul>
+
+<h4>Java</h4>
+<pre>
+
+class Sort {
+	// Definition for a Bubble Sort
+	public static int[] BubbleSort( int[] data ) {
+		boolean swapped = true;
+		// continue to repeat until no more adjacent values are swapped
+		while ( swapped ) {
+			swapped = false;
+			// Make a scan through the list
+			for ( int i = 0; i < data.length - 1; i++ ) {
+				// Compare adjacent values. If the first value > second value, swap the values.
+				if ( data[ i ] > data[ i + 1 ] ) {
+					int swap = data[ i ];
+					data[ i ] = data[ i + 1 ];
+					data[ i + 1 ] = swap;
+					swapped = true;
+				}
+			}
+		}
+		return data;
+	}
+	
+	public static void main( String[] args ) {
+		int[] data = new int[ 6 ];
+		data[ 0 ] = 5; data[ 1 ] = 2; data[ 2 ] = 4; data[ 3 ] = 1; data[ 4 ] = 6; data[ 5 ] = 3;
+		data = BubbleSort( data );
+		for ( int i = 0; i < data.length; i++ )
+			System.out.println( data[ i ] );
+	}
+}
+
+</pre>
+
+<p>Another simple sorting algorithm you maybe asked to code is an insertion sort. It makes N iterations on the list of elements. 
+On each iteration it advances to the next element and inserts the element into the correct position in the list. It's performance is good
+on small sets, but poor on large sets with a time complexity of O(n*n).
+</p>
+
+<h4>Algorithm - Insertion Sort</h4>
+<ul>
+	<li>Iterate through the list of elements.
+		<ul>
+			<li>Remove and Insert the element into the correct position in the list 
+			of elements proceeding it.</li>
+		</ul>
+	</li>
+</ul>
+
+<h4>Java</h4>
+<pre>
+
+class Sort {
+		// Definition for an Insertion Sort
+	public static int[] InsertionSort( int[] data ) {
+		// iterate through the list for each element except the first element
+		for ( int i = 1; i < data.length; i++ ) {
+			// starting with the current element, remove/insert proceeding
+			// elements so they are in sorted order
+			for ( int j = i; j > 0; j-- ) {
+				// swap adjacent elements
+				if ( data[ j ] < data[ j - 1 ] ) {
+					int temp = data[ j ];
+					data[ j ] = data[ j -1 ];
+					data[ j - 1 ] = temp;
+				}
+			}
+		}
+		return data;
+	}
+	
+	public static void main( String[] args ) {
+		int[] data = new int[ 6 ];
+		data[ 0 ] = 5; data[ 1 ] = 2; data[ 2 ] = 4; data[ 3 ] = 1; data[ 4 ] = 6; data[ 5 ] = 3;
+		data = InsertionSort( data );
+		for ( int i = 0; i < data.length; i++ )
+			System.out.println( data[ i ] );
+	}
+}
+	
+</pre>
 
 <footer>
 <br/>

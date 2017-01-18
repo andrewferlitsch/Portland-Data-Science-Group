@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 // Base Class definition for k-ary tree
 abstract class Node {
 	// node data
@@ -79,7 +81,70 @@ class BinaryTree extends Node {
 		System.out.println( this.Key() );
 	}
 	
-	 // Driver method
+	// Calculate the maximum depth of the binary tree
+	public int MaxDepth( int max )
+	{
+		max++;	// increment by one level for the node
+		
+		int lmax = max, rmax = max;	// maximum depth on left and right nodes.
+		
+		// Calculate the maximum depth along the left binary subtree
+		if ( Left() != null )
+			lmax = Left().MaxDepth( max );
+		// Calculate the maximum depth along the right binary subtree
+		if ( Right() != null )
+			rmax = Right().MaxDepth( max );
+		
+		return Math.max( lmax, rmax );
+	}
+	
+	// Calculate the minimum depth of the binary tree
+	public int MinDepth( int min )
+	{
+		min++;	// increment by one level for the node
+		
+		int lmin = min, rmin = min;	// minimum depth on left and right nodes.
+		
+		// Calculate the maximum depth along the left binary subtree
+		if ( Left() != null )
+			lmin = Left().MaxDepth( min );
+		// Calculate the maximum depth along the right binary subtree
+		if ( Right() != null )
+			rmin = Right().MaxDepth( min );
+		
+		return Math.min( lmin, rmin );
+	}	
+	
+	// Calculate the minimum and maximum value in the binary tree
+	public int[] MinMax() {
+		int min = 0x7FFFFFFF;  // counter for min value (start at maximum signed int)
+		int max = 0x80000000;  // counter for max value (start at minimum signed int)
+			
+		// list of nodes to visit in node level order
+		LinkedList<BinaryTree> visit = new LinkedList<BinaryTree>();	
+		visit.add( this );
+		
+		// sequentially visit each node in level order as it is dynamically added to the list
+		for ( int i = 0; i < visit.size(); i++ ) {
+			// Perform the node action
+			if ( (int)  visit.get( i ).Key() > max )
+				max = (int)  visit.get( i ).Key();
+			if ( (int)  visit.get( i ).Key() < min )
+				min = (int)  visit.get( i ).Key();
+			
+			// Add to the list the child siblings of this node
+			if ( visit.get( i ).Left() != null )
+				visit.add( visit.get( i ).Left() );
+			if ( visit.get( i ).Right() != null )
+				visit.add( visit.get( i ).Right() );
+		}	
+		
+		int[] ret = new int[2];
+		ret[0] = min; ret[1] = max;
+		return ret;
+	}
+	
+	// Driver method
     public static void main(String[] args)
     {
         BinaryTree tree = new BinaryTree( 1 );
@@ -96,6 +161,14 @@ class BinaryTree extends Node {
  
         System.out.println("\nPostorder traversal of binary tree is ");
         tree.PostOrder();
+ 
+        System.out.println("\nMax Depth(3) is  " + tree.MaxDepth( 0 ) );
+ 
+        System.out.println("\nMin Depth(2) is  " + tree.MinDepth( 0 ) );
+ 
+       int[] minmax = tree.MinMax();
+	   System.out.println("\nMin Value(1) is  " + minmax[ 0 ] );
+	   System.out.println("\nMax Value(5) is  " + minmax[ 1 ] );
     }
 }
 
