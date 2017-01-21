@@ -80,4 +80,56 @@ class DB
 }
 
 $db = new DB;
+
+// Class Definition for Category
+class Category {
+	var $category;
+	
+	function __construct( $category ) {
+		$this->$category = $category;
+	}
+	
+	// Get all questions (optionally by rank)
+	function All( $rank = null ) {
+		var $where = "WHERE category = '$category'";
+		if ( is_null( $rank ) ) {
+			$where .= " AND rank = '$rank";
+		}
+		
+		$q = "SELECT id,rank,question,answer,toggle FROM " . TBL_QUESTIONS . " $where";	$result = mysqli_query( $this->connection, $q );
+		//echo "Q $q<br/>";
+        //echo mysql_error( $this->connection ) . "<br/>";
+
+		$questions = array();
+        while ( $data = mysqli_fetch_array( $result ) )
+        {
+			$questions[] = $data;
+        }
+
+        return $questions;
+	}
+	
+	// Get a random number of questions of specified rank
+	function Random( $rank, $number = 1 ) {
+		// Get all the questions of this rank
+		$questions = All( $rank );
+		
+		// If the total number is less than 
+		$count = count( $questions );
+		if ( $count < $number ) {
+			return $questions;
+		}
+		
+		$result = array();
+		
+		// Single question request
+		if ( $number == 1 ) {
+			var $pick = random( 0, $count - 1 );
+			$result.push( $questions[ $pick ] );
+		}
+		
+		return result;
+
+	}
+}
 ?>
