@@ -31,6 +31,7 @@ preprocessed into bag of words.
 By default, the csv file is presumed to have a header and is excluded from the preprocessing.
 If the file does not contain a header, then use the -n option to specify no header.
 
+	# CSV file has no header
 	java -jar nlp.jar -n mydata.csv
 
 ### Specifying columns to preprocess as narrative fields
@@ -38,7 +39,8 @@ If the file does not contain a header, then use the -n option to specify no head
 Only the columns specified will be preprocessed. The remaining columns will be outputted in
 the original (unprocessed) form. Columns are specified with the -c option, starting at index 0.
 
-	java -jar nlp.jar -c 1,2  mydata.csv
+	# Columns 1 and 2 are narrative fields
+	java -jar nlp.jar -c 1,2 mydata.csv
 	
 ### Specifying Stop Words
 
@@ -57,10 +59,23 @@ arguments to this option are:
 	
 Multiple arguments may be specified by separating them by commas. 
 
-	java -jar nlp.jar -c 1 -S p,n
+	# Set stop words to Porter List and Numbers
+	java -jar nlp.jar -c 1 -S p,n mydata.csv
 	
 In the case of the Porter stop words, one can exclude groupings, such as conjunctions, by 
 proceeding the corresponding argument with a not sign (!).
 
-	java -jar nlp.jar -c 1 -S p,!c
+	# Set stop words to Porter List, except for conjunctions
+	java -jar nlp.jar -c 1 -S p,!c mydata.csv
+	
+### Including (and Excluding) Additional Stop Words
+
+Additional stop words (beyond -S groupings) are added using the -e option, or excluded (i.e., keep)
+with the -k option.
+
+	# Add cat and dog to the stop word list
+	java -jar nlp.jar -c 1 -S p -e "cat,dog" mydata.csv
+
+	# Remove here and far from the stop word list
+	java -jar nlp.jar -c 1 -S p -k "here,far" mydata.csv
 	
