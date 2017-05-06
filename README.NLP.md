@@ -19,10 +19,8 @@ preprocessed into bag of words.
 		-l		# lemmatization
 		-n		# no header (csv)
 		-r		# word reduction
-		-R reader	# reader type (mem,line,mapped)
 		-s		# stemming
 		-S sflags	# stop word groups
-		-t type		# input file type
 		
 ## Examples
 
@@ -68,6 +66,9 @@ proceeding the corresponding argument with a not sign (!).
 	# Set stop words to Porter List, except for conjunctions
 	java -jar nlp.jar -c 1 -S p,!c mydata.csv
 	
+The stop word removal process will also expand common single word abbreviations to their full
+word form.
+	
 ### Including (and Excluding) Additional Stop Words
 
 Additional stop words (beyond -S groupings) are added using the -e option, or excluded (i.e., keep)
@@ -79,3 +80,64 @@ with the -k option.
 	# Remove here and far from the stop word list
 	java -jar nlp.jar -c 1 -S p -k "here,far" mydata.csv
 	
+### Stemming
+
+Stemming of words (removing word endings) is enabled with the -s option. When specified, each word is converted into its
+root stem, according to grammatical syntax rules. For example, reading and reads are both converted
+to read. For words whose endings are exceptions to the rule, the stemmed root may differ from
+the actual word root. For example, thieves becomes thiefe, and recover becomes recov.
+
+	# Stem (remove word endings)
+	java -jar nlp.jar -c 1 -S p -s mydata.csv
+	
+### Lemmatization
+
+Lemmatization is an extension of stemming, which attempts to fix stemmed words that do not
+match the actual word root. This lemmatization has a builtin dictionary which can detect and fix
+common miss-stemmed words.
+
+	# Lemma (remove word endings and replace with actual root)
+	java -jar nlp.jar -c 1 -S p -l mydata.csv
+	
+### Word Reduction
+
+Word reduction is reducing words that are related to a single common word. For example, man, men,
+male, guy and boy are reduced to the word male, and brother, sister are reduced to sibling. 
+Word reduction is specified with the -r option.
+
+	# Word reduction
+	java -jar nlp.jar -c 1 -S p -l -r mydata.csv
+	
+### Outputting without Frequency 
+
+By default, the narrative fields are replaced with a bag of words, represented as a comma separated
+list, in the order that they appeared the narrative. If a word appears multiple times in the
+narrative, it will appear multiple times in the bag of words.
+
+For example, the sentence:
+
+	The quick brown fox jumped over the fence.
+	
+Will get replaced with (-Sp -l):
+
+	brown,fox,jump,fence
+	
+### Outputting Frequency Counts
+
+You can output word frequency counts (sorted) only with the -F option; no preprocessed CSV file is
+generated. Each unique word in the dataset will be displayed with the number of times it occurs,
+the word percentage (total times it appears / total unique words), and
+the document percentage (total times it appears in a narrative field / total number of processed narrative fields).
+
+	dog:5,0.2,0.125
+	cat:4,0.15,0.12
+	
+### Outputting with Frequency
+
+The bag of words outputting can be further augmented with the frequency count with the -f option.
+The argument 'w' will append word percentage, and the argument 'd' will append the document percentage.
+	
+	# Add word percentage to bag of word outputs
+	java -jar nlp.jar -c 1 -S p -l -r -F w
+	
+	1,"brown:0.10,fox:0.005,jump:0.003,fence:0.006"
