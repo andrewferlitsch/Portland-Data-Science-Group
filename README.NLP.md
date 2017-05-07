@@ -138,6 +138,10 @@ The bag of words outputting can be further augmented with the frequency count wi
 The argument 'w' will append word percentage, and the argument 'd' will append the document percentage.
 	
 	# Add word percentage to bag of word outputs
-	java -jar nlp.jar -c 1 -S p -l -r -F w
+	java -jar nlp.jar -c 1 -S p -l -r -F w mydata.csv
 	
 	1,"brown:0.10,fox:0.005,jump:0.003,fence:0.006"
+	
+Note, when used this option, the dataset is processed twice (doubling the time), once to obtain
+the word frequency counts and a second pass to generate the preprocessed CSV file with the
+corresponding bag of words and frequency counts.
