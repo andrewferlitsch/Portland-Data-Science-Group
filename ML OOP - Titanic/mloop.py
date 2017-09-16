@@ -342,6 +342,57 @@ class Train(object):
 		# Drop the name column
 		self.dropColumn(name)
 		
+	def dateTimeColumn(self, date_time, date_sep='/'):
+		""" Split (Feature Engineering) the DateTime column. 
+			date_time - DateTime in format YY/MM/DD hh:mm:ss
+			date_sep - date separator, such as a / or -
+		"""
+		# Datasets are combined
+		if self._combined_data is not None:
+			self._dateTimeColumn(self._combined_data, date_time, date_sep)
+			"""
+			# Split the date time into Date and Time
+			self._combined_data['Date'] = self._combined_data[date_time].map(lambda date:date.split(' ')[0].strip())
+			self._combined_data['Time'] = self._combined_data[date_time].map(lambda date:date.split(' ')[1].strip())
+			# Drop the date time column
+			self.dropColumn(date_time)
+			
+			# Split the date into Year, Month and Day
+			self._combined_data['Year'] = self._combined_data['Date'].map(lambda date:date.split(dateSep)[0].strip())
+			self._combined_data['Month'] = self._combined_data['Date'].map(lambda date:date.split(dateSep)[1].strip())
+			self._combined_data['Day'] = self._combined_data['Date'].map(lambda date:date.split(dateSep)[2].strip())
+			# Drop the date column
+			self.dropColumn('Date')
+			
+			# Split the time into Hour, Minute and Second
+			self._combined_data['Hour'] = self._combined_data['Time'].map(lambda date:date.split(':')[0].strip())
+			self._combined_data['Minute'] = self._combined_data['Time'].map(lambda date:date.split(':')[1].strip())
+			self._combined_data['Second'] = self._combined_data['Time'].map(lambda date:date.split(':')[2].strip())
+			# Drop the time column
+			self.dropColumn('Time')
+			"""
+			
+	def _dateTimeColumn(self, data, date_time, dateSep):
+		# Split the date time into Date and Time
+		data['Date'] = data[date_time].map(lambda date:date.split(' ')[0].strip())
+		data['Time'] = data[date_time].map(lambda date:date.split(' ')[1].strip())
+		# Drop the date time column
+		self.dropColumn(date_time)
+			
+		# Split the date into Year, Month and Day
+		data['Year']  = data['Date'].map(lambda date:date.split(dateSep)[0].strip())
+		data['Month'] = data['Date'].map(lambda date:date.split(dateSep)[1].strip())
+		data['Day']   = data['Date'].map(lambda date:date.split(dateSep)[2].strip())
+		# Drop the date column
+		self.dropColumn('Date')
+			
+		# Split the time into Hour, Minute and Second
+		data['Hour']   = data['Time'].map(lambda date:date.split(':')[0].strip())
+		data['Minute'] = data['Time'].map(lambda date:date.split(':')[1].strip())
+		data['Second'] = data['Time'].map(lambda date:date.split(':')[2].strip())
+		# Drop the time column
+		self.dropColumn('Time')
+		
 	def split(self, percent=0.2):
 		""" Split a training set 
 			percent - percent of data that is training data
@@ -477,162 +528,208 @@ class Model(object):
 		""" Return the Accuracy of the Trained Model """
 		return self._accuracy
 
-# For the Titanic dataset, we start by combining the training and test data into one dataset and do the data preparation
-# on the combined dataset. Later (at end), we will separate them back into the training and test data set.
-#
-combine = True	
-
-# Instantiate a training object (Titanic is subclass of Train), passing in the paths to the training and test data,
-# and then load (read) the data into a panda Dataframe. Throughout the data preparation process, the data is kept as 
-# a panda dataframe.
-#
-train = Titanic("C:\\Users\\Andrew\Desktop\\train.csv", "C:\\Users\\Andrew\Desktop\\test.csv")
-print("Load Dataset")
-train.load()
-
-# Set which column is the label (what to learn) and then remove the label column from the training data.
-#
-print("Set the Label")
-train.setLabel("Survived")
-print("Remove the Label")
-train.removeLabel()
-
-# The two datasets will be combined into one.
-#
-if combine == True:
-	print("Combine Datasets")
-	train.combine()
-
-# Remove the PassengerId column. It is just a sequential numerical ordering. Therefore it does not contribute as a feature.
-# It would also be a detriment since passenger with Id 800 would be 800 times more significant than passenger with Id 1.
-#
-print("Drop PassengerId")
-train.dropColumn("PassengerId")
-
-# The Embarked column is missing a couple of entries, replace them with S (South Hampton)
-#
-print("Replace Missing Values in Embarked")
-train.missingValues("Embarked", 'S')
-
-# A lot of the Cabin values are missing. Cabin identifiers start with a letter which represents a deck, followed by a number,
-# which represents a cabin on that deck. Deck levels get lower as the letter increases (A is at top level). 
-# Replace missing values with U (unknown)
-#
-print("Replace Missing Values in Cabin")
-train.missingValues("Cabin", 'U')
-
-# One value is missing in the Fare column, replace it with the mean value of the remaining fares.
-#
-print("Replace Missing Values in Fare")
-train.missingValues("Fare", "mean")
-
-# Gender (Sex) appears as categorical values: male, female. Convert it to a binary classifier (1 = male, 0 = female).
-#
-print("Convert Gender to Binary")
-train.genderColumn("Sex")
-
-# The name in the Name column does not contribute to the model. But the N field contains titles (e.g., Mr, Dr, Capt)
-# which indicate a person's social status of the time period. Individuals with high social status had a statistically 
-# higher likelihood of surviving.
-#
-# Extract the title information and place into a new column for Title, and drop the Name column.
-#
-print("Convert Name to Title")
-train.nameColumn("Name")
-
-# The Age column has a large number of missing ages. We could replace it with the mean average of all the remaining 
-# non-missing ages. Instead, we figure that men and women, and people of different titles and passenger class (1 being 
-# highest and 3 lowest) likely have different age distributions. So instead we group then by gender (sex), passenger 
-# class (Pclass) and title, and find the mean age per group.
-#
-print("Replace Nan in Age")
-train.ageColumn("Age", [ "Sex", "Pclass", "Title" ])
-
-# The first letter in the Cabin refers to the deck. The number following it refers to the room number on the deck. 
-# There is little significance to the room number, so we shorten the value to just the deck (first letter).
-#
-print("Shorten Values to first letter in Cabin")
-train.shortenColumn("Cabin", 1)
-
-# The Pclass column is the passenger class, which can take values 1 (highest), 2, and 3 (lowest). These numbers are
-# categorical values. We replace the column with a dummy variable conversion, and drop one of the dummy variables 
-# (Pclass_1) to eliminate the dummy variable trap.
-#
-print("Categorical Variable Conversion for Pclass")
-train.convertCategorical("Pclass", "1")
-
-# The Cabin column (now a single letter) is the deck. We replace the column with a dummy variable conversion, and drop
-# one of the dummy variables (Cabin_U) to eliminate the dummy variable trap.
-#
-print("Categorical Variable Conversion for Cabin")
-train.convertCategorical("Cabin", "U")
-
-# The Embarked column is a single letter code where the passenger got on the boat: S for South Hampton/England, C for 
-# Cherbourg/France, and Q for Queenstown/Ireland. We replace the column with a dummy variable conversion, and drop one
-# of the dummy variables (Embarked_S) to eliminate the dummy variable trap.
-#
-print("Categorical Variable Conversion for Embarked")
-train.convertCategorical("Embarked", "S")
-
-# The (new) Title column is the title from the person's Name column. We replace the column with a dummy variable
-# conversion, and drop one of the dummy variables (Title_Mr) to eliminate the dummy variable trap.
-#
-print("Categorical Variable Conversion for Title")
-train.convertCategorical("Title", "Mr")
-
-# The Ticket column is the ticket identifier, which contains a ticket prefix followed by a sequential number code.
-# We shorten it to just the prefix, and then do a categorical variable conversion.
-# NOTE: This is specific to the Titanic data, so the method is implemented in the subclass Titanic.
-#
-print("Ticket Column, shorten and Categorical Variable Conversion")
-train.ticketColumn()
-
-# The Parch and SibSp columns are the number of parents/children and siblings and spouse traveling with passenger.
-# We convert these two values into new groupings and drop the former columns.
-# NOTE: This is specific to the Titanic data, so the method is implemented in the subclass Titanic.
-#
-print("Parch and SibSp Columns")
-train.familyColumns()
-
-# Next, we reduce the number of features (currently 71). We do an analysis to determine their level of contribution 
-# (importance) to predicting the label. We eliminate all features (columns) whose significance level is less than 0.01.
-# This reduces the dataset to 16 features (columns).
-#
-print("Reduce Features")
-train.reduceFeatures(0.01)
-
-# All the data is now real numbers. We do a final feature scaling pass of the columns so that the data across columns
-# is proportional to each other (same scale).
-#
-print("Feature Scaling")
-train.featureScaling()
-
-# We now uncombine the combined dataset into the traning data (891 entries) and test data (418 entries)
-#
-if combine == True:
-	print("Uncombine Datasets")
-	train.uncombine()
-
-# In this context, this will split out the x (features) train and test data, and y (label) train data into numpy arrays.
-#
-print("Split")
-train.split()
-
-# We instantiate a model for training using the prepared dataset.
-#
-print("Train the Model")
-model = Model(train)
-
-# Let's train the model using Random Forest
-#
-model.randomForest()
-
-# Show our predicted accuracy
-print("Predicted Accuracy")
-acc = model.accuracy()
-print(acc)
+def titanic():
+	""" """
+	global train, model
 	
+	# For the Titanic dataset, we start by combining the training and test data into one dataset and do the data preparation
+	# on the combined dataset. Later (at end), we will separate them back into the training and test data set.
+	#
+	combine = True	
 
+	# Instantiate a training object (Titanic is subclass of Train), passing in the paths to the training and test data,
+	# and then load (read) the data into a panda Dataframe. Throughout the data preparation process, the data is kept as 
+	# a panda dataframe.
+	#
+	train = Titanic("C:\\Users\\Andrew\Desktop\\train.csv", "C:\\Users\\Andrew\Desktop\\test.csv")
+	print("Load Dataset")
+	train.load()
+
+	# Set which column is the label (what to learn) and then remove the label column from the training data.
+	#
+	print("Set the Label")
+	train.setLabel("Survived")
+	print("Remove the Label")
+	train.removeLabel()
+
+	# The two datasets will be combined into one.
+	#
+	if combine == True:
+		print("Combine Datasets")
+		train.combine()
+
+	# Remove the PassengerId column. It is just a sequential numerical ordering. Therefore it does not contribute as a feature.
+	# It would also be a detriment since passenger with Id 800 would be 800 times more significant than passenger with Id 1.
+	#
+	print("Drop PassengerId")
+	train.dropColumn("PassengerId")
+
+	# The Embarked column is missing a couple of entries, replace them with S (South Hampton)
+	#
+	print("Replace Missing Values in Embarked")
+	train.missingValues("Embarked", 'S')
+
+	# A lot of the Cabin values are missing. Cabin identifiers start with a letter which represents a deck, followed by a number,
+	# which represents a cabin on that deck. Deck levels get lower as the letter increases (A is at top level). 
+	# Replace missing values with U (unknown)
+	#
+	print("Replace Missing Values in Cabin")
+	train.missingValues("Cabin", 'U')
+
+	# One value is missing in the Fare column, replace it with the mean value of the remaining fares.
+	#
+	print("Replace Missing Values in Fare")
+	train.missingValues("Fare", "mean")
+
+	# Gender (Sex) appears as categorical values: male, female. Convert it to a binary classifier (1 = male, 0 = female).
+	#
+	print("Convert Gender to Binary")
+	train.genderColumn("Sex")
+
+	# The name in the Name column does not contribute to the model. But the N field contains titles (e.g., Mr, Dr, Capt)
+	# which indicate a person's social status of the time period. Individuals with high social status had a statistically 
+	# higher likelihood of surviving.
+	#
+	# Extract the title information and place into a new column for Title, and drop the Name column.
+	#
+	print("Convert Name to Title")
+	train.nameColumn("Name")
+
+	# The Age column has a large number of missing ages. We could replace it with the mean average of all the remaining 
+	# non-missing ages. Instead, we figure that men and women, and people of different titles and passenger class (1 being 
+	# highest and 3 lowest) likely have different age distributions. So instead we group then by gender (sex), passenger 
+	# class (Pclass) and title, and find the mean age per group.
+	#
+	print("Replace Nan in Age")
+	train.ageColumn("Age", [ "Sex", "Pclass", "Title" ])
+
+	# The first letter in the Cabin refers to the deck. The number following it refers to the room number on the deck. 
+	# There is little significance to the room number, so we shorten the value to just the deck (first letter).
+	#
+	print("Shorten Values to first letter in Cabin")
+	train.shortenColumn("Cabin", 1)
+
+	# The Pclass column is the passenger class, which can take values 1 (highest), 2, and 3 (lowest). These numbers are
+	# categorical values. We replace the column with a dummy variable conversion, and drop one of the dummy variables 
+	# (Pclass_1) to eliminate the dummy variable trap.
+	#
+	print("Categorical Variable Conversion for Pclass")
+	train.convertCategorical("Pclass", "1")
+
+	# The Cabin column (now a single letter) is the deck. We replace the column with a dummy variable conversion, and drop
+	# one of the dummy variables (Cabin_U) to eliminate the dummy variable trap.
+	#
+	print("Categorical Variable Conversion for Cabin")
+	train.convertCategorical("Cabin", "U")
+
+	# The Embarked column is a single letter code where the passenger got on the boat: S for South Hampton/England, C for 
+	# Cherbourg/France, and Q for Queenstown/Ireland. We replace the column with a dummy variable conversion, and drop one
+	# of the dummy variables (Embarked_S) to eliminate the dummy variable trap.
+	#
+	print("Categorical Variable Conversion for Embarked")
+	train.convertCategorical("Embarked", "S")
+
+	# The (new) Title column is the title from the person's Name column. We replace the column with a dummy variable
+	# conversion, and drop one of the dummy variables (Title_Mr) to eliminate the dummy variable trap.
+	#
+	print("Categorical Variable Conversion for Title")
+	train.convertCategorical("Title", "Mr")
+
+	# The Ticket column is the ticket identifier, which contains a ticket prefix followed by a sequential number code.
+	# We shorten it to just the prefix, and then do a categorical variable conversion.
+	# NOTE: This is specific to the Titanic data, so the method is implemented in the subclass Titanic.
+	#
+	print("Ticket Column, shorten and Categorical Variable Conversion")
+	train.ticketColumn()
+
+	# The Parch and SibSp columns are the number of parents/children and siblings and spouse traveling with passenger.
+	# We convert these two values into new groupings and drop the former columns.
+	# NOTE: This is specific to the Titanic data, so the method is implemented in the subclass Titanic.
+	#
+	print("Parch and SibSp Columns")
+	train.familyColumns()
+
+	# Next, we reduce the number of features (currently 71). We do an analysis to determine their level of contribution 
+	# (importance) to predicting the label. We eliminate all features (columns) whose significance level is less than 0.01.
+	# This reduces the dataset to 16 features (columns).
+	#
+	print("Reduce Features")
+	train.reduceFeatures(0.01)
+
+	# All the data is now real numbers. We do a final feature scaling pass of the columns so that the data across columns
+	# is proportional to each other (same scale).
+	#
+	print("Feature Scaling")
+	train.featureScaling()
+
+	# We now uncombine the combined dataset into the traning data (891 entries) and test data (418 entries)
+	#
+	if combine == True:
+		print("Uncombine Datasets")
+		train.uncombine()
+
+	# In this context, this will split out the x (features) train and test data, and y (label) train data into numpy arrays.
+	#
+	print("Split")
+	train.split()
+
+	# We instantiate a model for training using the prepared dataset.
+	#
+	print("Train the Model")
+	model = Model(train)
+
+	# Let's train the model using Random Forest
+	#
+	model.randomForest()
+
+	# Show our predicted accuracy
+	print("Predicted Accuracy")
+	acc = model.accuracy()
+	print(acc)
+
+
+def sfCrime():
+	""" """
+	global train, model
+
+	# San Francisco Crime Data
+	combine = True	
+
+	train = Train("C:\\Users\\Andrew\Desktop\\train.csv", "C:\\Users\\Andrew\Desktop\\test.csv")
+	print("Load Dataset")
+	train.load()
+
+	# Set which column is the label (what to learn) and then remove the label column from the training data.
+	#
+	print("Set the Label")
+	train.setLabel("Category")
+	print("Remove the Label")
+	train.removeLabel()
+
+	# The two datasets will be combined into one.
+	#
+	if combine == True:
+		print("Combine Datasets")
+		train.combine()
+		
+	# Remove the Id column. It is just a sequential numerical ordering. Therefore it does not contribute as a feature.
+	# It would also be a detriment since entry with Id 1000 would be 1000 times more significant than entry with Id 1.
+	#
+	print("Drop Id")
+	train.dropColumn("Id")
+		
+	# Split the DateTime field into Year, Month, Day, Hour, Minute and Second
+	#
+	print("Split Dates")
+	train.dateTimeColumn("Dates", "-")
+	
+	# Drop the new fields Day, Minute and Second
+	train.dropColumn("Day")
+	train.dropColumn("Minute")
+	train.dropColumn("Second")
+
+
+sfCrime()
 
 
 
