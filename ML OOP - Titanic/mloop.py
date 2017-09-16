@@ -4,10 +4,11 @@
 # by Andrew Ferlitsch, Sept. 2017
 #
 # This solution is fully implemented using modern software development OOP methodology, vs. writing it as a procedural
-# solution, which I see most frequently in blogs.
+# solution, which I see most frequently in blogs. The program is written for Python 3.
 #
 # This is a generalized solution and can be used for datasets otherthan Titanic. I use the Titanic dataset to demonstrate
-# the use of my Train and Model classes. The dataset preparation steps used here closely following those in the blog:
+# the use of my Train and Model classes. The dataset preparation steps used here closely following those in this blog
+# by Ahmed Besbes:
 #
 #	http://ahmedbesbes.com/how-to-score-08134-in-titanic-kaggle-challenge.html
 #
@@ -405,7 +406,8 @@ class Titanic(Train):
 			ticket = ticket.replace('/','')
 			ticket = ticket.split()
 			ticket = map(lambda t : t.strip(), ticket)
-			ticket = filter(lambda t : not t.isdigit(), ticket)
+			#ticket = filter(lambda t : not t.isdigit(), ticket)
+			ticket = list(filter(lambda t : not t.isdigit(), ticket))
 			if len(ticket) > 0:
 				return ticket[0]
 			else: 
@@ -550,26 +552,33 @@ print("Shorten Values to first letter in Cabin")
 train.shortenColumn("Cabin", 1)
 
 # The Pclass column is the passenger class, which can take values 1 (highest), 2, and 3 (lowest). These numbers are
-# categorical values. We replace the column with a dummy variable conversion, and drop one of the dummy variables to
-# eliminate the dummy variable trap.
+# categorical values. We replace the column with a dummy variable conversion, and drop one of the dummy variables 
+# (Pclass_1) to eliminate the dummy variable trap.
 #
 print("Categorical Variable Conversion for Pclass")
 train.convertCategorical("Pclass", "1")
 
-# The Cabin column (now a single letter) is the deck. We replace the column with a dummy variable conversion.
+# The Cabin column (now a single letter) is the deck. We replace the column with a dummy variable conversion, and drop
+# one of the dummy variables (Cabin_U) to eliminate the dummy variable trap.
 #
 print("Categorical Variable Conversion for Cabin")
 train.convertCategorical("Cabin", "U")
 
-# The Embarked column is a single letter code where the passenger got on the boat. TODO
+# The Embarked column is a single letter code where the passenger got on the boat: S for South Hampton/England, C for 
+# Cherbourg/France, and Q for Queenstown/Ireland. We replace the column with a dummy variable conversion, and drop one
+# of the dummy variables (Embarked_S) to eliminate the dummy variable trap.
 #
 print("Categorical Variable Conversion for Embarked")
 train.convertCategorical("Embarked", "S")
 
-#
+# The (new) Title column is the title from the person's Name column. We replace the column with a dummy variable
+# conversion, and drop one of the dummy variables (Title_Mr) to eliminate the dummy variable trap.
 #
 print("Categorical Variable Conversion for Title")
 train.convertCategorical("Title", "Mr")
+
+#
+#
 print("Ticket Column")
 #train.ticketColumn()
 train.dropColumn("Ticket")
