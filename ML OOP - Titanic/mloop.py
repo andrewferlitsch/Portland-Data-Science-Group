@@ -521,22 +521,53 @@ train.missingValues("Cabin", 'U')
 print("Replace Missing Values in Fare")
 train.missingValues("Fare", "mean")
 
-#
+# Gender (Sex) appears as categorical values: male, female. Convert it to a binary classifier (1 = male, 0 = female).
 #
 print("Convert Gender to Binary")
 train.genderColumn("Sex")
+
+# The name in the Name column does not contribute to the model. But the N field contains titles (e.g., Mr, Dr, Capt)
+# which indicate a person's social status of the time period. Individuals with high social status had a statistically 
+# higher likelihood of surviving.
+#
+# Extract the title information and place into a new column for Title, and drop the Name column.
+#
 print("Convert Name to Title")
 train.nameColumn("Name")
+
+# The Age column has a large number of missing ages. We could replace it with the mean average of all the remaining 
+# non-missing ages. Instead, we figure that men and women, and people of different titles and passenger class (1 being 
+# highest and 3 lowest) likely have different age distributions. So instead we group then by gender (sex), passenger 
+# class (Pclass) and title, and find the mean age per group.
+#
 print("Replace Nan in Age")
-train.ageColumn("Age", [ "Sex", "Pclass", "Title" ] )
+train.ageColumn("Age", [ "Sex", "Pclass", "Title" ])
+
+# The first letter in the Cabin refers to the deck. The number following it refers to the room number on the deck. 
+# There is little significance to the room number, so we shorten the value to just the deck (first letter).
+#
 print("Shorten Values to first letter in Cabin")
 train.shortenColumn("Cabin", 1)
+
+# The Pclass column is the passenger class, which can take values 1 (highest), 2, and 3 (lowest). These numbers are
+# categorical values. We replace the column with a dummy variable conversion, and drop one of the dummy variables to
+# eliminate the dummy variable trap.
+#
 print("Categorical Variable Conversion for Pclass")
 train.convertCategorical("Pclass", "1")
+
+# The Cabin column (now a single letter) is the deck. We replace the column with a dummy variable conversion.
+#
 print("Categorical Variable Conversion for Cabin")
 train.convertCategorical("Cabin", "U")
+
+# The Embarked column is a single letter code where the passenger got on the boat. TODO
+#
 print("Categorical Variable Conversion for Embarked")
 train.convertCategorical("Embarked", "S")
+
+#
+#
 print("Categorical Variable Conversion for Title")
 train.convertCategorical("Title", "Mr")
 print("Ticket Column")
