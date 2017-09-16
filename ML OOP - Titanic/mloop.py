@@ -587,33 +587,47 @@ train.convertCategorical("Title", "Mr")
 print("Ticket Column, shorten and Categorical Variable Conversion")
 train.ticketColumn()
 
-# The Parch and SibSp columns TODO
+# The Parch and SibSp columns are the number of parents/children and siblings and spouse traveling with passenger.
+# We convert these two values into new groupings and drop the former columns.
+# NOTE: This is specific to the Titanic data, so the method is implemented in the subclass Titanic.
 #
 print("Parch and SibSp Columns")
 train.familyColumns()
 
-#
+# Next, we reduce the number of features (currently 71). We do an analysis to determine their level of contribution 
+# (importance) to predicting the label. We eliminate all features (columns) whose significance level is less than 0.01.
+# This reduces the dataset to 16 features (columns).
 #
 print("Reduce Features")
 train.reduceFeatures(0.01)
 
-#
+# All the data is now real numbers. We do a final feature scaling pass of the columns so that the data across columns
+# is proportional to each other (same scale).
 #
 print("Feature Scaling")
 train.featureScaling()
 
-#
+# We now uncombine the combined dataset into the traning data (891 entries) and test data (418 entries)
 #
 if combine == True:
 	print("Uncombine Datasets")
 	train.uncombine()
 
+# In this context, this will split out the x (features) train and test data, and y (label) train data into numpy arrays.
+#
 print("Split")
 train.split()
 
+# We instantiate a model for training using the prepared dataset.
+#
 print("Train the Model")
 model = Model(train)
+
+# Let's train the model using Random Forest
+#
 model.randomForest()
+
+# Show our predicted accuracy
 print("Predicted Accuracy")
 acc = model.accuracy()
 print(acc)
