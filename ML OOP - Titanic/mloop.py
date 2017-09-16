@@ -736,8 +736,8 @@ def sfCrime(train_data, test_data=None):
 	# The DaysOfWeek is the day of the week. We replace the column with a dummy variable conversion, and drop one of the dummy variables 
 	# (DaysOfWeek_SUNDAY) to eliminate the dummy variable trap.
 	#
-	print("Categorical Variable Conversion for DaysOfWeek")
-	train.convertCategorical("DayOfWeek", "SUNDAY")
+	print("Categorical Variable Conversion for DayOfWeek")
+	train.convertCategorical("DayOfWeek", "Sunday")
 	
 	# The column PdDistrict (Police District) is too coarse to be an indicator. Street and X,Y are already more detailed.
 	# We wil drop the PdDistrict column
