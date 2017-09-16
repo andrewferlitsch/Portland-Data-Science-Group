@@ -420,6 +420,9 @@ class Titanic(Train):
 			self._combined_data['Ticket'] = self._combined_data['Ticket'].map(cleanTicket)
 			tickets_dummies = pd.get_dummies(self._combined_data['Ticket'], prefix='Ticket')
 			self._combined_data = pd.concat([self._combined_data, tickets_dummies], axis=1)
+			# eliminate one of the dummy variables
+			self.dropColumn("Ticket_XXX")
+			self.dropColumn("Ticket")
 		
 	def familyColumns(self):
 		""" introducing a new feature : the size of families (including the passenger) """
@@ -577,18 +580,30 @@ train.convertCategorical("Embarked", "S")
 print("Categorical Variable Conversion for Title")
 train.convertCategorical("Title", "Mr")
 
+# The Ticket column is the ticket identifier, which contains a ticket prefix followed by a sequential number code.
+# We shorten it to just the prefix, and then do a categorical variable conversion.
+# NOTE: This is specific to the Titanic data, so the method is implemented in the subclass Titanic.
 #
+print("Ticket Column, shorten and Categorical Variable Conversion")
+train.ticketColumn()
+
+# The Parch and SibSp columns TODO
 #
-print("Ticket Column")
-#train.ticketColumn()
-train.dropColumn("Ticket")
 print("Parch and SibSp Columns")
 train.familyColumns()
+
+#
+#
 print("Reduce Features")
 train.reduceFeatures(0.01)
+
+#
+#
 print("Feature Scaling")
 train.featureScaling()
 
+#
+#
 if combine == True:
 	print("Uncombine Datasets")
 	train.uncombine()
