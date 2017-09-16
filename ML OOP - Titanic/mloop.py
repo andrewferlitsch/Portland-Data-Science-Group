@@ -1,3 +1,18 @@
+#
+# Machine Learning OOP - Titanic Dataset
+#
+# by Andrew Ferlitsch, Sept. 2017
+#
+# This solution is fully implemented using modern software development OOP methodology, vs. writing it as a procedural
+# solution, which I see most frequently in blogs.
+#
+# This is a generalized solution and can be used for datasets otherthan Titanic. I use the Titanic dataset to demonstrate
+# the use of my Train and Model classes. The dataset preparation steps used here closely following those in the blog:
+#
+#	http://ahmedbesbes.com/how-to-score-08134-in-titanic-kaggle-challenge.html
+#
+# Feel free to improve on the solution and make a pull request.
+#
 import sys
 import numpy as np
 import pandas as pd
@@ -444,7 +459,7 @@ class Model(object):
 		self._y_pred = model.predict(self._trained._x_test_data)
 		
 	def randomForest(self):
-		""" """
+		""" Random Forest Classifier """
 		parameters = {'bootstrap': False, 'min_samples_leaf': 3, 'n_estimators': 50, 
                   'min_samples_split': 10, 'max_features': 'sqrt', 'max_depth': 6}
     
@@ -454,7 +469,7 @@ class Model(object):
 		self._accuracy = np.mean(xval)
 		
 	def accuracy(self):
-		""" """
+		""" Return the Accuracy of the Trained Model """
 		return self._accuracy
 		
 combine = True	
@@ -516,6 +531,7 @@ model = Model(train)
 model.randomForest()
 print("Predicted Accuracy")
 acc = model.accuracy()
+print(acc)
 	
 
 
