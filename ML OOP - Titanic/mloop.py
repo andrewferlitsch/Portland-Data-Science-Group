@@ -447,8 +447,7 @@ class Train(object):
 			if self._test_data is not None:
 				self._test_data -= self._test_data.min()
 				self._test_data /= self._test_data.max()
-		
-		
+				
 class Titanic(Train):
 	""" Subclass for dataset preparation specific to Titanic Data """
 	def __init__(self, training_data, test_data=None):
@@ -505,6 +504,8 @@ class Model(object):
 	""" Class Definition for Executing a Model to make Predictions """
 	
 	_trained = None		# Trained Model
+	_x_batch   = None		# A batch (subset) of data to train on
+	_y_batch   = None
 	
 	def __init__(self, trained=None):
 		""" Constructor
@@ -512,11 +513,21 @@ class Model(object):
 		"""
 		self._trained = trained
 		
+	def setBatch(self, nrows):
+		""" """
+		_x_batch = self._trained._x_training_data[:nrows,:]
+		_y_batch = self._trained._y_training_data[:nrows]
+		
 	def linear(self):
 		""" Linear Regression """
 		model = LinearRegression()
-		model.fit(self._trained._x_training_data, self._trained._y_training_data)
-		self._y_pred = model.predict(self._trained._x_test_data)
+		
+		if self._x_batch is not None:
+			model.fit(self._x_batch, self._y_batch)
+			self._y_pred = model.predict(self._trained._x_test_data)
+		else:
+			model.fit(self._trained._x_training_data, self._trained._y_training_data)
+			self._y_pred = model.predict(self._trained._x_test_data)
 		
 	def randomForest(self):
 		""" Random Forest Classifier """
@@ -524,8 +535,13 @@ class Model(object):
                   'min_samples_split': 10, 'max_features': 'sqrt', 'max_depth': 6}
     
 		model = RandomForestClassifier(**parameters)
-		model.fit(self._trained._x_training_data, self._trained._y_training_data)
-		xval = cross_val_score( model, self._trained._x_training_data, self._trained._y_training_data, cv=5, scoring='accuracy')
+		if self._x_batch is not None:
+			model.fit(self._x_batch, self._y_batch)
+			xval = cross_val_score( model, self._x_batch, self._y_batch, cv=5, scoring='accuracy')
+		else:
+			model.fit(self._trained._x_training_data, self._trained._y_training_data)
+			xval = cross_val_score( model, self._trained._x_training_data, self._trained._y_training_data, cv=5, scoring='accuracy')
+
 		self._accuracy = np.mean(xval)
 		
 	def accuracy(self):
@@ -759,24 +775,38 @@ def sfCrime(train_data, test_data=None):
 	# square blocks. Reducing the decimal point to 3, should give a approxiamate 500 x 500 sqft area.
 	#
 	print("X and Y")
-	train.latlngColumn("X", "Y", 3)
+	level = 1
+	if level == 1:
+		train.latlngColumn("X", "Y", 1)
+	elif level == 2:
+		train.latlngColumn("X", "Y", 2)
+	else:
+		train.latlngColumn("X", "Y", 3)
 	
 	# Convert the grouped lat,lng into categorical variables
 	#
 	print("Categorical Variable Conversion for X and Y")
-	train.convertCategorical("X", "-122.426")
-	train.convertCategorical("Y", "37.775")
+	if level == 1:
+		train.convertCategorical("X", "-122.4")
+		train.convertCategorical("Y", "37.7")
+	elif level == 2:
+		train.convertCategorical("X", "-122.42")
+		train.convertCategorical("Y", "37.77")
+	else:
+		train.convertCategorical("X", "-122.426")
+		train.convertCategorical("Y", "37.775")
 	
 	# The Address column is an alternate to coordinate (lat,lng). Since we are already keeping the lat/lng, we can
 	# drop the Address column
 	#
 	print("Drop Address")
 	train.dropColumn("Address")
+	
 	# All the data is now real numbers. We do a final feature scaling pass of the columns so that the data across columns
 	# is proportional to each other (same scale).
 	#
-	print("Feature Scaling")
-	train.featureScaling()
+	#print("Feature Scaling")
+	#train.featureScaling()
 
 	# We now uncombine the combined dataset into the traning data (891 entries) and test data (418 entries)
 	#
@@ -793,6 +823,9 @@ def sfCrime(train_data, test_data=None):
 	#
 	print("Train the Model")
 	model = Model(train)
+	
+	if level == 1:
+		model.setBatch(10000)
 
 	# Let's train the model using Random Forest
 	#
