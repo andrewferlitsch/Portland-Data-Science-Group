@@ -350,29 +350,13 @@ class Train(object):
 		# Datasets are combined
 		if self._combined_data is not None:
 			self._dateTimeColumn(self._combined_data, date_time, date_sep)
-			"""
-			# Split the date time into Date and Time
-			self._combined_data['Date'] = self._combined_data[date_time].map(lambda date:date.split(' ')[0].strip())
-			self._combined_data['Time'] = self._combined_data[date_time].map(lambda date:date.split(' ')[1].strip())
-			# Drop the date time column
-			self.dropColumn(date_time)
+		else:
+			if self._training_data is not None:
+				self._dateTimeColumn(self._training_data, date_time, date_sep)
+			if self._test_data is not None:
+				self._dateTimeColumn(self._test_data, date_time, date_sep)
 			
-			# Split the date into Year, Month and Day
-			self._combined_data['Year'] = self._combined_data['Date'].map(lambda date:date.split(dateSep)[0].strip())
-			self._combined_data['Month'] = self._combined_data['Date'].map(lambda date:date.split(dateSep)[1].strip())
-			self._combined_data['Day'] = self._combined_data['Date'].map(lambda date:date.split(dateSep)[2].strip())
-			# Drop the date column
-			self.dropColumn('Date')
-			
-			# Split the time into Hour, Minute and Second
-			self._combined_data['Hour'] = self._combined_data['Time'].map(lambda date:date.split(':')[0].strip())
-			self._combined_data['Minute'] = self._combined_data['Time'].map(lambda date:date.split(':')[1].strip())
-			self._combined_data['Second'] = self._combined_data['Time'].map(lambda date:date.split(':')[2].strip())
-			# Drop the time column
-			self.dropColumn('Time')
-			"""
-			
-	def _dateTimeColumn(self, data, date_time, dateSep):
+	def _dateTimeColumn(self, data, date_time, date_sep):
 		# Split the date time into Date and Time
 		data['Date'] = data[date_time].map(lambda date:date.split(' ')[0].strip())
 		data['Time'] = data[date_time].map(lambda date:date.split(' ')[1].strip())
@@ -380,9 +364,9 @@ class Train(object):
 		self.dropColumn(date_time)
 			
 		# Split the date into Year, Month and Day
-		data['Year']  = data['Date'].map(lambda date:date.split(dateSep)[0].strip())
-		data['Month'] = data['Date'].map(lambda date:date.split(dateSep)[1].strip())
-		data['Day']   = data['Date'].map(lambda date:date.split(dateSep)[2].strip())
+		data['Year']  = data['Date'].map(lambda date:date.split(date_sep)[0].strip())
+		data['Month'] = data['Date'].map(lambda date:date.split(date_sep)[1].strip())
+		data['Day']   = data['Date'].map(lambda date:date.split(date_sep)[2].strip())
 		# Drop the date column
 		self.dropColumn('Date')
 			
@@ -392,6 +376,26 @@ class Train(object):
 		data['Second'] = data['Time'].map(lambda date:date.split(':')[2].strip())
 		# Drop the time column
 		self.dropColumn('Time')
+		
+	def latlngColumn(self, lat, lng, pts=3):
+		""" Reduce Resolution into Range Buckets (Feature Engineering) for Latitude and Longitude
+			lat - latitude column
+			lng - longitude column
+			pts - number of decimals after decimal point (3 ~ 500 ft)
+		"""
+		# Datasets are combined
+		if self._combined_data is not None:
+			self._latlngColumn(self._combined_data, lat, lng, pts)
+		else:
+			if self._training_data is not None:
+				self._latlngColumn(self._training_data, lat, lng, pts)
+			if self._test_data is not None:
+				self._latlngColumn(self._test_data, lat, lng, pts)
+		
+	def _latlngColumn(self, data, lat, lng, pts=3):
+		f = '.' + str(pts) + 'f'
+		data[lat] = data[lat].map(lambda lat:format(lat, f))
+		data[lng] = data[lng].map(lambda lng:format(lng, f))
 		
 	def split(self, percent=0.2):
 		""" Split a training set 
@@ -528,8 +532,8 @@ class Model(object):
 		""" Return the Accuracy of the Trained Model """
 		return self._accuracy
 
-def titanic():
-	""" """
+def titanic(train_data, test_data=None):
+	""" Kaggle/Titanic Dataset - Predict Survived """
 	global train, model
 	
 	# For the Titanic dataset, we start by combining the training and test data into one dataset and do the data preparation
@@ -541,7 +545,7 @@ def titanic():
 	# and then load (read) the data into a panda Dataframe. Throughout the data preparation process, the data is kept as 
 	# a panda dataframe.
 	#
-	train = Titanic("C:\\Users\\Andrew\Desktop\\train.csv", "C:\\Users\\Andrew\Desktop\\test.csv")
+	train = Titanic(train_data, test_data)
 	print("Load Dataset")
 	train.load()
 
@@ -688,14 +692,14 @@ def titanic():
 	print(acc)
 
 
-def sfCrime():
-	""" """
+def sfCrime(train_data, test_data=None):
+	""" Kaggle/San Francisco Crime Data - Predict Crime """
 	global train, model
 
 	# San Francisco Crime Data
 	combine = True	
 
-	train = Train("C:\\Users\\Andrew\Desktop\\train.csv", "C:\\Users\\Andrew\Desktop\\test.csv")
+	train = Train(train_data, test_data)
 	print("Load Dataset")
 	train.load()
 
@@ -723,13 +727,84 @@ def sfCrime():
 	print("Split Dates")
 	train.dateTimeColumn("Dates", "-")
 	
-	# Drop the new fields Day, Minute and Second
+	# Drop the new fields Day, Minute and SecondD
+	print("Drop Day Minute and Second columns")
 	train.dropColumn("Day")
 	train.dropColumn("Minute")
 	train.dropColumn("Second")
+	
+	# The DaysOfWeek is the day of the week. We replace the column with a dummy variable conversion, and drop one of the dummy variables 
+	# (DaysOfWeek_SUNDAY) to eliminate the dummy variable trap.
+	#
+	print("Categorical Variable Conversion for DaysOfWeek")
+	train.convertCategorical("DayOfWeek", "SUNDAY")
+	
+	# The column PdDistrict (Police District) is too coarse to be an indicator. Street and X,Y are already more detailed.
+	# We wil drop the PdDistrict column
+	#
+	print("Drop PdDistrict")
+	train.dropColumn("PdDistrict")
+	
+	# Resolution is the action taken by the Police. The field is not in the test data, so we will drop it.
+	#
+	print("Drop Resolution")
+	train.dropColumn("Resolution")
+	
+	# Description is an entry by the police officer. The field is not in the test data, so we will drop it.
+	#
+	print("Drop Descript")
+	train.dropColumn("Descript")
+	
+	# The column X and Y are the longitude and latitude. We want to group them into larger geographic areas, such as several'
+	# square blocks. Reducing the decimal point to 3, should give a approxiamate 500 x 500 sqft area.
+	#
+	print("X and Y")
+	train.latlngColumn("X", "Y", 3)
+	
+	# Convert the grouped lat,lng into categorical variables
+	#
+	print("Categorical Variable Conversion for X and Y")
+	train.convertCategorical("X", "-122.426")
+	train.convertCategorical("Y", "37.775")
+	
+	# The Address column is an alternate to coordinate (lat,lng). Since we are already keeping the lat/lng, we can
+	# drop the Address column
+	#
+	print("Drop Address")
+	train.dropColumn("Address")
+	# All the data is now real numbers. We do a final feature scaling pass of the columns so that the data across columns
+	# is proportional to each other (same scale).
+	#
+	print("Feature Scaling")
+	train.featureScaling()
 
+	# We now uncombine the combined dataset into the traning data (891 entries) and test data (418 entries)
+	#
+	if combine == True:
+		print("Uncombine Datasets")
+		train.uncombine()
 
-sfCrime()
+	# In this context, this will split out the x (features) train and test data, and y (label) train data into numpy arrays.
+	#
+	print("Split")
+	train.split()
+
+	# We instantiate a model for training using the prepared dataset.
+	#
+	print("Train the Model")
+	model = Model(train)
+
+	# Let's train the model using Random Forest
+	#
+	model.randomForest()
+
+	# Show our predicted accuracy
+	print("Predicted Accuracy")
+	acc = model.accuracy()
+	print(acc)
+
+#titanic("C:\\Users\\Andrew\Desktop\\train.csv", "C:\\Users\\Andrew\Desktop\\test.csv")
+sfCrime("C:\\Users\\Andrew\Desktop\\train.csv", "C:\\Users\\Andrew\Desktop\\test.csv")
 
 
 
