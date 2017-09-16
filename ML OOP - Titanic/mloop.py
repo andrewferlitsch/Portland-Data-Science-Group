@@ -471,28 +471,58 @@ class Model(object):
 	def accuracy(self):
 		""" Return the Accuracy of the Trained Model """
 		return self._accuracy
-		
+
+# For the Titanic dataset, we start by combining the training and test data into one dataset and do the data preparation
+# on the combined dataset. Later (at end), we will separate them back into the training and test data set.
+#
 combine = True	
+
+# Instantiate a training object (Titanic is subclass of Train), passing in the paths to the training and test data,
+# and then load (read) the data into a panda Dataframe. Throughout the data preparation process, the data is kept as 
+# a panda dataframe.
+#
 train = Titanic("C:\\Users\\Andrew\Desktop\\train.csv", "C:\\Users\\Andrew\Desktop\\test.csv")
 print("Load Dataset")
 train.load()
+
+# Set which column is the label (what to learn) and then remove the label column from the training data.
+#
 print("Set the Label")
 train.setLabel("Survived")
 print("Remove the Label")
 train.removeLabel()
 
+# The two datasets will be combined into one.
+#
 if combine == True:
 	print("Combine Datasets")
 	train.combine()
 
+# Remove the PassengerId column. It is just a sequential numerical ordering. Therefore it does not contribute as a feature.
+# It would also be a detriment since passenger with Id 800 would be 800 times more significant than passenger with Id 1.
+#
 print("Drop PassengerId")
 train.dropColumn("PassengerId")
+
+# The Embarked column is missing a couple of entries, replace them with S (South Hampton)
+#
 print("Replace Missing Values in Embarked")
 train.missingValues("Embarked", 'S')
+
+# A lot of the Cabin values are missing. Cabin identifiers start with a letter which represents a deck, followed by a number,
+# which represents a cabin on that deck. Deck levels get lower as the letter increases (A is at top level). 
+# Replace missing values with U (unknown)
+#
 print("Replace Missing Values in Cabin")
 train.missingValues("Cabin", 'U')
+
+# One value is missing in the Fare column, replace it with the mean value of the remaining fares.
+#
 print("Replace Missing Values in Fare")
 train.missingValues("Fare", "mean")
+
+#
+#
 print("Convert Gender to Binary")
 train.genderColumn("Sex")
 print("Convert Name to Title")
