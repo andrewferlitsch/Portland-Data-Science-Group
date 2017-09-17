@@ -190,26 +190,28 @@ class Train(object):
 				self._y_test_data = self._training_data[label]
 
 		
-	def missingValues(self, column, method):
+	def missingValues(self, column, method, groupby=None):
 		""" Replace missing values (Nan)
 			column = column name
-			method = replacement method (mean)
+			method = replacement method (e.g., mean)
+			groupby = columns to group data by for mean value calculation
 		"""
 		# Dataset is combined
 		if self._combined_data is not None:
-			self._missingValues(self._combined_data, column, method)
+			self._missingValues(self._combined_data, column, method, groupby)
 		else:
 			if self._training_data is not None:
-				self._missingValues(self._training_data, column, method)
+				self._missingValues(self._training_data, column, method, groupby)
 			if self._test_data is not None:
-				self._missingValues(self._test_data, column, method)
+				self._missingValues(self._test_data, column, method, groupby)
 				
-	def _missingValues(self, data, column, method):
+	def _missingValues(self, data, column, method, groupby):
 		""" (internal) Replace missing values """
 		if method == "drop":
 			data[column].dropna(inplace=True)
 		elif method == "mean":
-			data[column].fillna(self._training_data[column].mean(), inplace=True)
+			#data[column].fillna(self._training_data[column].mean(), inplace=True)
+			data[column].fillna(self._training_data.groupby(groupby)[column].transform("mean"), inplace=True)
 		else:
 			data[column].fillna(method, inplace=True)
 				
@@ -274,7 +276,7 @@ class Train(object):
 	def ageColumn(self, age, groupby=None):
 		""" Replace missing values in age column
 			age - age column name
-			sex - sex column name
+			groupby - columns to group the age data for mean value calculation
 		"""
 		# not grouping by other columns
 		if groupby is None:
