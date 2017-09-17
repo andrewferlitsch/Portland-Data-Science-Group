@@ -397,6 +397,12 @@ class Train(object):
 		data[lat] = data[lat].map(lambda lat:format(lat, f))
 		data[lng] = data[lng].map(lambda lng:format(lng, f))
 		
+		
+	def addressBlockColumn(self, addr):
+		""" Address Block : nnn block of XYZ Street OR ABC Street / XYZ Street """
+		return # TODO
+		self._combined_data['Street'] = self._training_data[addr].map(lambda addr:addr.split('of')[1].split('/')[0].strip())
+		
 	def split(self, percent=0.2):
 		""" Split a training set 
 			percent - percent of data that is training data
@@ -708,8 +714,12 @@ def titanic(train_data, test_data=None):
 	print(acc)
 
 
-def sfCrime(train_data, test_data=None):
-	""" Kaggle/San Francisco Crime Data - Predict Crime """
+def sfCrime(train_data, test_data=None, level=0, batch=0):
+	""" Kaggle/San Francisco Crime Data - Predict Crime 
+		level 0 - Use year, month, hour, day of the week
+		level 1 - Use year, month, hour, day of the week, police district
+		level > 1 ...
+	"""
 	global train, model
 
 	# San Francisco Crime Data
@@ -755,12 +765,6 @@ def sfCrime(train_data, test_data=None):
 	print("Categorical Variable Conversion for DayOfWeek")
 	train.convertCategorical("DayOfWeek", "Sunday")
 	
-	# The column PdDistrict (Police District) is too coarse to be an indicator. Street and X,Y are already more detailed.
-	# We wil drop the PdDistrict column
-	#
-	print("Drop PdDistrict")
-	train.dropColumn("PdDistrict")
-	
 	# Resolution is the action taken by the Police. The field is not in the test data, so we will drop it.
 	#
 	print("Drop Resolution")
@@ -771,36 +775,44 @@ def sfCrime(train_data, test_data=None):
 	print("Drop Descript")
 	train.dropColumn("Descript")
 	
-	# The column X and Y are the longitude and latitude. We want to group them into larger geographic areas, such as several'
+	# The column PdDistrict is the police district. 
+	# Use it in level 1
+	#
+	if level == 1:
+		print("Categorical Variable Conversion for PdDistrict")
+		train.convertCategorical("PdDistrict", "NORTHERN")
+	# Drop it in all other levels
+	else:
+		print("Drop PdDistrict")
+		train.dropColumn("PdDistrict")
+	
+	# The column X and Y are the longitude and latitude. 
+	# For level > 2, we want to group them into larger geographic areas, such as several'
 	# square blocks. Reducing the decimal point to 3, should give a approxiamate 500 x 500 sqft area.
 	#
-	print("X and Y")
-	level = 1
-	if level == 1:
-		train.latlngColumn("X", "Y", 1)
-	elif level == 2:
-		train.latlngColumn("X", "Y", 2)
-	else:
+	if level > 2:
+		print("Shorten X and Y")
 		train.latlngColumn("X", "Y", 3)
-	
-	# Convert the grouped lat,lng into categorical variables
-	#
-	print("Categorical Variable Conversion for X and Y")
-	if level == 1:
-		train.convertCategorical("X", "-122.4")
-		train.convertCategorical("Y", "37.7")
-	elif level == 2:
-		train.convertCategorical("X", "-122.42")
-		train.convertCategorical("Y", "37.77")
-	else:
+		
+		# Convert the lat and lng into categorical variables
+		print("Categorical Variable Conversion for X and Y")
 		train.convertCategorical("X", "-122.426")
 		train.convertCategorical("Y", "37.775")
+	# Drop it for all other levels
+	else:
+		print("Drop X and Y")
+		train.dropColumn("X")
+		train.dropColumn("Y")
 	
-	# The Address column is an alternate to coordinate (lat,lng). Since we are already keeping the lat/lng, we can
-	# drop the Address column
+	# The Address column is an alternate to coordinate (lat,lng). 
+	# Use it in Level 2.
 	#
-	print("Drop Address")
-	train.dropColumn("Address")
+	if level == 2:
+		print("Extract Street Name")
+		train.addressBlockColumn("Address")
+	else:
+		print("Drop Address")
+		train.dropColumn("Address")
 	
 	# All the data is now real numbers. We do a final feature scaling pass of the columns so that the data across columns
 	# is proportional to each other (same scale).
@@ -824,8 +836,8 @@ def sfCrime(train_data, test_data=None):
 	print("Train the Model")
 	model = Model(train)
 	
-	if level < 3:
-		model.setBatch(10000)
+	if batch != 0:
+		model.setBatch(batch)
 
 	# Let's train the model using Random Forest
 	#
@@ -837,7 +849,7 @@ def sfCrime(train_data, test_data=None):
 	print(acc)
 
 #titanic("C:\\Users\\Andrew\Desktop\\train.csv", "C:\\Users\\Andrew\Desktop\\test.csv")
-sfCrime("C:\\Users\\Andrew\Desktop\\train.csv", "C:\\Users\\Andrew\Desktop\\test.csv")
+sfCrime("C:\\Users\\Andrew\Desktop\\train.csv", "C:\\Users\\Andrew\Desktop\\test.csv", 0, 10000)
 
 
 
