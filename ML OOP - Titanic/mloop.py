@@ -824,7 +824,7 @@ def sfCrime(train_data, test_data=None):
 	print("Train the Model")
 	model = Model(train)
 	
-	if level == 1:
+	if level < 3:
 		model.setBatch(10000)
 
 	# Let's train the model using Random Forest
