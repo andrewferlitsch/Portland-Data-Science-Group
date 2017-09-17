@@ -11,6 +11,7 @@
 # Feel free to improve on the solution and make a pull request.
 #
 import sys
+import datetime
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
@@ -400,7 +401,33 @@ class Train(object):
 		""" Address Block : nnn block of XYZ Street OR ABC Street / XYZ Street """
 		return # TODO
 		self._combined_data['Street'] = self._training_data[addr].map(lambda addr:addr.split('of')[1].split('/')[0].strip())
+					
+	def yearBuiltColumn(self, column):
+		""" Group Year built into ranges 
+			column - column name
+		"""
+		# Datasets are combined
+		if self._combined_data is not None:
+			self._yearBuiltColumn(self._combined_data, column)
+		else:
+			if self._training_data is not None:
+				self._yearBuiltColumn(self._training_data, column)
+			if self._test_data is not None:
+				self._yearBuiltColumn(self._test_data, column)
 		
+	def _yearBuiltColumn(self, data, column):
+		near_new = datetime.date.today().year - 2	# current year
+		data[column + '_New']  = data[column].map(lambda s: 1 if s >= near_new else 0)
+		data[column + '_2010'] = data[column].map(lambda s: 1 if s >= 2010 and s < near_new else 0)
+		data[column + '_2000'] = data[column].map(lambda s: 1 if s >= 2000 and s < 2010 else 0)
+		data[column + '_1990'] = data[column].map(lambda s: 1 if s >= 1990 and s < 2000 else 0)
+		data[column + '_1980'] = data[column].map(lambda s: 1 if s >= 1980 and s < 1990 else 0)
+		data[column + '_Old' ] = data[column].map(lambda s: 1 if s >= 1930 and s < 1980 else 0)
+		data[column + '_Hist'] = data[column].map(lambda s: 1 if s < 1930 else 0)
+		
+		# drop the column
+		self.dropColumn(column)
+
 	def split(self, percent=0.2):
 		""" Split a training set 
 			percent - percent of data that is training data

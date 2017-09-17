@@ -11,6 +11,12 @@
 from mloop import Train
 from mloop import Model
 
+class HousePrice(Train):
+	""" Subclass for dataset preparation specific to House Prices Data """
+	
+	def __init__(self, train_data, test_data=None):
+		super().__init__(train_data, test_data)
+		
 def housePrices(train_data, test_data=None):
 	""" Kaggle/House Prices Dataset - Predict Sale Price """
 	global train, model
@@ -146,7 +152,17 @@ def housePrices(train_data, test_data=None):
 	
 	# The OverallCond column is a rating of the overall condition. We will leave it as is.
 	
-	# YearBuilt: TODO - reduce into groups
+	# The YearBuilt column is the year the house was built. Convert the year into group ranges: New, 2010, 2000, 1990, 
+	# 1980, Old, and Historic
+	#
+	print("Convert YearBuilt into Group Ranges")
+	train.yearBuiltColumn("YearBuilt")
+	
+	# The YearRemodAdd column is the year the house was remodeled or addition added. Convert the year into group ranges: New, 2010, 2000, 1990, 
+	# 1980, Old, and Historic
+	#
+	print("Convert YearRemodAdd into Group Ranges")
+	train.yearBuiltColumn("YearRemodAdd")
 
 housePrices("C:\\Users\\Andrew\Desktop\\train.csv", "C:\\Users\\Andrew\Desktop\\test.csv")
 
