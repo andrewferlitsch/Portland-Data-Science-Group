@@ -30,7 +30,7 @@ def housePrices(train_data, test_data=None):
 	# and then load (read) the data into a panda Dataframe. Throughout the data preparation process, the data is kept as 
 	# a panda dataframe.
 	#
-	train = Train(train_data, test_data)
+	train = HousePrice(train_data, test_data)
 	print("Load Dataset")
 	train.load()
 
@@ -163,6 +163,142 @@ def housePrices(train_data, test_data=None):
 	#
 	print("Convert YearRemodAdd into Group Ranges")
 	train.yearBuiltColumn("YearRemodAdd")
+	
+	# The RoofStyle column is the style of roof. We will drop this column
+	#
+	print("Drop RoofStyle")
+	train.dropColumn("RoofStyle")
+	
+	# The RoofMatl column is the material the roof is made of. We will drop this column
+	#
+	print("Drop RoofMatl")
+	train.dropColumn("RoofMatl")
+	
+	# The Exterior1st column is the exterior covering. We will drop this column
+	#
+	print("Drop Exterior1st")
+	train.dropColumn("Exterior1st")
+	
+	# The Exterior1st column is the 2nd exterior covering. We will drop this column
+	#
+	print("Drop Exterior2nd")
+	train.dropColumn("Exterior2nd")
+	
+	# The MasVnrType column is the masonary veener type. We will drop this column
+	#
+	print("Drop MasVnrType")
+	train.dropColumn("MasVnrType")
+	
+	# The MasVnrArea column is the masonary veener type. We will drop this column
+	#
+	print("Drop MasVnrArea")
+	train.dropColumn("MasVnrArea")
+	
+	# The ExterQual column is the quality of the exterior. We will drop this column
+	#
+	print("Drop ExterQual")
+	train.dropColumn("ExterQual")
+	
+	# The ExterCond column is the condition of the exterior. We will drop this columnWe replace the column with a dummy variable conversion, and drop
+	# one of the dummy variables (ExterQual_TA) to eliminate the dummy variable trap.
+	#
+	print("Convert Caregorical Variable ExterCond")
+	train.convertCategorical("ExterCond", "TA")
+	
+	# The BsmtQual column is the quality of the basement. We will drop this column
+	#
+	print("Drop BsmtQual")
+	train.dropColumn("BsmtQual")
+	
+	# The BsmtCond column is the condition of the basement. We will drop this column
+	#
+	print("Drop BsmtCond")
+	train.dropColumn("BsmtCond")
+	
+	# The BsmtExposure column is the walkout or garden walls. We will drop this column
+	#
+	print("Drop BsmtExposure")
+	train.dropColumn("BsmtExposure")
+	
+	# The BsmtFinType1 column is the quality of the basement finished area. We will drop this column
+	#
+	print("Drop BsmtFinType1")
+	train.dropColumn("BsmtFinType1")
+	
+	# The BsmtFinType2 column is the quality of the basement 2nd finished area. We will drop this column
+	#
+	print("Drop BsmtFinType2")
+	train.dropColumn("BsmtFinType2")
+	
+	# The BsmtFinSF1 and BsmtFinSF2 columns are the sqft of the finished basement area. We will add these together.
+	#
+	print("Combine BsmtFinSF1 and BsmtFinSF2")
+	train.addColumns("BsmtFinSF1", "BsmtFinSF2")
+	
+	# The BsmtUnfSF column is the sqft of unfinished basement. We will drop this column
+	#
+	print("Drop BsmtUnfSF")
+	train.dropColumn("BsmtUnfSF")
+	
+	# The TotalBsmtSF column is the total square feet of the basement. We will drop this column
+	#
+	print("Drop TotalBsmtSF")
+	train.dropColumn("TotalBsmtSF")
+
+	# The Heating column is the type of Heating. We will drop this columnWe replace the column with a dummy variable conversion, and drop
+	# one of the dummy variables (Heating_GasA) to eliminate the dummy variable trap.
+	#
+	print("Convert Caregorical Variable Heating")
+	train.convertCategorical("Heating", "GasA")
+	
+	# The HeatingQual column is the quality of heating. We will drop this column
+	#
+	print("Drop HeatingQC")
+	train.dropColumn("HeatingQC")
+	
+	# The CentralAir column is whether there is central air conditioning. We will drop this column
+	#
+	print("Drop CentralAir")
+	train.dropColumn("CentralAir")
+	
+	# The Electrical column is the type of electrical. We will drop this column
+	#
+	print("Drop Electrical")
+	train.dropColumn("Electrical")
+	
+	# Keep first floor Square Footage (1stFlrSq)
+	
+	# Keep second floor Square Footage (2ndFlrSq)
+	
+	# The LowQualFinSF column is the square footage of low quality finished area. We will drop this column
+	#
+	print("Drop LowQualFinSF")
+	train.dropColumn("LowQualFinSF")
+	
+	# Keep GrLivArea (Above Ground Live Area)
+	
+	# The BsmtFullBath column is the number of full baths in the basement. We will drop this column
+	#
+	print("Drop BsmtFullBath")
+	train.dropColumn("BsmtFullBath")
+	
+	# The BsmtHalfBath column is the number of half baths in the basement. We will drop this column
+	#
+	print("Drop BsmtHalfBath")
+	train.dropColumn("BsmtHalfBath")
+	
+	# Keep Full Bathrooms (FullBath)
+	
+	# Keep Half Baths (HalfBath)
+	
+	# Keep Bedrooms
+		
+	# The KitchenAbvGr column is the number of kitchens. We will drop this column
+	#
+	print("Drop KitchenAbvGr")
+	train.dropColumn("KitchenAbvGr")
+	
+	
 
 housePrices("C:\\Users\\Andrew\Desktop\\train.csv", "C:\\Users\\Andrew\Desktop\\test.csv")
 

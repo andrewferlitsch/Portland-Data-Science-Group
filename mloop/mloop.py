@@ -260,7 +260,29 @@ class Train(object):
 		
 		# drop one of the dummy variables to eliminate the dummy variable trap
 		self.dropColumn(column + "_" + value)
-			
+		
+	def addColumns(self, column1, column2):
+		""" Add two columns into one column
+			column1 - first column
+			column2 - second column
+		"""
+		# Datasets are combined
+		if self._combined_data is not None:
+			self._addColumns(self._combined_data, column1, column2)
+		else:
+			if self._training_data is not None:
+				self._addColumns(self._training_data, column1, column2)
+			if self._test_data is not None:
+				self._addColumns(self._test_data, column1, column2)
+				
+		# Drop the second column
+		self.dropColumn(column2)
+		
+	def _addColumns(self, data, column1, column2):
+		length = len(data[column1])
+		for i in range(0, length):
+			data[column1] = data[column1] + data[column2]
+	
 	def genderColumn(self, column):
 		""" Change gender column from categorical to binary
 			column = column name
