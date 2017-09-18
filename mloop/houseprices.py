@@ -297,7 +297,54 @@ def housePrices(train_data, test_data=None):
 	#
 	print("Drop KitchenAbvGr")
 	train.dropColumn("KitchenAbvGr")
+		
+	# The KitchenQual column is the quality of the kitchen. We will drop this column
+	#
+	print("Drop KitchenQual")
+	train.dropColumn("KitchenQual")
+		
+	# The TotRmsAbvGrd column is the number of rooms above ground. We will drop this column
+	#
+	print("Drop TotRmsAbvGrd")
+	train.dropColumn("TotRmsAbvGrd")
+		
+	# The Functional column is a rating on how functional the house is. We will drop this column
+	#
+	print("Drop Functional")
+	train.dropColumn("Functional")
+		
+	# The Fireplaces column is the number of fireplaces. We will drop this column
+	#
+	print("Drop Fireplaces")
+	train.dropColumn("Fireplaces")
+		
+	# The FireplaceQu column is the quality of the fireplaces. We will drop this column
+	#
+	print("Drop FireplaceQu")
+	train.dropColumn("FireplaceQu")
 	
+	# The GarageType is the type of garage. For missing values, we will set to the most common value of attached.
+	# Then we will do categorical conversion.
+	#
+	print("Replace missing values in Garage Type")
+	train.missingValues("GarageType", "Attchd")
+	print("Categorical Conversion of Garage Type")
+	train.convertCategorical("GarageType", "Attchd")
+		
+	# The GarageYrBlt column is year the garage was built. We will drop this column
+	#
+	print("Drop GarageYrBlt")
+	train.dropColumn("GarageYrBlt")
+		
+	# The GarageFinish column is whether the garage is finished. We will drop this column
+	#
+	print("Drop GarageFinish")
+	train.dropColumn("GarageFinish")
+		
+	# The GarageArea column is the sqft of the garage. We will drop this column
+	#
+	print("Drop GarageArea")
+	train.dropColumn("GarageArea")
 	
 
 housePrices("C:\\Users\\Andrew\Desktop\\train.csv", "C:\\Users\\Andrew\Desktop\\test.csv")
