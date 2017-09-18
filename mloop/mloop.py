@@ -530,7 +530,7 @@ class Model(object):
 			model.fit(self._trained._x_training_data, self._trained._y_training_data)
 			self._y_pred = model.predict(self._trained._x_test_data)
 		
-	def randomForest(self):
+	def randomForest(self, scoring='accuracy'):
 		""" Random Forest Classifier """
 		parameters = {'bootstrap': False, 'min_samples_leaf': 3, 'n_estimators': 50, 
                   'min_samples_split': 10, 'max_features': 'sqrt', 'max_depth': 6}
@@ -538,10 +538,10 @@ class Model(object):
 		model = RandomForestClassifier(**parameters)
 		if self._x_batch is not None:
 			model.fit(self._x_batch, self._y_batch)
-			xval = cross_val_score( model, self._x_batch, self._y_batch, cv=5, scoring='accuracy')
+			xval = cross_val_score( model, self._x_batch, self._y_batch, cv=5, scoring=scoring)
 		else:
 			model.fit(self._trained._x_training_data, self._trained._y_training_data)
-			xval = cross_val_score( model, self._trained._x_training_data, self._trained._y_training_data, cv=5, scoring='accuracy')
+			xval = cross_val_score( model, self._trained._x_training_data, self._trained._y_training_data, cv=5, scoring=scoring)
 
 		self._accuracy = np.mean(xval)
 		

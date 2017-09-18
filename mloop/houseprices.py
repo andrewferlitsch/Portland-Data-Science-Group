@@ -428,7 +428,7 @@ def housePrices(train_data, test_data=None):
 	
 	# Next, we reduce the number of features (currently 113). We do an analysis to determine their level of contribution 
 	# (importance) to predicting the label. We eliminate all features (columns) whose significance level is less than 0.01.
-	# This reduces the dataset to 16 features (columns).
+	# This reduces the dataset to 20 features (columns).
 	#
 	print("Reduce Features")
 	train.reduceFeatures(0.01)
@@ -457,7 +457,7 @@ def housePrices(train_data, test_data=None):
 
 	# Let's train the model using Random Forest
 	#
-	model.randomForest()
+	model.randomForest('neg_log_loss')
 
 	# Show our predicted accuracy
 	print("Predicted Accuracy")
