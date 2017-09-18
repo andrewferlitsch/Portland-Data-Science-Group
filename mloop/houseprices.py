@@ -455,6 +455,15 @@ def housePrices(train_data, test_data=None):
 	print("Train the Model")
 	model = Model(train)
 
+	# Let's train the model using Random Forest
+	#
+	model.randomForest()
+
+	# Show our predicted accuracy
+	print("Predicted Accuracy")
+	acc = model.accuracy()
+	print(acc)
+
 housePrices("C:\\Users\\Andrew\Desktop\\train.csv", "C:\\Users\\Andrew\Desktop\\test.csv")
 
 
