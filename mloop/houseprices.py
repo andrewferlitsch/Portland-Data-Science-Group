@@ -341,10 +341,89 @@ def housePrices(train_data, test_data=None):
 	print("Drop GarageFinish")
 	train.dropColumn("GarageFinish")
 		
+	# The GarageCond column is condition of the garage. We will drop this column
+	#
+	print("Drop GarageCond")
+	train.dropColumn("GarageCond")
+		
 	# The GarageArea column is the sqft of the garage. We will drop this column
 	#
 	print("Drop GarageArea")
 	train.dropColumn("GarageArea")
+	
+	# Keep Garage Cars
+	
+	# The PaveDrive column is whether the driveway is paved. We will drop this column
+	#
+	print("Drop PavedDrive")
+	train.dropColumn("PavedDrive")
+	
+	# The WoodDeckSF column is the sqft of deck. We will drop this column.
+	#
+	print("Drop WoodDeckSF")
+	train.dropColumn("WoodDeckSF")
+	
+	# The OpenPorchDeckSF column is the sqft of the porch. We will drop this column.
+	#
+	print("Drop OpenPorchSF")
+	train.dropColumn("OpenPorchSF")
+	
+	# The EnclosedPorch column is the sqft of the enclosed porch. We will drop this column.
+	#
+	print("Drop EnclosedPorch")
+	train.dropColumn("EnclosedPorch")
+	
+	# The 3SsnPorch column is the sqft of the three season porch. We will drop this column.
+	#
+	print("Drop 3SsnPorch")
+	train.dropColumn("3SsnPorch")
+	
+	# The ScreenPorch column is the sqft of the porch. We will drop this column.
+	#
+	print("Drop ScreenPorch")
+	train.dropColumn("ScreenPorch")
+	
+	# The PoolArea we will keep.
+	
+	# The PoolQC is the quality of the pool. We will drop this column.
+	print("Drop PoolQC")
+	train.dropColumn("PoolQC")
+	
+	# The Fence is the quality of the fence. We will drop this column.
+	print("Drop Fence")
+	train.dropColumn("Fence")
+	
+	# The MiscFeature are misc features. We will drop this column.
+	print("Drop MiscFeature")
+	train.dropColumn("MiscFeature")
+	
+	# The MiscVal are the value of the misc features. We will drop this column.
+	print("Drop MiscVal")
+	train.dropColumn("MiscVal")
+	
+	# The MoSold is the month sold. We will drop this column.
+	print("Drop MoSold")
+	train.dropColumn("MoSold")
+	
+	# The YrSold is the year sold. We will drop this column.
+	print("Drop YrSold")
+	train.dropColumn("YrSold")
+	
+	# The SaleType is the type of sale. We will drop this column.
+	print("Drop SaleType")
+	train.dropColumn("SaleType")
+	
+	# The SaleCond is the condition of sale. We will drop this column.
+	print("Drop SaleCondition")
+	train.dropColumn("SaleCondition")
+	
+	# Next, we reduce the number of features (currently 113). We do an analysis to determine their level of contribution 
+	# (importance) to predicting the label. We eliminate all features (columns) whose significance level is less than 0.01.
+	# This reduces the dataset to 16 features (columns).
+	#
+	print("Reduce Features")
+	train.reduceFeatures(0.01)
+	
 	
 
 housePrices("C:\\Users\\Andrew\Desktop\\train.csv", "C:\\Users\\Andrew\Desktop\\test.csv")
