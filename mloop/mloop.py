@@ -16,11 +16,12 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
+from sklearn.model_selection import cross_val_score
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.cross_validation import cross_val_score
 from sklearn.svm import SVC
 from sklearn.metrics import confusion_matrix
 
@@ -216,7 +217,10 @@ class Train(object):
 			data[column].dropna(inplace=True)
 		elif method == "mean":
 			#data[column].fillna(self._training_data[column].mean(), inplace=True)
-			data[column].fillna(self._training_data.groupby(groupby)[column].transform("mean"), inplace=True)
+			if groupby is not None:
+				data[column].fillna(self._training_data.groupby(groupby)[column].transform("mean"), inplace=True)
+			else:
+				data[column].fillna(self._training_data[column].mean(), inplace=True)
 		else:
 			data[column].fillna(method, inplace=True)
 				
@@ -568,6 +572,17 @@ class Model(object):
 			xval = cross_val_score( model, self._trained._x_training_data, self._trained._y_training_data, cv=5, scoring=scoring)
 
 		self._accuracy = np.mean(xval)
+			
+	def randomForestRegression(self, scoring='accuracy'):
+		""" Random Forest Regressor """
+    
+		model = RandomForestClassifier(max_depth=2, random_state=0)
+		if self._x_batch is not None:
+			model.fit(self._x_batch, self._y_batch)
+		else:
+			model.fit(self._trained._x_training_data, self._trained._y_training_data)
+			
+		self._y_pred = model.predict(self._trained._x_test_data)
 		
 	def svm(self):
 		""" Support Vector Machines """

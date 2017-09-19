@@ -457,7 +457,7 @@ def housePrices(train_data, test_data=None):
 
 	# Let's train the model using Random Forest
 	#
-	model.randomForest('neg_log_loss')
+	model.randomForestRegression()
 
 	# Show our predicted accuracy
 	print("Predicted Accuracy")
