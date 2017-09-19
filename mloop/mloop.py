@@ -17,8 +17,10 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.cross_validation import cross_val_score
+from sklearn.metrics import confusion_matrix
 
 class Train(object):
 	""" Class Definition for Training a Model """
@@ -525,10 +527,21 @@ class Model(object):
 		
 		if self._x_batch is not None:
 			model.fit(self._x_batch, self._y_batch)
-			self._y_pred = model.predict(self._trained._x_test_data)
 		else:
 			model.fit(self._trained._x_training_data, self._trained._y_training_data)
-			self._y_pred = model.predict(self._trained._x_test_data)
+			
+		self._y_pred = model.predict(self._trained._x_test_data)
+			
+	def logisticRegression(self):
+		""" Logistic Regression """
+		model = LogisticRegression(random_state = 0)
+		
+		if self._x_batch is not None:
+			model.fit(self._x_batch, self._y_batch)
+		else:
+			model.fit(self._trained._x_training_data, self._trained._y_training_data)
+
+		self._y_pred = model.predict(self._trained._x_test_data)
 		
 	def randomForest(self, scoring='accuracy'):
 		""" Random Forest Classifier """
@@ -544,7 +557,13 @@ class Model(object):
 			xval = cross_val_score( model, self._trained._x_training_data, self._trained._y_training_data, cv=5, scoring=scoring)
 
 		self._accuracy = np.mean(xval)
-		
+	
 	def accuracy(self):
 		""" Return the Accuracy of the Trained Model """
 		return self._accuracy
+		
+	def confusionMatrix(self):
+		""" """
+		# Making the Confusion Matrix
+		cm = confusion_matrix(self._trained._y_test_data, self._y_pred)
+		return cm
