@@ -32,9 +32,8 @@ class Titanic(Train):
 			ticket = list(filter(lambda t : not t.isdigit(), ticket))
 			if len(ticket) > 0:
 				return ticket[0]
-			else: 
+			else:
 				return 'XXX'
-
 
 		# Extracting dummy variables from tickets:
 
