@@ -1,6 +1,8 @@
 class Queue(object):
+	""" Queue Implementation (FIFO) """
+	
 	def __init__(self):
-		self.queue = []	# initialize queue to empty dynamic array
+		self.queue = []	# initialize queue to empty dynamic array (i.e., list)
 
 	def enqueue(self, element):
 		""" Add element to queue """

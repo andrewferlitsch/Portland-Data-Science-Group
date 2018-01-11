@@ -19,6 +19,7 @@ def fibonacci(n):
 
 # Fibonacci Sequence to F(10)
 for number in range(0, 10):
-	print(fibonacci(number))
+	print(fibonacci(number), end=' ')
+print("")
 
 	 
