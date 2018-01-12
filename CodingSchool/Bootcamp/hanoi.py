@@ -54,7 +54,7 @@ class Hanoi(object):
 			print("Tower " + str(i + 1))
 			while True:
 				disc = self.towers[i].pop()
-				if disc == None:
+				if disc is None:
 					break
 				print(disc)
 

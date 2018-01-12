@@ -14,7 +14,7 @@ class StackChain(object):
 		# stack is full
 		else:
 			# Allocate the next stack in chain, if there is not one already.
-			if self.chain == None:
+			if self.chain is None:
 				self.chain = stackChain(self.max)
 
 			# Get (remember) the element from the bottom of the stack
