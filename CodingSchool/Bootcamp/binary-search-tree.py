@@ -3,9 +3,33 @@ class Node(object):
 	""" Definition of a node """
 	
 	def __init__(self, value):
-		self.value = value
-		self.left  = None
-		self.right = None
+		self._value = value
+		self._left  = None
+		self._right = None
+		
+	@property
+	def left(self):
+		return self._left
+		
+	@left.setter
+	def left(self, tree):
+		self._left = tree
+		
+	@property
+	def right(self):
+		return self._right
+		
+	@right.setter
+	def right(self, tree):
+		self._right = tree
+		
+	@property
+	def value(self):
+		return self._value
+		
+	@value.setter
+	def value(self, value):
+		self._value = value
 
 class BinarySearchTree(object): 
 	""" Definition for a Binary Search Tree """
