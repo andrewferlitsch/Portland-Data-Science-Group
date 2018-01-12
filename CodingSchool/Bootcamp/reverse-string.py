@@ -9,5 +9,9 @@ def reverseStringR(original):
 		return reverseStringR(original[1:]) + original[0] 
 	return original
 
+def reverseStringP(original):
+	return original[::-1]
+
 print(reverseString( "abcdefg" ))
 print(reverseStringR( "abcdefg" ))
+print(reverseStringP( "abcdefg" ))
