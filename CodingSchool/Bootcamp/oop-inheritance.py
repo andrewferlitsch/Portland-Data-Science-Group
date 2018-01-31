@@ -1,5 +1,7 @@
 
 class Wheel(object):
+	""" Defines a Wheel """
+	
 	size = 0
 	
 	def __init__(self, size):
@@ -18,6 +20,8 @@ class Wheel(object):
 		self.white_wall = hasit
 		
 class Engine(object):
+	""" Defines an Engine """
+	
 	type = "Gasoline"
 	def __init__(self, size):
 		""" engine size in liters """
@@ -28,7 +32,9 @@ class Engine(object):
 		self.type = type
 		
 class Chassis(Wheel,Engine):
-	""" Inheritance """
+	""" Inheritance 
+		A Chassis consists of steering wheel, engine (inherited) and wheels (inherited)
+	"""
 	steering = "power-steering"
 	
 	def __init__(self, steering):
