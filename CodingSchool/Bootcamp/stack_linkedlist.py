@@ -58,46 +58,48 @@ class Stack(object):
 	def __len__(self):
 		return self.size
 		
-# Testcases
-s = Stack()
+# Testcases (when called from command line)
+if __name__ == "__main__":
+	# Testcases
+	s = Stack()
 
-# top -> n1
-n1 = Node(1)
-s.push(n1)
-print("1 == ", s.top.value)
+	# top -> n1
+	n1 = Node(1)
+	s.push(n1)
+	print("1 == ", s.top.value)
 
-# top -> n2, n1
-n2 = Node(2)
-s.push(n2)
-print("2 == ", s.top.value)
-print("1 == ", s.top.next.value)
+	# top -> n2, n1
+	n2 = Node(2)
+	s.push(n2)
+	print("2 == ", s.top.value)
+	print("1 == ", s.top.next.value)
 
-# top -> n3, n2, n1
-n3 = Node(3)
-s.push(n3)
-print("3 == ", s.top.value)
-print("2 == ", s.top.next.value)
-print("1 == ", s.top.next.next.value)
-print("3 == ", len(s))
+	# top -> n3, n2, n1
+	n3 = Node(3)
+	s.push(n3)
+	print("3 == ", s.top.value)
+	print("2 == ", s.top.next.value)
+	print("1 == ", s.top.next.next.value)
+	print("3 == ", len(s))
 
-# top -> n2, n1
-n = s.pop()
-print("3 == ", n.value)
-print("2 == ", s.top.value)
-print("1 == ", s.top.next.value)
+	# top -> n2, n1
+	n = s.pop()
+	print("3 == ", n.value)
+	print("2 == ", s.top.value)
+	print("1 == ", s.top.next.value)
 
-# top -> n1
-n = s.pop()
-print("2 == ", n.value)
-print("1 == ", s.top.value)
-print("1 == ", len(s))
+	# top -> n1
+	n = s.pop()
+	print("2 == ", n.value)
+	print("1 == ", s.top.value)
+	print("1 == ", len(s))
 
-# top -> None
-n = s.pop()
-print("1 == ", n.value)
-print("None == ", s.top)
+	# top -> None
+	n = s.pop()
+	print("1 == ", n.value)
+	print("None == ", s.top)
 
-n = s.pop()
-print("None == ", n)
+	n = s.pop()
+	print("None == ", n)
 
 		
