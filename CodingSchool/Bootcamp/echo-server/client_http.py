@@ -4,6 +4,11 @@ import socket
 
 debug = 0	# use the debug level to control which debugging statements to display
 
+class HTTPConstants:
+	VERSION 	= "HTTP/1.1"	# HTTP Version
+	CRLF    	= "\r\n"		# delinator in HTTP
+	GET_REQUEST = "GET"			# GET method request
+
 def client(message):
 	""" Client side of a socket """
 	
@@ -62,25 +67,23 @@ def make_packet(message, host):
 		message
 		<CRLF>
 	"""
-	REQUEST = "GET"			# use uppercase to indicate these are constants
-	VERSION = "HTTP/1.1"
-	CRLF	= "\r\n"
+	RESOURCE = "/"				# dummy resource
 	
 	# First line is the request
-	request = REQUEST + " " + VERSION + CRLF
+	request = HTTPConstants.GET_REQUEST + " " + RESOURCE + " " + HTTPConstants.VERSION + HTTPConstants.CRLF
 	
 	# Next are the headers
-	headers = "Host: {0}".format(host) + CRLF
+	headers = "Host: {0}".format(host) + HTTPConstants.CRLF
 	
 	# Construct the head
 	head = request + headers
 	
 	# Construct the body
-	body = message + CRLF
+	body = message + HTTPConstants.CRLF
 	
 	# Assembly into a packet, where the head and body (message) are separated by a blank line (CRLF), and the EOM is
 	# denoted by a blank line
-	return head + CRLF + body + CRLF
+	return head + HTTPConstants.CRLF + body + HTTPConstants.CRLF
 	
 def parse_response(conn):
 	""" Parse a HTTP response packet 
@@ -103,7 +106,7 @@ def parse_response(conn):
 	if len(status_line) < 3:
 		raise Exception("Malformed Response Packet")
 		
-	if status_line[0] != "HTTP/1.1":
+	if status_line[0] != HTTPConstants.VERSION:
 		raise Exception("Malformed Response Packet")
 	
 	# CRLF separation between HEAD and BODY

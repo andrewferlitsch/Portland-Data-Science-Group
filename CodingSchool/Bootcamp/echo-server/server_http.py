@@ -84,17 +84,17 @@ def parse_head(conn):
 	data = read2CRLF(conn)
 			
 	# Parse the request portion
-	#	head = method <SP> http-version
+	#	head = method <SP> resource <SP> http-version
 	msg = data.decode()
 	words = msg.split(' ')
-	if len(words) != 2:
+	if len(words) != 3:
 		raise Exception("Malformed head/request")
 	if words[0] == 'GET':
 		pass
 	else:
 		raise NotImplementedError("Only GET supported")
 		
-	if words[1] != 'HTTP/1.1':
+	if words[2] != 'HTTP/1.1':
 		raise Exception("Only HTTP/1.1 supported")
 	
 	# headers
