@@ -61,45 +61,46 @@ class Queue(object):
 	def __len__(self):
 		return self.size
 		
-# Testcases
-q = Queue()
+# Testcases (when called from command line)
+if __name__ == "__main__":
+	q = Queue()
 
-# front -> n1
-n1 = Node(1)
-q.enqueue(n1)
-print("1 == ", q.front.value)
+	# front -> n1
+	n1 = Node(1)
+	q.enqueue(n1)
+	print("1 == ", q.front.value)
 
-# front -> n1, n2
-n2 = Node(2)
-q.enqueue(n2)
-print("1 == ", q.front.value)
-print("2 == ", q.front.next.value)
+	# front -> n1, n2
+	n2 = Node(2)
+	q.enqueue(n2)
+	print("1 == ", q.front.value)
+	print("2 == ", q.front.next.value)
 
-# front -> n1, n2, n3
-n3 = Node(3)
-q.enqueue(n3)
-print("1 == ", q.front.value)
-print("2 == ", q.front.next.value)
-print("3 == ", q.front.next.next.value)
-print("3 == ", len(q))
+	# front -> n1, n2, n3
+	n3 = Node(3)
+	q.enqueue(n3)
+	print("1 == ", q.front.value)
+	print("2 == ", q.front.next.value)
+	print("3 == ", q.front.next.next.value)
+	print("3 == ", len(q))
 
-# front -> n2, n3
-n = q.dequeue()
-print("1 == ", n.value)
-print("2 == ", q.front.value)
-print("3 == ", q.front.next.value)
+	# front -> n2, n3
+	n = q.dequeue()
+	print("1 == ", n.value)
+	print("2 == ", q.front.value)
+	print("3 == ", q.front.next.value)
 
-# front -> n3
-n = q.dequeue()
-print("2 == ", n.value)
-print("3 == ", q.front.value)
-print("1 == ", len(q))
+	# front -> n3
+	n = q.dequeue()
+	print("2 == ", n.value)
+	print("3 == ", q.front.value)
+	print("1 == ", len(q))
 
-# front -> None
-n = q.dequeue()
-print("3 == ", n.value)
-print("None == ", q.front)
+	# front -> None
+	n = q.dequeue()
+	print("3 == ", n.value)
+	print("None == ", q.front)
 
-# front -> None
-n = q.dequeue()
-print("None == ", n)
+	# front -> None
+	n = q.dequeue()
+	print("None == ", n)
