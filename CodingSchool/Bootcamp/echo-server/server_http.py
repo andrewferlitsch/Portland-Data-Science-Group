@@ -1,13 +1,10 @@
 # import needed libaries from the standard libary
 import socket
 
-debug = 1	# use the debug level to control which debugging statements to display
+# import common routines and constants
+from http import ResponseCode, HTTPConstants, read2CRLF, expectCRLF
 
-class ResponseCode:
-	""" Definition for Response Codes (Constants) """
-	OK			  = [ 200, "OK" ]
-	BAD_REQUEST   = [ 400, "Bad Request" ]
-	NOT_SUPPORTED = [ 403, "Request Not Supported" ]
+debug = 1	# use the debug level to control which debugging statements to display
 
 def server():
 	""" Client side of a socket """
@@ -80,8 +77,12 @@ def parse_head(conn):
 	""" Parse the HEAD section of a packet (as it arrives from the client) """
 	if debug == 1: print("START HEAD")
 	
+	print("1")
+	
 	# request
 	data = read2CRLF(conn)
+	
+	print("2")
 			
 	# Parse the request portion
 	#	head = method <SP> resource <SP> http-version
@@ -89,16 +90,20 @@ def parse_head(conn):
 	words = msg.split(' ')
 	if len(words) != 3:
 		raise Exception("Malformed head/request")
-	if words[0] == 'GET':
+	if words[0] == HTTPConstants.GET_REQUEST:
 		pass
 	else:
 		raise NotImplementedError("Only GET supported")
 		
-	if words[2] != 'HTTP/1.1':
+	if words[2] != HTTPConstants.VERSION:
 		raise Exception("Only HTTP/1.1 supported")
+		
+	print("3")
 	
 	# headers
 	data = read2CRLF(conn)
+	
+	print("4")
 			
 	# TODO: PARSE the heading portion (not needed for this assignment)
 	
@@ -131,46 +136,20 @@ def make_response( status, data ):
 	
 	# Response HEAD
 	# Status-Line = HTTP-Version <SP> Status Code <SP> Reason <CRLF>
-	response = "HTTP/1.1 " + str(status[0]) + " " + status[1] + "\r\n"
+	response = HTTPConstants.VERSION + " " + str(status[0]) + " " + status[1] + HTTPConstants.CRLF
 	
 	# Insert CRLF between HEAD and BODY
-	response += "\r\n"
+	response += HTTPConstants.CRLF
 	
 	# Response BODY
 	# body = echo <CRLF>
-	response += data + "\r\n"
+	response += data + HTTPConstants.CRLF
 	
 	# End packet with CRLF
-	response += "\r\n"
+	response += HTTPConstants.CRLF
 	
 	if debug == 1: print("RESPONSE: " + response)
 	return response
-	
-def read2CRLF(conn):
-	""" Read a data packet until we encounter a CRLF """
-	data = b''
-	while True:
-			# Block waiting for data from the client. Read 1 byte (buffered) at a time
-			byte = conn.recv(1)
-			
-			# Found CRLF separator
-			if byte == b'\r':
-				byte = conn.recv(1)
-				if byte != b'\n':
-					raise Exception("Ill-formed packet")
-				break
-			
-			# incrementially assemble the data
-			data += byte
-	if debug == 1: print(data)
-	return data
-	
-def expectCRLF(conn):
-	""" Expect a CRLF """
-	if conn.recv(1) != b'\r':
-		raise Exception("Ill-formed packet")
-	if conn.recv(1) != b'\n':
-		raise Exception("Ill-formed packet")
    
 # can be called from command line and from non-command line
 server()

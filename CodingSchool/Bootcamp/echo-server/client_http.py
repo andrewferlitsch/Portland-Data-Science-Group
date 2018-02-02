@@ -2,12 +2,10 @@
 import sys
 import socket
 
-debug = 0	# use the debug level to control which debugging statements to display
+# import common routines and constants
+from http import ResponseCode, HTTPConstants, read2CRLF, expectCRLF
 
-class HTTPConstants:
-	VERSION 	= "HTTP/1.1"	# HTTP Version
-	CRLF    	= "\r\n"		# delinator in HTTP
-	GET_REQUEST = "GET"			# GET method request
+debug = 0	# use the debug level to control which debugging statements to display
 
 def client(message):
 	""" Client side of a socket """
@@ -119,32 +117,6 @@ def parse_response(conn):
 	
 	# return the data in the body
 	return response, data
-	
-def read2CRLF(conn):
-	""" Read a data packet until we encounter a CRLF """
-	data = b''
-	while True:
-			# Block waiting for data from the client. Read 1 byte (buffered) at a time
-			byte = conn.recv(1)
-			
-			# Found CRLF separator
-			if byte == b'\r':
-				byte = conn.recv(1)
-				if byte != b'\n':
-					raise Exception("Ill-formed packet")
-				break
-			
-			# incrementially assemble the data
-			data += byte
-	if debug == 1: print(data)
-	return data
-	
-def expectCRLF(conn):
-	""" Expect a CRLF """
-	if conn.recv(1) != b'\r':
-		raise Exception("Ill-formed packet")
-	if conn.recv(1) != b'\n':
-		raise Exception("Ill-formed packet")
 	
 	
 # if this script is called from the command line, then __name__ is defined to "__main__"
