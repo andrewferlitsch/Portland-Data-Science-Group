@@ -1,9 +1,11 @@
 from collections import OrderedDict
 
-# Choices for main menu (constants)
-CHOICES = '1: Send a Thank You \n2: Create a Report \n3: Quit\n'
-NAME    = 'Name? '
-DONATION = 'Donation Amount: '
+# Choices for main menu (store as static attributes (aka constants)
+class Constants(object):
+	# Python naming convention is too use all uppercase for constants
+	CHOICES = '1: Send a Thank You \n2: Create a Report \n3: Quit\n'
+	NAME    = 'Name? '
+	DONATION = 'Donation Amount: '
 
 # pre-existing donor data
 donors = {'charly': [100.00], 'andrew': [80.00]} 
@@ -14,7 +16,7 @@ def mailroom():
 	# Loop forever for input from user(s)
 	while True:
 		# Get input choice from user
-		choice = getInput(CHOICES)
+		choice = getInput(Constants.CHOICES)
 		
 		# Enter a Donation
 		if choice == '1':
@@ -23,7 +25,7 @@ def mailroom():
 				# Get donor name. 
 				#	Lowercase it to make entry case-insensitive.
 				#	Strip any leading/trailing whitespace
-				name     = getInput(NAME).lower().strip()
+				name     = getInput(Constants.NAME).lower().strip()
 				
 				# Valid input
 				if name != '':
@@ -36,7 +38,7 @@ def mailroom():
 				#	Convert to whole dollar amount (round down)
 				#	Check input is an integer!
 				try:
-					donation = int( getInput(DONATION) )
+					donation = int( getInput(Constants.DONATION) )
 				except:
 					print("Not a dollar amount!")
 				# Valid input, is a dollar amount
@@ -75,6 +77,9 @@ def getInput(prompt):
 		Instead, we make a wrapper function and redefine the name alias for that.
 	"""
 	return input(prompt)
+	
+def fakeInput(method):
+	getInput = method
 	
 # Called from command line
 if __name__ == "__main__":
