@@ -77,12 +77,8 @@ def parse_head(conn):
 	""" Parse the HEAD section of a packet (as it arrives from the client) """
 	if debug == 1: print("START HEAD")
 	
-	print("1")
-	
 	# request
 	data = read2CRLF(conn)
-	
-	print("2")
 			
 	# Parse the request portion
 	#	head = method <SP> resource <SP> http-version
@@ -97,13 +93,9 @@ def parse_head(conn):
 		
 	if words[2] != HTTPConstants.VERSION:
 		raise Exception("Only HTTP/1.1 supported")
-		
-	print("3")
 	
 	# headers
 	data = read2CRLF(conn)
-	
-	print("4")
 			
 	# TODO: PARSE the heading portion (not needed for this assignment)
 	
