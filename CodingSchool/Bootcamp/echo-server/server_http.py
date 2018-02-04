@@ -52,7 +52,7 @@ def parse_packet(conn):
 	#	HEAD
 	#	BODY
 	try:
-		parse_head(conn)
+		resource = parse_head(conn)
 	except NotImplementedError:
 		# Use NOT SUPPORTED for request type that is not supported by the server
 		status = ResponseCode.NOT_SUPPORTED
@@ -67,11 +67,17 @@ def parse_packet(conn):
 			# Use BAD REQUEST to indicate malformed body
 			status = ResponseCode.BAD_REQUEST
 	
+	# Special Case: treat root directory request as an echo request
+	if resource == '/':
+		body = data.decode()
+	else:
+		body = get_resource( resource )
+	
 	# construct a response
 	# Send back to the server:
 	#	response packet
 	#	the data sent by the client
-	return make_response(status, data.decode()), data
+	return make_response(status, body), data
 	
 def parse_head(conn):
 	""" Parse the HEAD section of a packet (as it arrives from the client) """
@@ -91,6 +97,9 @@ def parse_head(conn):
 	else:
 		raise NotImplementedError("Only GET supported")
 		
+	# the resource being requested
+	resource = words[1]
+		
 	if words[2] != HTTPConstants.VERSION:
 		raise Exception("Only HTTP/1.1 supported")
 	
@@ -103,6 +112,8 @@ def parse_head(conn):
 	expectCRLF(conn)
 		
 	if debug == 1: print("END HEAD")
+	
+	return resource
 	
 def parse_body(conn):
 	""" Parse the BODY section of a packet (as it is streamed in) """
@@ -142,6 +153,10 @@ def make_response( status, data ):
 	
 	if debug == 1: print("RESPONSE: " + response)
 	return response
+	
+def get_resource( resource ):
+	""" """
+	return None
    
 # can be called from command line and from non-command line
 server()
